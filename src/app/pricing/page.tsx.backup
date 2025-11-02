@@ -1,0 +1,428 @@
+import { Section } from "@hyper/ui";
+import { PageHeader } from "@/components/page-header";
+
+const pricingHighlights = [
+  {
+    title: "Profit-share model",
+    description:
+      "Fees only trigger after net performance (after trading costs) clears the preferred return hurdles. No management fee, no monthly retainers.",
+  },
+  {
+    title: "Illustrative example",
+    description:
+      "If an account realised $10,000 in net profit over a quarter, the illustrative 20% share would be $2,000. This is not a guarantee of future performance.",
+  },
+  {
+    title: "Independent verification",
+    description:
+      "We will not activate fees until third-party audit and operational due diligence are complete. Until then, everything remains in demo mode.",
+  },
+];
+
+export default function PricingPage() {
+  return (
+    <div className="space-y-0">
+      <PageHeader
+        eyebrow="Pricing"
+        title="Aligned incentives, no hidden retainers"
+        description="Hyper Trading Automation only earns when verified, net performance is positive. Numbers on this page are illustrative -- no public ROI promises."
+      />
+
+      <Section
+        id="model"
+        title="Profit-share mechanics"
+        description="Illustrative only. Final terms require legal review and investor qualification."
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          {pricingHighlights.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-6 text-sm text-black/70 dark:bg-black/50 dark:text-white/70"
+            >
+              <h2 className="mb-3 text-lg font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                {item.title}
+              </h2>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        id="calculator"
+        eyebrow="Estimator"
+        title="Fee calculator"
+        description="Illustrative profit-share comparison. Not a guarantee or projection of actual returns."
+      >
+        <FeeCalculator />
+      </Section>
+
+      <Section
+        id="comparison"
+        title="How we compare to traditional funds"
+        description="Side-by-side breakdown of fee structures. Hypothetical scenarios for illustration only."
+      >
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left text-sm">
+            <thead>
+              <tr className="border-b border-[color:var(--color-line-muted)]">
+                <th className="p-4 font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                  Feature
+                </th>
+                <th className="p-4 font-semibold text-emerald-600 dark:text-emerald-400">
+                  Hyper Trading Automation
+                </th>
+                <th className="p-4 font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                  Traditional Hedge Fund
+                </th>
+                <th className="p-4 font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                  Typical Crypto Bot
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-black/70 dark:text-white/70">
+              <tr className="border-b border-[color:var(--color-line-muted)]/50">
+                <td className="p-4 font-medium">Management Fee</td>
+                <td className="p-4 text-emerald-600 dark:text-emerald-400">
+                  <Check className="inline h-5 w-5" /> 0%
+                </td>
+                <td className="p-4">2% annually</td>
+                <td className="p-4">0–1% monthly</td>
+              </tr>
+              <tr className="border-b border-[color:var(--color-line-muted)]/50">
+                <td className="p-4 font-medium">Performance Fee</td>
+                <td className="p-4 text-emerald-600 dark:text-emerald-400">
+                  Profit-share (after audit)
+                </td>
+                <td className="p-4">20% of profits</td>
+                <td className="p-4">10–30% of profits</td>
+              </tr>
+              <tr className="border-b border-[color:var(--color-line-muted)]/50">
+                <td className="p-4 font-medium">Transparency</td>
+                <td className="p-4 text-emerald-600 dark:text-emerald-400">
+                  <Check className="inline h-5 w-5" /> Real-time, signed data
+                </td>
+                <td className="p-4">Quarterly reports</td>
+                <td className="p-4">Varies widely</td>
+              </tr>
+              <tr className="border-b border-[color:var(--color-line-muted)]/50">
+                <td className="p-4 font-medium">Independent Audit</td>
+                <td className="p-4 text-emerald-600 dark:text-emerald-400">
+                  <Check className="inline h-5 w-5" /> In progress (Q1 2026)
+                </td>
+                <td className="p-4">Annual financial audit</td>
+                <td className="p-4">
+                  <X className="inline h-5 w-5 text-red-500" /> Rare
+                </td>
+              </tr>
+              <tr className="border-b border-[color:var(--color-line-muted)]/50">
+                <td className="p-4 font-medium">Fee Charged in Loss Years</td>
+                <td className="p-4 text-emerald-600 dark:text-emerald-400">
+                  <Check className="inline h-5 w-5" /> No
+                </td>
+                <td className="p-4">
+                  <X className="inline h-5 w-5 text-red-500" /> Yes (management fee)
+                </td>
+                <td className="p-4">Depends on subscription model</td>
+              </tr>
+              <tr className="border-b border-[color:var(--color-line-muted)]/50">
+                <td className="p-4 font-medium">Minimum Investment</td>
+                <td className="p-4 text-emerald-600 dark:text-emerald-400">
+                  TBD (post-audit)
+                </td>
+                <td className="p-4">$500k–$5M+</td>
+                <td className="p-4">$100–$10k</td>
+              </tr>
+              <tr>
+                <td className="p-4 font-medium">Withdrawal Restrictions</td>
+                <td className="p-4 text-emerald-600 dark:text-emerald-400">
+                  TBD (reasonable notice)
+                </td>
+                <td className="p-4">Quarterly with 30–90 day notice</td>
+                <td className="p-4">Instant (exchange custody risk)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-6 text-xs text-black/60 dark:text-white/60">
+          <strong>Disclaimer:</strong> Comparison is illustrative and based on typical industry structures. Actual terms vary. Traditional hedge funds offer regulatory protections and institutional oversight not yet available for crypto automation. See{" "}
+          <Link href="/risk-disclosure" className="text-[color:var(--color-accent-primary)] underline">
+            Risk Disclosure
+          </Link>{" "}
+          for details.
+        </p>
+      </Section>
+
+      <Section
+        id="examples"
+        title="Fee examples"
+        description="Hypothetical scenarios to illustrate profit-share mechanics. Not projections of actual performance."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-3xl border border-emerald-200 bg-emerald-50/50 p-6 dark:border-emerald-900/30 dark:bg-emerald-950/20">
+            <div className="mb-4 flex items-center gap-2">
+              <TrendingUp className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+              <h3 className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                Profitable Quarter (Hypothetical)
+              </h3>
+            </div>
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between">
+                <span className="text-black/70 dark:text-white/70">Starting Balance:</span>
+                <span className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                  $100,000
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-black/70 dark:text-white/70">Net Profit (after costs):</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  +$12,000
+                </span>
+              </div>
+              <div className="flex justify-between border-t border-emerald-200 pt-3 dark:border-emerald-900/30">
+                <span className="text-black/70 dark:text-white/70">
+                  Profit-Share (20% illustrative):
+                </span>
+                <span className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                  $2,400
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-black/70 dark:text-white/70">Your Net Gain:</span>
+                <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
+                  $9,600
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-red-200 bg-red-50/50 p-6 dark:border-red-900/30 dark:bg-red-950/20">
+            <div className="mb-4 flex items-center gap-2">
+              <TrendingUp className="h-6 w-6 rotate-180 text-red-600 dark:text-red-400" />
+              <h3 className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                Loss Quarter (Hypothetical)
+              </h3>
+            </div>
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between">
+                <span className="text-black/70 dark:text-white/70">Starting Balance:</span>
+                <span className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                  $100,000
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-black/70 dark:text-white/70">Net Loss (after costs):</span>
+                <span className="font-semibold text-red-600 dark:text-red-400">-$3,000</span>
+              </div>
+              <div className="flex justify-between border-t border-red-200 pt-3 dark:border-red-900/30">
+                <span className="text-black/70 dark:text-white/70">Profit-Share Fee:</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  $0
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-black/70 dark:text-white/70">Your Net Loss:</span>
+                <span className="text-lg font-bold text-red-600 dark:text-red-400">
+                  -$3,000
+                </span>
+              </div>
+            </div>
+            <p className="mt-4 text-xs text-black/60 dark:text-white/60">
+              No fees charged in loss periods. We only earn when you earn.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section
+        id="faq"
+        title="Pricing FAQ"
+        description="Common questions about our fee structure and billing."
+      >
+        <div className="space-y-6">
+          <FaqItem
+            question="When will fees be activated?"
+            answer="Fees will not be charged until independent third-party audit and operational due diligence are complete (targeted Q1 2026). Until then, all systems remain in demo/analysis mode."
+          />
+          <FaqItem
+            question="What is included in 'net profit'?"
+            answer="Net profit is calculated as realized gains minus trading costs (exchange fees, slippage, funding rates). Unrealized P&L is not included in performance fee calculations."
+          />
+          <FaqItem
+            question="Are there any hidden fees?"
+            answer="No. There are no setup fees, withdrawal fees, or monthly subscriptions. You pay only trading costs (exchange fees) and profit-share on verified net gains."
+          />
+          <FaqItem
+            question="How is profit-share calculated with drawdowns?"
+            answer="High-water mark provisions ensure you're never charged performance fees on gains that merely recover previous losses. Details will be in formal agreements after audit."
+          />
+          <FaqItem
+            question="Can I see fee calculations in real-time?"
+            answer="Yes. Once fees are activated, your dashboard will show accrued (but not yet billed) profit-share amounts in real-time, with full transaction-level detail."
+          />
+          <FaqItem
+            question="What happens if I withdraw funds mid-period?"
+            answer="Accrued profit-share on withdrawn amounts is calculated and billed at withdrawal. Remaining balance continues with existing high-water mark provisions."
+          />
+          <FaqItem
+            question="Do you charge management fees during drawdowns?"
+            answer="No. Unlike traditional funds that charge 2% annually regardless of performance, we earn zero fees unless net profits are realized."
+          />
+        </div>
+      </Section>
+
+      <Section
+        id="disclaimer"
+        eyebrow="Compliance"
+        title="Required disclosures"
+        description="Any future performance disclosures will follow the SEC Marketing Rule: net vs gross, relevant audience gating, standardised periods, and policy documentation."
+      >
+        <div className="rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-6 dark:bg-black/50">
+          <ul className="space-y-3 text-sm text-black/70 dark:text-white/70">
+            <li>
+              - <strong>Illustrative scenarios only:</strong> All examples on this page are hypothetical and do not represent actual trading results or guarantees of future performance.
+            </li>
+            <li>
+              - <strong>Performance sharing details:</strong> Final profit-share percentages, high-water mark provisions, and hurdle rates will be documented in formal agreements after regulatory consultation.
+            </li>
+            <li>
+              - <strong>Investor qualification:</strong> Access requires accredited investor status or equivalent qualification, compliance checks, and risk tolerance assessment.
+            </li>
+            <li>
+              - <strong>No guarantees:</strong> Past performance does not predict future results. Trading involves substantial risk of loss. See{" "}
+              <Link href="/risk-disclosure" className="text-[color:var(--color-accent-primary)] underline">
+                Risk Disclosure
+              </Link>{" "}
+              for comprehensive details.
+            </li>
+            <li>
+              - <strong>Fee changes:</strong> Fee structures may change based on regulatory requirements or audit recommendations. Changes will be communicated 30 days in advance.
+            </li>
+          </ul>
+        </div>
+      </Section>
+    </div>
+  );
+}
+
+function FeeCalculator() {
+  const [profit, setProfit] = useState(10000);
+  const profitShareRate = 0.2; // 20% illustrative
+
+  const profitShare = Math.max(0, profit * profitShareRate);
+  const yourNet = profit - profitShare;
+
+  // Traditional fund comparison (2% + 20%)
+  const accountSize = 100000;
+  const managementFee = accountSize * 0.02;
+  const traditionalPerfFee = Math.max(0, profit * 0.2);
+  const traditionalTotal = managementFee + traditionalPerfFee;
+  const traditionalNet = profit - traditionalTotal;
+
+  return (
+    <div className="mx-auto max-w-2xl rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-8 dark:bg-black/50">
+      <div className="mb-6 flex items-center gap-3">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--color-accent-primary)]/10">
+          <Calculator className="h-6 w-6 text-[color:var(--color-accent-primary)]" />
+        </div>
+        <h3 className="text-xl font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+          Profit-Share Estimator
+        </h3>
+      </div>
+
+      <div className="mb-6">
+        <label className="mb-2 block text-sm font-medium text-[color:var(--color-surface-900)] dark:text-white">
+          Hypothetical Net Profit (after trading costs)
+        </label>
+        <input
+          type="range"
+          min="-10000"
+          max="50000"
+          step="1000"
+          value={profit}
+          onChange={(e) => setProfit(Number(e.target.value))}
+          className="w-full"
+        />
+        <div className="mt-2 text-center text-2xl font-bold text-[color:var(--color-surface-900)] dark:text-white">
+          ${profit.toLocaleString()}
+        </div>
+      </div>
+
+      <div className="space-y-4 rounded-2xl bg-emerald-50 p-6 dark:bg-emerald-950/20">
+        <h4 className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+          Hyper Trading Automation
+        </h4>
+        <div className="flex justify-between text-sm">
+          <span className="text-black/70 dark:text-white/70">Management Fee (Annual):</span>
+          <span className="font-semibold text-emerald-600 dark:text-emerald-400">$0</span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="text-black/70 dark:text-white/70">
+            Profit-Share (20% illustrative):
+          </span>
+          <span className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+            ${profitShare.toLocaleString()}
+          </span>
+        </div>
+        <div className="flex justify-between border-t border-emerald-200 pt-4 dark:border-emerald-900/30">
+          <span className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+            Your Net Gain/Loss:
+          </span>
+          <span
+            className={`text-xl font-bold ${yourNet >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}
+          >
+            ${yourNet.toLocaleString()}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-4 space-y-4 rounded-2xl bg-orange-50 p-6 dark:bg-orange-950/20">
+        <h4 className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+          Traditional Fund (2% + 20%)
+        </h4>
+        <div className="flex justify-between text-sm">
+          <span className="text-black/70 dark:text-white/70">
+            Management Fee (2% of $100k):
+          </span>
+          <span className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+            ${managementFee.toLocaleString()}
+          </span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="text-black/70 dark:text-white/70">Performance Fee (20%):</span>
+          <span className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+            ${traditionalPerfFee.toLocaleString()}
+          </span>
+        </div>
+        <div className="flex justify-between border-t border-orange-200 pt-4 dark:border-orange-900/30">
+          <span className="font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+            Your Net Gain/Loss:
+          </span>
+          <span
+            className={`text-xl font-bold ${traditionalNet >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}
+          >
+            ${traditionalNet.toLocaleString()}
+          </span>
+        </div>
+      </div>
+
+      <p className="mt-6 text-xs text-black/60 dark:text-white/60">
+        <strong>Hypothetical calculation only.</strong> Assumes $100,000 account size for management fee comparison. Actual results will vary. Traditional fund comparison is illustrative; specific terms vary by fund. Not financial advice.
+      </p>
+    </div>
+  );
+}
+
+function FaqItem({ question, answer }: { question: string; answer: string }) {
+  return (
+    <div className="rounded-2xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-6 dark:bg-black/50">
+      <h4 className="mb-2 font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+        {question}
+      </h4>
+      <p className="text-sm leading-relaxed text-black/70 dark:text-white/70">{answer}</p>
+    </div>
+  );
+}
+
+
+

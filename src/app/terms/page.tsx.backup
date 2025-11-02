@@ -1,0 +1,39 @@
+import { Section } from "@hyper/ui";
+import { PageHeader } from "@/components/page-header";
+
+export default function TermsPage() {
+  return (
+    <div className="space-y-0">
+      <PageHeader
+        eyebrow="Terms"
+        title="Terms of use for the Hyper Trading Automation demo site"
+        description="Access to this site is granted for informational purposes only. No offer to sell securities or participate in a trading strategy is made."
+      />
+
+      <Section
+        id="use"
+        title="Acceptable use"
+        description="By using this site you agree not to:"
+      >
+        <ul className="space-y-3 text-sm text-black/70 dark:text-white/70">
+          <li>- Claim that the demo represents live trading results or verified performance.</li>
+          <li>- Attempt to access private APIs or bypass rate limits and security controls.</li>
+          <li>- Reproduce content without explicit attribution and permission.</li>
+        </ul>
+      </Section>
+
+      <Section
+        id="disclaimer"
+        title="Disclaimers"
+        description="The site is provided “as-is” without warranty."
+      >
+        <ul className="space-y-3 text-sm text-black/70 dark:text-white/70">
+          <li>- No guarantees of accuracy, completeness, or suitability for any purpose.</li>
+          <li>- We are not liable for losses incurred from reliance on demo data.</li>
+          <li>- Jurisdictional access may be restricted based on regulatory requirements.</li>
+        </ul>
+      </Section>
+    </div>
+  );
+}
+

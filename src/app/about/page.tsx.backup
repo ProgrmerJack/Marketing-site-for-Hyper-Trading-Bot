@@ -1,0 +1,149 @@
+import { Section } from "@hyper/ui";
+import { PageHeader } from "@/components/page-header";
+import { Shield, Zap, Scale, Eye } from "lucide-react";
+
+const founderStory = {
+  name: "Abduxoliq Ashuraliyev",
+  role: "Founder & Chief Systems Architect",
+  story: [
+    {
+      title: "The Problem I Witnessed",
+      content: "After years building risk and execution systems across traditional finance and digital assets, I saw the same pattern repeat: platforms making bold performance claims without verifiable proof, systems failing when markets turned volatile, and retail investors bearing the consequences of inadequate risk controls.",
+    },
+    {
+      title: "Why I Built This",
+      content: "Inflation erodes purchasing power at 3-5% annually in stable economies, and much more in volatile periods. Meanwhile, traditional fund managers charge 2% management fees plus 20% performance fees while providing quarterly reports with no real-time transparency. I believed there had to be a better way—automation that works for investors, not against them.",
+    },
+    {
+      title: "The Technical Philosophy",
+      content: "Every design decision prioritizes verifiability over velocity. Our 120+ component architecture processes market signals in under 120ms, but speed means nothing without accuracy. Every trade goes through multi-layered risk checks. Every decision is logged. Every claim is backed by signed data you can verify independently.",
+    },
+    {
+      title: "Building for Oversight, Not Avoiding It",
+      content: "Most crypto platforms operate in gray areas, avoiding regulation. We're doing the opposite—actively engaging with government agencies, preparing for independent audits, and building systems designed to meet institutional oversight standards. It's harder and slower, but it's the only way to build something that lasts.",
+    },
+  ],
+  principles: [
+    {
+      icon: Shield,
+      title: "Risk First",
+      description: "No position without verified risk controls. Circuit breakers, drawdown limits, and venue health checks are non-negotiable.",
+    },
+    {
+      icon: Zap,
+      title: "Technical Rigor",
+      description: "Sub-120ms signal processing, drift monitoring, transparent feature engineering. Every claim is measurable.",
+    },
+    {
+      icon: Scale,
+      title: "Aligned Incentives",
+      description: "Profit-share only model. We only earn when you earn. No upfront fees, no hidden charges, no management fees.",
+    },
+    {
+      icon: Eye,
+      title: "Radical Transparency",
+      description: "Public demo with signed data, incident logs, status page. You see what we see, in real-time.",
+    },
+  ],
+};
+
+const leadership = [
+  {
+    name: "Abduxoliq Ashuraliyev",
+    role: "Founder & Systems Lead",
+    bio: "Built risk and execution systems across traditional and digital asset markets. Obsessed with verifiable controls, not storytelling.",
+    credentials: [
+      "10+ years building trading infrastructure",
+      "Experience across TradFi and crypto markets",
+      "Specialized in risk management systems",
+      "Focus on verifiable, audit-ready architectures",
+    ],
+  },
+  {
+    name: "Compliance & Risk Advisory Board",
+    role: "In progress",
+    bio: "Independent advisors spanning regulatory, legal, and operational due diligence. Names published after contracts execute.",
+    credentials: [
+      "Regulatory compliance specialists",
+      "Legal experts in crypto regulation",
+      "Operational due diligence advisors",
+      "Names disclosed after agreements finalize",
+    ],
+  },
+];
+
+const roadmap = [
+  {
+    title: "Independent performance audit",
+    timeframe: "Q1 2026",
+    summary: "Third-party verification covering net performance, controls, and operational resilience.",
+  },
+  {
+    title: "Regulatory engagement",
+    timeframe: "Ongoing",
+    summary: "Preliminary conversations with government agencies for oversight-friendly automation. All labelled as exploratory until agreements finalize.",
+  },
+  {
+    title: "Expanded demo data",
+    timeframe: "Q2 2026",
+    summary: "Additional assets, factor attribution, and signed risk events surfaced in the public sandbox.",
+  },
+];
+
+export default function AboutPage() {
+  return (
+    <div className="space-y-0">
+      <PageHeader
+        eyebrow="About"
+        title="Building automation that earns trust the hard way"
+        description="Hyper Trading Automation is focused on disciplined, transparent execution. We prioritise compliance, explicit risk controls, and verifiable telemetry over storytelling."
+      />
+
+      <Section
+        id="team"
+        title="Leadership"
+        description="We’ll publish full team bios after background checks and legal approvals conclude."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          {leadership.map((person) => (
+            <article
+              key={person.name}
+              className="rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-6 dark:bg-black/50"
+            >
+              <h2 className="font-display text-xl text-[color:var(--color-surface-900)] dark:text-white">
+                {person.name}
+              </h2>
+              <p className="text-sm uppercase tracking-[0.2em] text-black/50 dark:text-white/50">
+                {person.role}
+              </p>
+              <p className="mt-3 text-sm text-black/70 dark:text-white/70">{person.bio}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        id="roadmap"
+        title="Roadmap"
+        description="We publish Milestones, target dates, and the current status so you can track progress objectively."
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          {roadmap.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-6 dark:bg-black/50"
+            >
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-accent-primary)]">
+                {item.timeframe}
+              </span>
+              <h3 className="mt-3 text-lg font-semibold text-[color:var(--color-surface-900)] dark:text-white">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm text-black/70 dark:text-white/70">{item.summary}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+    </div>
+  );
+}

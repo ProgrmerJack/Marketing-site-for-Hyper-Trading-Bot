@@ -1,0 +1,17 @@
+/**
+ * Placeholder styles for @appletosolutions/reactbits.
+ * The upstream package currently publishes its JavaScript bundle without the
+ * accompanying dist/index.css asset. These lightweight defaults keep our build
+ * passing while ensuring text-based effects remain readable.
+ */
+
+.split-parent {
+  display: inline-block;
+  position: relative;
+}
+
+.reactbits-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}

@@ -1,0 +1,280 @@
+.animated-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.static-gradient {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.animated-background::before,
+.animated-background::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  opacity: var(--bg-opacity, 0.75);
+  mix-blend-mode: var(--bg-blend-mode, screen);
+  will-change: transform, opacity, background-position, filter;
+}
+
+.animated-background--threads::before {
+  background:
+    radial-gradient(circle at 40% 15%, var(--bg-color-1, rgba(56, 189, 248, 0.35)) 0%, transparent 60%),
+    radial-gradient(circle at 70% 80%, var(--bg-color-2, rgba(14, 165, 233, 0.25)) 0%, transparent 55%);
+  filter: blur(48px);
+  animation: threads-pulse var(--bg-speed, 32s) ease-in-out infinite;
+}
+
+.animated-background--threads::after {
+  background-image: repeating-linear-gradient(
+    95deg,
+    transparent 0,
+    transparent 14px,
+    var(--bg-color-3, rgba(224, 231, 255, 0.3)) 14px,
+    var(--bg-color-3, rgba(224, 231, 255, 0.3)) 18px
+  );
+  opacity: calc(var(--bg-opacity, 0.75) * 0.55);
+  animation: threads-shift calc(var(--bg-speed, 32s) / 1.6) linear infinite;
+}
+
+.animated-background--dither::before {
+  background:
+    radial-gradient(circle at 20% 25%, var(--bg-color-1, rgba(56, 189, 248, 0.28)) 0%, transparent 55%),
+    radial-gradient(circle at 80% 75%, var(--bg-color-2, rgba(59, 130, 246, 0.32)) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, var(--bg-color-3, rgba(15, 118, 110, 0.35)) 0%, transparent 70%);
+  filter: blur(52px) saturate(115%);
+  animation: dither-drift var(--bg-speed, 40s) ease-in-out infinite;
+}
+
+.animated-background--dither::after {
+  inset: -10%;
+  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0.5px, transparent 0);
+  background-size: 6px 6px;
+  opacity: calc(var(--bg-opacity, 0.75) * 0.35);
+  animation: dither-noise calc(var(--bg-speed, 40s) / 4) steps(6, end) infinite;
+}
+
+.animated-background--beams::before {
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 10%,
+      var(--bg-color-1, rgba(59, 130, 246, 0.55)) 20%,
+      transparent 35%,
+      transparent 45%,
+      var(--bg-color-2, rgba(94, 234, 212, 0.45)) 55%,
+      transparent 70%
+    );
+  background-size: 160% 160%;
+  animation: beams-pan var(--bg-speed, 26s) linear infinite;
+  opacity: calc(var(--bg-opacity, 0.75) * 0.8);
+}
+
+.animated-background--beams::after {
+  inset: -35%;
+  background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.35) 0%, transparent 65%);
+  opacity: calc(var(--bg-opacity, 0.75) * 0.45);
+}
+
+.animated-background--liquid::before {
+  background:
+    radial-gradient(40% 40% at 30% 30%, var(--bg-color-1, rgba(14, 165, 233, 0.45)) 0%, transparent 70%),
+    radial-gradient(55% 55% at 70% 60%, var(--bg-color-2, rgba(56, 189, 248, 0.4)) 0%, transparent 75%);
+  filter: blur(48px);
+  animation: liquid-flow var(--bg-speed, 34s) ease-in-out infinite;
+}
+
+.animated-background--liquid::after {
+  inset: -20%;
+  background:
+    conic-gradient(from 45deg, transparent 0deg, var(--bg-color-3, rgba(165, 243, 252, 0.25)) 140deg, transparent 320deg);
+  filter: blur(60px);
+  opacity: calc(var(--bg-opacity, 0.75) * 0.5);
+  animation: liquid-rotate calc(var(--bg-speed, 34s) * 1.2) linear infinite;
+}
+
+.animated-background--balatro::before {
+  background:
+    conic-gradient(
+      from 90deg,
+      var(--bg-color-1, rgba(59, 130, 246, 0.45)),
+      var(--bg-color-2, rgba(56, 189, 248, 0.45)),
+      var(--bg-color-3, rgba(139, 92, 246, 0.45)),
+      var(--bg-color-1, rgba(59, 130, 246, 0.45))
+    );
+  filter: blur(70px) saturate(120%);
+  animation: balatro-spin calc(var(--bg-speed, 42s) * 0.8) linear infinite;
+}
+
+.animated-background--balatro::after {
+  inset: -15%;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.12) 0%, transparent 65%);
+  animation: balatro-pulse calc(var(--bg-speed, 42s) / 2) ease-in-out infinite;
+  opacity: calc(var(--bg-opacity, 0.75) * 0.4);
+}
+
+.animated-background--hyperspeed::before {
+  background:
+    radial-gradient(circle at 35% 30%, var(--bg-color-1, rgba(56, 189, 248, 0.4)) 0%, transparent 65%),
+    radial-gradient(circle at 70% 65%, var(--bg-color-2, rgba(59, 130, 246, 0.35)) 0%, transparent 70%),
+    radial-gradient(circle at 50% 85%, var(--bg-color-3, rgba(14, 165, 233, 0.35)) 0%, transparent 75%);
+  filter: blur(52px) saturate(120%);
+  animation: hyperspeed-glow var(--bg-speed, 30s) ease-in-out infinite;
+}
+
+.animated-background--hyperspeed::after {
+  inset: -30%;
+  background-image: repeating-linear-gradient(
+    130deg,
+    transparent 0%,
+    transparent 18%,
+    rgba(255, 255, 255, 0.18) 18%,
+    rgba(255, 255, 255, 0.18) 21%
+  );
+  filter: blur(32px);
+  opacity: calc(var(--bg-opacity, 0.75) * 0.5);
+  animation: hyperspeed-streaks calc(var(--bg-speed, 30s) / 1.5) linear infinite;
+}
+
+@keyframes threads-pulse {
+  0%,
+  100% {
+    transform: translate3d(-4%, -3%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, 5%, 0) scale(1.05);
+  }
+}
+
+@keyframes threads-shift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-12%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dither-drift {
+  0%,
+  100% {
+    transform: translate3d(-2%, 1%, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(4%, -3%, 0) scale(1.12);
+  }
+}
+
+@keyframes dither-noise {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(-4%, 3%, 0);
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0);
+  }
+  75% {
+    transform: translate3d(3%, 4%, 0);
+  }
+}
+
+@keyframes beams-pan {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 60% 60%;
+  }
+  100% {
+    background-position: 120% 120%;
+  }
+}
+
+@keyframes liquid-flow {
+  0%,
+  100% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(5%, 4%, 0) scale(1.06);
+  }
+}
+
+@keyframes liquid-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes balatro-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes balatro-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: calc(var(--bg-opacity, 0.75) * 0.35);
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: calc(var(--bg-opacity, 0.75) * 0.55);
+  }
+}
+
+@keyframes hyperspeed-glow {
+  0%,
+  100% {
+    transform: translate3d(-4%, 2%, 0) scale(1.05);
+  }
+  40% {
+    transform: translate3d(5%, -3%, 0) scale(1.15);
+  }
+  70% {
+    transform: translate3d(-2%, 4%, 0) scale(1.08);
+  }
+}
+
+@keyframes hyperspeed-streaks {
+  0% {
+    transform: translate3d(-10%, -5%, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(5%, 8%, 0) rotate(2deg) scale(1.05);
+  }
+  100% {
+    transform: translate3d(15%, 12%, 0) rotate(4deg) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-background::before,
+  .animated-background::after {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+    animation-play-state: paused !important;
+  }
+}

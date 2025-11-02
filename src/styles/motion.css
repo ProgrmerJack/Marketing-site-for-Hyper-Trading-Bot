@@ -1,0 +1,301 @@
+/**
+ * Reduced Motion Styles
+ * 
+ * Respects user's motion preferences via:
+ * 1. System-level prefers-reduced-motion media query
+ * 2. User's explicit preference set via MotionToggle
+ * 
+ * These styles ensure animations are minimal or disabled when reduced motion is active.
+ */
+
+/* Global motion duration variable - controlled by MotionProvider */
+:root {
+  --motion-duration-base: 1s;
+  --motion-duration-scale: 1;
+  --motion-duration: calc(var(--motion-duration-base) * var(--motion-duration-scale));
+  --motion-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Apply reduced motion when data attribute is set */
+html[data-reduced-motion="true"] {
+  --motion-duration-scale: 0.01 !important;
+}
+
+/**
+ * System-level reduced motion preference
+ * Automatically applied by browser when user has system setting enabled
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* Disable all animations and transitions */
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable Framer Motion animations */
+  [data-framer-motion] {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Disable 3D transforms */
+  .card-3d:hover {
+    transform: none !important;
+  }
+
+  /* Disable parallax scrolling */
+  [data-parallax] {
+    transform: none !important;
+  }
+
+  /* Disable floating animations */
+  .float {
+    animation: none !important;
+  }
+
+  /* Disable shimmer effects */
+  .shimmer {
+    animation: none !important;
+  }
+
+  /* Disable pulse glow */
+  .pulse-glow {
+    animation: none !important;
+  }
+
+  /* Keep fade-in but make it instant */
+  .fade-in {
+    animation-duration: 0.01ms !important;
+    opacity: 1 !important;
+  }
+
+  /* Disable hover lift effects */
+  .hover-lift:hover {
+    transform: none !important;
+  }
+}
+
+/**
+ * User-controlled reduced motion (via MotionToggle)
+ * Applies when user explicitly chooses "Reduce" regardless of system setting
+ */
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-reduced-motion="true"] [data-framer-motion] {
+  transition: none !important;
+  animation: none !important;
+}
+
+html[data-reduced-motion="true"] .card-3d:hover {
+  transform: none !important;
+}
+
+html[data-reduced-motion="true"] [data-parallax] {
+  transform: none !important;
+}
+
+html[data-reduced-motion="true"] .float,
+html[data-reduced-motion="true"] .shimmer,
+html[data-reduced-motion="true"] .pulse-glow {
+  animation: none !important;
+}
+
+html[data-reduced-motion="true"] .hover-lift:hover {
+  transform: none !important;
+}
+
+/**
+ * Essential animations that should remain even with reduced motion
+ * These provide critical feedback and should be instantaneous but not removed
+ */
+@media (prefers-reduced-motion: reduce) {
+  /* Loading spinners remain but faster */
+  [role="progressbar"],
+  .spinner {
+    animation-duration: 0.5s !important;
+  }
+
+  /* Focus indicators must remain for accessibility */
+  :focus-visible {
+    transition-duration: 0.15s !important;
+  }
+
+  /* State transitions (hover, active) should be quick but present */
+  button:hover,
+  a:hover,
+  button:active,
+  a:active {
+    transition-duration: 0.1s !important;
+  }
+}
+
+html[data-reduced-motion="true"] [role="progressbar"],
+html[data-reduced-motion="true"] .spinner {
+  animation-duration: 0.5s !important;
+}
+
+html[data-reduced-motion="true"] :focus-visible {
+  transition-duration: 0.15s !important;
+}
+
+html[data-reduced-motion="true"] button:hover,
+html[data-reduced-motion="true"] a:hover,
+html[data-reduced-motion="true"] button:active,
+html[data-reduced-motion="true"] a:active {
+  transition-duration: 0.1s !important;
+}
+
+/**
+ * Compositor-only animation guidelines
+ * When animations ARE enabled, ensure they use only transform/opacity
+ */
+@media (prefers-reduced-motion: no-preference) {
+  /* Safe: transform-based animations */
+  .animate-safe {
+    will-change: transform, opacity;
+  }
+
+  /* Remove will-change after animation completes */
+  .animate-safe:not(:hover, :focus, :active) {
+    will-change: auto;
+  }
+}
+
+/**
+ * 3D scene controls
+ */
+html[data-reduced-motion="true"] canvas[data-3d-scene] {
+  /* Hide 3D canvas entirely when reduced motion is active */
+  display: none !important;
+}
+
+html[data-reduced-motion="true"] [data-3d-fallback] {
+  /* Show fallback poster image instead */
+  display: block !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  canvas[data-3d-scene] {
+    display: none !important;
+  }
+
+  [data-3d-fallback] {
+    display: block !important;
+  }
+}
+
+/**
+ * Scroll-driven animations
+ */
+html[data-reduced-motion="true"] [data-scroll-animated] {
+  transform: none !important;
+  opacity: 1 !important;
+  /* Make scroll animations instant */
+  animation-timeline: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-animated] {
+    transform: none !important;
+    opacity: 1 !important;
+    animation-timeline: none !important;
+  }
+}
+
+/**
+ * Parallax effects
+ */
+@media (prefers-reduced-motion: reduce) {
+  [data-parallax] {
+    transform: translateZ(0) !important;
+    /* Keep element in normal position */
+  }
+}
+
+/**
+ * Page transitions (View Transitions API)
+ * 
+ * Default transition: smooth fade + subtle slide
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: var(--motion-timing);
+}
+
+/* Fade out the old page */
+::view-transition-old(root) {
+  animation-name: fade-out;
+}
+
+/* Fade in the new page */
+::view-transition-new(root) {
+  animation-name: fade-in;
+}
+
+/* Smooth crossfade */
+::view-transition-group(root) {
+  animation-duration: 0.3s;
+}
+
+/* Reduced motion overrides */
+html[data-reduced-motion="true"] ::view-transition-group(*),
+html[data-reduced-motion="true"] ::view-transition-old(*),
+html[data-reduced-motion="true"] ::view-transition-new(*) {
+  animation-duration: 0.01ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Keyframes for transitions */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/**
+ * Debugging utilities (development only)
+ */
+body.debug-motion [data-motion-safe] {
+  outline: 2px solid green;
+}
+
+body.debug-motion [data-motion-unsafe] {
+  outline: 2px solid red;
+}
+
+body.debug-motion [data-reduced-motion-exempt] {
+  outline: 2px dashed orange;
+}

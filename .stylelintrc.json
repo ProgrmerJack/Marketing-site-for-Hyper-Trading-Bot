@@ -1,0 +1,104 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "order/properties-alphabetical-order": null,
+    "order/properties-order": [
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "z-index",
+      "display",
+      "flex",
+      "flex-direction",
+      "justify-content",
+      "align-items",
+      "transform",
+      "opacity",
+      "transition",
+      "animation"
+    ],
+    
+    "declaration-property-value-disallowed-list": {
+      "transition": [
+        "/\\bleft\\b/",
+        "/\\bright\\b/",
+        "/\\btop\\b/",
+        "/\\bbottom\\b/",
+        "/\\bwidth\\b/",
+        "/\\bheight\\b/",
+        "/\\bmargin\\b/",
+        "/\\bpadding\\b/",
+        "/\\bfont-size\\b/"
+      ],
+      "animation": [
+        "/\\bleft\\b/",
+        "/\\bright\\b/",
+        "/\\btop\\b/",
+        "/\\bbottom\\b/",
+        "/\\bwidth\\b/",
+        "/\\bheight\\b/"
+      ]
+    },
+    
+    "property-disallowed-list": null,
+    
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen",
+          "layer"
+        ]
+      }
+    ],
+    
+    "function-no-unknown": [
+      true,
+      {
+        "ignoreFunctions": ["theme", "screen"]
+      }
+    ],
+    
+    "declaration-block-no-duplicate-properties": [
+      true,
+      {
+        "ignore": ["consecutive-duplicates-with-different-values"]
+      }
+    ],
+    
+    "no-descending-specificity": null,
+    
+    "comment-empty-line-before": null,
+    "custom-property-empty-line-before": null,
+    
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ]
+  },
+  "ignoreFiles": [
+    "node_modules/**",
+    ".next/**",
+    "out/**",
+    "build/**",
+    "dist/**",
+    "coverage/**",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}
