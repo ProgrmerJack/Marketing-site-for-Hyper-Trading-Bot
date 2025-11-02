@@ -36,7 +36,7 @@ export function BlobCursor({
 
   return (
     <motion.div
-      className="pointer-events-none fixed z-50 rounded-full mix-blend-screen"
+      className="pointer-events-none fixed z-50 rounded-full mix-blend-normal dark:mix-blend-screen"
       style={{
         left: cursorXSpring,
         top: cursorYSpring,

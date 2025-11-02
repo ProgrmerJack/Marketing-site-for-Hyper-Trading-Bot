@@ -459,3 +459,31 @@
   padding-left: max(1.5rem, env(safe-area-inset-left));
   padding-right: max(1.5rem, env(safe-area-inset-right));
 }
+
+.section-surface {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-background) / 0.97) 0%,
+    rgb(var(--color-background) / 0.9) 100%
+  );
+  backdrop-filter: blur(22px);
+}
+
+.dark .section-surface {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-background) / 0.94) 0%,
+    rgb(var(--color-background) / 0.86) 85%
+  );
+}
+
+.heading-contrast {
+  text-shadow: 0 8px 24px rgba(15, 23, 42, 0.22);
+}
+
+.dark .heading-contrast {
+  text-shadow: 0 12px 30px rgba(2, 6, 23, 0.55);
+}

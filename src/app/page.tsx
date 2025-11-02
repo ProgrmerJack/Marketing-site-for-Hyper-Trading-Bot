@@ -251,7 +251,7 @@ function HeroSection() {
   const { backgroundsEnabled, cursorEnabled, hydrated } = useMotion();
 
   return (
-    <section className="relative min-h-[90vh] overflow-hidden py-20 md:py-32">
+    <section className="relative isolate min-h-[90vh] overflow-hidden py-20 md:py-32">
       {/* Background Layer */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         {backgroundsEnabled && hydrated ? (
@@ -271,7 +271,7 @@ function HeroSection() {
               as="h1"
               splitBy="word"
               startDelay={0.12}
-              className="text-balance font-display text-5xl font-bold leading-[1.1] tracking-tight text-foreground md:text-6xl lg:text-7xl"
+              className="heading-contrast text-balance font-display text-5xl font-bold leading-[1.1] tracking-tight text-foreground md:text-6xl lg:text-7xl"
             >
               Disciplined crypto automation without the hype
             </SplitText>
@@ -467,7 +467,7 @@ function FeatureStorySection() {
   const { backgroundsEnabled, hydrated } = useMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         {backgroundsEnabled && hydrated ? (
@@ -480,6 +480,7 @@ function FeatureStorySection() {
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
         )}
+        <div className="section-surface" />
       </div>
 
       <Container className="relative z-10">
@@ -489,7 +490,7 @@ function FeatureStorySection() {
             <AccentBadge color="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
               Workflow clarity
             </AccentBadge>
-            <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
               Signals, controls, execution - choreographed
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -499,7 +500,7 @@ function FeatureStorySection() {
           </div>
 
           {/* Feature Grid */}
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid auto-rows-[minmax(0,1fr)] gap-6 md:grid-cols-2">
             {featurePanels.map((panel, index) => (
               <FeatureCard key={panel.title} panel={panel} index={index} />
             ))}
@@ -577,7 +578,7 @@ function WorkflowSection() {
   const { backgroundsEnabled, hydrated } = useMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         {backgroundsEnabled && hydrated ? (
@@ -590,13 +591,14 @@ function WorkflowSection() {
         ) : (
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(15,23,42,0.05)_0%,transparent_55%,rgba(56,189,248,0.08)_100%)]" />
         )}
+        <div className="section-surface" />
       </div>
 
       <Container className="relative z-10">
         <div className="mx-auto max-w-7xl space-y-16">
           {/* Section Header */}
           <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
               A transparent workflow from signal to execution
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -606,7 +608,7 @@ function WorkflowSection() {
           </div>
 
           {/* Workflow Grid */}
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid auto-rows-[minmax(0,1fr)] gap-6 lg:grid-cols-3">
             {workflowSteps.map((step, index) => (
               <WorkflowCard key={step.title} step={step} index={index} />
             ))}
@@ -662,7 +664,7 @@ function MetricsSection() {
   const { backgroundsEnabled, hydrated, cursorEnabled } = useMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         {backgroundsEnabled && hydrated ? (
@@ -675,6 +677,7 @@ function MetricsSection() {
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(99,102,241,0.15),transparent_70%)]" />
         )}
+        <div className="section-surface" />
       </div>
 
       <Container className="relative z-10">
@@ -683,7 +686,7 @@ function MetricsSection() {
           <div className="space-y-8">
             <AccentBadge>Observable metrics</AccentBadge>
 
-            <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+            <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
               Numbers you can interrogate
             </h2>
 
@@ -705,7 +708,7 @@ function MetricsSection() {
           </div>
 
           {/* Right Metrics Grid */}
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid auto-rows-[minmax(0,1fr)] gap-6 sm:grid-cols-2">
             {metrics.map((metric) => (
               <MetricCard key={metric.label} metric={metric} cursorEnabled={cursorEnabled} />
             ))}
@@ -762,7 +765,7 @@ function IntegrationsSection() {
   const { backgroundsEnabled, hydrated, cursorEnabled } = useMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         {backgroundsEnabled && hydrated ? (
@@ -772,13 +775,14 @@ function IntegrationsSection() {
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(14,165,233,0.12),transparent_70%)]" />
         )}
+        <div className="section-surface" />
       </div>
 
       <Container className="relative z-10">
         <div className="mx-auto max-w-7xl space-y-16">
           {/* Section Header */}
           <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
               Integrations ready for gated partners
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -788,7 +792,7 @@ function IntegrationsSection() {
           </div>
 
           {/* Integration Grid */}
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid auto-rows-[minmax(0,1fr)] gap-6 md:grid-cols-2 xl:grid-cols-4">
             {integrationTiles.map((tile) => (
               <IntegrationTileCard key={tile.name} tile={tile} cursorEnabled={cursorEnabled} />
             ))}
@@ -816,13 +820,14 @@ function IntegrationTileCard({ tile, cursorEnabled }: IntegrationTileCardProps) 
       )}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-30 mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 opacity-25"
         style={{
           backgroundImage: `url(${tile.gradient})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/70 via-transparent to-primary/10 dark:from-slate-950/60 dark:via-transparent dark:to-primary/20" />
 
       <div className="relative space-y-4">
         <h3 className="text-xl font-bold text-foreground">{tile.name}</h3>
@@ -850,7 +855,7 @@ function TestimonialsSection() {
   const { backgroundsEnabled, hydrated } = useMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         {backgroundsEnabled && hydrated ? (
@@ -863,13 +868,14 @@ function TestimonialsSection() {
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(94,234,212,0.1),transparent_70%)]" />
         )}
+        <div className="section-surface" />
       </div>
 
       <Container className="relative z-10">
         <div className="mx-auto max-w-7xl space-y-16">
           {/* Section Header */}
           <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
               Signals from the review desk
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -879,7 +885,7 @@ function TestimonialsSection() {
           </div>
 
           {/* Testimonials Gallery */}
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid auto-rows-[minmax(0,1fr)] gap-8 md:grid-cols-2">
             {testimonialItems.map((item, index) => (
               <motion.div
                 key={index}
@@ -914,7 +920,7 @@ function DemoSection() {
   const { backgroundsEnabled, cursorEnabled, hydrated } = useMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative isolate overflow-hidden py-24 md:py-32">
       <Container className="relative z-10">
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-2xl">
           {/* Background Effects */}
@@ -957,7 +963,7 @@ function DemoSection() {
           {/* Content */}
           <div className="relative z-10 grid gap-12 p-8 md:p-12 lg:grid-cols-2 lg:items-start lg:gap-16">
             <div className="space-y-6 text-foreground">
-              <h3 className="text-3xl font-bold md:text-4xl">
+              <h3 className="heading-contrast text-3xl font-bold md:text-4xl">
                 Every event signed and replayable
               </h3>
 
@@ -1013,7 +1019,7 @@ function TrustSection() {
   const { backgroundsEnabled, hydrated } = useMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         {backgroundsEnabled && hydrated ? (
@@ -1026,6 +1032,7 @@ function TrustSection() {
         ) : (
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.15),transparent_60%)]" />
         )}
+        <div className="section-surface" />
       </div>
 
       <Container className="relative z-10">
@@ -1036,7 +1043,7 @@ function TrustSection() {
               <AccentBadge color="bg-sky-500/10 text-sky-600 dark:text-sky-400">
                 Trust surface
               </AccentBadge>
-              <h2 className="mt-6 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="heading-contrast mt-6 font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                 Risk, compliance, and transparency surface
               </h2>
             </div>
@@ -1084,7 +1091,8 @@ function FinalCtaSection() {
   const { cursorEnabled } = useMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative isolate overflow-hidden py-24 md:py-32">
+      <div className="section-surface" />
       <Container className="relative z-10">
         <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-accent/5 to-background p-12 shadow-2xl md:p-16">
           <AnimatedBackground
@@ -1096,7 +1104,7 @@ function FinalCtaSection() {
           />
 
           <div className="relative z-10 mx-auto max-w-4xl space-y-8 text-center">
-            <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+            <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
               Ready to review the gated experience?
             </h2>
 

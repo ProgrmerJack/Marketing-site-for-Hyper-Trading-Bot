@@ -41,7 +41,7 @@ export function AnimatedBackground({
   colors = [],
   speed = "28s",
   opacity = 0.75,
-  blendMode = "screen",
+  blendMode = "normal",
   className,
   style,
 }: AnimatedBackgroundProps) {
