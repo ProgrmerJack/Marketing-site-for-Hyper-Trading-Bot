@@ -73,7 +73,7 @@ export type MotionContextValue = {
 
 const DEFAULT_PREFERENCES: MotionPreferences = {
   mode: "enabled",
-  intensity: "high",
+  intensity: "high", // Set to highest quality by default
   backgrounds: true,
   cursor: true,
 };

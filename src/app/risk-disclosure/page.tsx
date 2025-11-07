@@ -1,373 +1,268 @@
-import { Section } from "@hyper/ui";
-import { PageHeader } from "@/components/page-header";
-import { AlertTriangle } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import { Container } from "@hyper/ui";
+import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+import { useMotion } from "@/components/motion/MotionProvider";
+import Link from "next/link";
+import type { Route } from "next";
+import { AlertTriangle, TrendingDown, Cpu, Scale, Shield, CheckCircle2 } from "lucide-react";
+
+const riskSections = [
+  {
+    id: "warning",
+    icon: AlertTriangle,
+    gradient: "from-red-500 to-orange-500",
+    title: "⚠️ Critical Warning",
+    summary: "Trading involves substantial risk of loss and is not suitable for all investors.",
+    content: [
+      "Hyper Trading Automation is currently in analysis and testing phase. This site provides demo data only — no live trading is available. Past performance, whether actual or simulated, is not indicative of future results.",
+      "You can lose all capital invested. Leverage amplifies both gains and losses. Market volatility can result in rapid and substantial losses, including losses exceeding initial deposits.",
+    ],
+  },
+  {
+    id: "market",
+    icon: TrendingDown,
+    gradient: "from-amber-500 to-red-500",
+    title: "Market & Trading Risks",
+    summary: "Cryptocurrency markets are highly volatile and unpredictable.",
+    details: [
+      { label: "Price Volatility", text: "Cryptocurrency prices can fluctuate dramatically within minutes. Sudden price movements of 10-50% or more are common and can occur without warning." },
+      { label: "Leverage Amplification", text: "Leverage magnifies both gains and losses. A small adverse price movement can result in losses exceeding your initial investment." },
+      { label: "Liquidity Risk", text: "During market stress, liquidity can evaporate instantly. You may be unable to exit positions at reasonable prices or at all." },
+      { label: "24/7 Markets", text: "Cryptocurrency markets never close. Significant price movements can occur at any time, including when you're unable to monitor positions." },
+    ],
+  },
+  {
+    id: "technology",
+    icon: Cpu,
+    gradient: "from-blue-500 to-purple-500",
+    title: "Technology & System Risks",
+    summary: "Automated trading systems face numerous technical challenges.",
+    details: [
+      { label: "System Failures", text: "Hardware failures, software bugs, network outages, or connectivity issues can prevent order execution or cause unintended trades." },
+      { label: "Data Errors", text: "Incorrect, delayed, or missing market data can lead to poor trading decisions and substantial losses." },
+      { label: "Model Drift", text: "Trading strategies can become less effective over time as market conditions evolve. Past success does not guarantee future performance." },
+      { label: "Latency Issues", text: "Delays in data feeds or order execution can result in slippage, missed opportunities, or unexpected losses." },
+      { label: "Cyber Security", text: "Despite security measures, systems remain vulnerable to hacking, unauthorized access, and data breaches." },
+    ],
+  },
+  {
+    id: "regulatory",
+    icon: Scale,
+    gradient: "from-purple-500 to-pink-500",
+    title: "Regulatory & Legal Risks",
+    summary: "The cryptocurrency regulatory landscape is rapidly evolving.",
+    details: [
+      { label: "Regulatory Uncertainty", text: "Cryptocurrency regulations vary by jurisdiction and are subject to sudden changes that may restrict or prohibit trading activities." },
+      { label: "Compliance Requirements", text: "New regulations may impose additional compliance obligations, costs, or operational restrictions." },
+      { label: "Tax Implications", text: "Cryptocurrency trading has complex tax implications. You are responsible for understanding and complying with all applicable tax laws." },
+      { label: "Legal Status", text: "The legal status of cryptocurrencies and automated trading services varies globally and may change without notice." },
+    ],
+  },
+  {
+    id: "operational",
+    icon: Shield,
+    gradient: "from-emerald-500 to-teal-500",
+    title: "Operational & Counterparty Risks",
+    summary: "Third-party dependencies create additional risk factors.",
+    details: [
+      { label: "Exchange Insolvency", text: "Cryptocurrency exchanges can become insolvent, be hacked, or cease operations, potentially resulting in total loss of funds held on the exchange." },
+      { label: "Custody Risks", text: "Assets held at exchanges or custodians are subject to counterparty risk. Insurance coverage for cryptocurrency assets is limited or unavailable." },
+      { label: "Service Provider Failures", text: "Failures by data providers, hosting services, or other third parties can disrupt operations and impact trading performance." },
+      { label: "Early-Stage Company", text: "Hyper Trading Automation is an early-stage company with limited operating history. There is no guarantee of service continuity or success." },
+      { label: "Key Person Risk", text: "Operations depend significantly on founder Abduxoliq Ashuraliyev. Loss of key personnel could disrupt operations or strategy execution." },
+    ],
+  },
+];
+
+const acknowledgments = [
+  {
+    title: "Performance Disclaimer",
+    text: "Past performance does not guarantee future results. This system has not been independently audited. Demo data may not reflect live trading conditions. Extended losing periods (drawdowns of 20-50% or more) are possible. Strategy effectiveness can decay over time as markets evolve.",
+  },
+  {
+    title: "Security Acknowledgment",
+    text: "Despite security measures, digital systems face persistent threats including hacking, unauthorized access, and data breaches. Your security practices directly impact risk. We implement industry-standard protections, but no system is completely secure.",
+  },
+  {
+    title: "Financial Responsibility",
+    text: "You can afford to lose the entire amount allocated to trading without impacting your financial security. You will consult with qualified financial, legal, and tax advisors before proceeding. You are not relying solely on information provided by Hyper Trading Automation.",
+  },
+];
+
+const relatedDocs = [
+  { href: "/terms" as Route, title: "Terms of Service", description: "Legal terms governing use of the platform" },
+  { href: "/privacy" as Route, title: "Privacy Policy", description: "How we collect, use, and protect your data" },
+  { href: "/safety" as Route, title: "Safety & Security", description: "Compliance controls and fraud prevention" },
+  { href: "/contact" as Route, title: "Contact Us", description: "Questions? Reach out to our team" },
+];
 
 export default function RiskDisclosurePage() {
+  const { backgroundsEnabled, hydrated } = useMotion();
+
   return (
-    <div className="space-y-0">
-      <PageHeader
-        eyebrow="Risk Disclosure"
-        title="Important risk information"
-        description="Trading and automated trading systems involve substantial risk. Please read this disclosure carefully before requesting demo access."
+    <div className="relative">
+      <PageHeaderAnimated
+        eyebrow="Legal"
+        title="Risk Disclosure"
+        description="Trading involves substantial risk of loss. This disclosure summarizes key risks. Read carefully before requesting demo access. No guarantees of returns are made."
+        backgroundVariant="threads"
+        backgroundColors={["rgba(239, 68, 68, 0.4)", "rgba(251, 146, 60, 0.3)", "rgba(249, 115, 22, 0.25)"]}
       />
 
-      {/* Critical Warning */}
-      <Section
-        id="warning"
-        className="bg-amber-50 dark:bg-amber-950/20"
-      >
-        <div className="flex items-start gap-4 rounded-lg border-2 border-amber-500 bg-amber-100 p-6 dark:bg-amber-900/30">
-          <AlertTriangle className="h-6 w-6 flex-shrink-0 text-amber-600 dark:text-amber-400" />
-          <div className="space-y-3 text-sm">
-            <p className="font-semibold text-amber-900 dark:text-amber-100">
-              Trading involves substantial risk of loss and is not suitable for all investors.
-            </p>
-            <p className="text-amber-800 dark:text-amber-200">
-              Hyper Trading Automation is currently in analysis and testing phase. This site provides
-              demo data only — no live trading is available. Past performance, whether actual or
-              simulated, is not indicative of future results.
-            </p>
-          </div>
+      {/* Main Content Section */}
+      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
+          {backgroundsEnabled && hydrated ? (
+            <AnimatedBackground
+              variant="dither"
+              colors={["rgba(239, 68, 68, 0.3)", "rgba(251, 146, 60, 0.25)", "rgba(249, 115, 22, 0.2)"]}
+              speed="32s"
+              opacity={0.5}
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-red-50/30 dark:from-slate-950 dark:to-red-950/30" />
+          )}
         </div>
-      </Section>
 
-      {/* Market Risks */}
-      <Section
-        id="market-risks"
-        title="Market & Trading Risks"
-        description="Cryptocurrency and digital asset markets are highly volatile"
-      >
-        <div className="space-y-4 text-sm text-black/70 dark:text-white/70">
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Price Volatility</h3>
-            <p>
-              Cryptocurrency prices can fluctuate dramatically in short periods. Price movements of
-              20-50% within 24 hours are not uncommon. This volatility can result in substantial
-              gains or losses, including total loss of capital.
-            </p>
-          </div>
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-5xl space-y-12">
+            {/* Risk Sections */}
+            {riskSections.map((section, index) => {
+              const Icon = section.icon;
+              return (
+                <motion.div
+                  key={section.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/90 md:p-10"
+                >
+                  <div className="mb-6 flex items-start gap-4">
+                    <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg`}>
+                      <Icon className="h-7 w-7 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                        {section.title}
+                      </h2>
+                      <p className={`text-sm leading-relaxed ${section.id === 'warning' ? 'font-semibold text-red-700 dark:text-red-400' : 'text-slate-700 dark:text-slate-300'}`}>
+                        {section.summary}
+                      </p>
+                    </div>
+                  </div>
 
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Leverage Risk</h3>
-            <p>
-              If leverage is employed, losses can exceed initial investment. Margin calls may force
-              liquidation of positions at unfavorable prices. The system includes risk controls, but
-              extreme market conditions can overwhelm protective measures.
-            </p>
-          </div>
+                  {section.content && (
+                    <div className="space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                      {section.content.map((text, idx) => (
+                        <p key={idx} className={section.id === 'warning' ? 'font-semibold text-amber-900 dark:text-amber-200' : ''}>
+                          {text}
+                        </p>
+                      ))}
+                    </div>
+                  )}
 
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Liquidity Risk</h3>
-            <p>
-              Market liquidity can disappear rapidly during stressed conditions. Low liquidity may
-              prevent execution at desired prices or prevent exiting positions. Slippage costs can
-              significantly impact returns.
-            </p>
-          </div>
+                  {section.details && (
+                    <div className="space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                      {section.details.map((detail, idx) => (
+                        <p key={idx}>
+                          <strong className="text-slate-900 dark:text-white">{detail.label}:</strong> {detail.text}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
 
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Market Structure</h3>
-            <p>
-              Cryptocurrency markets operate 24/7 with fragmented liquidity across multiple venues.
-              Exchange outages, flash crashes, and manipulation can occur. The system monitors venue
-              health but cannot eliminate these risks.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* Technology Risks */}
-      <Section
-        id="technology-risks"
-        title="Technology & System Risks"
-        description="Automated systems introduce additional technological dependencies"
-      >
-        <div className="space-y-4 text-sm text-black/70 dark:text-white/70">
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">System Failure</h3>
-            <p>
-              Hardware failures, network outages, software bugs, or cyber attacks can disrupt
-              operations. While redundancy and monitoring systems are in place, no system is immune
-              to failure. Unmonitored positions during outages can result in substantial losses.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Data Accuracy</h3>
-            <p>
-              The system relies on market data feeds from third-party providers. Data errors, delays,
-              or outages can cause incorrect trading decisions. Real-time data monitoring is
-              implemented but cannot guarantee perfect accuracy.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Model Risk</h3>
-            <p>
-              Trading algorithms are based on historical patterns and assumptions that may not hold
-              in future market conditions. Model drift, regime changes, and unforeseen market
-              dynamics can render strategies ineffective or counterproductive.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Latency & Execution</h3>
-            <p>
-              Despite sub-120ms signal processing, execution quality depends on network conditions,
-              venue response times, and order book dynamics. Latency arbitrage by faster actors can
-              impact profitability.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* Regulatory Risks */}
-      <Section
-        id="regulatory-risks"
-        title="Regulatory & Legal Risks"
-        description="Cryptocurrency regulation is evolving and uncertain"
-      >
-        <div className="space-y-4 text-sm text-black/70 dark:text-white/70">
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Regulatory Uncertainty</h3>
-            <p>
-              Cryptocurrency and automated trading regulations vary by jurisdiction and are subject
-              to change. New laws could restrict trading activities, require registration, impose
-              reporting obligations, or prohibit certain strategies entirely.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Jurisdictional Restrictions</h3>
-            <p>
-              Access to the service may be restricted or prohibited in certain jurisdictions. It is
-              your responsibility to comply with local laws. We reserve the right to refuse service
-              based on geographic location or regulatory requirements.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Compliance Changes</h3>
-            <p>
-              Regulatory engagement is ongoing but preliminary. Future compliance requirements may
-              necessitate changes to operations, fee structures, or service availability. We cannot
-              guarantee continued operation in all jurisdictions.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Tax Implications</h3>
-            <p>
-              Automated trading may generate frequent taxable events. Tax treatment varies by
-              jurisdiction and individual circumstances. Consult a qualified tax professional
-              regarding your specific situation.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* Operational Risks */}
-      <Section
-        id="operational-risks"
-        title="Operational Risks"
-        description="Business operations carry inherent risks"
-      >
-        <div className="space-y-4 text-sm text-black/70 dark:text-white/70">
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Early Stage Company</h3>
-            <p>
-              Hyper Trading Automation is a startup with limited operating history. The company may
-              not achieve profitability, may face funding constraints, or may cease operations.
-              There is no guarantee of service continuity.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Key Person Risk</h3>
-            <p>
-              The system and operations depend significantly on founder Abduxoliq Ashuraliyev. Loss
-              of key personnel could disrupt operations or strategy execution.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Third-Party Dependencies</h3>
-            <p>
-              Operations depend on exchanges, data providers, hosting services, and other third
-              parties. Their failures, service changes, or business closures could impact service
-              availability and quality.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Custody & Counterparty Risk</h3>
-            <p>
-              Assets must be held at cryptocurrency exchanges to enable trading. Exchange insolvency,
-              hacks, or operational failures could result in partial or total loss of funds.
-              Insurance coverage for cryptocurrency assets is limited or unavailable.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* Performance Risks */}
-      <Section
-        id="performance-risks"
-        title="Performance & Return Risks"
-        description="There is no guarantee of profitable performance"
-      >
-        <div className="space-y-4 text-sm text-black/70 dark:text-white/70">
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">No Guarantee of Returns</h3>
-            <p>
-              Past performance, whether actual or simulated, does not guarantee future results. The
-              system has not been independently audited. Demo data may not reflect live trading
-              conditions, costs, or execution quality.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Strategy Decay</h3>
-            <p>
-              Trading strategies can lose effectiveness over time as markets evolve, competition
-              increases, or opportunities diminish. Historical profitable periods do not ensure
-              future profitability.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Drawdown Risk</h3>
-            <p>
-              Extended losing periods are possible. Drawdowns of 20-50% or more can occur. Risk
-              controls aim to limit drawdowns but cannot eliminate this risk. You must be prepared
-              to withstand substantial temporary losses.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Opportunity Cost</h3>
-            <p>
-              Capital allocated to trading cannot be deployed elsewhere. Alternative investments may
-              provide better risk-adjusted returns depending on market conditions and individual
-              circumstances.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* Cybersecurity Risks */}
-      <Section
-        id="security-risks"
-        title="Cybersecurity Risks"
-        description="Digital systems face persistent security threats"
-      >
-        <div className="space-y-4 text-sm text-black/70 dark:text-white/70">
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Hacking & Unauthorized Access</h3>
-            <p>
-              Despite security measures including encrypted communications, API key protection, and
-              access controls, systems may be vulnerable to sophisticated attacks. Unauthorized
-              access could result in theft of funds or sensitive information.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">User Security</h3>
-            <p>
-              Your security practices directly impact risk. Weak passwords, compromised devices, or
-              phishing attacks targeting your accounts could grant attackers access to your trading
-              credentials or funds.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-semibold text-black dark:text-white">Data Breaches</h3>
-            <p>
-              Personal information and trading data may be exposed through security breaches. While
-              we implement industry-standard protections, no system is completely secure.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* Acknowledgment */}
-      <Section
-        id="acknowledgment"
-        title="Your Acknowledgment"
-        description="By requesting demo access or using this service, you acknowledge:"
-      >
-        <ul className="space-y-3 text-sm text-black/70 dark:text-white/70">
-          <li>
-            ✓ You have read and understood this entire risk disclosure document
-          </li>
-          <li>
-            ✓ You understand that trading involves substantial risk of loss, including total loss
-            of capital
-          </li>
-          <li>
-            ✓ You can afford to lose the entire amount you allocate to trading without impacting
-            your financial security
-          </li>
-          <li>
-            ✓ You understand that past performance does not guarantee future results
-          </li>
-          <li>
-            ✓ You understand this is a startup in analysis phase with no independent audit completed
-          </li>
-          <li>
-            ✓ You will consult with qualified financial, legal, and tax advisors before proceeding
-          </li>
-          <li>
-            ✓ You are not relying solely on information provided by Hyper Trading Automation
-          </li>
-          <li>
-            ✓ You understand that we do not provide financial advice or investment recommendations
-          </li>
-        </ul>
-      </Section>
-
-      {/* Additional Resources */}
-      <Section
-        id="resources"
-        title="Additional Information"
-        description="Important related documents and resources"
-      >
-        <div className="space-y-3 text-sm text-black/70 dark:text-white/70">
-          <p>
-            For complete information about service terms and data privacy, please review:
-          </p>
-          <ul className="space-y-2 ml-4">
-            <li>
-              • <a href="/terms" className="text-[color:var(--color-accent-primary)] hover:underline">Terms of Service</a>
-            </li>
-            <li>
-              • <a href="/privacy" className="text-[color:var(--color-accent-primary)] hover:underline">Privacy Policy</a>
-            </li>
-            <li>
-              • <a href="/safety" className="text-[color:var(--color-accent-primary)] hover:underline">Safety & Security</a>
-            </li>
-            <li>
-              • <a href="/status" className="text-[color:var(--color-accent-primary)] hover:underline">System Status</a>
-            </li>
-          </ul>
-          <p className="mt-4">
-            Questions about these risks? Contact us at{" "}
-            <a
-              href="mailto:risk@hypertrader.io"
-              className="text-[color:var(--color-accent-primary)] hover:underline"
+            {/* Your Acknowledgment */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="rounded-3xl border border-red-200 bg-gradient-to-br from-white via-red-50/30 to-orange-50/20 p-8 shadow-lg dark:border-red-800/50 dark:from-slate-900 dark:via-red-950/30 dark:to-orange-950/20 md:p-10"
             >
-              risk@hypertrader.io
-            </a>
-          </p>
-        </div>
-      </Section>
+              <div className="mb-6 flex items-start gap-4">
+                <div className="flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
+                  <AlertTriangle className="h-7 w-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                    Your Acknowledgment
+                  </h2>
+                  <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                    By requesting demo access, you acknowledge understanding these risks.
+                  </p>
+                </div>
+              </div>
 
-      {/* Last Updated */}
-      <Section className="border-t border-[color:var(--color-line-muted)] pt-8">
-        <p className="text-center text-xs text-black/50 dark:text-white/50">
-          Last Updated: October 16, 2025 | Version 1.0
-        </p>
-      </Section>
+              <div className="space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                {acknowledgments.map((ack, idx) => (
+                  <p key={idx}>
+                    <strong className="text-slate-900 dark:text-white">{ack.title}:</strong> {ack.text}
+                  </p>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-6 font-bold text-red-900 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300">
+                You understand this is a startup in analysis phase. You can lose all capital invested.
+                We do not provide financial advice or investment recommendations.
+              </div>
+            </motion.div>
+
+            {/* Related Documentation */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="rounded-3xl border border-blue-200 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 p-8 shadow-lg dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20 md:p-10"
+            >
+              <h2 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">Related Documentation</h2>
+              <p className="mb-6 text-sm text-slate-700 dark:text-slate-300">
+                Review these documents for complete information:
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {relatedDocs.map((doc, idx) => (
+                  <Link
+                    key={idx}
+                    href={doc.href}
+                    className="group rounded-2xl border border-slate-200 bg-white/80 p-6 transition-all hover:border-blue-400 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800/80 dark:hover:border-blue-500"
+                  >
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-blue-600 dark:text-blue-400" />
+                      <div className="flex-1">
+                        <h3 className="mb-1 font-semibold text-slate-900 dark:text-white">{doc.title}</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">{doc.description}</p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Final Notice */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="rounded-3xl border border-slate-200 bg-slate-100 p-8 text-center dark:border-slate-700 dark:bg-slate-800"
+            >
+              <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                By using this Site, you acknowledge that you have read, understood, and agree to be bound by this Risk Disclosure.
+              </p>
+              <p className="mt-4 text-xs text-slate-600 dark:text-slate-400">
+                Version 1.0 | Last Updated: October 16, 2025
+              </p>
+            </motion.div>
+          </div>
+        </Container>
+      </section>
     </div>
   );
 }

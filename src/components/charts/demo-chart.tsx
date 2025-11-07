@@ -13,6 +13,7 @@ import {
   type AreaSeriesPartialOptions,
 } from "lightweight-charts";
 import { useDemoStore, type CandlePoint } from "@/stores/demo-store";
+import { useTheme } from "@/components/theme-provider";
 
 type CandleSeries = ISeriesApi<"Candlestick">;
 type LineSeries = ISeriesApi<"Line">;
@@ -51,6 +52,8 @@ export function DemoChart() {
 
   const lastAppliedRef = useRef<number | null>(null);
 
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
   const candles = useDemoStore((state) => state.candles);
 
   const transformedData = useMemo<CandlestickData[]>(() => {
@@ -89,11 +92,11 @@ export function DemoChart() {
       height: PRICE_HEIGHT,
       layout: {
         background: { color: "transparent" },
-        textColor: "#E8ECFF",
+        textColor: isDark ? "#E2E8F0" : "#334155",
       },
       grid: {
-        vertLines: { color: "rgba(100, 118, 255, 0.12)" },
-        horzLines: { color: "rgba(100, 118, 255, 0.12)" },
+        vertLines: { color: isDark ? "rgba(100, 118, 255, 0.12)" : "rgba(100, 116, 139, 0.1)" },
+        horzLines: { color: isDark ? "rgba(100, 118, 255, 0.12)" : "rgba(100, 116, 139, 0.1)" },
       },
       crosshair: { mode: 1 },
       rightPriceScale: {
@@ -170,7 +173,7 @@ export function DemoChart() {
       positionBandRef.current = null;
       lastAppliedRef.current = null;
     };
-  }, []);
+  }, [isDark]);
 
   useEffect(() => {
     if (!indicatorContainerRef.current || indicatorChartRef.current) {
@@ -182,11 +185,11 @@ export function DemoChart() {
       height: INDICATOR_HEIGHT,
       layout: {
         background: { color: "transparent" },
-        textColor: "#CBD2FF",
+        textColor: isDark ? "#CBD5E1" : "#475569",
       },
       grid: {
-        vertLines: { color: "rgba(100, 118, 255, 0.12)" },
-        horzLines: { color: "rgba(100, 118, 255, 0.12)" },
+        vertLines: { color: isDark ? "rgba(100, 118, 255, 0.12)" : "rgba(100, 116, 139, 0.1)" },
+        horzLines: { color: isDark ? "rgba(100, 118, 255, 0.12)" : "rgba(100, 116, 139, 0.1)" },
       },
       crosshair: { mode: 1 },
       rightPriceScale: {
@@ -253,7 +256,7 @@ export function DemoChart() {
       macdLineRef.current = null;
       obvSeriesRef.current = null;
     };
-  }, []);
+  }, [isDark]);
 
   useEffect(() => {
     if (!candleSeriesRef.current || transformedData.length === 0) {

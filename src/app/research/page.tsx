@@ -57,7 +57,7 @@ export default function ResearchPage() {
       />
 
       {/* Commitments Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           {backgroundsEnabled && hydrated ? (
@@ -70,6 +70,7 @@ export default function ResearchPage() {
           ) : (
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
           )}
+          <div className="section-surface" />
         </div>
 
         <Container className="relative z-10">
@@ -108,14 +109,17 @@ export default function ResearchPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-lg transition-all duration-300 hover:border-blue-300 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-800/50"
+                    className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-blue-300 hover:shadow-2xl dark:border-slate-700/50 dark:from-slate-900 dark:via-blue-950/40 dark:to-purple-950/30"
                   >
+                    {/* Gradient overlay */}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+
                     {/* Icon with gradient */}
-                    <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                    <div className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
                       <Icon className="h-8 w-8 text-white" />
                     </div>
 
-                    <header className="space-y-3">
+                    <header className="relative space-y-3">
                       <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                         {item.title}
                       </h2>
@@ -124,13 +128,13 @@ export default function ResearchPage() {
                       </span>
                     </header>
 
-                    <p className="flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                    <p className="relative flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                       {item.summary}
                     </p>
 
                     <Link
                       href={item.link as Route}
-                      className="group/link inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                      className="relative group/link inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                     >
                       Request access
                       <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
@@ -152,7 +156,7 @@ export default function ResearchPage() {
       </section>
 
       {/* Transparency Note Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           {backgroundsEnabled && hydrated ? (
@@ -165,6 +169,7 @@ export default function ResearchPage() {
           ) : (
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
           )}
+          <div className="section-surface" />
         </div>
 
         <Container className="relative z-10">
@@ -196,8 +201,11 @@ export default function ResearchPage() {
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               className="mx-auto max-w-4xl"
             >
-              <div className="overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 p-12 shadow-2xl dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20">
-              <div className="mb-8 flex items-center gap-4">
+              <div className="relative overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 p-12 shadow-2xl backdrop-blur-sm dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20">
+              {/* Gradient overlay */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-500/5 dark:from-blue-500/10 dark:to-cyan-500/10" />
+
+              <div className="relative mb-8 flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg">
                   <Clock className="h-8 w-8 text-white" />
                 </div>
@@ -206,7 +214,7 @@ export default function ResearchPage() {
                 </h3>
               </div>
 
-              <div className="space-y-6 text-base leading-relaxed text-slate-700 dark:text-slate-300">
+              <div className="relative space-y-6 text-base leading-relaxed text-slate-700 dark:text-slate-300">
                 <p>
                   We believe in radical transparency, but not at the expense of responsible disclosure. Performance
                   metrics, live results, and back-tested data remain gated until third-party verification is complete.

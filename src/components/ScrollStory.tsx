@@ -35,11 +35,13 @@ export function ScrollStory({ steps }: ScrollStoryProps) {
   );
 }
 
+import type { MotionValue } from "framer-motion";
+
 type ScrollStoryStepProps = {
   step: ScrollStoryStep;
   index: number;
   total: number;
-  scrollProgress: any;
+  scrollProgress: MotionValue<number>;
 };
 
 function ScrollStoryStep({

@@ -122,7 +122,7 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
       </div>
 
       {/* Main Candlestick Chart */}
-      <div className="bg-white rounded-lg shadow-lg p-4">
+      <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
         <CandlestickChart
           data={data}
           showVolume={true}
@@ -133,42 +133,42 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
 
       {/* RSI Chart */}
       {activeIndicators.has("rsi") && (
-        <div className="bg-white rounded-lg shadow-lg p-4">
+        <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">RSI (14)</h3>
-            <div className="text-sm text-gray-500">
-              <span className="text-red-600">&lt;30 Oversold</span> |{" "}
-              <span className="text-green-600">&gt;70 Overbought</span>
+            <h3 className="text-lg font-semibold dark:text-white">RSI (14)</h3>
+            <div className="text-sm text-gray-500 dark:text-slate-400">
+              <span className="text-red-600 dark:text-red-400">&lt;30 Oversold</span> |{" "}
+              <span className="text-green-600 dark:text-green-400">&gt;70 Overbought</span>
             </div>
           </div>
-          <div className="h-32 bg-gray-50 rounded flex items-center justify-center">
-            <p className="text-gray-400">RSI Chart Placeholder</p>
+          <div className="h-32 bg-gray-50 rounded flex items-center justify-center dark:bg-slate-800">
+            <p className="text-gray-400 dark:text-slate-500">RSI Chart Placeholder</p>
           </div>
         </div>
       )}
 
       {/* MACD Chart */}
       {activeIndicators.has("macd") && (
-        <div className="bg-white rounded-lg shadow-lg p-4">
+        <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">MACD (12, 26, 9)</h3>
-            <div className="flex gap-4 text-sm">
+            <h3 className="text-lg font-semibold dark:text-white">MACD (12, 26, 9)</h3>
+            <div className="flex gap-4 text-sm dark:text-slate-300">
               <span className="flex items-center gap-1">
-                <span className="w-3 h-0.5 bg-blue-600"></span>
+                <span className="w-3 h-0.5 bg-blue-600 dark:bg-blue-400"></span>
                 MACD
               </span>
               <span className="flex items-center gap-1">
-                <span className="w-3 h-0.5 bg-red-600"></span>
+                <span className="w-3 h-0.5 bg-red-600 dark:bg-red-400"></span>
                 Signal
               </span>
               <span className="flex items-center gap-1">
-                <span className="w-3 h-1 bg-gray-400"></span>
+                <span className="w-3 h-1 bg-gray-400 dark:bg-slate-500"></span>
                 Histogram
               </span>
             </div>
           </div>
-          <div className="h-32 bg-gray-50 rounded flex items-center justify-center">
-            <p className="text-gray-400">MACD Chart Placeholder</p>
+          <div className="h-32 bg-gray-50 rounded flex items-center justify-center dark:bg-slate-800">
+            <p className="text-gray-400 dark:text-slate-500">MACD Chart Placeholder</p>
           </div>
         </div>
       )}
@@ -177,33 +177,33 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
       {data.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {activeIndicators.has("sma") && (
-            <div className="bg-white rounded-lg shadow p-4">
-              <p className="text-sm text-gray-500">SMA ({smaPeriod})</p>
-              <p className="text-2xl font-bold text-blue-600">
+            <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+              <p className="text-sm text-gray-500 dark:text-slate-400">SMA ({smaPeriod})</p>
+              <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                 ${indicators.sma[indicators.sma.length - 1]?.toFixed(2) || "—"}
               </p>
             </div>
           )}
 
           {activeIndicators.has("ema") && (
-            <div className="bg-white rounded-lg shadow p-4">
-              <p className="text-sm text-gray-500">EMA ({emaPeriod})</p>
-              <p className="text-2xl font-bold text-purple-600">
+            <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+              <p className="text-sm text-gray-500 dark:text-slate-400">EMA ({emaPeriod})</p>
+              <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
                 ${indicators.ema[indicators.ema.length - 1]?.toFixed(2) || "—"}
               </p>
             </div>
           )}
 
           {activeIndicators.has("rsi") && (
-            <div className="bg-white rounded-lg shadow p-4">
-              <p className="text-sm text-gray-500">RSI (14)</p>
+            <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+              <p className="text-sm text-gray-500 dark:text-slate-400">RSI (14)</p>
               <p
                 className={`text-2xl font-bold ${
                   (indicators.rsi[indicators.rsi.length - 1] || 50) > 70
-                    ? "text-red-600"
+                    ? "text-red-600 dark:text-red-400"
                     : (indicators.rsi[indicators.rsi.length - 1] || 50) < 30
-                    ? "text-green-600"
-                    : "text-gray-600"
+                    ? "text-green-600 dark:text-green-400"
+                    : "text-gray-600 dark:text-slate-400"
                 }`}
               >
                 {indicators.rsi[indicators.rsi.length - 1]?.toFixed(2) || "—"}
@@ -212,9 +212,9 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
           )}
 
           {activeIndicators.has("bollinger") && (
-            <div className="bg-white rounded-lg shadow p-4">
-              <p className="text-sm text-gray-500">Bollinger Width</p>
-              <p className="text-2xl font-bold text-orange-600">
+            <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+              <p className="text-sm text-gray-500 dark:text-slate-400">Bollinger Width</p>
+              <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">
                 {(() => {
                   const upper = indicators.bollinger.upper[indicators.bollinger.upper.length - 1];
                   const lower = indicators.bollinger.lower[indicators.bollinger.lower.length - 1];
@@ -227,18 +227,18 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
       )}
 
       {/* Legend */}
-      <div className="bg-gray-50 rounded-lg p-4">
-        <h4 className="text-sm font-semibold mb-2">Active Indicators:</h4>
-        <div className="flex flex-wrap gap-3 text-sm">
+      <div className="bg-gray-50 rounded-lg p-4 dark:bg-slate-800/50">
+        <h4 className="text-sm font-semibold mb-2 dark:text-white">Active Indicators:</h4>
+        <div className="flex flex-wrap gap-3 text-sm dark:text-slate-300">
           {activeIndicators.has("sma") && (
             <span className="flex items-center gap-1">
-              <span className="w-3 h-0.5 bg-blue-600"></span>
+              <span className="w-3 h-0.5 bg-blue-600 dark:bg-blue-400"></span>
               SMA ({smaPeriod})
             </span>
           )}
           {activeIndicators.has("ema") && (
             <span className="flex items-center gap-1">
-              <span className="w-3 h-0.5 bg-purple-600"></span>
+              <span className="w-3 h-0.5 bg-purple-600 dark:bg-purple-400"></span>
               EMA ({emaPeriod})
             </span>
           )}
@@ -250,13 +250,13 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
           )}
           {activeIndicators.has("rsi") && (
             <span className="flex items-center gap-1">
-              <span className="w-3 h-0.5 bg-green-600"></span>
+              <span className="w-3 h-0.5 bg-green-600 dark:bg-green-400"></span>
               RSI (14)
             </span>
           )}
           {activeIndicators.has("macd") && (
             <span className="flex items-center gap-1">
-              <span className="w-3 h-0.5 bg-red-600"></span>
+              <span className="w-3 h-0.5 bg-red-600 dark:bg-red-400"></span>
               MACD (12, 26, 9)
             </span>
           )}

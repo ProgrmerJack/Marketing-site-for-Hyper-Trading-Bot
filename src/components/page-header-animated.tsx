@@ -28,7 +28,7 @@ export function PageHeaderAnimated({
   const { backgroundsEnabled, hydrated } = useMotion();
 
   return (
-    <header className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-blue-50/30 py-24 dark:border-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/30">
+    <header className="relative overflow-hidden border-b border-slate-200/80 bg-white/50 py-24 dark:border-slate-700/50 dark:bg-slate-950">
       {/* Animated Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         {backgroundsEnabled && hydrated ? (
@@ -36,10 +36,10 @@ export function PageHeaderAnimated({
             variant={backgroundVariant}
             colors={backgroundColors}
             speed="32s"
-            opacity={0.6}
+            opacity={0.4}
           />
         ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(93,100,255,0.12),_transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(93,100,255,0.08),_transparent_70%)] dark:bg-[radial-gradient(circle_at_top,_rgba(96,165,250,0.05),_transparent_70%)]" />
         )}
       </div>
 
@@ -68,7 +68,8 @@ export function PageHeaderAnimated({
           variants={revealUp}
           initial="initial"
           animate="animate"
-          className="max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white md:text-5xl lg:text-6xl"
+          className="relative z-20 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 opacity-100 dark:text-white md:text-5xl lg:text-6xl"
+          style={{ opacity: 1 }}
         >
           {title}
         </motion.h1>

@@ -11,11 +11,9 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import {
   StarBorder,
   ClickSpark,
-  BounceCards,
   DotGrid,
   SplashCursor,
   SpotlightCard,
-  GlareHover,
 } from "@/components/reactbits/dynamic";
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
 import { HeroBackground } from "@/components/backgrounds/HeroBackground";
@@ -44,7 +42,7 @@ const featurePanels: FeaturePanel[] = [
       "Market, on-chain, and venue microstructure data are normalised in under 120ms with drift monitoring and lineage tracking on every feature.",
     icon: Zap,
     tag: "Signals",
-    accent: "from-sky-400/15 to-cyan-500/10 border-sky-400/20",
+    accent: "from-blue-400/15 to-cyan-500/10 border-blue-400/20",
   },
   {
     title: "Risk rails that bite",
@@ -52,7 +50,7 @@ const featurePanels: FeaturePanel[] = [
       "Position limits, drawdown guards, circuit breakers, and venue health checks run before any order leaves the sandbox - no overrides, no hero trades.",
     icon: ShieldCheck,
     tag: "Risk",
-    accent: "from-emerald-400/15 to-teal-500/10 border-emerald-400/20",
+    accent: "from-emerald-400/15 to-green-500/10 border-emerald-400/20",
   },
   {
     title: "Latency-respectful execution",
@@ -60,7 +58,7 @@ const featurePanels: FeaturePanel[] = [
       "Smart-order routes split flow across venues with a live kill switch. Demo telemetry surfaces latency, slippage, and risk posture in plain language.",
     icon: Timer,
     tag: "Execution",
-    accent: "from-indigo-400/15 to-purple-500/10 border-indigo-400/20",
+    accent: "from-purple-400/15 to-pink-500/10 border-purple-400/20",
   },
   {
     title: "Observable automation",
@@ -68,7 +66,7 @@ const featurePanels: FeaturePanel[] = [
       "Signed SSE feeds, deterministic pipelines, and self-healing dags keep the automation explainable, observable, and regulator ready.",
     icon: Cpu,
     tag: "Automation",
-    accent: "from-amber-400/15 to-orange-500/10 border-amber-400/20",
+    accent: "from-orange-400/15 to-red-500/10 border-orange-400/20",
   },
 ];
 
@@ -251,65 +249,69 @@ function HeroSection() {
   const { backgroundsEnabled, cursorEnabled, hydrated } = useMotion();
 
   return (
-    <section className="relative isolate min-h-[90vh] overflow-hidden py-20 md:py-32">
+    <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
       {/* Background Layer */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
         {backgroundsEnabled && hydrated ? (
           <HeroBackground name="hyperspeed" />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/90 to-white/80 dark:from-black/95 dark:via-black/90 dark:to-black/85" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.15),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.25),transparent_50%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white/80 dark:from-transparent dark:via-slate-950/60 dark:to-slate-900/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
       </div>
 
       <Container className="relative z-10">
-        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center">
-          {/* Hero Content */}
-          <div className="space-y-8">
-            <AccentBadge>Regulated automation preview</AccentBadge>
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16 xl:gap-20">
+            {/* Hero Content */}
+            <div className="space-y-8">
+              <AccentBadge>Regulated automation preview</AccentBadge>
 
-            <SplitText
-              as="h1"
-              splitBy="word"
-              startDelay={0.12}
-              className="heading-contrast text-balance font-display text-5xl font-bold leading-[1.1] tracking-tight text-foreground md:text-6xl lg:text-7xl"
-            >
-              Disciplined crypto automation without the hype
-            </SplitText>
+              <SplitText
+                as="h1"
+                splitBy="word"
+                startDelay={0.12}
+                className="heading-contrast text-balance font-display text-5xl font-bold leading-[1.1] tracking-tight text-foreground md:text-6xl lg:text-7xl"
+              >
+                Disciplined crypto automation without the hype
+              </SplitText>
 
-            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              The automation layer treats telemetry, controls, and execution with regulated-market
-              discipline. Signed demo feeds, deterministic pipelines, and transparent runbooks arrive
-              before any capital moves.
-            </p>
+              <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+                The automation layer treats telemetry, controls, and execution with regulated-market
+                discipline. Signed demo feeds, deterministic pipelines, and transparent runbooks arrive
+                before any capital moves.
+              </p>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <PrimaryCta href="/contact" cursorEnabled={cursorEnabled}>
-                Request gated access
-              </PrimaryCta>
-              <SecondaryCta href="/live-demo">Explore signed demo</SecondaryCta>
+              <div className="flex flex-wrap items-center gap-4">
+                <PrimaryCta href="/contact" cursorEnabled={cursorEnabled}>
+                  Request gated access
+                </PrimaryCta>
+                <SecondaryCta href="/live-demo">Explore signed demo</SecondaryCta>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="grid gap-4 pt-4 sm:grid-cols-2">
+                {heroBullets.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                    className="flex items-start gap-3 rounded-2xl border border-border bg-card/50 p-4 backdrop-blur-sm transition-colors hover:bg-card"
+                  >
+                    <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="text-sm leading-relaxed text-muted-foreground">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
-            {/* Trust Indicators */}
-            <div className="grid gap-4 pt-4 sm:grid-cols-2">
-              {heroBullets.map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                  className="flex items-start gap-3 rounded-2xl border border-border bg-card/50 p-4 backdrop-blur-sm transition-colors hover:bg-card"
-                >
-                  <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                  <span className="text-sm leading-relaxed text-muted-foreground">{item}</span>
-                </motion.div>
-              ))}
+            {/* Hero Card */}
+            <div>
+              <HeroTelemetryCard cursorEnabled={cursorEnabled} />
             </div>
           </div>
-
-          {/* Hero Card */}
-          <HeroTelemetryCard cursorEnabled={cursorEnabled} />
         </div>
       </Container>
     </section>
@@ -326,10 +328,10 @@ function PrimaryCta({ href, children, cursorEnabled }: PrimaryCtaProps) {
   const button = (
     <Link
       href={href as Route}
-      className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-primary dark:text-primary-foreground dark:shadow-primary/30 dark:hover:shadow-primary/50"
     >
       <span className="relative z-10">{children}</span>
-      <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100 dark:from-blue-500 dark:to-blue-700" />
     </Link>
   );
 
@@ -339,9 +341,11 @@ function PrimaryCta({ href, children, cursorEnabled }: PrimaryCtaProps) {
 
   return (
     <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
-      <StarBorder as="div" color="rgb(59, 130, 246)" className="inline-block rounded-full" speed="2.5s">
-        {button}
-      </StarBorder>
+      <div className="inline-block">
+        <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full" speed="3s">
+          {button}
+        </StarBorder>
+      </div>
     </ClickSpark>
   );
 }
@@ -368,7 +372,6 @@ type HeroTelemetryCardProps = {
 };
 
 function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
-  const { backgroundsEnabled, hydrated } = useMotion();
   const heroStats = metrics.slice(0, 3);
 
   return (
@@ -376,11 +379,11 @@ function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
       initial={{ opacity: 0, scale: 0.95, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-2xl"
+      className="relative overflow-hidden rounded-3xl border border-orange-200/50 bg-gradient-to-br from-white via-orange-50/30 to-amber-50/20 shadow-2xl dark:border-orange-800/50 dark:from-slate-900 dark:via-orange-950/20 dark:to-amber-950/10"
     >
-      {/* Card Background - Clean gradient only */}
+      {/* Card Background */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-500/5 dark:from-blue-500/10 dark:to-cyan-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-amber-500/5 dark:from-orange-500/10 dark:to-amber-500/10" />
       </div>
 
       {/* Card Content */}
@@ -402,14 +405,13 @@ function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
             <MetricRow
               key={metric.label}
               metric={metric}
-              cursorEnabled={cursorEnabled}
               index={index}
             />
           ))}
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 text-xs text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300">
-          <span className="font-semibold text-slate-900 dark:text-white">Accessibility:</span> Prefers-reduced-motion
+        <div className="rounded-2xl border border-orange-200/50 bg-orange-50/30 p-4 text-xs text-orange-900 backdrop-blur-sm dark:border-orange-700/50 dark:bg-orange-950/30 dark:text-orange-300">
+          <span className="font-semibold text-orange-900 dark:text-orange-200">Accessibility:</span> Prefers-reduced-motion
           freezes canvases, disables cursor effects, and swaps to static gradients automatically.
         </div>
       </div>
@@ -419,20 +421,19 @@ function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
 
 type MetricRowProps = {
   metric: Metric;
-  cursorEnabled: boolean;
   index: number;
 };
 
-function MetricRow({ metric, cursorEnabled, index }: MetricRowProps) {
-  const content = (
+function MetricRow({ metric, index }: MetricRowProps) {
+  return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-      className="flex items-center justify-between rounded-xl border border-slate-200 bg-white/50 px-5 py-4 backdrop-blur-sm transition-all hover:bg-white hover:shadow-md dark:border-slate-700 dark:bg-slate-800/50 dark:hover:bg-slate-800"
+      className="flex items-center justify-between rounded-xl border border-orange-200/50 bg-gradient-to-r from-white to-orange-50/30 px-5 py-4 backdrop-blur-sm transition-all hover:shadow-lg hover:border-orange-300/70 hover:-translate-y-0.5 dark:border-orange-800/30 dark:from-slate-800/80 dark:to-orange-950/30 dark:hover:border-orange-700/50 dark:hover:bg-slate-800/90"
     >
       <div className="flex-1">
-        <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+        <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
           {metric.label}
         </span>
         <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
@@ -450,16 +451,6 @@ function MetricRow({ metric, cursorEnabled, index }: MetricRowProps) {
         )}
       </div>
     </motion.div>
-  );
-
-  if (!cursorEnabled) {
-    return content;
-  }
-
-  return (
-    <GlareHover className="rounded-xl" glareColor="rgba(59, 130, 246, 0.15)">
-      {content}
-    </GlareHover>
   );
 }
 
@@ -487,7 +478,7 @@ function FeatureStorySection() {
         <div className="mx-auto max-w-7xl space-y-16">
           {/* Section Header */}
           <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <AccentBadge color="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+            <AccentBadge color="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 text-emerald-600 dark:text-emerald-400">
               Workflow clarity
             </AccentBadge>
             <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
@@ -500,7 +491,7 @@ function FeatureStorySection() {
           </div>
 
           {/* Feature Grid */}
-          <div className="grid auto-rows-[minmax(0,1fr)] gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 md:gap-8">
             {featurePanels.map((panel, index) => (
               <FeatureCard key={panel.title} panel={panel} index={index} />
             ))}
@@ -525,33 +516,46 @@ function FeatureCard({ panel, index }: FeatureCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
     >
       <SpotlightCard
         className={clsx(
-          "group h-full rounded-3xl border bg-card p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1",
+          "group h-full rounded-3xl border bg-gradient-to-br from-white via-white to-slate-50/50 p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-slate-700/50 dark:from-slate-900 dark:via-slate-850 dark:to-slate-800/80",
           panel.accent
         )}
-        spotlightColor="rgba(56, 189, 248, 0.2)"
+        spotlightColor="rgba(251, 146, 60, 0.25)"
       >
         <div className="flex h-full flex-col">
           <div className="flex items-center gap-4 mb-6">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-              <Icon className="h-6 w-6 text-primary" />
+            <div className={clsx(
+              "flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
+              index === 0 && "bg-gradient-to-br from-blue-500 to-cyan-500",
+              index === 1 && "bg-gradient-to-br from-emerald-500 to-green-500",
+              index === 2 && "bg-gradient-to-br from-purple-500 to-pink-500",
+              index === 3 && "bg-gradient-to-br from-orange-500 to-red-500"
+            )}>
+              <Icon className="h-7 w-7 text-white" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            <span className={clsx(
+              "text-xs font-bold uppercase tracking-widest",
+              index === 0 && "text-blue-600 dark:text-blue-400",
+              index === 1 && "text-emerald-600 dark:text-emerald-400",
+              index === 2 && "text-purple-600 dark:text-purple-400",
+              index === 3 && "text-orange-600 dark:text-orange-400"
+            )}>
               {panel.tag}
             </span>
           </div>
 
-          <h3 className="mb-4 text-2xl font-bold text-foreground">
+          <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
             {panel.title}
           </h3>
 
-          <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+          <p className="flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
             {panel.description}
           </p>
 
-          <div className="mt-6 flex items-center text-xs font-mono uppercase tracking-widest text-muted-foreground">
+          <div className="mt-6 flex items-center text-xs font-mono uppercase tracking-widest text-slate-600 dark:text-slate-400">
             <span>Step {index + 1}</span>
             <ArrowRight className="ml-auto h-4 w-4 transition-transform group-hover:translate-x-1" />
           </div>
@@ -608,7 +612,7 @@ function WorkflowSection() {
           </div>
 
           {/* Workflow Grid */}
-          <div className="grid auto-rows-[minmax(0,1fr)] gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {workflowSteps.map((step, index) => (
               <WorkflowCard key={step.title} step={step} index={index} />
             ))}
@@ -633,10 +637,15 @@ function WorkflowCard({ step, index }: WorkflowCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group h-full rounded-3xl border border-border bg-card p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl"
+      className="group h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 dark:border-slate-700 dark:from-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10"
     >
-      <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
-        <Icon className="h-7 w-7 text-primary" />
+      <div className={clsx(
+        "mb-6 flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
+        index === 0 && "bg-gradient-to-br from-cyan-500 to-blue-500",
+        index === 1 && "bg-gradient-to-br from-red-500 to-orange-500",
+        index === 2 && "bg-gradient-to-br from-purple-500 to-indigo-500"
+      )}>
+        <Icon className="h-7 w-7 text-white" />
       </div>
 
       <h3 className="mb-4 text-xl font-bold text-foreground">
@@ -647,11 +656,25 @@ function WorkflowCard({ step, index }: WorkflowCardProps) {
         {step.description}
       </p>
 
-      <div className="rounded-2xl border border-border bg-muted/30 p-4 text-xs">
-        <span className="mb-2 block font-mono font-semibold uppercase tracking-wider text-primary">
+      <div className={clsx(
+        "rounded-2xl border p-4 text-xs",
+        index === 0 && "border-cyan-200 bg-cyan-50 dark:border-cyan-800 dark:bg-cyan-950/50",
+        index === 1 && "border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950/50",
+        index === 2 && "border-purple-200 bg-purple-50 dark:border-purple-800 dark:bg-purple-950/50"
+      )}>
+        <span className={clsx(
+          "mb-2 block font-mono font-semibold uppercase tracking-wider",
+          index === 0 && "text-cyan-600 dark:text-cyan-400",
+          index === 1 && "text-red-600 dark:text-red-400",
+          index === 2 && "text-purple-600 dark:text-purple-400"
+        )}>
           Stage {index + 1}
         </span>
-        <p className="text-muted-foreground">
+        <p className={clsx(
+          index === 0 && "text-cyan-800 dark:text-cyan-300",
+          index === 1 && "text-red-800 dark:text-red-300",
+          index === 2 && "text-purple-800 dark:text-purple-300"
+        )}>
           Deterministic outputs stored for replay. Signed artefacts attach to every pipeline hop for audit
           and post-trade analysis.
         </p>
@@ -661,7 +684,7 @@ function WorkflowCard({ step, index }: WorkflowCardProps) {
 }
 
 function MetricsSection() {
-  const { backgroundsEnabled, hydrated, cursorEnabled } = useMotion();
+  const { backgroundsEnabled, hydrated } = useMotion();
 
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
@@ -681,10 +704,11 @@ function MetricsSection() {
       </div>
 
       <Container className="relative z-10">
-        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
           {/* Left Content */}
-          <div className="space-y-8">
-            <AccentBadge>Observable metrics</AccentBadge>
+          <div className="flex flex-col justify-center space-y-8">
+            <AccentBadge color="bg-purple-500/10 text-purple-600 dark:text-purple-400">Observable metrics</AccentBadge>
 
             <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
               Numbers you can interrogate
@@ -708,10 +732,11 @@ function MetricsSection() {
           </div>
 
           {/* Right Metrics Grid */}
-          <div className="grid auto-rows-[minmax(0,1fr)] gap-6 sm:grid-cols-2">
+          <div className="grid content-start gap-6 sm:grid-cols-2 sm:gap-8">
             {metrics.map((metric) => (
-              <MetricCard key={metric.label} metric={metric} cursorEnabled={cursorEnabled} />
+              <MetricCard key={metric.label} metric={metric} />
             ))}
+          </div>
           </div>
         </div>
       </Container>
@@ -721,27 +746,29 @@ function MetricsSection() {
 
 type MetricCardProps = {
   metric: Metric;
-  cursorEnabled: boolean;
 };
 
-function MetricCard({ metric, cursorEnabled }: MetricCardProps) {
-  const content = (
+function MetricCard({ metric }: MetricCardProps) {
+  return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, amount: 0.3 }}
-      className="h-full rounded-3xl border border-border bg-gradient-to-br from-white via-white to-slate-50 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl dark:from-slate-800 dark:via-slate-800 dark:to-slate-900"
+      transition={{ duration: 0.5 }}
+      className="flex h-full flex-col rounded-3xl border border-orange-200/50 bg-gradient-to-br from-white via-orange-50/20 to-amber-50/10 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 dark:border-orange-800/30 dark:from-slate-900 dark:via-orange-950/20 dark:to-amber-950/10"
     >
-      <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+      <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
         {metric.label}
       </span>
 
       <div className="mt-4 flex items-end justify-between gap-4">
-        <span className="text-4xl font-bold tabular-nums text-slate-900 dark:text-white">
+        <span className="text-4xl font-bold tabular-nums text-orange-600 dark:text-orange-400">
           <AnimatedNumber value={metric.value} decimals={metric.decimals} duration={1.2} />
           {metric.suffix}
         </span>
-        <ArrowRight className="h-5 w-5 text-primary" />
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-lg">
+          <ArrowRight className="h-5 w-5 text-white" />
+        </div>
       </div>
 
       <p className="mt-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
@@ -749,20 +776,10 @@ function MetricCard({ metric, cursorEnabled }: MetricCardProps) {
       </p>
     </motion.div>
   );
-
-  if (!cursorEnabled) {
-    return content;
-  }
-
-  return (
-    <GlareHover className="h-full rounded-3xl" glareColor="rgba(14, 165, 233, 0.25)">
-      {content}
-    </GlareHover>
-  );
 }
 
 function IntegrationsSection() {
-  const { backgroundsEnabled, hydrated, cursorEnabled } = useMotion();
+  const { backgroundsEnabled, hydrated } = useMotion();
 
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
@@ -792,9 +809,9 @@ function IntegrationsSection() {
           </div>
 
           {/* Integration Grid */}
-          <div className="grid auto-rows-[minmax(0,1fr)] gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {integrationTiles.map((tile) => (
-              <IntegrationTileCard key={tile.name} tile={tile} cursorEnabled={cursorEnabled} />
+              <IntegrationTileCard key={tile.name} tile={tile} />
             ))}
           </div>
         </div>
@@ -805,49 +822,40 @@ function IntegrationsSection() {
 
 type IntegrationTileCardProps = {
   tile: IntegrationTile;
-  cursorEnabled: boolean;
 };
 
-function IntegrationTileCard({ tile, cursorEnabled }: IntegrationTileCardProps) {
-  const content = (
+function IntegrationTileCard({ tile }: IntegrationTileCardProps) {
+  return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5 }}
       className={clsx(
-        "relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border bg-card p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl",
+        "group relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border bg-gradient-to-br from-white via-slate-50/60 to-blue-50/40 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 dark:border-slate-700/50 dark:from-slate-900 dark:via-slate-800/70 dark:to-blue-950/40",
         tile.accent
       )}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-25"
+        className="pointer-events-none absolute inset-0 opacity-15 dark:opacity-10"
         style={{
           backgroundImage: `url(${tile.gradient})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/70 via-transparent to-primary/10 dark:from-slate-950/60 dark:via-transparent dark:to-primary/20" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/80 via-transparent to-blue-500/5 dark:from-slate-950/70 dark:via-transparent dark:to-blue-500/10" />
 
       <div className="relative space-y-4">
-        <h3 className="text-xl font-bold text-foreground">{tile.name}</h3>
-        <p className="text-sm leading-relaxed text-muted-foreground">{tile.description}</p>
+        <h3 className="text-xl font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">{tile.name}</h3>
+        <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{tile.description}</p>
       </div>
 
-      <span className="relative mt-6 inline-flex text-xs font-bold uppercase tracking-widest text-primary">
+      <div className="relative mt-6 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-xs font-bold uppercase tracking-widest text-orange-600 shadow-sm dark:border-orange-800/50 dark:bg-orange-950/60 dark:text-orange-400">
+        <span className="h-2 w-2 rounded-full bg-orange-500 dark:bg-orange-400 animate-pulse" />
         Ready for sandbox
-      </span>
+      </div>
     </motion.div>
-  );
-
-  if (!cursorEnabled) {
-    return content;
-  }
-
-  return (
-    <GlareHover className="h-full rounded-3xl" glareColor="rgba(59, 130, 246, 0.2)">
-      {content}
-    </GlareHover>
   );
 }
 
@@ -885,7 +893,7 @@ function TestimonialsSection() {
           </div>
 
           {/* Testimonials Gallery */}
-          <div className="grid auto-rows-[minmax(0,1fr)] gap-8 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 md:gap-8">
             {testimonialItems.map((item, index) => (
               <motion.div
                 key={index}
@@ -893,20 +901,21 @@ function TestimonialsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl border border-teal-200 bg-gradient-to-br from-white via-teal-50/30 to-cyan-50/20 p-8 shadow-lg transition-all duration-300 hover:shadow-2xl dark:border-teal-800/50 dark:from-slate-900 dark:via-teal-950/30 dark:to-cyan-950/20"
+                className="group relative overflow-hidden rounded-3xl border border-teal-200 bg-gradient-to-br from-white via-teal-50/40 to-cyan-50/30 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 dark:border-teal-700/50 dark:from-slate-900 dark:via-teal-950/50 dark:to-cyan-950/40"
               >
                 <div
-                  className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 opacity-20 rounded-full blur-3xl"
+                  className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 opacity-20 rounded-full blur-3xl dark:opacity-30"
                   style={{
                     backgroundImage: `url(${item.image})`,
                     backgroundSize: "cover",
                   }}
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-cyan-500/5 dark:from-teal-500/10 dark:to-cyan-500/10" />
                 <p className="relative text-base leading-relaxed text-slate-700 dark:text-slate-300">
                   {item.text}
                 </p>
                 {/* Shimmer effect */}
-                <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-all duration-1000 group-hover:left-full dark:via-white/10" />
+                <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-teal-400/20 to-transparent transition-all duration-1000 group-hover:left-full dark:via-teal-400/15" />
               </motion.div>
             ))}
           </div>
@@ -922,9 +931,9 @@ function DemoSection() {
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       <Container className="relative z-10">
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-2xl">
+        <div className="relative overflow-hidden rounded-3xl border border-blue-200/50 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 shadow-2xl dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10">
           {/* Background Effects */}
-          <div className="pointer-events-none absolute inset-0">
+          <div className="pointer-events-none absolute inset-0 opacity-25 dark:opacity-15">
             {backgroundsEnabled && hydrated ? (
               <>
                 <AnimatedBackground
@@ -943,7 +952,7 @@ function DemoSection() {
                 />
               </>
             ) : (
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.2),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.2),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.1),transparent_70%)]" />
             )}
           </div>
 
@@ -997,15 +1006,79 @@ function DemoSection() {
               </Link>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-background/50 p-6 backdrop-blur-md">
-              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <div className="relative overflow-hidden rounded-2xl border border-blue-200 bg-gradient-to-br from-white to-blue-50 p-6 backdrop-blur-md dark:border-blue-800 dark:from-slate-900 dark:to-blue-950">
+              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
                 <span>BTC/USDT demo</span>
                 <span>Latency p95 &lt; 150 ms</span>
               </div>
-              <div className="mt-6 h-64 rounded-xl bg-gradient-to-br from-primary/10 via-accent/5 to-transparent" />
-              <p className="mt-4 text-xs text-muted-foreground">
-                Chart powered by TradingView Lightweight Charts. Data shown is non-tradable and provided for
-                illustration only.
+              <div className="mt-6 h-64 rounded-xl bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 shadow-inner overflow-hidden relative">
+                {/* Simple SVG Candlestick Chart */}
+                <svg className="w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="none">
+                  {/* Grid lines */}
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <line
+                      key={`grid-${i}`}
+                      x1="0"
+                      y1={40 * i}
+                      x2="400"
+                      y2={40 * i}
+                      stroke="currentColor"
+                      strokeWidth="0.5"
+                      className="text-slate-200 dark:text-slate-700"
+                      opacity="0.5"
+                    />
+                  ))}
+
+                  {/* Candlesticks */}
+                  {[
+                    { x: 20, high: 30, low: 70, open: 60, close: 40, rising: true },
+                    { x: 60, high: 40, low: 80, open: 70, close: 50, rising: true },
+                    { x: 100, high: 50, low: 90, open: 80, close: 60, rising: true },
+                    { x: 140, high: 60, low: 100, open: 90, close: 70, rising: true },
+                    { x: 180, high: 50, low: 85, open: 60, close: 75, rising: false },
+                    { x: 220, high: 55, low: 95, open: 75, close: 85, rising: false },
+                    { x: 260, high: 65, low: 110, open: 85, close: 100, rising: false },
+                    { x: 300, high: 70, low: 105, open: 100, close: 80, rising: true },
+                    { x: 340, high: 60, low: 95, open: 80, close: 70, rising: true },
+                    { x: 380, high: 50, low: 85, open: 70, close: 60, rising: true },
+                  ].map((candle, i) => (
+                    <g key={`candle-${i}`}>
+                      {/* Wick */}
+                      <line
+                        x1={candle.x}
+                        y1={candle.high}
+                        x2={candle.x}
+                        y2={candle.low}
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        className={candle.rising ? "text-emerald-500" : "text-red-500"}
+                      />
+                      {/* Body */}
+                      <rect
+                        x={candle.x - 6}
+                        y={Math.min(candle.open, candle.close)}
+                        width="12"
+                        height={Math.abs(candle.close - candle.open) || 2}
+                        fill="currentColor"
+                        className={candle.rising ? "text-emerald-500" : "text-red-500"}
+                      />
+                    </g>
+                  ))}
+
+                  {/* Moving average line */}
+                  <polyline
+                    points="20,55 60,60 100,70 140,80 180,75 220,85 260,95 300,85 340,75 380,65"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="text-blue-500 dark:text-blue-400"
+                    opacity="0.8"
+                  />
+                </svg>
+              </div>
+              <p className="mt-4 text-xs text-slate-700 dark:text-slate-300">
+                Illustrative candlestick chart with moving average. Data shown is non-tradable and provided for
+                demonstration purposes only.
               </p>
             </div>
           </div>
@@ -1036,7 +1109,8 @@ function TrustSection() {
       </div>
 
       <Container className="relative z-10">
-        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left: Trust Signals */}
           <div className="space-y-8">
             <div>
@@ -1052,14 +1126,30 @@ function TrustSection() {
               {trustSignals.map((signal, index) => (
                 <motion.div
                   key={signal.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="rounded-2xl border border-border bg-card p-6 backdrop-blur-sm"
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.15,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  whileHover={{ scale: 1.02 }}
+                  className="rounded-2xl border border-emerald-200/50 bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/20 p-6 backdrop-blur-sm shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-emerald-800/30 dark:from-slate-900 dark:via-emerald-950/30 dark:to-teal-950/20"
                 >
-                  <h3 className="mb-2 text-base font-bold text-foreground">{signal.label}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{signal.copy}</p>
+                  <div className="mb-3 flex items-center gap-3">
+                    <motion.div
+                      initial={{ rotate: 0 }}
+                      whileInView={{ rotate: 360 }}
+                      transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
+                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg"
+                    >
+                      <ShieldCheck className="h-5 w-5 text-white" />
+                    </motion.div>
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white">{signal.label}</h3>
+                  </div>
+                  <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{signal.copy}</p>
                 </motion.div>
               ))}
             </div>
@@ -1070,16 +1160,23 @@ function TrustSection() {
             {faqItems.map((item, index) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.15,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ scale: 1.01 }}
               >
                 <InfoDisclosure title={item.title}>
                   {item.description}
                 </InfoDisclosure>
               </motion.div>
             ))}
+          </div>
           </div>
         </div>
       </Container>
@@ -1088,44 +1185,106 @@ function TrustSection() {
 }
 
 function FinalCtaSection() {
-  const { cursorEnabled } = useMotion();
+  const { cursorEnabled, backgroundsEnabled, hydrated } = useMotion();
 
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
-      <div className="section-surface" />
-      <Container className="relative z-10">
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-accent/5 to-background p-12 shadow-2xl md:p-16">
+      {/* Background Effects */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        {backgroundsEnabled && hydrated ? (
           <AnimatedBackground
-            className="pointer-events-none absolute inset-0 opacity-50"
-            variant="threads"
-            colors={["rgba(56,189,248,0.4)", "rgba(37,99,235,0.3)", "rgba(203,213,225,0.25)"]}
-            speed="30s"
+            variant="beams"
+            colors={["rgba(251,146,60,0.3)", "rgba(59,130,246,0.25)", "rgba(249,115,22,0.2)"]}
+            speed="28s"
             opacity={0.6}
           />
+        ) : (
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.15),transparent_60%)]" />
+        )}
+        <div className="section-surface" />
+      </div>
 
-          <div className="relative z-10 mx-auto max-w-4xl space-y-8 text-center">
-            <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              Ready to review the gated experience?
-            </h2>
+      <Container className="relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+          className="mx-auto max-w-5xl"
+        >
+          <div className="relative overflow-hidden rounded-3xl border border-orange-200 bg-gradient-to-br from-white via-orange-50/50 to-amber-50/30 p-12 shadow-2xl dark:border-orange-800 dark:from-slate-900 dark:via-orange-950/30 dark:to-amber-950/20 md:p-16 lg:p-20">
+            {/* Animated Background */}
+            <AnimatedBackground
+              className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-30"
+              variant="threads"
+              colors={["rgba(251,146,60,0.4)", "rgba(249,115,22,0.3)", "rgba(59,130,246,0.25)"]}
+              speed="30s"
+              opacity={0.6}
+            />
 
-            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              Share your mandate, risk posture, and constraints. We will coordinate a walkthrough with the
-              teams who built the automation.
-            </p>
+            <div className="relative z-10 space-y-8 text-center">
+              {/* Icon */}
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 200 }}
+                className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 shadow-2xl"
+              >
+                <ArrowRight className="h-10 w-10 text-white" />
+              </motion.div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-              <PrimaryCta href="/contact" cursorEnabled={cursorEnabled}>
-                Contact the team
-              </PrimaryCta>
-              <SecondaryCta href="/status">Review status page</SecondaryCta>
+              {/* Heading */}
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl"
+              >
+                Ready to review the gated experience?
+              </motion.h2>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl"
+              >
+                Share your mandate, risk posture, and constraints. We will coordinate a walkthrough with the
+                teams who built the automation.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="flex flex-wrap items-center justify-center gap-4 pt-4"
+              >
+                <PrimaryCta href="/contact" cursorEnabled={cursorEnabled}>
+                  Contact the team
+                </PrimaryCta>
+                <SecondaryCta href="/status">Review status page</SecondaryCta>
+              </motion.div>
+
+              {/* Footer Note */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-sm text-slate-600 dark:text-slate-400"
+              >
+                Double opt-in. Runbooks exchanged up front. Postal address and compliance documentation in the
+                first reply.
+              </motion.p>
             </div>
-
-            <p className="text-sm text-muted-foreground">
-              Double opt-in. Runbooks exchanged up front. Postal address and compliance documentation in the
-              first reply.
-            </p>
           </div>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

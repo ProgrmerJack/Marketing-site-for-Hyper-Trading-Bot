@@ -16,7 +16,7 @@ export function PageHeader({
   children,
 }: PageHeaderProps) {
   return (
-    <header className="relative overflow-hidden border-b border-[color:var(--color-line-muted)] bg-white/70 py-24 dark:bg-black/60">
+    <header className="relative overflow-hidden border-b border-[color:var(--color-line-muted)] bg-white/70 py-24 dark:bg-slate-950/95">
       <Container className="relative z-10 flex flex-col gap-6">
         {eyebrow ? (
           <span className="inline-flex w-fit items-center rounded-full border border-[color:var(--color-line-muted)] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent-primary)]">
@@ -28,7 +28,7 @@ export function PageHeader({
             {kicker}
           </p>
         ) : null}
-        <h1 className="max-w-3xl font-display text-4xl leading-tight tracking-tight text-[color:var(--color-surface-900)] dark:text-white md:text-5xl">
+        <h1 className="relative z-20 max-w-3xl font-display text-4xl leading-tight tracking-tight text-slate-900 opacity-100 dark:text-white md:text-5xl">
           {title}
         </h1>
         {description ? (

@@ -38,7 +38,7 @@ export default function ConsentPage() {
           {consentOptions.map((option) => (
             <article
               key={option.label}
-              className="flex flex-col gap-2 rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-6 text-sm text-black/70 dark:bg-black/60 dark:text-white/70 md:flex-row md:items-center md:justify-between"
+              className="flex flex-col gap-2 rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-6 text-sm text-black/70 dark:bg-slate-900/90 dark:text-white/70 md:flex-row md:items-center md:justify-between"
             >
               <div>
                 <h2 className="text-base font-semibold text-[color:var(--color-surface-900)] dark:text-white">

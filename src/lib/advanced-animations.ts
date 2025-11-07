@@ -271,7 +271,6 @@ export const revealLeft: Variants = {
     x: 0,
     transition: { duration: 0.8, ease: appleBezier },
   },
-  viewport: { once: true, amount: 0.3 },
 };
 
 export const revealRight: Variants = {
@@ -281,7 +280,6 @@ export const revealRight: Variants = {
     x: 0,
     transition: { duration: 0.8, ease: appleBezier },
   },
-  viewport: { once: true, amount: 0.3 },
 };
 
 export const revealUp: Variants = {
@@ -291,7 +289,6 @@ export const revealUp: Variants = {
     y: 0,
     transition: { duration: 0.8, ease: appleBezier },
   },
-  viewport: { once: true, amount: 0.3 },
 };
 
 export const revealScale: Variants = {
@@ -301,7 +298,6 @@ export const revealScale: Variants = {
     scale: 1,
     transition: { duration: 0.7, ease: appleBezier },
   },
-  viewport: { once: true, amount: 0.3 },
 };
 
 // ============================================================================

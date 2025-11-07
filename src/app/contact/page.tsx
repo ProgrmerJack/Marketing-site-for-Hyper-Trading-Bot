@@ -65,7 +65,7 @@ export default function ContactPage() {
       />
 
       {/* Contact Form Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           {backgroundsEnabled && hydrated ? (
@@ -78,6 +78,7 @@ export default function ContactPage() {
           ) : (
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
           )}
+          <div className="section-surface" />
         </div>
 
         <Container className="relative z-10">
@@ -98,7 +99,7 @@ export default function ContactPage() {
                 Provide enough context for evaluation
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-                Share your details so compliance and engineering can evaluate whether we're a fit.
+                Share your details so compliance and engineering can evaluate whether we&apos;re a fit.
               </p>
             </motion.div>
 
@@ -123,11 +124,14 @@ export default function ContactPage() {
                 className="space-y-8"
               >
                 {/* What Happens Next Card */}
-                <div className="overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 p-8 shadow-lg dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20">
-                  <h2 className="mb-6 text-xl font-bold text-slate-900 dark:text-white">
+                <div className="relative overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 p-8 shadow-lg backdrop-blur-sm dark:border-blue-700/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20">
+                  {/* Gradient overlay */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-500/5 dark:from-blue-500/10 dark:to-cyan-500/10" />
+
+                  <h2 className="relative mb-6 text-xl font-bold text-slate-900 dark:text-white">
                     What happens next
                   </h2>
-                  <ol className="space-y-6">
+                  <ol className="relative space-y-6">
                     {processSteps.map((step) => (
                       <motion.li
                         key={step.number}
@@ -135,12 +139,12 @@ export default function ContactPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.5 }}
                         transition={{ duration: 0.5, delay: step.number * 0.1 }}
-                        className="flex gap-4"
+                        className="relative flex gap-4"
                       >
                         <span className={`flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${step.gradient} text-sm font-bold text-white shadow-lg`}>
                           {step.number}
                         </span>
-                        <div className="flex-1 pt-1">
+                        <div className="relative flex-1 pt-1">
                           <h3 className="mb-1 font-semibold text-slate-900 dark:text-white">
                             {step.title}
                           </h3>
@@ -154,8 +158,11 @@ export default function ContactPage() {
                 </div>
 
                 {/* FAQ Card */}
-                <div className="overflow-hidden rounded-3xl border border-emerald-200 bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/20 p-8 shadow-lg dark:border-emerald-800/50 dark:from-slate-900 dark:via-emerald-950/30 dark:to-teal-950/20">
-                  <div className="mb-6 flex items-center gap-3">
+                <div className="relative overflow-hidden rounded-3xl border border-emerald-200 bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/20 p-8 shadow-lg backdrop-blur-sm dark:border-emerald-700/50 dark:from-slate-900 dark:via-emerald-950/30 dark:to-teal-950/20">
+                  {/* Gradient overlay */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
+
+                  <div className="relative mb-6 flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg">
                       <HelpCircle className="h-6 w-6 text-white" />
                     </div>
@@ -163,7 +170,7 @@ export default function ContactPage() {
                       Frequently asked
                     </h3>
                   </div>
-                  <ul className="space-y-5">
+                  <ul className="relative space-y-5">
                     {faqs.map((faq, index) => {
                       const Icon = faq.icon;
                       return (
@@ -173,7 +180,7 @@ export default function ContactPage() {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true, amount: 0.5 }}
                           transition={{ duration: 0.5, delay: index * 0.1 }}
-                          className="space-y-2"
+                          className="relative space-y-2"
                         >
                           <div className="flex items-start gap-3">
                             <Icon className="mt-0.5 h-5 w-5 flex-none text-emerald-600 dark:text-emerald-400" />
@@ -196,7 +203,7 @@ export default function ContactPage() {
       </section>
 
       {/* Trust Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           {backgroundsEnabled && hydrated ? (
@@ -209,6 +216,7 @@ export default function ContactPage() {
           ) : (
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.1),transparent_70%)]" />
           )}
+          <div className="section-surface" />
         </div>
 
         <Container className="relative z-10">
@@ -219,8 +227,11 @@ export default function ContactPage() {
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             className="mx-auto max-w-4xl"
           >
-            <div className="overflow-hidden rounded-3xl border border-purple-200 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/20 p-12 shadow-2xl dark:border-purple-800/50 dark:from-slate-900 dark:via-purple-950/30 dark:to-pink-950/20">
-              <div className="mb-8 flex items-center gap-4">
+            <div className="relative overflow-hidden rounded-3xl border border-purple-200 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/20 p-12 shadow-2xl backdrop-blur-sm dark:border-purple-700/50 dark:from-slate-900 dark:via-purple-950/30 dark:to-pink-950/20">
+              {/* Gradient overlay */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 dark:from-purple-500/10 dark:to-pink-500/10" />
+
+              <div className="relative mb-8 flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg">
                   <Shield className="h-8 w-8 text-white" />
                 </div>
@@ -229,7 +240,7 @@ export default function ContactPage() {
                 </h3>
               </div>
 
-              <div className="space-y-6 text-base leading-relaxed text-slate-700 dark:text-slate-300">
+              <div className="relative space-y-6 text-base leading-relaxed text-slate-700 dark:text-slate-300">
                 <p>
                   Your information is handled with the same care we apply to trading operations: encrypted at rest,
                   transmitted over TLS, and accessible only to authorized personnel with a legitimate business need.

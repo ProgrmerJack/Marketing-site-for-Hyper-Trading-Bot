@@ -53,7 +53,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-8 shadow-surface dark:bg-black/60"
+      className="space-y-6 rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-8 shadow-surface dark:bg-slate-900/90"
     >
       <div className="grid gap-6 md:grid-cols-2">
         <Field label="Work email" name="email" type="email" autoComplete="email" required />
@@ -118,7 +118,7 @@ function Field({
       <InputComponent
         name={name}
         className={clsx(
-          "rounded-2xl border border-[color:var(--color-line-muted)] bg-white/90 px-4 py-3 text-sm text-black placeholder:text-black/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-accent-primary)] dark:bg-black/50 dark:text-white dark:placeholder:text-white/40",
+          "rounded-2xl border border-[color:var(--color-line-muted)] bg-white/90 px-4 py-3 text-sm text-black placeholder:text-black/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-accent-primary)] dark:bg-slate-800/90 dark:text-white dark:placeholder:text-white/40",
           className,
         )}
         {...props}

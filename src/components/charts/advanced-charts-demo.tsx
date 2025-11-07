@@ -51,8 +51,8 @@ export function AdvancedChartsDemo() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-3xl font-bold mb-2">Advanced Trading Charts</h2>
-        <p className="text-gray-600">
+        <h2 className="text-3xl font-bold mb-2 dark:text-white">Advanced Trading Charts</h2>
+        <p className="text-gray-600 dark:text-slate-400">
           TradingView-style candlestick charts with real-time updates and technical indicators
         </p>
       </div>
@@ -64,7 +64,7 @@ export function AdvancedChartsDemo() {
       </Alert>
 
       {/* Controls */}
-      <div className="bg-white rounded-lg shadow-lg p-4 border border-gray-200">
+      <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
         <div className="flex flex-wrap items-center gap-4">
           {/* Live Toggle */}
           <Button
@@ -121,9 +121,9 @@ export function AdvancedChartsDemo() {
 
           {/* Status Badge */}
           {isLive && (
-            <div className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-full">
-              <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium text-green-600">Live</span>
+            <div className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-full dark:bg-green-900/30">
+              <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse dark:bg-green-400"></div>
+              <span className="text-sm font-medium text-green-600 dark:text-green-400">Live</span>
             </div>
           )}
         </div>
@@ -131,25 +131,25 @@ export function AdvancedChartsDemo() {
 
       {/* Price Info */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
-          <p className="text-sm text-gray-500 mb-1">Current Price</p>
-          <p className="text-3xl font-bold">${currentPrice.toFixed(2)}</p>
+        <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+          <p className="text-sm text-gray-500 dark:text-slate-400 mb-1">Current Price</p>
+          <p className="text-3xl font-bold dark:text-white">${currentPrice.toFixed(2)}</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
-          <p className="text-sm text-gray-500 mb-1">24h Change</p>
+        <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+          <p className="text-sm text-gray-500 dark:text-slate-400 mb-1">24h Change</p>
           <p
             className={`text-3xl font-bold ${
-              priceChange >= 0 ? "text-green-600" : "text-red-600"
+              priceChange >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
             }`}
           >
             {priceChange >= 0 ? "+" : ""}${priceChange.toFixed(2)}
           </p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
-          <p className="text-sm text-gray-500 mb-1">24h Change %</p>
+        <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+          <p className="text-sm text-gray-500 dark:text-slate-400 mb-1">24h Change %</p>
           <p
             className={`text-3xl font-bold ${
-              priceChangePercent >= 0 ? "text-green-600" : "text-red-600"
+              priceChangePercent >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
             }`}
           >
             {priceChangePercent >= 0 ? "+" : ""}
@@ -164,12 +164,12 @@ export function AdvancedChartsDemo() {
       </ChartErrorBoundary>
 
       {/* Features List */}
-      <div className="bg-gray-50 rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-4">Chart Features</h3>
+      <div className="bg-gray-50 rounded-lg p-6 dark:bg-slate-800/50">
+        <h3 className="text-xl font-semibold mb-4 dark:text-white">Chart Features</h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <h4 className="font-semibold mb-2">Technical Indicators</h4>
-            <ul className="space-y-1 text-sm text-gray-600">
+            <h4 className="font-semibold mb-2 dark:text-white">Technical Indicators</h4>
+            <ul className="space-y-1 text-sm text-gray-600 dark:text-slate-400">
               <li>✓ SMA (Simple Moving Average)</li>
               <li>✓ EMA (Exponential Moving Average)</li>
               <li>✓ RSI (Relative Strength Index)</li>
@@ -178,8 +178,8 @@ export function AdvancedChartsDemo() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2">Interactions</h4>
-            <ul className="space-y-1 text-sm text-gray-600">
+            <h4 className="font-semibold mb-2 dark:text-white">Interactions</h4>
+            <ul className="space-y-1 text-sm text-gray-600 dark:text-slate-400">
               <li>✓ Interactive tooltips with crosshairs</li>
               <li>✓ Zoom and pan controls</li>
               <li>✓ Volume bars</li>

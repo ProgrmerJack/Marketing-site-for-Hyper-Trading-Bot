@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeader } from "@/components/page-header";
-import { GlareHover, SpotlightCard } from "@/components/reactbits/dynamic";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Zap, Shield, Activity, Check } from "lucide-react";
@@ -74,7 +74,7 @@ export default function HowItWorksPage() {
       />
 
       {/* Pipeline Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           {backgroundsEnabled && hydrated ? (
@@ -87,15 +87,16 @@ export default function HowItWorksPage() {
           ) : (
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.1),transparent_70%)]" />
           )}
+          <div className="section-surface" />
         </div>
 
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                 The Four-Stage Power Pipeline
               </h2>
-              <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 Unmatched speed, precision, and intelligent automation working together to deliver superior trading results.
               </p>
             </div>
@@ -106,20 +107,28 @@ export default function HowItWorksPage() {
                 return (
                   <motion.div
                     key={stage.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.6, delay: index * 0.15 }}
+                    className="h-full"
                   >
                     <SpotlightCard
-                      className="h-full rounded-3xl border border-slate-200 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800"
-                      spotlightColor="rgba(59, 130, 246, 0.2)"
+                      className="group h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 dark:border-slate-700/50 dark:from-slate-900 dark:via-blue-950/20 dark:to-purple-950/10"
+                      spotlightColor="rgba(147, 51, 234, 0.25)"
                     >
-                      <div className="flex h-full flex-col gap-6">
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+                      <div className="relative flex h-full flex-col gap-6">
                         <div className="flex items-center gap-4">
-                          <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${stage.gradient} shadow-lg`}>
+                          <motion.div
+                            initial={{ scale: 0, rotate: -180 }}
+                            whileInView={{ scale: 1, rotate: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
+                            className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${stage.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
+                          >
                             <Icon className="h-7 w-7 text-white" />
-                          </div>
+                          </motion.div>
                           <div className="flex-1">
                             <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
                               {stage.title}
@@ -129,15 +138,22 @@ export default function HowItWorksPage() {
 
                         <ul className="flex-1 space-y-3 text-sm text-slate-700 dark:text-slate-300">
                           {stage.details.map((detail, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
+                            <motion.li
+                              key={idx}
+                              initial={{ opacity: 0, x: -10 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.4, delay: index * 0.15 + idx * 0.1 }}
+                              className="flex items-start gap-2"
+                            >
                               <Check className="mt-0.5 h-4 w-4 flex-none text-emerald-500" />
                               <span>{detail}</span>
-                            </li>
+                            </motion.li>
                           ))}
                         </ul>
 
-                        <div className="rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 dark:from-blue-950/30 dark:to-purple-950/30">
-                          <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">
+                        <div className="rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 shadow-inner dark:from-blue-950/40 dark:to-purple-950/40">
+                          <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">
                             {stage.slo}
                           </span>
                         </div>
@@ -152,7 +168,7 @@ export default function HowItWorksPage() {
       </section>
 
       {/* Safety Rails Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           {backgroundsEnabled && hydrated ? (
@@ -165,6 +181,7 @@ export default function HowItWorksPage() {
           ) : (
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
           )}
+          <div className="section-surface" />
         </div>
 
         <Container className="relative z-10">
@@ -173,10 +190,10 @@ export default function HowItWorksPage() {
               <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
                 Safety rails
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                 Your Capital Protected by Advanced Safety Systems
               </h2>
-              <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 Multi-layered protection mechanisms ensuring your funds are always secure and trading stays transparent.
               </p>
             </div>
@@ -185,19 +202,32 @@ export default function HowItWorksPage() {
               {safetyRails.map((rail, index) => (
                 <motion.div
                   key={rail}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                  className="group relative flex h-full items-start gap-4 rounded-3xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-emerald-300 dark:border-emerald-700/50 dark:from-emerald-950/50 dark:via-slate-900 dark:to-teal-950/50 dark:hover:border-emerald-600/70"
                 >
-                  <GlareHover className="h-full rounded-3xl" glareColor="rgba(16, 185, 129, 0.25)">
-                    <div className="flex h-full items-start gap-4 rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:border-emerald-900/30 dark:from-emerald-950/30 dark:via-slate-900 dark:to-teal-950/30">
-                      <div className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-emerald-500 text-white">
-                        <Check className="h-5 w-5" />
-                      </div>
-                      <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{rail}</p>
-                    </div>
-                  </GlareHover>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
+
+                  {/* Pulsing glow effect */}
+                  <motion.div
+                    animate={{ opacity: [0.4, 0.8, 0.4] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-400/0 via-emerald-400/20 to-teal-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-emerald-400/0 dark:via-emerald-400/30 dark:to-teal-400/0"
+                  />
+
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.2, type: "spring" }}
+                    className="relative flex h-8 w-8 flex-none items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg"
+                  >
+                    <Check className="h-5 w-5" />
+                  </motion.div>
+                  <p className="relative text-sm font-medium leading-relaxed text-slate-700 dark:text-slate-200">{rail}</p>
                 </motion.div>
               ))}
             </div>
@@ -206,23 +236,45 @@ export default function HowItWorksPage() {
       </section>
 
       {/* Performance Metrics Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        {/* Background */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          {backgroundsEnabled && hydrated ? (
+            <AnimatedBackground
+              variant="liquid"
+              colors={["rgba(59,130,246,0.3)", "rgba(168,85,247,0.25)", "rgba(236,72,153,0.2)"]}
+              speed="30s"
+              opacity={0.6}
+            />
+          ) : (
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.1),transparent_70%)]" />
+          )}
+          <div className="section-surface" />
+        </div>
+
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                 Industry-Leading Performance Metrics
               </h2>
-              <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 Exceptional speed and reliability metrics that set new standards in automated crypto trading.*
               </p>
             </div>
 
-            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
-              <div className="overflow-x-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 shadow-2xl backdrop-blur-sm dark:border-slate-700/50 dark:from-slate-900 dark:via-slate-850 dark:to-blue-950/30"
+            >
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+              <div className="relative overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 dark:border-slate-700 dark:from-slate-900 dark:to-slate-800">
+                    <tr className="border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 dark:border-slate-700 dark:from-slate-800/80 dark:to-slate-800/60">
                       <th className="p-4 font-bold text-slate-900 dark:text-white">Metric</th>
                       <th className="p-4 font-bold text-slate-900 dark:text-white">Target (SLO)</th>
                       <th className="p-4 font-bold text-slate-900 dark:text-white">Current (Demo)</th>
@@ -239,32 +291,37 @@ export default function HowItWorksPage() {
                       ["Uptime", ">99.5%", "99.7%", "Public status page"],
                       ["Data Integrity", "100%", "100%", "Signature verification"],
                       ["Mean Time to Detect (MTTD)", "<3 min", "1.2 min", "Anomaly detection"],
-                    ].map((row, index) => (
-                      <tr
+                    ].map((row, rowIndex) => (
+                      <motion.tr
                         key={row[0]}
-                        className="border-b border-slate-100 transition-colors hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-700/50"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: rowIndex * 0.05 }}
+                        whileHover={{ scale: 1.01, x: 4 }}
+                        className="group border-b border-slate-200 transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-50 hover:via-purple-50 hover:to-blue-50 hover:shadow-lg dark:border-slate-700 dark:hover:from-blue-950/30 dark:hover:via-purple-950/30 dark:hover:to-blue-950/30 dark:hover:shadow-blue-500/10"
                       >
                         <td className="p-4 font-medium text-slate-900 dark:text-white">{row[0]}</td>
                         <td className="p-4 text-slate-700 dark:text-slate-300">{row[1]}</td>
                         <td className="p-4 font-semibold text-emerald-600 dark:text-emerald-400">{row[2]}</td>
                         <td className="p-4 text-slate-600 dark:text-slate-400">{row[3]}</td>
-                      </tr>
+                      </motion.tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <div className="border-t border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+              <div className="border-t border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900/80">
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   * Metrics shown are from demo/sandbox environment. Live production performance may vary based on market conditions.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </Container>
       </section>
 
       {/* Footnotes Section */}
-      <section className="border-t border-border bg-muted/30 py-12">
+      <section className="border-t border-border bg-muted/30 py-12 dark:bg-slate-900/30">
         <Container>
           <div className="mx-auto max-w-4xl space-y-4 text-xs text-muted-foreground">
             <p>

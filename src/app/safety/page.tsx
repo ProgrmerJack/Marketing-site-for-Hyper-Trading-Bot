@@ -93,18 +93,18 @@ export default function SafetyPage() {
       />
 
       {/* Key Risks Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
         {/* Animated Background */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
           {backgroundsEnabled && hydrated ? (
             <AnimatedBackground
               variant="threads"
               colors={["rgba(239, 68, 68, 0.3)", "rgba(251, 146, 60, 0.25)", "rgba(249, 115, 22, 0.2)"]}
               speed="32s"
-              opacity={0.6}
+              opacity={0.3}
             />
           ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.1),transparent_70%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.06),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.03),transparent_70%)]" />
           )}
         </div>
 
@@ -146,8 +146,8 @@ export default function SafetyPage() {
                     className="group relative overflow-hidden rounded-3xl border border-red-200 bg-gradient-to-br from-white via-red-50/30 to-orange-50/20 p-8 shadow-lg transition-all duration-300 hover:border-red-300 hover:shadow-xl dark:border-red-800/50 dark:from-slate-900 dark:via-red-950/30 dark:to-orange-950/20"
                   >
                     <div className="relative z-10 flex items-start gap-4">
-                      <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-red-100 dark:bg-red-900/50">
-                        <Icon className="h-6 w-6 text-red-600 dark:text-red-400" />
+                      <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                        <Icon className="h-6 w-6 text-white" />
                       </div>
                       <p className="flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                         {item}

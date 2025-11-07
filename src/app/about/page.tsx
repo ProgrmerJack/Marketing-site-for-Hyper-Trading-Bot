@@ -39,24 +39,28 @@ const founderStory = {
       title: "Risk First",
       description:
         "No position without verified risk controls. Circuit breakers, drawdown limits, and venue health checks are non-negotiable.",
+      gradient: "from-red-500 to-orange-500",
     },
     {
       icon: Zap,
       title: "Technical Rigor",
       description:
         "Sub-120ms signal processing, drift monitoring, transparent feature engineering. Every claim is measurable.",
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: Scale,
       title: "Aligned Incentives",
       description:
         "Profit-share only model. We only earn when you earn. No upfront fees, no hidden charges, no management fees.",
+      gradient: "from-emerald-500 to-teal-500",
     },
     {
       icon: Eye,
       title: "Radical Transparency",
       description:
         "Public demo with signed data, incident logs, status page. You see what we see, in real-time.",
+      gradient: "from-purple-500 to-pink-500",
     },
   ],
 };
@@ -119,9 +123,9 @@ export default function AboutPage() {
       />
 
       {/* Founder Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
         {/* Background */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
           {backgroundsEnabled && hydrated ? (
             <AnimatedBackground
               variant="threads"
@@ -137,10 +141,10 @@ export default function AboutPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Meet Our Visionary Founder
               </h2>
-              <p className="text-lg leading-relaxed text-muted-foreground">
+              <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
                 Discover the passion, expertise, and innovation driving the next generation of crypto trading automation.
               </p>
             </div>
@@ -183,8 +187,8 @@ export default function AboutPage() {
       </section>
 
       {/* Core Principles Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        <div className="pointer-events-none absolute inset-0 -z-10">
+      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
           {backgroundsEnabled && hydrated ? (
             <AnimatedBackground
               variant="beams"
@@ -221,8 +225,8 @@ export default function AboutPage() {
                   >
                     <GlareHover className="h-full rounded-3xl" glareColor="rgba(59, 130, 246, 0.2)">
                       <article className="group h-full rounded-3xl border border-border bg-card p-8 shadow-lg transition-all duration-300 hover:shadow-xl">
-                        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-all duration-300 group-hover:bg-primary/20">
-                          <Icon className="h-8 w-8 text-primary" />
+                        <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${principle.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                          <Icon className="h-8 w-8 text-white" />
                         </div>
                         <h4 className="mb-3 text-xl font-bold text-foreground">{principle.title}</h4>
                         <p className="text-sm leading-relaxed text-muted-foreground">
@@ -239,8 +243,8 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        <div className="pointer-events-none absolute inset-0 -z-10">
+      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
           {backgroundsEnabled && hydrated ? (
             <AnimatedBackground
               variant="dither"
@@ -301,8 +305,8 @@ export default function AboutPage() {
       </section>
 
       {/* Roadmap Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        <div className="pointer-events-none absolute inset-0 -z-10">
+      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
           {backgroundsEnabled && hydrated ? (
             <AnimatedBackground
               variant="liquid"

@@ -127,8 +127,8 @@ export default function PrivacyPage() {
       />
 
       {/* Main Content Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        <div className="pointer-events-none absolute inset-0 -z-10">
+      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
           {backgroundsEnabled && hydrated ? (
             <AnimatedBackground
               variant="dither"

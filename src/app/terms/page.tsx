@@ -144,8 +144,8 @@ export default function TermsPage() {
       />
 
       {/* Main Content Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        <div className="pointer-events-none absolute inset-0 -z-10">
+      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
           {backgroundsEnabled && hydrated ? (
             <AnimatedBackground
               variant="beams"
@@ -254,11 +254,11 @@ export default function TermsPage() {
               <h2 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">Related Documents</h2>
               <p className="mb-4 text-sm text-slate-700 dark:text-slate-300">Please also review these important documents:</p>
               <ul className="space-y-3 text-sm">
-                {[
-                  { href: "/risk-disclosure", label: "Risk Disclosure", desc: "Trading risks and system limitations" },
-                  { href: "/privacy", label: "Privacy Policy", desc: "How we handle your data" },
-                  { href: "/safety", label: "Safety & Security", desc: "Platform security measures" },
-                ].map((link, idx) => (
+                {([
+                  { href: "/risk-disclosure" as const, label: "Risk Disclosure", desc: "Trading risks and system limitations" },
+                  { href: "/privacy" as const, label: "Privacy Policy", desc: "How we handle your data" },
+                  { href: "/safety" as const, label: "Safety & Security", desc: "Platform security measures" },
+                ] as const).map((link, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-blue-600 dark:text-blue-400" />
                     <Link

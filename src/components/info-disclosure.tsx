@@ -21,7 +21,7 @@ export function InfoDisclosure({
   return (
     <div
       className={clsx(
-        "rounded-3xl border border-white/10 bg-white/70 p-6 shadow-[0_25px_80px_-60px_rgba(15,23,42,0.6)] backdrop-blur dark:bg-white/10",
+        "rounded-3xl border border-white/10 bg-white/70 p-6 shadow-[0_25px_80px_-60px_rgba(15,23,42,0.6)] backdrop-blur dark:bg-slate-900/70 dark:border-slate-700/50",
         className,
       )}
     >
