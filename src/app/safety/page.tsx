@@ -285,18 +285,21 @@ export default function SafetyPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-lg transition-all duration-300 hover:border-blue-300 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-800/50"
+                    className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/10 p-8 shadow-lg transition-all duration-300 hover:border-blue-300 hover:shadow-2xl dark:border-slate-700/50 dark:from-slate-900/90 dark:via-blue-950/30 dark:to-purple-950/20 dark:hover:border-blue-600/50"
                   >
+                    {/* Gradient overlay */}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+
                     {/* Icon with gradient */}
-                    <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${control.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                    <div className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${control.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
                       <Icon className="h-8 w-8 text-white" />
                     </div>
 
-                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                    <h2 className="relative text-xl font-bold text-slate-900 dark:text-white">
                       {control.name}
                     </h2>
 
-                    <ul className="space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                    <ul className="relative space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                       {control.items.map((item) => (
                         <li key={item} className="flex items-start gap-3">
                           <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-emerald-600 dark:text-emerald-400" />
@@ -307,8 +310,11 @@ export default function SafetyPage() {
 
                     {/* Animated border gradient */}
                     <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${control.gradient} opacity-10`} />
+                      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${control.gradient} opacity-10 dark:opacity-15`} />
                     </div>
+
+                    {/* Shimmer effect */}
+                    <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-blue-400/15 to-transparent transition-all duration-1000 group-hover:left-full dark:via-blue-400/20" />
                   </motion.article>
                 );
               })}

@@ -9,6 +9,8 @@ import { DemoStreamClient } from "@/components/live-demo-client";
 import MarketDataDemo from "@/components/market-data-demo";
 import { AdvancedChartsDemo } from "@/components/charts/advanced-charts-demo";
 import { FlowingMenu } from "@/components/reactbits/dynamic";
+import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+import { useMotion } from "@/components/motion/MotionProvider";
 
 const buildGradient = (from: string, to: string) => {
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='${from}'/><stop offset='100%' stop-color='${to}'/></linearGradient></defs><rect width='200' height='200' fill='url(%23g)' rx='40' ry='40'/></svg>`;
@@ -22,8 +24,24 @@ const menuItems = [
 ];
 
 export default function LiveDemoPage() {
+  const { backgroundsEnabled, hydrated } = useMotion();
+
   return (
-    <div className="space-y-20">
+    <div className="relative space-y-0">
+      {/* Global background animation */}
+      <div className="pointer-events-none fixed inset-0 -z-20">
+        {backgroundsEnabled && hydrated ? (
+          <AnimatedBackground
+            variant="beams"
+            colors={["rgba(59,130,246,0.35)", "rgba(139,92,246,0.3)", "rgba(34,197,94,0.25)"]}
+            speed="35s"
+            opacity={0.4}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
+        )}
+      </div>
+
       <PageHeader
         eyebrow="Live demo"
         title="Experience Professional-Grade Trading Technology in Action"
@@ -57,7 +75,7 @@ export default function LiveDemoPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="group rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-8 shadow-lg transition-all duration-500 hover:shadow-xl dark:border-slate-700 dark:from-slate-800 dark:to-slate-900"
+            className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 p-8 shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/60 dark:to-blue-950/40"
           >
             <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
               <span>BTC/USDT - Demo only</span>
@@ -69,7 +87,7 @@ export default function LiveDemoPage() {
                 ● Live
               </motion.span>
             </div>
-            <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 p-3 shadow-inner dark:border-slate-700 dark:bg-slate-900">
+            <div className="mt-6 overflow-hidden rounded-2xl border border-slate-300/60 bg-gradient-to-br from-slate-100 to-white p-3 shadow-inner dark:border-slate-600/50 dark:from-slate-900 dark:to-slate-800">
               <DemoChart />
             </div>
             <p className="mt-6 text-xs leading-relaxed text-slate-600 dark:text-slate-400">

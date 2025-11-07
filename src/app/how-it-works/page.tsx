@@ -114,7 +114,7 @@ export default function HowItWorksPage() {
                     className="h-full"
                   >
                     <SpotlightCard
-                      className="group h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 dark:border-slate-700/50 dark:from-slate-900 dark:via-blue-950/20 dark:to-purple-950/10"
+                      className="group relative h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/40 to-slate-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300/60 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/60 dark:to-slate-900/80 dark:hover:border-blue-600/40"
                       spotlightColor="rgba(147, 51, 234, 0.25)"
                     >
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
@@ -206,16 +206,16 @@ export default function HowItWorksPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-                  className="group relative flex h-full items-start gap-4 rounded-3xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-emerald-300 dark:border-emerald-700/50 dark:from-emerald-950/50 dark:via-slate-900 dark:to-teal-950/50 dark:hover:border-emerald-600/70"
+                  whileHover={{ scale: 1.02, y: -4, transition: { duration: 0.2 } }}
+                  className="group relative flex h-full items-start gap-4 rounded-3xl border-2 border-emerald-200/70 bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/70 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-emerald-300/80 dark:border-emerald-700/70 dark:from-emerald-950/50 dark:via-slate-900/95 dark:to-teal-950/50 dark:hover:border-emerald-600/80 dark:hover:shadow-emerald-500/20"
                 >
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
+                  <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
 
                   {/* Pulsing glow effect */}
                   <motion.div
-                    animate={{ opacity: [0.4, 0.8, 0.4] }}
+                    animate={{ opacity: [0.3, 0.7, 0.3] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-400/0 via-emerald-400/20 to-teal-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-emerald-400/0 dark:via-emerald-400/30 dark:to-teal-400/0"
+                    className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-400/0 via-emerald-400/15 to-teal-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-emerald-400/0 dark:via-emerald-400/25 dark:to-teal-400/0"
                   />
 
                   <motion.div
@@ -223,7 +223,7 @@ export default function HowItWorksPage() {
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 + 0.2, type: "spring" }}
-                    className="relative flex h-8 w-8 flex-none items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg"
+                    className="relative flex h-8 w-8 flex-none items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg"
                   >
                     <Check className="h-5 w-5" />
                   </motion.div>
@@ -268,17 +268,26 @@ export default function HowItWorksPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 shadow-2xl backdrop-blur-sm dark:border-slate-700/50 dark:from-slate-900 dark:via-slate-850 dark:to-blue-950/30"
+              className="group relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/60 to-blue-50/40 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-3xl hover:border-blue-300/80 dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/95 dark:to-blue-950/40 dark:hover:border-blue-600/70"
             >
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-purple-500/8 dark:from-blue-500/15 dark:to-purple-500/15" />
+
+              {/* Animated gradient overlay on hover */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/8 to-blue-500/0 dark:via-purple-500/15"
+              />
+
               <div className="relative overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 dark:border-slate-700 dark:from-slate-800/80 dark:to-slate-800/60">
-                      <th className="p-4 font-bold text-slate-900 dark:text-white">Metric</th>
-                      <th className="p-4 font-bold text-slate-900 dark:text-white">Target (SLO)</th>
-                      <th className="p-4 font-bold text-slate-900 dark:text-white">Current (Demo)</th>
-                      <th className="p-4 font-bold text-slate-900 dark:text-white">Monitoring</th>
+                    <tr className="border-b-2 border-slate-300/50 bg-gradient-to-r from-slate-100/80 to-slate-50/80 dark:border-slate-600/50 dark:from-slate-800/90 dark:to-slate-700/80">
+                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Metric</th>
+                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Target (SLO)</th>
+                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Current (Demo)</th>
+                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Monitoring</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -299,18 +308,18 @@ export default function HowItWorksPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: rowIndex * 0.05 }}
                         whileHover={{ scale: 1.01, x: 4 }}
-                        className="group border-b border-slate-200 transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-50 hover:via-purple-50 hover:to-blue-50 hover:shadow-lg dark:border-slate-700 dark:hover:from-blue-950/30 dark:hover:via-purple-950/30 dark:hover:to-blue-950/30 dark:hover:shadow-blue-500/10"
+                        className="group/row border-b border-slate-200/60 transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-50/70 hover:via-purple-50/60 hover:to-blue-50/70 hover:shadow-lg dark:border-slate-700/60 dark:hover:from-blue-950/40 dark:hover:via-purple-950/40 dark:hover:to-blue-950/40 dark:hover:shadow-blue-500/10"
                       >
-                        <td className="p-4 font-medium text-slate-900 dark:text-white">{row[0]}</td>
-                        <td className="p-4 text-slate-700 dark:text-slate-300">{row[1]}</td>
-                        <td className="p-4 font-semibold text-emerald-600 dark:text-emerald-400">{row[2]}</td>
-                        <td className="p-4 text-slate-600 dark:text-slate-400">{row[3]}</td>
+                        <td className="p-4 font-medium text-slate-900 dark:text-slate-100">{row[0]}</td>
+                        <td className="p-4 font-medium text-slate-700 dark:text-slate-200">{row[1]}</td>
+                        <td className="p-4 font-bold text-emerald-600 dark:text-emerald-300">{row[2]}</td>
+                        <td className="p-4 text-slate-600 dark:text-slate-300">{row[3]}</td>
                       </motion.tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <div className="border-t border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900/80">
+              <div className="border-t border-slate-200 bg-slate-50/80 p-4 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   * Metrics shown are from demo/sandbox environment. Live production performance may vary based on market conditions.
                 </p>

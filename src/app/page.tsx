@@ -342,9 +342,11 @@ function PrimaryCta({ href, children, cursorEnabled }: PrimaryCtaProps) {
   return (
     <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
       <div className="inline-block">
-        <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full" speed="3s">
-          {button}
-        </StarBorder>
+        <div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
+          <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+            {button}
+          </StarBorder>
+        </div>
       </div>
     </ClickSpark>
   );
@@ -520,7 +522,7 @@ function FeatureCard({ panel, index }: FeatureCardProps) {
     >
       <SpotlightCard
         className={clsx(
-          "group h-full rounded-3xl border bg-gradient-to-br from-white via-white to-slate-50/50 p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-slate-700/50 dark:from-slate-900 dark:via-slate-850 dark:to-slate-800/80",
+          "group relative h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/40 to-slate-50/20 p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/60 dark:to-slate-900/80",
           panel.accent
         )}
         spotlightColor="rgba(251, 146, 60, 0.25)"
@@ -832,7 +834,7 @@ function IntegrationTileCard({ tile }: IntegrationTileCardProps) {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5 }}
       className={clsx(
-        "group relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border bg-gradient-to-br from-white via-slate-50/60 to-blue-50/40 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 dark:border-slate-700/50 dark:from-slate-900 dark:via-slate-800/70 dark:to-blue-950/40",
+        "group relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300/60 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/70 dark:to-blue-950/40 dark:hover:border-blue-600/40",
         tile.accent
       )}
     >
@@ -901,21 +903,21 @@ function TestimonialsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl border border-teal-200 bg-gradient-to-br from-white via-teal-50/40 to-cyan-50/30 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 dark:border-teal-700/50 dark:from-slate-900 dark:via-teal-950/50 dark:to-cyan-950/40"
+                className="group relative overflow-hidden rounded-3xl border-2 border-teal-200/60 bg-gradient-to-br from-white via-teal-50/50 to-cyan-50/40 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-teal-300/80 dark:border-teal-700/60 dark:from-slate-900/95 dark:via-teal-950/40 dark:to-cyan-950/30 dark:hover:border-teal-600/70"
               >
                 <div
-                  className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 opacity-20 rounded-full blur-3xl dark:opacity-30"
+                  className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 opacity-15 rounded-full blur-3xl dark:opacity-25"
                   style={{
                     backgroundImage: `url(${item.image})`,
                     backgroundSize: "cover",
                   }}
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/5 via-transparent to-cyan-500/5 dark:from-teal-500/10 dark:to-cyan-500/10" />
-                <p className="relative text-base leading-relaxed text-slate-700 dark:text-slate-300">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/8 via-transparent to-cyan-500/8 dark:from-teal-500/15 dark:to-cyan-500/15" />
+                <p className="relative text-base font-medium leading-relaxed text-slate-800 dark:text-slate-200">
                   {item.text}
                 </p>
                 {/* Shimmer effect */}
-                <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-teal-400/20 to-transparent transition-all duration-1000 group-hover:left-full dark:via-teal-400/15" />
+                <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-teal-400/25 to-transparent transition-all duration-1000 group-hover:left-full dark:via-teal-400/20" />
               </motion.div>
             ))}
           </div>
@@ -931,20 +933,20 @@ function DemoSection() {
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       <Container className="relative z-10">
-        <div className="relative overflow-hidden rounded-3xl border border-blue-200/50 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 shadow-2xl dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10">
+        <div className="relative overflow-hidden rounded-3xl border-2 border-blue-200/60 bg-gradient-to-br from-white via-blue-50/40 to-cyan-50/30 shadow-2xl dark:border-blue-800/60 dark:from-slate-900/95 dark:via-blue-950/30 dark:to-cyan-950/20">
           {/* Background Effects */}
-          <div className="pointer-events-none absolute inset-0 opacity-25 dark:opacity-15">
+          <div className="pointer-events-none absolute inset-0 opacity-30 dark:opacity-20">
             {backgroundsEnabled && hydrated ? (
               <>
                 <AnimatedBackground
-                  className="absolute inset-0 opacity-40"
+                  className="absolute inset-0 opacity-45"
                   variant="liquid"
                   colors={["rgba(14,165,233,0.4)", "rgba(56,189,248,0.35)", "rgba(59,130,246,0.3)"]}
                   speed="30s"
                   opacity={0.6}
                 />
                 <AnimatedBackground
-                  className="absolute inset-0 opacity-30"
+                  className="absolute inset-0 opacity-35"
                   variant="balatro"
                   colors={["rgba(14,165,233,0.4)", "rgba(56,189,248,0.35)", "rgba(129,140,248,0.3)"]}
                   speed="36s"
@@ -952,7 +954,7 @@ function DemoSection() {
                 />
               </>
             ) : (
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.2),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.1),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.25),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.15),transparent_70%)]" />
             )}
           </div>
 
@@ -1006,12 +1008,12 @@ function DemoSection() {
               </Link>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-blue-200 bg-gradient-to-br from-white to-blue-50 p-6 backdrop-blur-md dark:border-blue-800 dark:from-slate-900 dark:to-blue-950">
-              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            <div className="relative overflow-hidden rounded-2xl border-2 border-blue-200/70 bg-gradient-to-br from-white via-blue-50/30 to-slate-50/20 p-6 shadow-lg backdrop-blur-md dark:border-blue-800/70 dark:from-slate-900/95 dark:via-blue-950/40 dark:to-slate-800/60">
+              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300">
                 <span>BTC/USDT demo</span>
                 <span>Latency p95 &lt; 150 ms</span>
               </div>
-              <div className="mt-6 h-64 rounded-xl bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 shadow-inner overflow-hidden relative">
+              <div className="mt-6 h-64 rounded-xl bg-gradient-to-br from-slate-50/90 to-blue-50/80 dark:from-slate-900/90 dark:to-slate-800/80 shadow-inner overflow-hidden relative border border-slate-200 dark:border-slate-700">
                 {/* Simple SVG Candlestick Chart */}
                 <svg className="w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="none">
                   {/* Grid lines */}
