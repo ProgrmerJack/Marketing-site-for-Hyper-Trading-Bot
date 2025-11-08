@@ -21,7 +21,6 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
-import { useMotion } from "@/components/motion/MotionProvider";
 
 const fraudSignals = [
   {
@@ -80,8 +79,6 @@ const complianceControls = [
 ];
 
 export default function SafetyPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <div className="relative space-y-0">
       <PageHeaderAnimated
@@ -95,17 +92,13 @@ export default function SafetyPage() {
       {/* Key Risks Section */}
       <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
         {/* Animated Background */}
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="threads"
-              colors={["rgba(239, 68, 68, 0.3)", "rgba(251, 146, 60, 0.25)", "rgba(249, 115, 22, 0.2)"]}
-              speed="32s"
-              opacity={0.3}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.06),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.03),transparent_70%)]" />
-          )}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 dark:opacity-35">
+          <AnimatedBackground
+            variant="threads"
+            colors={["rgba(239, 68, 68, 0.45)", "rgba(251, 146, 60, 0.35)", "rgba(249, 115, 22, 0.3)"]}
+            speed="28s"
+            opacity={0.6}
+          />
         </div>
 
         <Container className="relative z-10">
@@ -143,18 +136,18 @@ export default function SafetyPage() {
                     custom={index}
                     variants={cardEntrance}
                     whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                    className="group relative overflow-hidden rounded-3xl border border-red-200 bg-gradient-to-br from-white via-red-50/30 to-orange-50/20 p-8 shadow-lg transition-all duration-300 hover:border-red-300 hover:shadow-xl dark:border-red-800/50 dark:from-slate-900 dark:via-red-950/30 dark:to-orange-950/20"
+                    className="group relative overflow-hidden rounded-3xl border-2 border-red-200/70 bg-gradient-to-br from-white via-red-50/40 to-orange-50/30 p-8 shadow-xl transition-all duration-300 hover:border-red-300/80 hover:shadow-2xl dark:border-red-800/70 dark:from-slate-900/95 dark:via-red-950/40 dark:to-orange-950/30 dark:hover:border-red-700/70"
                   >
                     <div className="relative z-10 flex items-start gap-4">
                       <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                         <Icon className="h-6 w-6 text-white" />
                       </div>
-                      <p className="flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                      <p className="flex-1 text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">
                         {item}
                       </p>
                     </div>
                     {/* Animated gradient overlay */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-orange-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-500/8 via-transparent to-orange-500/8 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-red-500/15 dark:to-orange-500/15" />
                   </motion.div>
                 );
               })}
@@ -166,17 +159,13 @@ export default function SafetyPage() {
       {/* Fraud Red Flags Section */}
       <section className="relative overflow-hidden py-24 md:py-32">
         {/* Background */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="dither"
-              colors={["rgba(245, 158, 11, 0.3)", "rgba(251, 146, 60, 0.25)", "rgba(239, 68, 68, 0.2)"]}
-              speed="28s"
-              opacity={0.65}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(245,158,11,0.1),transparent_70%)]" />
-          )}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <AnimatedBackground
+            variant="dither"
+            colors={["rgba(245, 158, 11, 0.45)", "rgba(251, 146, 60, 0.35)", "rgba(239, 68, 68, 0.3)"]}
+            speed="24s"
+            opacity={0.8}
+          />
         </div>
 
         <Container className="relative z-10">
@@ -214,18 +203,18 @@ export default function SafetyPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-                    className="group relative overflow-hidden rounded-3xl border border-amber-200 bg-gradient-to-br from-white via-amber-50/30 to-yellow-50/20 p-8 shadow-lg transition-all duration-300 hover:border-amber-300 hover:shadow-xl dark:border-amber-800/50 dark:from-slate-900 dark:via-amber-950/30 dark:to-yellow-950/20"
+                    className="group relative overflow-hidden rounded-3xl border-2 border-amber-200/70 bg-gradient-to-br from-white via-amber-50/40 to-yellow-50/30 p-8 shadow-xl transition-all duration-300 hover:border-amber-300/80 hover:shadow-2xl dark:border-amber-800/70 dark:from-slate-900/95 dark:via-amber-950/40 dark:to-yellow-950/30 dark:hover:border-amber-700/70"
                   >
                     <div className="flex items-start gap-4">
-                      <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-gradient-to-br ${signal.color} shadow-lg`}>
+                      <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-gradient-to-br ${signal.color} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
                         <Icon className="h-7 w-7 text-white" />
                       </div>
-                      <p className="flex-1 pt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                      <p className="flex-1 pt-2 text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">
                         {signal.text}
                       </p>
                     </div>
                     {/* Shimmer effect */}
-                    <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-all duration-1000 group-hover:left-full dark:via-white/10" />
+                    <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-amber-400/25 to-transparent transition-all duration-1000 group-hover:left-full dark:via-amber-400/20" />
                   </motion.div>
                 );
               })}
@@ -237,17 +226,13 @@ export default function SafetyPage() {
       {/* Compliance Controls Section */}
       <section className="relative overflow-hidden py-24 md:py-32">
         {/* Background */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="beams"
-              colors={["rgba(59, 130, 246, 0.3)", "rgba(16, 185, 129, 0.25)", "rgba(139, 92, 246, 0.2)"]}
-              speed="30s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(59,130,246,0.1),transparent_70%)]" />
-          )}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <AnimatedBackground
+            variant="beams"
+            colors={["rgba(59, 130, 246, 0.45)", "rgba(16, 185, 129, 0.35)", "rgba(139, 92, 246, 0.3)"]}
+            speed="26s"
+            opacity={0.75}
+          />
         </div>
 
         <Container className="relative z-10">
@@ -285,10 +270,10 @@ export default function SafetyPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/10 p-8 shadow-lg transition-all duration-300 hover:border-blue-300 hover:shadow-2xl dark:border-slate-700/50 dark:from-slate-900/90 dark:via-blue-950/30 dark:to-purple-950/20 dark:hover:border-blue-600/50"
+                    className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-blue-50/40 to-purple-50/30 p-8 shadow-xl transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-blue-950/40 dark:to-purple-950/30 dark:hover:border-blue-600/70"
                   >
                     {/* Gradient overlay */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-purple-500/8 dark:from-blue-500/15 dark:to-purple-500/15" />
 
                     {/* Icon with gradient */}
                     <div className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${control.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>

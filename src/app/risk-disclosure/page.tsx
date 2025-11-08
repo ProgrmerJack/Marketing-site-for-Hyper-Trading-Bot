@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
-import { useMotion } from "@/components/motion/MotionProvider";
 import Link from "next/link";
 import type { Route } from "next";
 import { AlertTriangle, TrendingDown, Cpu, Scale, Shield, CheckCircle2 } from "lucide-react";
@@ -100,8 +99,6 @@ const relatedDocs = [
 ];
 
 export default function RiskDisclosurePage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <div className="relative">
       <PageHeaderAnimated
@@ -114,17 +111,13 @@ export default function RiskDisclosurePage() {
 
       {/* Main Content Section */}
       <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="dither"
-              colors={["rgba(239, 68, 68, 0.3)", "rgba(251, 146, 60, 0.25)", "rgba(249, 115, 22, 0.2)"]}
-              speed="32s"
-              opacity={0.5}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-red-50/30 dark:from-slate-950 dark:to-red-950/30" />
-          )}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 dark:opacity-35">
+          <AnimatedBackground
+            variant="beams"
+            colors={["rgba(239, 68, 68, 0.45)", "rgba(251, 146, 60, 0.35)", "rgba(249, 115, 22, 0.3)"]}
+            speed="28s"
+            opacity={0.7}
+          />
         </div>
 
         <Container className="relative z-10">

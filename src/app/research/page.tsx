@@ -8,7 +8,6 @@ import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
 import { FileText, Shield, CheckCircle2, Clock, ArrowRight } from "lucide-react";
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
-import { useMotion } from "@/components/motion/MotionProvider";
 
 const researchRoadmap = [
   {
@@ -44,8 +43,6 @@ const researchRoadmap = [
 ];
 
 export default function ResearchPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <div className="relative space-y-0">
       <PageHeaderAnimated
@@ -59,17 +56,15 @@ export default function ResearchPage() {
       {/* Commitments Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <AnimatedBackground
+            variant="liquid"
+            colors={["rgba(59, 130, 246, 0.5)", "rgba(139, 92, 246, 0.4)", "rgba(16, 185, 129, 0.35)"]}
+            speed="30s"
+            opacity={0.75}
+          />
+        </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="threads"
-              colors={["rgba(59, 130, 246, 0.4)", "rgba(139, 92, 246, 0.3)", "rgba(16, 185, 129, 0.25)"]}
-              speed="32s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
-          )}
           <div className="section-surface" />
         </div>
 
@@ -109,10 +104,10 @@ export default function ResearchPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-blue-300 hover:shadow-2xl hover:-translate-y-2 dark:border-slate-700/50 dark:from-slate-900 dark:via-blue-950/40 dark:to-purple-950/30 dark:hover:border-blue-600/40"
+                    className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-blue-50/40 to-purple-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl hover:-translate-y-2 dark:border-slate-700/70 dark:from-slate-900/95 dark:via-blue-950/50 dark:to-purple-950/40 dark:hover:border-blue-600/70"
                   >
                     {/* Gradient overlay */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-purple-500/8 dark:from-blue-500/15 dark:to-purple-500/15" />
 
                     {/* Icon with gradient */}
                     <div className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
@@ -158,17 +153,15 @@ export default function ResearchPage() {
       {/* Transparency Note Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <AnimatedBackground
+            variant="beams"
+            colors={["rgba(16, 185, 129, 0.45)", "rgba(245, 158, 11, 0.35)", "rgba(59, 130, 246, 0.3)"]}
+            speed="24s"
+            opacity={0.8}
+          />
+        </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="beams"
-              colors={["rgba(16, 185, 129, 0.3)", "rgba(245, 158, 11, 0.25)", "rgba(59, 130, 246, 0.2)"]}
-              speed="28s"
-              opacity={0.65}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
-          )}
           <div className="section-surface" />
         </div>
 
@@ -201,9 +194,9 @@ export default function ResearchPage() {
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               className="mx-auto max-w-4xl"
             >
-              <div className="relative overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 p-12 shadow-2xl backdrop-blur-sm dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20">
+              <div className="relative overflow-hidden rounded-3xl border-2 border-blue-200/60 bg-gradient-to-br from-white via-blue-50/40 to-cyan-50/30 p-12 shadow-2xl backdrop-blur-sm dark:border-blue-800/60 dark:from-slate-900/95 dark:via-blue-950/40 dark:to-cyan-950/30">
               {/* Gradient overlay */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-500/5 dark:from-blue-500/10 dark:to-cyan-500/10" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-cyan-500/8 dark:from-blue-500/15 dark:to-cyan-500/15" />
 
               <div className="relative mb-8 flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg">

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
-import { useMotion } from "@/components/motion/MotionProvider";
 import Link from "next/link";
 import {
   FileText,
@@ -131,8 +130,6 @@ const terms = [
 ];
 
 export default function TermsPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <div className="relative">
       <PageHeaderAnimated
@@ -145,17 +142,13 @@ export default function TermsPage() {
 
       {/* Main Content Section */}
       <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="beams"
-              colors={["rgba(59, 130, 246, 0.3)", "rgba(139, 92, 246, 0.25)", "rgba(16, 185, 129, 0.2)"]}
-              speed="32s"
-              opacity={0.5}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-slate-950 dark:to-blue-950/30" />
-          )}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 dark:opacity-35">
+          <AnimatedBackground
+            variant="liquid"
+            colors={["rgba(59, 130, 246, 0.45)", "rgba(139, 92, 246, 0.35)", "rgba(16, 185, 129, 0.3)"]}
+            speed="30s"
+            opacity={0.7}
+          />
         </div>
 
         <Container className="relative z-10">

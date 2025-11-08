@@ -5,7 +5,6 @@ import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { DsrForm } from "@/components/forms/dsr-form";
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
-import { useMotion } from "@/components/motion/MotionProvider";
 import { Cookie, Shield, CheckCircle2, XCircle, Settings, Eye, Lock } from "lucide-react";
 
 const consentOptions = [
@@ -57,8 +56,6 @@ const privacyFeatures = [
 ];
 
 export default function ConsentPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <div className="relative">
       <PageHeaderAnimated
@@ -72,17 +69,15 @@ export default function ConsentPage() {
       {/* Preferences Section */}
       <section className="relative overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <AnimatedBackground
+            variant="liquid"
+            colors={["rgba(139, 92, 246, 0.45)", "rgba(236, 72, 153, 0.35)", "rgba(59, 130, 246, 0.3)"]}
+            speed="28s"
+            opacity={0.75}
+          />
+        </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="liquid"
-              colors={["rgba(139, 92, 246, 0.3)", "rgba(236, 72, 153, 0.25)", "rgba(59, 130, 246, 0.2)"]}
-              speed="32s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.1),transparent_70%)]" />
-          )}
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 
@@ -162,17 +157,15 @@ export default function ConsentPage() {
       {/* Privacy Features Section */}
       <section className="relative overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <AnimatedBackground
+            variant="beams"
+            colors={["rgba(16, 185, 129, 0.45)", "rgba(59, 130, 246, 0.35)", "rgba(245, 158, 11, 0.3)"]}
+            speed="24s"
+            opacity={0.8}
+          />
+        </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="beams"
-              colors={["rgba(16, 185, 129, 0.3)", "rgba(59, 130, 246, 0.25)", "rgba(245, 158, 11, 0.2)"]}
-              speed="28s"
-              opacity={0.65}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
-          )}
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 
@@ -246,17 +239,15 @@ export default function ConsentPage() {
       {/* Opt-Out Section */}
       <section className="relative overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <AnimatedBackground
+            variant="dither"
+            colors={["rgba(59, 130, 246, 0.45)", "rgba(236, 72, 153, 0.35)", "rgba(139, 92, 246, 0.3)"]}
+            speed="26s"
+            opacity={0.75}
+          />
+        </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="dither"
-              colors={["rgba(59, 130, 246, 0.3)", "rgba(236, 72, 153, 0.25)", "rgba(139, 92, 246, 0.2)"]}
-              speed="30s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(59,130,246,0.1),transparent_70%)]" />
-          )}
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 

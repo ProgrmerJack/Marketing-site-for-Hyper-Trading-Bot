@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { CheckCircle2, AlertCircle, Activity, Zap, Shield } from "lucide-react";
-import { revealUp, staggerContainer, cardEntrance } from "@/lib/advanced-animations";
+import { revealUp, staggerContainer } from "@/lib/advanced-animations";
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
-import { useMotion } from "@/components/motion/MotionProvider";
 
 const statusItems = [
   {
@@ -46,8 +45,6 @@ const incidents = [
 ];
 
 export default function StatusPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <div className="relative space-y-0">
       <PageHeaderAnimated
@@ -61,17 +58,15 @@ export default function StatusPage() {
       {/* Services Overview Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <AnimatedBackground
+            variant="threads"
+            colors={["rgba(16, 185, 129, 0.5)", "rgba(59, 130, 246, 0.4)", "rgba(139, 92, 246, 0.35)"]}
+            speed="28s"
+            opacity={0.75}
+          />
+        </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="threads"
-              colors={["rgba(16, 185, 129, 0.4)", "rgba(59, 130, 246, 0.3)", "rgba(139, 92, 246, 0.25)"]}
-              speed="32s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.1),transparent_70%)]" />
-          )}
           <div className="section-surface" />
         </div>
 
@@ -110,10 +105,10 @@ export default function StatusPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                    className="group relative overflow-hidden rounded-3xl border border-emerald-200 bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-emerald-300 hover:shadow-2xl dark:border-emerald-700/50 dark:from-slate-900 dark:via-emerald-950/30 dark:to-teal-950/20 md:p-10"
+                    className="group relative overflow-hidden rounded-3xl border-2 border-emerald-200/70 bg-gradient-to-br from-white via-emerald-50/40 to-teal-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-emerald-300/80 hover:shadow-2xl dark:border-emerald-700/70 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30 md:p-10"
                   >
                     {/* Gradient overlay */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
 
                     <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                       <div className="flex-1 space-y-4">
@@ -154,17 +149,15 @@ export default function StatusPage() {
       {/* Incident History Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <AnimatedBackground
+            variant="dither"
+            colors={["rgba(245, 158, 11, 0.45)", "rgba(239, 68, 68, 0.35)", "rgba(251, 146, 60, 0.3)"]}
+            speed="24s"
+            opacity={0.8}
+          />
+        </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="dither"
-              colors={["rgba(245, 158, 11, 0.3)", "rgba(239, 68, 68, 0.25)", "rgba(251, 146, 60, 0.2)"]}
-              speed="28s"
-              opacity={0.65}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(245,158,11,0.1),transparent_70%)]" />
-          )}
           <div className="section-surface" />
         </div>
 
@@ -201,10 +194,10 @@ export default function StatusPage() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                   whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                  className="group relative overflow-hidden rounded-3xl border border-amber-200 bg-gradient-to-br from-white via-amber-50/30 to-orange-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-300 hover:shadow-2xl dark:border-amber-700/50 dark:from-slate-900 dark:via-amber-950/30 dark:to-orange-950/20 md:p-10"
+                  className="group relative overflow-hidden rounded-3xl border-2 border-amber-200/70 bg-gradient-to-br from-white via-amber-50/40 to-orange-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-amber-300/80 hover:shadow-2xl dark:border-amber-700/70 dark:from-slate-900/95 dark:via-amber-950/40 dark:to-orange-950/30 md:p-10"
                 >
                   {/* Gradient overlay */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-orange-500/5 dark:from-amber-500/10 dark:to-orange-500/10" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/8 via-transparent to-orange-500/8 dark:from-amber-500/15 dark:to-orange-500/15" />
 
                   <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                     <div className="flex-1 space-y-5">

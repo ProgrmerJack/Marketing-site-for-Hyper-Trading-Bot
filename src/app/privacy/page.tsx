@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
-import { useMotion } from "@/components/motion/MotionProvider";
 import {
   Shield,
   Lock,
@@ -114,8 +113,6 @@ const providers = [
 ];
 
 export default function PrivacyPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <div className="relative">
       <PageHeaderAnimated
@@ -128,17 +125,13 @@ export default function PrivacyPage() {
 
       {/* Main Content Section */}
       <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="dither"
-              colors={["rgba(59, 130, 246, 0.3)", "rgba(139, 92, 246, 0.25)", "rgba(16, 185, 129, 0.2)"]}
-              speed="32s"
-              opacity={0.5}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-slate-950 dark:to-blue-950/30" />
-          )}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 dark:opacity-30">
+          <AnimatedBackground
+            variant="dither"
+            colors={["rgba(59, 130, 246, 0.4)", "rgba(139, 92, 246, 0.35)", "rgba(16, 185, 129, 0.3)"]}
+            speed="28s"
+            opacity={0.7}
+          />
         </div>
 
         <Container className="relative z-10">
@@ -153,10 +146,12 @@ export default function PrivacyPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/90 md:p-10"
+                  whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                  className="group relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-slate-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-blue-950/30 md:p-10"
                 >
-                  <div className="mb-6 flex items-start gap-4">
-                    <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg`}>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+                  <div className="relative mb-6 flex items-start gap-4">
+                    <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
                       <Icon className="h-7 w-7 text-white" />
                     </div>
                     <div className="flex-1">
@@ -170,7 +165,7 @@ export default function PrivacyPage() {
                   </div>
 
                   {section.items && (
-                    <ul className="space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                    <ul className="relative space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                       {section.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-emerald-600 dark:text-emerald-400" />
