@@ -381,23 +381,23 @@ function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
       initial={{ opacity: 0, scale: 0.95, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative overflow-hidden rounded-3xl border border-orange-200/50 bg-gradient-to-br from-white via-orange-50/30 to-amber-50/20 shadow-2xl dark:border-orange-800/50 dark:from-slate-900 dark:via-orange-950/20 dark:to-amber-950/10"
+      className="relative overflow-hidden rounded-3xl border-2 border-orange-200/60 bg-gradient-to-br from-white via-orange-50/40 to-amber-50/30 shadow-2xl dark:border-orange-800/60 dark:from-slate-900/95 dark:via-orange-950/30 dark:to-amber-950/20"
     >
       {/* Card Background */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-amber-500/5 dark:from-orange-500/10 dark:to-amber-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/8 via-transparent to-amber-500/8 dark:from-orange-500/15 dark:to-amber-500/15" />
       </div>
 
       {/* Card Content */}
       <div className="relative space-y-6 p-8">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
             Signed telemetry
           </span>
-          <span className="text-xs font-mono text-slate-600 dark:text-slate-400">p95 &lt; 150ms</span>
+          <span className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">p95 &lt; 150ms</span>
         </div>
 
-        <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+        <p className="text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">
           Demo feeds run on SSE with signed payloads. Latency, slippage, and venue posture publish in
           plain language with integrity checks that halt playback when guarantees slip.
         </p>
@@ -412,8 +412,8 @@ function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
           ))}
         </div>
 
-        <div className="rounded-2xl border border-orange-200/50 bg-orange-50/30 p-4 text-xs text-orange-900 backdrop-blur-sm dark:border-orange-700/50 dark:bg-orange-950/30 dark:text-orange-300">
-          <span className="font-semibold text-orange-900 dark:text-orange-200">Accessibility:</span> Prefers-reduced-motion
+        <div className="rounded-2xl border-2 border-orange-200/60 bg-orange-50/50 p-4 text-xs font-medium text-orange-900 backdrop-blur-sm dark:border-orange-700/60 dark:bg-orange-950/40 dark:text-orange-200">
+          <span className="font-bold text-orange-900 dark:text-orange-100">Accessibility:</span> Prefers-reduced-motion
           freezes canvases, disables cursor effects, and swaps to static gradients automatically.
         </div>
       </div>
@@ -432,13 +432,13 @@ function MetricRow({ metric, index }: MetricRowProps) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-      className="flex items-center justify-between rounded-xl border border-orange-200/50 bg-gradient-to-r from-white to-orange-50/30 px-5 py-4 backdrop-blur-sm transition-all hover:shadow-lg hover:border-orange-300/70 hover:-translate-y-0.5 dark:border-orange-800/30 dark:from-slate-800/80 dark:to-orange-950/30 dark:hover:border-orange-700/50 dark:hover:bg-slate-800/90"
+      className="flex items-center justify-between rounded-xl border-2 border-orange-200/60 bg-gradient-to-r from-white to-orange-50/40 px-5 py-4 backdrop-blur-sm transition-all hover:shadow-lg hover:border-orange-300/80 hover:-translate-y-0.5 dark:border-orange-800/60 dark:from-slate-800/90 dark:to-orange-950/40 dark:hover:border-orange-700/70 dark:hover:bg-slate-800/95"
     >
       <div className="flex-1">
-        <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-200">
           {metric.label}
         </span>
-        <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
+        <p className="mt-1 text-xs font-medium text-slate-700 dark:text-slate-300">
           {metric.description}
         </p>
       </div>
@@ -447,7 +447,7 @@ function MetricRow({ metric, index }: MetricRowProps) {
           <AnimatedNumber value={metric.value} decimals={metric.decimals} duration={1 + index * 0.15} />
         </span>
         {metric.suffix && (
-          <span className="ml-1 text-sm font-medium text-slate-600 dark:text-slate-400">
+          <span className="ml-1 text-sm font-bold text-slate-700 dark:text-slate-300">
             {metric.suffix.trim()}
           </span>
         )}
@@ -834,26 +834,26 @@ function IntegrationTileCard({ tile }: IntegrationTileCardProps) {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5 }}
       className={clsx(
-        "group relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300/60 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/70 dark:to-blue-950/40 dark:hover:border-blue-600/40",
+        "group relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300/80 dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-800/80 dark:to-blue-950/50 dark:hover:border-blue-600/70",
         tile.accent
       )}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-15 dark:opacity-10"
+        className="pointer-events-none absolute inset-0 opacity-10 dark:opacity-8"
         style={{
           backgroundImage: `url(${tile.gradient})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/80 via-transparent to-blue-500/5 dark:from-slate-950/70 dark:via-transparent dark:to-blue-500/10" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/80 via-transparent to-blue-500/5 dark:from-slate-950/80 dark:via-transparent dark:to-blue-500/15" />
 
       <div className="relative space-y-4">
         <h3 className="text-xl font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">{tile.name}</h3>
-        <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{tile.description}</p>
+        <p className="text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">{tile.description}</p>
       </div>
 
-      <div className="relative mt-6 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-xs font-bold uppercase tracking-widest text-orange-600 shadow-sm dark:border-orange-800/50 dark:bg-orange-950/60 dark:text-orange-400">
+      <div className="relative mt-6 inline-flex items-center gap-2 rounded-full border-2 border-orange-200/60 bg-orange-50/80 px-4 py-2 text-xs font-bold uppercase tracking-widest text-orange-700 shadow-sm dark:border-orange-800/60 dark:bg-orange-950/70 dark:text-orange-300">
         <span className="h-2 w-2 rounded-full bg-orange-500 dark:bg-orange-400 animate-pulse" />
         Ready for sandbox
       </div>
@@ -903,16 +903,16 @@ function TestimonialsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl border-2 border-teal-200/60 bg-gradient-to-br from-white via-teal-50/50 to-cyan-50/40 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-teal-300/80 dark:border-teal-700/60 dark:from-slate-900/95 dark:via-teal-950/40 dark:to-cyan-950/30 dark:hover:border-teal-600/70"
+                className="group relative overflow-hidden rounded-3xl border-2 border-teal-200/60 bg-gradient-to-br from-white via-teal-50/30 to-cyan-50/20 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-teal-300/80 dark:border-teal-700/60 dark:from-slate-900/95 dark:via-teal-950/40 dark:to-cyan-950/30 dark:hover:border-teal-600/70"
               >
                 <div
-                  className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 opacity-15 rounded-full blur-3xl dark:opacity-25"
+                  className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 opacity-5 rounded-full blur-3xl dark:opacity-25"
                   style={{
                     backgroundImage: `url(${item.image})`,
                     backgroundSize: "cover",
                   }}
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/8 via-transparent to-cyan-500/8 dark:from-teal-500/15 dark:to-cyan-500/15" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/3 via-transparent to-cyan-500/3 dark:from-teal-500/15 dark:to-cyan-500/15" />
                 <p className="relative text-base font-medium leading-relaxed text-slate-800 dark:text-slate-200">
                   {item.text}
                 </p>
