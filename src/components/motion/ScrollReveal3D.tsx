@@ -28,7 +28,7 @@ export function ScrollReveal3D({
   scaleEnd = 1,
   className = "",
 }: ScrollReveal3DProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null!);
   const shouldReduce = useReducedMotion();
 
   const { scrollYProgress } = useScroll({

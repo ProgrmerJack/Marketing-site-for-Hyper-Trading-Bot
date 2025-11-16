@@ -28,7 +28,7 @@ export function FadeInSection({
   className = "",
   once = true,
 }: FadeInSectionProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null!);
   const isInView = useInView(ref, { once, margin: "-100px" });
   const shouldReduce = useReducedMotion();
 

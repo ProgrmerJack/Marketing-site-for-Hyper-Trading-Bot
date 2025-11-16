@@ -3,9 +3,10 @@
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { CheckCircle2, AlertCircle, Activity, Zap, Shield } from "lucide-react";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+// UnifiedBackground provides site-wide background animation; removed local AnimatedBackground
 
 const statusItems = [
   {
@@ -51,21 +52,30 @@ export default function StatusPage() {
         eyebrow="Status"
         title="Realtime transparency: uptime, latency, and incident history"
         description="If something degrades, we surface it here – not buried in release notes. Demo infrastructure and compliance services are monitored 24/7."
-        backgroundVariant="threads"
-        backgroundColors={["rgba(16, 185, 129, 0.4)", "rgba(59, 130, 246, 0.3)", "rgba(139, 92, 246, 0.25)"]}
-      />
+        backgroundVariant="hyperspeed"
+        backgroundOpacity={0.9}
+        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+      >
+        <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Service status</div>
+            <div className="mb-3 text-lg font-bold">API / SSE Stream Operational</div>
+            <p className="text-xs text-muted-foreground">Our demo stream is online and updates in real-time. See recent incident details below.</p>
+            <div className="mt-4">
+              <motion.a href="/status" className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
+                Subscribe for updates
+              </motion.a>
+            </div>
+          </SpotlightCard>
+        </motion.div>
+      </PageHeaderAnimated>
 
       {/* Services Overview Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
-        {/* Animated Background */}
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="threads"
-            colors={["rgba(16, 185, 129, 0.5)", "rgba(59, 130, 246, 0.4)", "rgba(139, 92, 246, 0.35)"]}
-            speed="28s"
-            opacity={0.75}
-          />
-        </div>
+        {/* Local AnimatedBackground removed in favor of UnifiedBackground */}
+          <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
+          </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="section-surface" />
         </div>
@@ -150,12 +160,7 @@ export default function StatusPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="dither"
-            colors={["rgba(245, 158, 11, 0.45)", "rgba(239, 68, 68, 0.35)", "rgba(251, 146, 60, 0.3)"]}
-            speed="24s"
-            opacity={0.8}
-          />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="section-surface" />

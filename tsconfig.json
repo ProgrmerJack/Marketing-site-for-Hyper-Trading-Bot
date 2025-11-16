@@ -23,7 +23,8 @@
       "@/*": ["./src/*"],
       "@hyper/ui": ["./packages/ui/src/index"],
       "@hyper/ui/*": ["./packages/ui/src/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "contentlayer/generated": ["./.contentlayer/generated"],
+      "@sentry/*": ["./node_modules/@sentry/*"]
     }
   },
   "include": [

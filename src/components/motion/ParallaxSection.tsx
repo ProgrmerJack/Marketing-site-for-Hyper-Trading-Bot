@@ -19,7 +19,7 @@ export function ParallaxSection({
   speed = 0.5, 
   className = "" 
 }: ParallaxSectionProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null!);
   const shouldReduce = useReducedMotion();
   
   const { scrollYProgress } = useScroll({

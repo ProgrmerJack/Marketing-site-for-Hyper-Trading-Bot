@@ -5,6 +5,7 @@
 
 import * as Sentry from "@sentry/nextjs";
 import { browserTracingIntegration, replayIntegration } from "@sentry/nextjs";
+import type { ErrorEvent as SentryErrorEvent, EventHint } from "@sentry/core";
 
 const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN;
 const SENTRY_ENVIRONMENT = process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT || process.env.NODE_ENV;
@@ -38,7 +39,7 @@ if (SENTRY_DSN) {
     ],
     
   // Filter out sensitive data
-  beforeSend(event) {
+  beforeSend(event: SentryErrorEvent, _hint?: EventHint) {
     // Remove sensitive query parameters
     if (event.request?.url) {
       try {
@@ -53,13 +54,14 @@ if (SENTRY_DSN) {
       } catch {
         // Invalid URL, leave as is
       }
-    }      // Filter out local development errors in production
-      if (process.env.NODE_ENV === "production" && event.request?.url?.includes("localhost")) {
-        return null;
-      }
-      
-      return event;
-    },
+    }
+    // Filter out local development errors in production
+    if (process.env.NODE_ENV === "production" && event.request?.url?.includes("localhost")) {
+      return null;
+    }
+
+    return event;
+  },
     
     // Configure integrations
     integrations: [

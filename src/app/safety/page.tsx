@@ -3,12 +3,11 @@
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { RISK_STATEMENTS } from "@/lib/compliance";
 import {
   revealUp,
-  revealScale,
   staggerContainer,
-  staggerItem,
   cardEntrance,
 } from "@/lib/advanced-animations";
 import {
@@ -20,7 +19,8 @@ import {
   XCircle,
   AlertCircle,
 } from "lucide-react";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+// Using UnifiedBackground for consistent site-wide animation; per-section AnimatedBackground removed
+import { useMotion } from "@/components/motion/MotionProvider";
 
 const fraudSignals = [
   {
@@ -79,26 +79,37 @@ const complianceControls = [
 ];
 
 export default function SafetyPage() {
+  const { backgroundsEnabled, hydrated } = useMotion();
   return (
     <div className="relative space-y-0">
       <PageHeaderAnimated
         eyebrow="Safety & risk"
         title="Plain-language risks and the controls we put in place"
         description="Crypto markets are volatile and speculative. There are no guarantees. This page summarises what you should expect, what to avoid in the wider market, and how we keep the public demo honest."
-        backgroundVariant="threads"
-        backgroundColors={["rgba(239, 68, 68, 0.4)", "rgba(251, 146, 60, 0.3)", "rgba(249, 115, 22, 0.25)"]}
-      />
+        backgroundVariant="hyperspeed"
+        backgroundOpacity={0.9}
+        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+      >
+        <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Safety & compliance</div>
+            <div className="mb-3 text-lg font-bold">Key controls</div>
+            <p className="text-xs text-muted-foreground">Learn about circuit breakers, signed telemetry, and our risk-first approach.</p>
+            <div className="mt-4">
+              <a href="/how-it-works" className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white">
+                How it works
+              </a>
+            </div>
+          </SpotlightCard>
+        </motion.div>
+      </PageHeaderAnimated>
 
       {/* Key Risks Section */}
-      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
+      <section className="relative isolate overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-24 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 dark:opacity-35">
-          <AnimatedBackground
-            variant="threads"
-            colors={["rgba(239, 68, 68, 0.45)", "rgba(251, 146, 60, 0.35)", "rgba(249, 115, 22, 0.3)"]}
-            speed="28s"
-            opacity={0.6}
-          />
+          {/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
         </div>
 
         <Container className="relative z-10">
@@ -157,20 +168,15 @@ export default function SafetyPage() {
       </section>
 
       {/* Fraud Red Flags Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="dither"
-            colors={["rgba(245, 158, 11, 0.45)", "rgba(251, 146, 60, 0.35)", "rgba(239, 68, 68, 0.3)"]}
-            speed="24s"
-            opacity={0.8}
-          />
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 dark:opacity-35">
+          {/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.06),rgba(59,130,246,0.04),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.04),rgba(96,165,250,0.03),transparent_70%)]" />
         </div>
-
         <Container className="relative z-10">
-          <motion.div
-            variants={staggerContainer}
+          <motion.div variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
@@ -224,15 +230,11 @@ export default function SafetyPage() {
       </section>
 
       {/* Compliance Controls Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="beams"
-            colors={["rgba(59, 130, 246, 0.45)", "rgba(16, 185, 129, 0.35)", "rgba(139, 92, 246, 0.3)"]}
-            speed="26s"
-            opacity={0.75}
-          />
+          {/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
         </div>
 
         <Container className="relative z-10">

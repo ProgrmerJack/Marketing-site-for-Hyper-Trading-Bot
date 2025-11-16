@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -127,6 +129,22 @@
     text-rendering: optimizeLegibility;
     transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Ensure consistent positioning for fixed backgrounds across browsers */
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Cross-browser canvas consistency */
+  canvas {
+    /* Hardware acceleration for better performance */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Prevent canvas stretching/distortion */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    /* Ensure smooth rendering */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -249,6 +267,11 @@ header h1, header h2, header h3,
   color: rgb(var(--muted-foreground));
 }
 
+/* Utility to force black text in dark mode for specific elements */
+.dark .force-dark-black {
+  color: rgb(15 23 42) !important;
+}
+
 /* Animation visibility - light mode */
 .pointer-events-none canvas,
 .pointer-events-none svg {
@@ -278,6 +301,7 @@ header h1, header h2, header h3,
   background-color: transparent !important;
 }
 
+/* Spotlight cards: allow Tailwind gradients to shine through */
 /* Ensure reactbits wrappers don't break layouts */
 [class*="glare-hover"] {
   display: flex;
@@ -308,6 +332,15 @@ header h1, header h2, header h3,
 /* Hide dot-grid visual clutter */
 .dot-grid__wrap {
   display: none !important;
+}
+
+/* Ensure Spotlight cards in reactbits are theme-aware and don't enforce dark backgrounds in light mode */
+.card-spotlight {
+  background-color: rgb(var(--card)) !important;
+  color: rgb(var(--card-foreground)) !important;
+}
+.card-spotlight::before {
+  background: transparent !important;
 }
 
 /* Scrollbar styling */
@@ -355,6 +388,58 @@ header h1, header h2, header h3,
   outline: 2px solid rgb(var(--primary));
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Section surface styling - subtle backdrop layer */
+.section-surface {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(var(--color-surface-50), 0.12) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.dark .section-surface {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(var(--color-surface-900), 0.08) 50%,
+    transparent 100%
+  );
+  mix-blend-mode: darken;
+}
+
+/* Hyperspeed wrapper - brighter, screen blend for vibrancy */
+.hyperspeed-bg {
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  transition: opacity 0.5s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hyperspeed-bg {
+    opacity: 0.7;
+  }
+}
+
+/* Override inner-content class styling - remove background and animations */
+.inner-content {
+  background: transparent !important;
+  animation: none !important;
+  border: 1px solid #222 !important;
+  color: #000 !important;
+}
+
+.dark .inner-content {
+  background: transparent !important;
+  animation: none !important;
+  border: 1px solid #b8b8b8 !important;
+  color: #fff !important;
 }
 
 /* Reduced motion support */

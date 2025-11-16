@@ -1,0 +1,41 @@
+{
+  "url": "http://localhost:3000/",
+  "links": [
+    {
+      "href": "/_next/static/css/app/layout.css?v=1763279449315",
+      "rel": "stylesheet"
+    }
+  ],
+  "results": [
+    {
+      "href": "http://localhost:3000/_next/static/css/app/layout.css?v=1763279449315",
+      "status": 200,
+      "headers": {
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://*.hypertrader.local https://vitals.vercel-insights.com ws: wss:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "permissions-policy": "accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=()",
+        "cache-control": "no-store, must-revalidate",
+        "accept-ranges": "bytes",
+        "last-modified": "Sun, 16 Nov 2025 07:17:07 GMT",
+        "etag": "W/\"14f29-19a8b865197\"",
+        "content-type": "text/css; charset=UTF-8",
+        "content-length": "85801",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 16 Nov 2025 07:50:50 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      }
+    }
+  ],
+  "cssLoaded": "1",
+  "fallbackAttr": null,
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    }
+  ]
+}

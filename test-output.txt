@@ -1,0 +1,317 @@
+
+> marketing-site@0.1.0 test:visual
+> playwright test
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m> marketing-site@0.1.0 dev
+[2m[WebServer] [22m> next dev
+[2m[WebServer] [22m
+
+[1A[2K[2m[WebServer] [22m   [1m[38;2;173;127;168mΓû▓ Next.js 15.5.5[39m[22m
+
+[1A[2K[2m[WebServer] [22m   - Local:        http://localhost:3000
+[2m[WebServer] [22m   - Network:      http://172.29.32.1:3000
+[2m[WebServer] [22m   - Experiments (use with caution):
+[2m[WebServer] [22m     ┬╖ optimizePackageImports
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Starting...
+
+[1A[2K[2m[WebServer] [22mWarning: Contentlayer might not work as expected on Windows
+
+[1A[2K[2m[WebServer] [22mContentlayer config change detected. Updating type definitions and data...
+
+[1A[2K[2m[WebServer] [22mGenerated 0 documents in .contentlayer
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Ready in 6.6s
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling / ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled / in 11s (5441 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 12476ms
+
+
+Running 25 tests using 2 workers
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1995ms (2615 modules)
+
+[1A[2K[1/25] [chromium] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[2/25] [chromium] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 923ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /contact ...
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 712ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /contact in 2.8s (5466 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 4059ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1661ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 630ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 631ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 622ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 705ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 861ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 784ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 942ms (2626 modules)
+
+[1A[2K  1) [chromium] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes 
+
+    TimeoutError: locator.click: Timeout 5000ms exceeded.
+    Call log:
+    [2m  - waiting for getByLabel('Toggle theme')[22m
+
+
+      20 |
+      21 |     // Click to toggle - use force to bypass hidden/pointer-events checks
+    > 22 |     await themeToggleButton.click({ force: true, timeout: 5000 });
+         |                             ^
+      23 |     await page.waitForTimeout(300);
+      24 |
+      25 |     // Check that class changed
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:22:29
+
+    Error Context: test-results\functional-Functional-Test-74d28-etween-light-and-dark-modes-chromium\error-context.md
+
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 892ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact?email=test%40example.com&company=Test+Corp&jurisdiction=US&role=Tester&message=Testing+the+contact+form&consent=true [32m200[39m in 723ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 976ms (2626 modules)
+
+[1A[2K[3/25] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[4/25] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[5/25] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 781ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 618ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 632ms (2626 modules)
+
+[1A[2K[6/25] [firefox] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 757ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact?email=test%40example.com&company=Test+Corp&jurisdiction=US&role=Tester&message=Testing+the+contact+form&consent=true [32m200[39m in 571ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1252ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact?email=test%40example.com&company=Test+Corp&jurisdiction=US&role=Tester&message=Testing+the+contact+form&consent=true [32m200[39m in 134ms
+
+[1A[2K[7/25] [firefox] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 193ms
+
+[1A[2K  2) [chromium] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text="Thanks. We\'ll be in touch"')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('text="Thanks. We\'ll be in touch"')[22m
+
+
+      78 |     // Check for success message
+      79 |     const successMessage = page.locator('text="Thanks. We\'ll be in touch"');
+    > 80 |     await expect(successMessage).toBeVisible({ timeout: 10000 });
+         |                                  ^
+      81 |   });
+      82 | });
+      83 |
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:80:34
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-chromium\error-context.md
+
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /favicon.ico ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /favicon.ico in 2.4s (2857 modules)
+
+[1A[2K[2m[WebServer] [22m GET /favicon.ico [32m200[39m in 2853ms
+
+[1A[2K[8/25] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[9/25] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[10/25] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[11/25] [webkit] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[12/25] [webkit] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 603ms
+
+[1A[2K  3) [firefox] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text="Thanks. We\'ll be in touch"')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('text="Thanks. We\'ll be in touch"')[22m
+
+
+      78 |     // Check for success message
+      79 |     const successMessage = page.locator('text="Thanks. We\'ll be in touch"');
+    > 80 |     await expect(successMessage).toBeVisible({ timeout: 10000 });
+         |                                  ^
+      81 |   });
+      82 | });
+      83 |
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:80:34
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-firefox\error-context.md
+
+
+[1A[2K[13/25] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[14/25] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[15/25] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /api/contact ...
+
+[1A[2K[16/25] [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /api/contact in 4.7s (5498 modules)
+
+[1A[2K[2m[WebServer] [22m POST /api/contact [32m202[39m in 4857ms
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 3441ms
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 1297ms
+
+[1A[2K  4) [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes 
+
+    Error: locator.click: Element is not visible
+    Call log:
+    [2m  - waiting for getByLabel('Toggle theme')[22m
+    [2m    - locator resolved to <button aria-label="Toggle theme" title="Current theme: system (light)" class="group relative h-9 w-9 rounded-lg border border-[color:var(--color-line-muted)] bg-transparent transition-all duration-200 hover:border-[color:var(--color-accent-primary)] hover:bg-[color:var(--color-surface-100)]">ΓÇª</button>[22m
+    [2m  - attempting click action[22m
+    [2m    - scrolling into view if needed[22m
+
+
+      20 |
+      21 |     // Click to toggle - use force to bypass hidden/pointer-events checks
+    > 22 |     await themeToggleButton.click({ force: true, timeout: 5000 });
+         |                             ^
+      23 |     await page.waitForTimeout(300);
+      24 |
+      25 |     // Check that class changed
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:22:29
+
+    Error Context: test-results\functional-Functional-Test-74d28-etween-light-and-dark-modes-Mobile-Chrome\error-context.md
+
+
+[1A[2K[17/25] [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 154ms
+
+[1A[2K  5) [webkit] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text="Thanks. We\'ll be in touch"')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('text="Thanks. We\'ll be in touch"')[22m
+
+
+      78 |     // Check for success message
+      79 |     const successMessage = page.locator('text="Thanks. We\'ll be in touch"');
+    > 80 |     await expect(successMessage).toBeVisible({ timeout: 10000 });
+         |                                  ^
+      81 |   });
+      82 | });
+      83 |
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:80:34
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-webkit\error-context.md
+
+
+[1A[2K[18/25] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[19/25] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[20/25] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[21/25] [Mobile Safari] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[22/25] [Mobile Safari] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 191ms
+
+[1A[2K[2m[WebServer] [22m POST /api/contact [32m202[39m in 22ms
+
+[1A[2K  6) [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text="Thanks. We\'ll be in touch"')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('text="Thanks. We\'ll be in touch"')[22m
+
+
+      78 |     // Check for success message
+      79 |     const successMessage = page.locator('text="Thanks. We\'ll be in touch"');
+    > 80 |     await expect(successMessage).toBeVisible({ timeout: 10000 });
+         |                                  ^
+      81 |   });
+      82 | });
+      83 |
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:80:34
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-Mobile-Chrome\error-context.md
+
+
+[1A[2K[23/25] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[24/25] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[25/25] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K  7) [Mobile Safari] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text="Thanks. We\'ll be in touch"')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('text="Thanks. We\'ll be in touch"')[22m
+
+
+      78 |     // Check for success message
+      79 |     const successMessage = page.locator('text="Thanks. We\'ll be in touch"');
+    > 80 |     await expect(successMessage).toBeVisible({ timeout: 10000 });
+         |                                  ^
+      81 |   });
+      82 | });
+      83 |
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:80:34
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-Mobile-Safari\error-context.md
+
+
+[1A[2K  7 failed
+    [chromium] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes 
+    [chromium] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [firefox] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [webkit] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes 
+    [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [Mobile Safari] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+  18 skipped
+
+[36m  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.[39m

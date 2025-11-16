@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import type { Route } from "next";
 import { Container } from "@hyper/ui";
-import { PageHeader } from "@/components/page-header";
-import { SpotlightCard } from "@/components/reactbits/dynamic";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
+// Using UnifiedBackground site-wide; removed per-section AnimatedBackgrounds
 import { useMotion } from "@/components/motion/MotionProvider";
-import { Zap, Shield, Activity, Check } from "lucide-react";
+import { Zap, Shield, Activity, Check, ArrowRight } from "lucide-react";
 
 const pipeline = [
   {
@@ -67,26 +68,113 @@ export default function HowItWorksPage() {
 
   return (
     <div className="relative">
-      <PageHeader
-        eyebrow="System architecture"
-        title="Lightning-fast execution pipeline delivering exceptional trading performance"
-        description="Experience our cutting-edge four-stage automation system designed to maximize profits while maintaining industry-leading safety standards.*"
-      />
+      {/* Hero Section */}
+      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
+        {/* Use unified global AnimatedBackground for consistent hyperspeed animation */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
+        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex w-fit items-center rounded-full border border-blue-300 bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400"
+            >
+              System architecture
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
+            >
+              Lightning-fast execution pipeline delivering exceptional trading performance
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl"
+            >
+              Experience our cutting-edge four-stage automation system designed to maximize profits while maintaining industry-leading safety standards.*
+            </motion.p>
+
+            {/* Pipeline Preview Cards */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4"
+            >
+              {pipeline.slice(0, 4).map((stage, index) => {
+                const Icon = stage.icon;
+                return (
+                  <motion.div
+                    key={stage.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                    className="group"
+                  >
+                    <SpotlightCard
+                      className="relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/80"
+                      spotlightColor="rgba(59, 130, 246, 0.2)"
+                    >
+                      <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${stage.gradient} shadow-md transition-transform duration-300 group-hover:scale-110`}>
+                        <Icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+                      <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{stage.details[0]}</p>
+                    </SpotlightCard>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap items-center justify-center gap-4 pt-4"
+            >
+              <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
+                <div className="inline-block">
+                  <div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
+                    <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+                      <Link
+                        href={("/live-demo" as Route)}
+                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5"
+                      >
+                        <span className="relative z-10">Try live demo</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
+                      </Link>
+                    </StarBorder>
+                  </div>
+                </div>
+              </ClickSpark>
+              <Link
+                href={("/contact" as Route)}
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20"
+              >
+                Get started
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+          </div>
+        </Container>
+      </section>
 
       {/* Pipeline Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="threads"
-              colors={["rgba(59,130,246,0.4)", "rgba(147,51,234,0.3)", "rgba(236,72,153,0.25)"]}
-              speed="32s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.1),transparent_70%)]" />
-          )}
+          {/* Per-section AnimatedBackground removed; using UnifiedBackground instead */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.1),transparent_70%)]" />
           <div className="section-surface" />
         </div>
 
@@ -107,11 +195,20 @@ export default function HowItWorksPage() {
                 return (
                   <motion.div
                     key={stage.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.6, delay: index * 0.15 }}
-                    className="h-full"
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40, y: 30 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ 
+                      duration: 0.7, 
+                      delay: index * 0.15,
+                      ease: [0.25, 0.1, 0.25, 1]
+                    }}
+                    whileHover={{ 
+                      scale: 1.03,
+                      y: -10,
+                      transition: { duration: 0.3 }
+                    }}
+                    className="group"
                   >
                     <SpotlightCard
                       className="group relative h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/40 to-slate-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300/60 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/60 dark:to-slate-900/80 dark:hover:border-blue-600/40"
@@ -171,16 +268,8 @@ export default function HowItWorksPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="beams"
-              colors={["rgba(16,185,129,0.4)", "rgba(59,130,246,0.3)", "rgba(168,85,247,0.25)"]}
-              speed="28s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
-          )}
+          {/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
           <div className="section-surface" />
         </div>
 
@@ -239,16 +328,8 @@ export default function HowItWorksPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="liquid"
-              colors={["rgba(59,130,246,0.3)", "rgba(168,85,247,0.25)", "rgba(236,72,153,0.2)"]}
-              speed="30s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.1),transparent_70%)]" />
-          )}
+          {/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.1),transparent_70%)]" />
           <div className="section-surface" />
         </div>
 

@@ -26,12 +26,13 @@ export function DeviceCarousel({
   useEffect(() => {
     if (autoPlayInterval > 0) {
       const timer = setInterval(() => {
-        nextSlide();
+        setDirection(1);
+        setCurrentIndex((prev) => (prev + 1) % slides.length);
       }, autoPlayInterval);
 
       return () => clearInterval(timer);
     }
-  }, [currentIndex, autoPlayInterval]);
+  }, [autoPlayInterval, slides.length]);
 
   const nextSlide = () => {
     setDirection(1);

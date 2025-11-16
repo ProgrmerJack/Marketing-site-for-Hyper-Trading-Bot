@@ -1,0 +1,777 @@
+
+> marketing-site@0.1.0 test:visual
+> playwright test
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m> marketing-site@0.1.0 dev
+[2m[WebServer] [22m> next dev
+[2m[WebServer] [22m
+
+[1A[2K[2m[WebServer] [22m   [1m[38;2;173;127;168mΓû▓ Next.js 15.5.5[39m[22m
+
+[1A[2K[2m[WebServer] [22m   - Local:        http://localhost:3000
+[2m[WebServer] [22m   - Network:      http://172.29.32.1:3000
+[2m[WebServer] [22m   - Experiments (use with caution):
+[2m[WebServer] [22m     ┬╖ optimizePackageImports
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Starting...
+
+[1A[2K[2m[WebServer] [22mWarning: Contentlayer might not work as expected on Windows
+
+[1A[2K[2m[WebServer] [22mContentlayer config change detected. Updating type definitions and data...
+
+[1A[2K[2m[WebServer] [22mGenerated 0 documents in .contentlayer
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Ready in 8.8s
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling / ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled / in 13.8s (5441 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 15737ms
+
+
+Running 30 tests using 2 workers
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 2.4s (2615 modules)
+
+[1A[2K[1/30] [chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[2/30] [chromium] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[3/30] [chromium] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1221ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 822ms
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /contact ...
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+URL: http://localhost:3000/
+
+[1A[2KScreenshot saved
+
+[1A[2KMethod 1 - getByLabel:
+
+[1A[2K  Count: [33m0[39m
+
+[1A[2KMethod 2 - getByRole:
+
+[1A[2K  Count: [33m0[39m
+
+[1A[2KMethod 3 - locator by aria-label:
+
+[1A[2K  Count: [33m0[39m
+
+[1A[2KMethod 4 - All buttons:
+
+[1A[2K  Total: [33m4[39m
+
+[1A[2K  Button 0: text="What gets logged?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 1: text="Is this a live trading system?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 2: text="Can we review the telemetry feed?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 3: text="What does onboarding look like?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K[4/30] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[5/30] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[6/30] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /contact in 5.5s (5466 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 6415ms
+
+[1A[2K[7/30] [firefox] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1713ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 802ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1091ms (2626 modules)
+
+[1A[2K[8/30] [firefox] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1235ms (2626 modules)
+
+[1A[2K[9/30] [firefox] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 888ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1404ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 2356ms
+
+[1A[2K[2m[WebServer] [22m GET /contact?email=test%40example.com&company=Test+Corp&jurisdiction=US&role=Tester&message=Testing+the+contact+form&consent=true [32m200[39m in 2116ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 2.9s (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /favicon.ico ...
+
+[1A[2K  1) [chromium] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"thanks"[39m
+    Received string:    [31m"skip to main content[39m
+    [31m(press enter to focus)┬╖[39m
+    [31mcapital at risk -- demo environment only.┬╖[39m
+    [31mthis public experience streams signed, sandboxed market data for illustrative purposes. no live trading or performance guarantees.┬╖[39m
+    [31mhyper trading automation[39m
+    [31mdemo only ┬╖ no guarantees[39m
+    [31mhome[39m
+    [31mhow it works[39m
+    [31msafety & risk[39m
+    [31mlive demo[39m
+    [31mpricing[39m
+    [31mresearch[39m
+    [31mstatus[39m
+    [31mmotion controls[39m
+    [31mblog[39m
+    [31mcontact[39m
+    [31mrequest gated access[39m
+    [31mcontact[39m
+    [31mtell us about your mandate -- no sales fluff, just validation┬╖[39m
+    [31mcomplete the consent-aware form below. you'll receive a double opt-in email with our postal address and unsubscribe option per can-spam.┬╖[39m
+    [31mrequest gated demo access[39m
+    [31mprovide enough context for evaluation┬╖[39m
+    [31mshare your details so compliance and engineering can evaluate whether we're a fit.┬╖[39m
+    [31mwork email[39m
+    [31mcompany[39m
+    [31mjurisdiction[39m
+    [31mrole / mandate[39m
+    [31mwhat would you like to evaluate?[39m
+    [31mi consent to receiving compliance-focused updates and understand i can opt out anytime. hyper trading automation honours one-click unsubscribe requests within 10 business days.[39m
+    [31mrequest gated access┬╖[39m
+    [31mwe honour global privacy control and do not sell/share requests. each email includes our postal address and one-click unsubscribe in line with the can-spam act.┬╖[39m
+    [31mwhat happens next[39m
+    [31m1[39m
+    [31mverification┬╖[39m
+    [31mwe verify your jurisdiction, regulatory status, and mandate.┬╖[39m
+    [31m2[39m
+    [31mconfirmation┬╖[39m
+    [31myou receive a double opt-in confirmation email with disclosures.┬╖[39m
+    [31m3[39m
+    [31mwalkthrough┬╖[39m
+    [31mcompliance schedules a walkthrough of the signed demo data.┬╖[39m
+    [31mfrequently asked┬╖[39m
+    [31mdo you ever take custody?┬╖[39m
+    [31mno. we integrate with venues via api and never take possession of client funds. you maintain custody and revoke access whenever you choose.┬╖[39m
+    [31mcan i see live performance numbers?┬╖[39m
+    [31mnot on the public site. verified, net performance is only available to qualified investors through a gated experience once independent audits finish.┬╖[39m
+    [31mwhat does the onboarding process look like?┬╖[39m
+    [31mwe complete compliance questionnaires, operational due diligence, and technical sandbox walkthroughs before activating any live trading.┬╖[39m
+    [31mprivacy and transparency┬╖[39m
+    [31myour information is handled with the same care we apply to trading operations: encrypted at rest, transmitted over tls, and accessible only to authorized personnel with a legitimate business need.┬╖[39m
+    [31mwe don't sell contact lists, we don't share data with third-party marketers, and we honor opt-out requests immediately. every email includes a one-click unsubscribe and our postal address per can-spam requirements.┬╖[39m
+    [31mquestions about our data practices? review our privacy policy or submit a data subject request through the form above.┬╖[39m
+    [31mhyper trading automation┬╖[39m
+    [31mdemo environment for regulated automated trading. no guarantees, no speculative promisesΓÇöfocused purely on disciplined execution and transparent controls.┬╖[39m
+    [31mhyper trading automation, yunusabad district, tashkent 100093, uzbekistan[39m
+    [31mcompliance[39m
+    [31mprivacy[39m
+    [31mterms[39m
+    [31mrisk disclosure[39m
+    [31mconsent preferences[39m
+    [31mimportant disclaimers┬╖[39m
+    [31m*[39m
+    [31mautomated trading involves significant risk of loss, including possible loss of principal.┬╖[39m
+    [31m*[39m
+    [31mno statements on this site should be interpreted as guarantees of returns or assurances of future performance.┬╖[39m
+    [31m*[39m
+    [31mcrypto markets remain highly volatile and speculative. independent diligence is required.┬╖[39m
+    [31m*[39m
+    [31memails and updates comply with can-spam. unsubscribe links are honored within 10 business days. cookie preferences can be updated at any time.┬╖[39m
+    [31m*[39m
+    [31mthis website is a demonstration environment. no live trading occurs on this public site. all market data shown is signed and verifiable but does not constitute investment advice.┬╖[39m
+    [31m*[39m
+    [31mpast performance is not indicative of future results. cryptocurrency markets are highly volatile and speculative. only invest what you can afford to lose.┬╖[39m
+    [31m┬⌐ 2025 hyper trading automation. all rights reserved."[39m
+
+      37 |       // Fallback: check page content directly
+      38 |       const content = await page.evaluate(() => document.body.innerText);
+    > 39 |       expect(content.toLowerCase()).toContain('thanks');
+         |                                     ^
+      40 |     } else {
+      41 |       expect(successMessages.length).toBeGreaterThan(0);
+      42 |       await expect(successMessages[0]).toBeVisible();
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:39:37
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-chromium\error-context.md
+
+
+[1A[2K[10/30] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /favicon.ico in 6.8s (5483 modules)
+
+[1A[2K[2m[WebServer] [22m GET /favicon.ico [32m200[39m in 7670ms
+
+[1A[2K[11/30] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 2244ms
+
+[1A[2K[12/30] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 3s (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 278ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1455ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 800ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1333ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 715ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1232ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 737ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1090ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 194ms
+
+[1A[2K[13/30] [webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1456ms (2626 modules)
+
+[1A[2K[14/30] [webkit] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[15/30] [webkit] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 1533ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 2s (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 1349ms
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 1284ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1733ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /api/contact ...
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 833ms
+
+[1A[2K  2) [firefox] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"thanks"[39m
+    Received string:    [31m"skip to main content[39m
+    [31m(press enter to focus)┬╖[39m
+    [31mcapital at risk -- demo environment only.┬╖[39m
+    [31mthis public experience streams signed, sandboxed market data for illustrative purposes. no live trading or performance guarantees.┬╖[39m
+    [31mhyper trading automation[39m
+    [31mdemo only ┬╖ no guarantees[39m
+    [31mhome[39m
+    [31mhow it works[39m
+    [31msafety & risk[39m
+    [31mlive demo[39m
+    [31mpricing[39m
+    [31mresearch[39m
+    [31mstatus[39m
+    [31mmotion controls[39m
+    [31mblog[39m
+    [31mcontact[39m
+    [31ma[39m
+    [31mrequest gated access[39m
+    [31mcontact[39m
+    [31mtell us about your mandate -- no sales fluff, just validation┬╖[39m
+    [31mcomplete the consent-aware form below. you'll receive a double opt-in email with our postal address and unsubscribe option per can-spam.┬╖[39m
+    [31mrequest gated demo access[39m
+    [31mprovide enough context for evaluation┬╖[39m
+    [31mshare your details so compliance and engineering can evaluate whether we're a fit.┬╖[39m
+    [31mwork email[39m
+    [31mcompany[39m
+    [31mjurisdiction[39m
+    [31mrole / mandate[39m
+    [31mwhat would you like to evaluate?[39m
+    [31mi consent to receiving compliance-focused updates and understand i can opt out anytime. hyper trading automation honours one-click unsubscribe requests within 10 business days.[39m
+    [31mrequest gated access┬╖[39m
+    [31mwe honour global privacy control and do not sell/share requests. each email includes our postal address and one-click unsubscribe in line with the can-spam act.┬╖[39m
+    [31mwhat happens next[39m
+    [31m1[39m
+    [31mverification┬╖[39m
+    [31mwe verify your jurisdiction, regulatory status, and mandate.┬╖[39m
+    [31m2[39m
+    [31mconfirmation┬╖[39m
+    [31myou receive a double opt-in confirmation email with disclosures.┬╖[39m
+    [31m3[39m
+    [31mwalkthrough┬╖[39m
+    [31mcompliance schedules a walkthrough of the signed demo data.┬╖[39m
+    [31mfrequently asked┬╖[39m
+    [31mdo you ever take custody?┬╖[39m
+    [31mno. we integrate with venues via api and never take possession of client funds. you maintain custody and revoke access whenever you choose.┬╖[39m
+    [31mcan i see live performance numbers?┬╖[39m
+    [31mnot on the public site. verified, net performance is only available to qualified investors through a gated experience once independent audits finish.┬╖[39m
+    [31mwhat does the onboarding process look like?┬╖[39m
+    [31mwe complete compliance questionnaires, operational due diligence, and technical sandbox walkthroughs before activating any live trading.┬╖[39m
+    [31mprivacy and transparency┬╖[39m
+    [31myour information is handled with the same care we apply to trading operations: encrypted at rest, transmitted over tls, and accessible only to authorized personnel with a legitimate business need.┬╖[39m
+    [31mwe don't sell contact lists, we don't share data with third-party marketers, and we honor opt-out requests immediately. every email includes a one-click unsubscribe and our postal address per can-spam requirements.┬╖[39m
+    [31mquestions about our data practices? review our privacy policy or submit a data subject request through the form above.┬╖[39m
+    [31mhyper trading automation┬╖[39m
+    [31mdemo environment for regulated automated trading. no guarantees, no speculative promisesΓÇöfocused purely on disciplined execution and transparent controls.┬╖[39m
+    [31mhyper trading automation, yunusabad district, tashkent 100093, uzbekistan[39m
+    [31mcompliance[39m
+    [31mprivacy[39m
+    [31mterms[39m
+    [31mrisk disclosure[39m
+    [31mconsent preferences[39m
+    [31mimportant disclaimers┬╖[39m
+    [31m*[39m
+    [31mautomated trading involves significant risk of loss, including possible loss of principal.┬╖[39m
+    [31m*[39m
+    [31mno statements on this site should be interpreted as guarantees of returns or assurances of future performance.┬╖[39m
+    [31m*[39m
+    [31mcrypto markets remain highly volatile and speculative. independent diligence is required.┬╖[39m
+    [31m*[39m
+    [31memails and updates comply with can-spam. unsubscribe links are honored within 10 business days. cookie preferences can be updated at any time.┬╖[39m
+    [31m*[39m
+    [31mthis website is a demonstration environment. no live trading occurs on this public site. all market data shown is signed and verifiable but does not constitute investment advice.┬╖[39m
+    [31m*[39m
+    [31mpast performance is not indicative of future results. cryptocurrency markets are highly volatile and speculative. only invest what you can afford to lose.┬╖[39m
+    [31m┬⌐ 2025 hyper trading automation. all rights reserved.┬╖[39m
+    [31mcookies & consent┬╖[39m
+    [31mwe use essential cookies for security. analytics cookies are optional and used solely for core web vitals monitoring. you can change your mind anytime on the consent page. postal address: hyper trading automation, yunusabad district, tashkent 100093, uzbekistan.┬╖[39m
+    [31maccept all[39m
+    [31mdecline optional[39m
+    [31myour privacy choices┬╖[39m
+    [31mwe use cookies and similar technologies to improve your experience. we respect your privacy and only use data as you permit.┬╖[39m
+    [31maccept all[39m
+    [31mreject non-essential[39m
+    [31mcustomize┬╖[39m
+    [31mlearn more about how we handle your data in our privacy policy and cookie policy."[39m
+
+      37 |       // Fallback: check page content directly
+      38 |       const content = await page.evaluate(() => document.body.innerText);
+    > 39 |       expect(content.toLowerCase()).toContain('thanks');
+         |                                     ^
+      40 |     } else {
+      41 |       expect(successMessages.length).toBeGreaterThan(0);
+      42 |       await expect(successMessages[0]).toBeVisible();
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:39:37
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-firefox\error-context.md
+
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /api/contact in 6.3s (5498 modules)
+
+[1A[2K[16/30] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[17/30] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[18/30] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1597ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1028ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 988ms (2627 modules)
+
+[1A[2K[19/30] [Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 2s (2627 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 1249ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 917ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 780ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 734ms (2627 modules)
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+URL: http://localhost:3000/
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 871ms (2627 modules)
+
+[1A[2KScreenshot saved
+
+[1A[2KMethod 1 - getByLabel:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 2 - getByRole:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 3 - locator by aria-label:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 4 - All buttons:
+
+[1A[2K  Total: [33m10[39m
+
+[1A[2K  Button 0: text="Toggle navigation" aria-label="null" html="<span class="sr-only">Toggle navigation</span><svg"
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 915ms (2627 modules)
+
+[1A[2K  Button 1: text="What gets logged?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 2: text="Is this a live trading system?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 3: text="Can we review the telemetry feed?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 4: text="What does onboarding look like?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 5: text="Accept all" aria-label="null" html="Accept all"
+
+[1A[2K  Button 6: text="Decline optional" aria-label="null" html="Decline optional"
+
+[1A[2K  Button 7: text="Accept All" aria-label="null" html="Accept All"
+
+[1A[2K  Button 8: text="Reject Non-Essential" aria-label="null" html="Reject Non-Essential"
+
+[1A[2K  Button 9: text="Customize" aria-label="null" html="Customize"
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 888ms
+
+[1A[2K[20/30] [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[21/30] [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1260ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 766ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1044ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 796ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact?email=test%40example.com&company=Test+Corp&jurisdiction=US&role=Tester&message=Testing+the+contact+form&consent=true [32m200[39m in 691ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1412ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 786ms (2627 modules)
+
+[1A[2K  3) [webkit] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"thanks"[39m
+    Received string:    [31m"skip to main content (press enter to focus)[39m
+    [31mcapital at risk -- demo environment only.[39m
+    [31mthis public experience streams signed, sandboxed market data for illustrative purposes. no live trading or performance guarantees.[39m
+    [31mhyper trading automation[39m
+    [31mdemo only ┬╖ no guarantees[39m
+    [31mhome[39m
+    [31mhow it works[39m
+    [31msafety & risk[39m
+    [31mlive demo[39m
+    [31mpricing[39m
+    [31mresearch[39m
+    [31mstatus[39m
+    [31mmotion controls[39m
+    [31mblog[39m
+    [31mcontact[39m
+    [31mrequest gated access[39m
+    [31mcontact[39m
+    [31mtell us about your mandate -- no sales fluff, just validation[39m
+    [31mcomplete the consent-aware form below. you'll receive a double opt-in email with our postal address and unsubscribe option per can-spam.[39m
+    [31mrequest gated demo access[39m
+    [31mprovide enough context for evaluation┬╖[39m
+    [31mshare your details so compliance and engineering can evaluate whether we're a fit.[39m
+    [31mwork email[39m
+    [31mcompany[39m
+    [31mjurisdiction[39m
+    [31mrole / mandate[39m
+    [31mwhat would you like to evaluate?┬╖[39m
+    [31mi consent to receiving compliance-focused updates and understand i can opt out anytime. hyper trading automation honours one-click unsubscribe requests within 10 business days.[39m
+    [31mrequest gated access[39m
+    [31mwe honour global privacy control and do not sell/share requests. each email includes our postal address and one-click unsubscribe in line with the can-spam act.[39m
+    [31mwhat happens next┬╖[39m
+    [31m1[39m
+    [31mverification[39m
+    [31mwe verify your jurisdiction, regulatory status, and mandate.[39m
+    [31m2[39m
+    [31mconfirmation[39m
+    [31myou receive a double opt-in confirmation email with disclosures.[39m
+    [31m3[39m
+    [31mwalkthrough[39m
+    [31mcompliance schedules a walkthrough of the signed demo data.[39m
+    [31mfrequently asked[39m
+    [31mdo you ever take custody?[39m
+    [31mno. we integrate with venues via api and never take possession of client funds. you maintain custody and revoke access whenever you choose.[39m
+    [31mcan i see live performance numbers?[39m
+    [31mnot on the public site. verified, net performance is only available to qualified investors through a gated experience once independent audits finish.[39m
+    [31mwhat does the onboarding process look like?[39m
+    [31mwe complete compliance questionnaires, operational due diligence, and technical sandbox walkthroughs before activating any live trading.[39m
+    [31mprivacy and transparency[39m
+    [31myour information is handled with the same care we apply to trading operations: encrypted at rest, transmitted over tls, and accessible only to authorized personnel with a legitimate business need.┬╖[39m
+    [31mwe don't sell contact lists, we don't share data with third-party marketers, and we honor opt-out requests immediately. every email includes a one-click unsubscribe and our postal address per can-spam requirements.┬╖[39m
+    [31mquestions about our data practices? review our privacy policy or submit a data subject request through the form above.[39m
+    [31mhyper trading automation[39m
+    [31mdemo environment for regulated automated trading. no guarantees, no speculative promisesΓÇöfocused purely on disciplined execution and transparent controls.[39m
+    [31mhyper trading automation, yunusabad district, tashkent 100093, uzbekistan[39m
+    [31mcompliance[39m
+    [31mprivacy[39m
+    [31mterms[39m
+    [31mrisk disclosure[39m
+    [31mconsent preferences[39m
+    [31mimportant disclaimers┬╖[39m
+    [31m*[39m
+    [31mautomated trading involves significant risk of loss, including possible loss of principal.┬╖[39m
+    [31m*[39m
+    [31mno statements on this site should be interpreted as guarantees of returns or assurances of future performance.┬╖[39m
+    [31m*[39m
+    [31mcrypto markets remain highly volatile and speculative. independent diligence is required.┬╖[39m
+    [31m*[39m
+    [31memails and updates comply with can-spam. unsubscribe links are honored within 10 business days. cookie preferences can be updated at any time.┬╖[39m
+    [31m*[39m
+    [31mthis website is a demonstration environment. no live trading occurs on this public site. all market data shown is signed and verifiable but does not constitute investment advice.┬╖[39m
+    [31m*[39m
+    [31mpast performance is not indicative of future results. cryptocurrency markets are highly volatile and speculative. only invest what you can afford to lose.[39m
+    [31m┬⌐ 2025 hyper trading automation. all rights reserved."[39m
+
+      37 |       // Fallback: check page content directly
+      38 |       const content = await page.evaluate(() => document.body.innerText);
+    > 39 |       expect(content.toLowerCase()).toContain('thanks');
+         |                                     ^
+      40 |     } else {
+      41 |       expect(successMessages.length).toBeGreaterThan(0);
+      42 |       await expect(successMessages[0]).toBeVisible();
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:39:37
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-webkit\error-context.md
+
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 962ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1087ms (2627 modules)
+
+[1A[2K[22/30] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1003ms (2627 modules)
+
+[1A[2K[23/30] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[24/30] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m GET /contact?email=test%40example.com&company=Test+Corp&jurisdiction=US&role=Tester&message=Testing+the+contact+form&consent=true [32m200[39m in 661ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1966ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 718ms (2627 modules)
+
+[1A[2K[25/30] [Mobile Safari] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[26/30] [Mobile Safari] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 907ms (2627 modules)
+
+[1A[2K[27/30] [Mobile Safari] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K  4) [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"thanks"[39m
+    Received string:    [31m"skip to main content[39m
+    [31m(press enter to focus)┬╖[39m
+    [31mcapital at risk -- demo environment only.┬╖[39m
+    [31mthis public experience streams signed, sandboxed market data for illustrative purposes. no live trading or performance guarantees.┬╖[39m
+    [31mhyper trading automation[39m
+    [31mdemo only ┬╖ no guarantees[39m
+    [31mtoggle navigation[39m
+    [31mcontact[39m
+    [31mtell us about your mandate -- no sales fluff, just validation┬╖[39m
+    [31mcomplete the consent-aware form below. you'll receive a double opt-in email with our postal address and unsubscribe option per can-spam.┬╖[39m
+    [31mrequest gated demo access[39m
+    [31mprovide enough context for evaluation┬╖[39m
+    [31mshare your details so compliance and engineering can evaluate whether we're a fit.┬╖[39m
+    [31mwork email[39m
+    [31mcompany[39m
+    [31mjurisdiction[39m
+    [31mrole / mandate[39m
+    [31mwhat would you like to evaluate?[39m
+    [31mi consent to receiving compliance-focused updates and understand i can opt out anytime. hyper trading automation honours one-click unsubscribe requests within 10 business days.[39m
+    [31mrequest gated access┬╖[39m
+    [31mwe honour global privacy control and do not sell/share requests. each email includes our postal address and one-click unsubscribe in line with the can-spam act.┬╖[39m
+    [31mwhat happens next[39m
+    [31m1[39m
+    [31mverification┬╖[39m
+    [31mwe verify your jurisdiction, regulatory status, and mandate.┬╖[39m
+    [31m2[39m
+    [31mconfirmation┬╖[39m
+    [31myou receive a double opt-in confirmation email with disclosures.┬╖[39m
+    [31m3[39m
+    [31mwalkthrough┬╖[39m
+    [31mcompliance schedules a walkthrough of the signed demo data.┬╖[39m
+    [31mfrequently asked┬╖[39m
+    [31mdo you ever take custody?┬╖[39m
+    [31mno. we integrate with venues via api and never take possession of client funds. you maintain custody and revoke access whenever you choose.┬╖[39m
+    [31mcan i see live performance numbers?┬╖[39m
+    [31mnot on the public site. verified, net performance is only available to qualified investors through a gated experience once independent audits finish.┬╖[39m
+    [31mwhat does the onboarding process look like?┬╖[39m
+    [31mwe complete compliance questionnaires, operational due diligence, and technical sandbox walkthroughs before activating any live trading.┬╖[39m
+    [31mprivacy and transparency┬╖[39m
+    [31myour information is handled with the same care we apply to trading operations: encrypted at rest, transmitted over tls, and accessible only to authorized personnel with a legitimate business need.┬╖[39m
+    [31mwe don't sell contact lists, we don't share data with third-party marketers, and we honor opt-out requests immediately. every email includes a one-click unsubscribe and our postal address per can-spam requirements.┬╖[39m
+    [31mquestions about our data practices? review our privacy policy or submit a data subject request through the form above.┬╖[39m
+    [31mhyper trading automation┬╖[39m
+    [31mdemo environment for regulated automated trading. no guarantees, no speculative promisesΓÇöfocused purely on disciplined execution and transparent controls.┬╖[39m
+    [31mhyper trading automation, yunusabad district, tashkent 100093, uzbekistan[39m
+    [31mcompliance[39m
+    [31mprivacy[39m
+    [31mterms[39m
+    [31mrisk disclosure[39m
+    [31mconsent preferences[39m
+    [31mimportant disclaimers┬╖[39m
+    [31m*[39m
+    [31mautomated trading involves significant risk of loss, including possible loss of principal.┬╖[39m
+    [31m*[39m
+    [31mno statements on this site should be interpreted as guarantees of returns or assurances of future performance.┬╖[39m
+    [31m*[39m
+    [31mcrypto markets remain highly volatile and speculative. independent diligence is required.┬╖[39m
+    [31m*[39m
+    [31memails and updates comply with can-spam. unsubscribe links are honored within 10 business days. cookie preferences can be updated at any time.┬╖[39m
+    [31m*[39m
+    [31mthis website is a demonstration environment. no live trading occurs on this public site. all market data shown is signed and verifiable but does not constitute investment advice.┬╖[39m
+    [31m*[39m
+    [31mpast performance is not indicative of future results. cryptocurrency markets are highly volatile and speculative. only invest what you can afford to lose.┬╖[39m
+    [31m┬⌐ 2025 hyper trading automation. all rights reserved."[39m
+
+      37 |       // Fallback: check page content directly
+      38 |       const content = await page.evaluate(() => document.body.innerText);
+    > 39 |       expect(content.toLowerCase()).toContain('thanks');
+         |                                     ^
+      40 |     } else {
+      41 |       expect(successMessages.length).toBeGreaterThan(0);
+      42 |       await expect(successMessages[0]).toBeVisible();
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:39:37
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-Mobile-Chrome\error-context.md
+
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 386ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1370ms (2627 modules)
+
+[1A[2K[28/30] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 901ms (2627 modules)
+
+[1A[2K[29/30] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[30/30] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1071ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 642ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 770ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 997ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 830ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 780ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 693ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 694ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 707ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 674ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 683ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 718ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 736ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 730ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 695ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 724ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 685ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 727ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 697ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1020ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact?email=test%40example.com&company=Test+Corp&jurisdiction=US&role=Tester&message=Testing+the+contact+form&consent=true [32m200[39m in 352ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1034ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 735ms (2627 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 669ms (2627 modules)
+
+[1A[2K  5) [Mobile Safari] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"thanks"[39m
+    Received string:    [31m"skip to main content (press enter to focus)[39m
+    [31mcapital at risk -- demo environment only.[39m
+    [31mthis public experience streams signed, sandboxed market data for illustrative purposes. no live trading or performance guarantees.[39m
+    [31mhyper trading automation[39m
+    [31mdemo only ┬╖ no guarantees[39m
+    [31mtoggle navigation[39m
+    [31mcontact[39m
+    [31mtell us about your mandate -- no sales fluff, just validation[39m
+    [31mcomplete the consent-aware form below. you'll receive a double opt-in email with our postal address and unsubscribe option per can-spam.[39m
+    [31mrequest gated demo access[39m
+    [31mprovide enough context for evaluation┬╖[39m
+    [31mshare your details so compliance and engineering can evaluate whether we're a fit.[39m
+    [31mwork email[39m
+    [31mcompany[39m
+    [31mjurisdiction[39m
+    [31mrole / mandate[39m
+    [31mwhat would you like to evaluate?┬╖[39m
+    [31mi consent to receiving compliance-focused updates and understand i can opt out anytime. hyper trading automation honours one-click unsubscribe requests within 10 business days.[39m
+    [31mrequest gated access[39m
+    [31mwe honour global privacy control and do not sell/share requests. each email includes our postal address and one-click unsubscribe in line with the can-spam act.[39m
+    [31mwhat happens next┬╖[39m
+    [31m1[39m
+    [31mverification[39m
+    [31mwe verify your jurisdiction, regulatory status, and mandate.[39m
+    [31m2[39m
+    [31mconfirmation[39m
+    [31myou receive a double opt-in confirmation email with disclosures.[39m
+    [31m3[39m
+    [31mwalkthrough[39m
+    [31mcompliance schedules a walkthrough of the signed demo data.[39m
+    [31mfrequently asked[39m
+    [31mdo you ever take custody?[39m
+    [31mno. we integrate with venues via api and never take possession of client funds. you maintain custody and revoke access whenever you choose.[39m
+    [31mcan i see live performance numbers?[39m
+    [31mnot on the public site. verified, net performance is only available to qualified investors through a gated experience once independent audits finish.[39m
+    [31mwhat does the onboarding process look like?[39m
+    [31mwe complete compliance questionnaires, operational due diligence, and technical sandbox walkthroughs before activating any live trading.[39m
+    [31mprivacy and transparency[39m
+    [31myour information is handled with the same care we apply to trading operations: encrypted at rest, transmitted over tls, and accessible only to authorized personnel with a legitimate business need.┬╖[39m
+    [31mwe don't sell contact lists, we don't share data with third-party marketers, and we honor opt-out requests immediately. every email includes a one-click unsubscribe and our postal address per can-spam requirements.┬╖[39m
+    [31mquestions about our data practices? review our privacy policy or submit a data subject request through the form above.[39m
+    [31mhyper trading automation[39m
+    [31mdemo environment for regulated automated trading. no guarantees, no speculative promisesΓÇöfocused purely on disciplined execution and transparent controls.[39m
+    [31mhyper trading automation, yunusabad district, tashkent 100093, uzbekistan[39m
+    [31mcompliance[39m
+    [31mprivacy[39m
+    [31mterms[39m
+    [31mrisk disclosure[39m
+    [31mconsent preferences[39m
+    [31mimportant disclaimers┬╖[39m
+    [31m*[39m
+    [31mautomated trading involves significant risk of loss, including possible loss of principal.┬╖[39m
+    [31m*[39m
+    [31mno statements on this site should be interpreted as guarantees of returns or assurances of future performance.┬╖[39m
+    [31m*[39m
+    [31mcrypto markets remain highly volatile and speculative. independent diligence is required.┬╖[39m
+    [31m*[39m
+    [31memails and updates comply with can-spam. unsubscribe links are honored within 10 business days. cookie preferences can be updated at any time.┬╖[39m
+    [31m*[39m
+    [31mthis website is a demonstration environment. no live trading occurs on this public site. all market data shown is signed and verifiable but does not constitute investment advice.┬╖[39m
+    [31m*[39m
+    [31mpast performance is not indicative of future results. cryptocurrency markets are highly volatile and speculative. only invest what you can afford to lose.[39m
+    [31m┬⌐ 2025 hyper trading automation. all rights reserved."[39m
+
+      37 |       // Fallback: check page content directly
+      38 |       const content = await page.evaluate(() => document.body.innerText);
+    > 39 |       expect(content.toLowerCase()).toContain('thanks');
+         |                                     ^
+      40 |     } else {
+      41 |       expect(successMessages.length).toBeGreaterThan(0);
+      42 |       await expect(successMessages[0]).toBeVisible();
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:39:37
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-Mobile-Safari\error-context.md
+
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 787ms (2627 modules)
+
+[1A[2K  5 failed
+    [chromium] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [firefox] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [webkit] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [Mobile Safari] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+  23 skipped
+  2 passed (1.9m)
+
+[36m  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.[39m

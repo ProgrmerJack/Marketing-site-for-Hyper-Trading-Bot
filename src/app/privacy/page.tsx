@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+// AnimatedBackground was intentionally removed from per-page usage; UnifiedBackground provides the global animation.
 import {
   Shield,
   Lock,
@@ -15,7 +15,6 @@ import {
   AlertTriangle,
   Mail,
   Cookie,
-  Cpu,
   MapPin,
   RefreshCw,
   Phone,
@@ -119,19 +118,35 @@ export default function PrivacyPage() {
         eyebrow="Legal"
         title="Privacy Policy"
         description="UK GDPR, GDPR, and CCPA compliant notice. This page is updated whenever our processing activities change."
-        backgroundVariant="threads"
-        backgroundColors={["rgba(59, 130, 246, 0.4)", "rgba(139, 92, 246, 0.3)", "rgba(16, 185, 129, 0.25)"]}
-      />
+        backgroundVariant="hyperspeed"
+        backgroundOpacity={0.9}
+        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+      >
+        <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div className="w-96">
+            <div className="rounded-2xl p-6 shadow-lg bg-gradient-to-br from-white to-blue-50">
+              <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Privacy</div>
+              <div className="mb-3 text-lg font-bold">We minimise data collection</div>
+              <p className="text-xs text-muted-foreground">We collect minimal personal data and we never sell your information. Read the full policy for details.</p>
+              <div className="mt-4">
+                <motion.a
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  Contact privacy
+                </motion.a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </PageHeaderAnimated>
 
       {/* Main Content Section */}
-      <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950 md:py-32">
+      <section className="relative isolate overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-24 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 dark:opacity-30">
-          <AnimatedBackground
-            variant="dither"
-            colors={["rgba(59, 130, 246, 0.4)", "rgba(139, 92, 246, 0.35)", "rgba(16, 185, 129, 0.3)"]}
-            speed="28s"
-            opacity={0.7}
-          />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
         </div>
 
         <Container className="relative z-10">
@@ -194,7 +209,7 @@ export default function PrivacyPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/90 md:p-10"
+              className="rounded-3xl border border-slate-200 bg-card/90 p-8 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/90 md:p-10"
             >
               <div className="mb-8 flex items-start gap-4">
                 <div className="flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 shadow-lg">
@@ -321,7 +336,7 @@ export default function PrivacyPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/90 md:p-10"
+                  className="rounded-3xl border border-slate-200 bg-card/90 p-8 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/90 md:p-10"
                 >
                   <div className="mb-6 flex items-start gap-4">
                     <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg`}>

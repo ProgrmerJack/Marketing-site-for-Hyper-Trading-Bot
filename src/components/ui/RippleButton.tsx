@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import getSpotlightColor from '@/lib/spotlightPalette';
 import { motion, AnimatePresence } from "framer-motion";
 
 type Ripple = {
@@ -19,7 +20,7 @@ type RippleButtonProps = {
 export function RippleButton({
   children,
   className = "",
-  rippleColor = "rgba(59, 130, 246, 0.5)",
+  rippleColor = getSpotlightColor('blue', 0.5),
   onClick,
 }: RippleButtonProps) {
   const [ripples, setRipples] = useState<Ripple[]>([]);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 type BlobCursorProps = {
@@ -34,6 +34,37 @@ export function BlobCursor({
     };
   }, [cursorX, cursorY, size]);
 
+  // Accent color follow -- try to pick accent color from hovered element or fall back to prop
+  const [accent, setAccent] = useState(color);
+  useEffect(() => {
+    const updateAccent = (e: MouseEvent) => {
+      try {
+        const el = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+        if (!el) {
+          setAccent(color);
+          return;
+        }
+        // If the element has a data-accent attribute, use it
+        const ds = el.dataset?.accentColor;
+        if (ds) {
+          setAccent(ds);
+          return;
+        }
+        const computed = window.getComputedStyle(el).backgroundColor;
+        if (computed && computed !== 'rgba(0, 0, 0, 0)' && computed !== 'transparent') {
+          setAccent(computed);
+          return;
+        }
+        setAccent(color);
+      } catch {
+        setAccent(color);
+      }
+    };
+
+    window.addEventListener('mousemove', updateAccent, { passive: true });
+    return () => window.removeEventListener('mousemove', updateAccent);
+  }, [color]);
+
   return (
     <motion.div
       className="pointer-events-none fixed z-50 rounded-full mix-blend-normal dark:mix-blend-screen"
@@ -42,8 +73,9 @@ export function BlobCursor({
         top: cursorYSpring,
         width: size,
         height: size,
-        backgroundColor: color,
+        backgroundImage: `radial-gradient(circle, ${accent ?? color} 0%, ${accent ?? color} 40%, transparent 70%)`,
         filter: `blur(${blur}px)`,
+        transition: 'background 0.2s ease, filter 0.2s ease',
       }}
     />
   );

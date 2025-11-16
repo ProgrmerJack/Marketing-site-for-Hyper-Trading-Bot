@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { DsrForm } from "@/components/forms/dsr-form";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+// UnifiedBackground used globally; per-section AnimatedBackground removed
 import { Cookie, Shield, CheckCircle2, XCircle, Settings, Eye, Lock } from "lucide-react";
 
 const consentOptions = [
@@ -62,20 +63,29 @@ export default function ConsentPage() {
         eyebrow="Consent management"
         title="Control how your data is used"
         description="Adjust cookie and communication preferences. We honor Global Privacy Control signals automatically and provide full transparency into our data practices."
-        backgroundVariant="threads"
-        backgroundColors={["rgba(139, 92, 246, 0.4)", "rgba(236, 72, 153, 0.3)", "rgba(59, 130, 246, 0.25)"]}
-      />
+        backgroundVariant="hyperspeed"
+        backgroundOpacity={0.9}
+        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+      >
+        <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Privacy controls</div>
+            <div className="mb-3 text-lg font-bold">Opt-in transparency</div>
+            <p className="text-xs text-muted-foreground">Easily manage consent and export a signed record of your choices for auditability.</p>
+            <div className="mt-4">
+              <motion.a href="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
+                Export record
+              </motion.a>
+            </div>
+          </SpotlightCard>
+        </motion.div>
+      </PageHeaderAnimated>
 
       {/* Preferences Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        {/* Animated Background */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="liquid"
-            colors={["rgba(139, 92, 246, 0.45)", "rgba(236, 72, 153, 0.35)", "rgba(59, 130, 246, 0.3)"]}
-            speed="28s"
-            opacity={0.75}
-          />
+          {/* Per-section AnimatedBackground removed in favour of UnifiedBackground */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
@@ -155,15 +165,10 @@ export default function ConsentPage() {
       </section>
 
       {/* Privacy Features Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="beams"
-            colors={["rgba(16, 185, 129, 0.45)", "rgba(59, 130, 246, 0.35)", "rgba(245, 158, 11, 0.3)"]}
-            speed="24s"
-            opacity={0.8}
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
@@ -237,15 +242,10 @@ export default function ConsentPage() {
       </section>
 
       {/* Opt-Out Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="dither"
-            colors={["rgba(59, 130, 246, 0.45)", "rgba(236, 72, 153, 0.35)", "rgba(139, 92, 246, 0.3)"]}
-            speed="26s"
-            opacity={0.75}
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />

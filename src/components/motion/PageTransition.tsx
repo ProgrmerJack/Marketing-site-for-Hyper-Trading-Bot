@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useReducedMotion } from "./MotionProvider";
 
@@ -20,6 +21,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
   const previousPathname = useRef(pathname);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     // Skip transitions if reduced motion is active
@@ -40,15 +42,49 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
         // The actual DOM update happens via Next.js navigation
         // This just wraps it in the transition
         previousPathname.current = pathname;
+        // small cinematic overlay when transitions start
+        if (!shouldReduceMotion) {
+          setIsTransitioning(true);
+          setTimeout(() => setIsTransitioning(false), 400);
+        }
       });
     } else {
       // Browser doesn't support View Transitions API
       // Fallback: immediate update (Framer Motion handles page-level animations)
       previousPathname.current = pathname;
+      if (!shouldReduceMotion) {
+        setIsTransitioning(true);
+        setTimeout(() => setIsTransitioning(false), 420);
+      }
     }
   }, [pathname, shouldReduceMotion]);
 
-  return <>{children}</>;
+  return (
+    <>
+      {/* Cinematic letterbox overlays */}
+      {!shouldReduceMotion && (
+        <>
+          <motion.div
+            key="ctop"
+            aria-hidden
+            initial={{ height: 0 }}
+            animate={{ height: isTransitioning ? "7vh" : 0 }}
+            transition={{ duration: 0.38, ease: "easeInOut" }}
+            className="pointer-events-none fixed inset-x-0 top-0 z-[60] bg-black/70"
+          />
+          <motion.div
+            key="cbottom"
+            aria-hidden
+            initial={{ height: 0 }}
+            animate={{ height: isTransitioning ? "7vh" : 0 }}
+            transition={{ duration: 0.38, ease: "easeInOut" }}
+            className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] bg-black/70"
+          />
+        </>
+      )}
+      {children}
+    </>
+  );
 }
 
 /**

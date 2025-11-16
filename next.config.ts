@@ -1,8 +1,11 @@
 import { createHash } from "node:crypto";
+import { createRequire } from "node:module";
 import path from "node:path";
 import type { NextConfig } from "next";
 import { withContentlayer } from "next-contentlayer";
 import { buildOrganizationSchema, buildWebsiteSchema } from "./src/lib/metadata";
+
+const require = createRequire(import.meta.url);
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -31,9 +34,9 @@ const nextConfig: NextConfig = {
   compress: true,
   outputFileTracingRoot: path.resolve(__dirname, "../.."),
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion", "zustand", "d3", "@hyper/ui"],
+    optimizePackageImports: ["lucide-react", "zustand", "d3", "@hyper/ui"],
   },
-  transpilePackages: ["@hyper/ui"],
+  transpilePackages: ["@hyper/ui", "framer-motion"],
   eslint: {
     ignoreDuringBuilds: false,
   },
@@ -107,6 +110,10 @@ const nextConfig: NextConfig = {
       __dirname,
       "src/shims/gsap/InertiaPlugin",
     );
+    const framerMotionDir = path.dirname(require.resolve("framer-motion/package.json"));
+    const hlsDir = path.dirname(require.resolve("hls.js/package.json"));
+    config.resolve.alias["framer-motion"] = framerMotionDir;
+    config.resolve.alias["hls.js"] = hlsDir;
     return config;
   },
 };

@@ -6,6 +6,8 @@ const serverSchema = z.object({
     .string()
     .url()
     .default("https://hypertrader.example.com"),
+  // Optional secret used for demo SSE signature verification
+  DEMO_STREAM_SECRET: z.string().optional(),
 });
 
 declare global {

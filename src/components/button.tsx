@@ -100,6 +100,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={isDisabled}
+        // Removed data-accent-color: Cursor-following gradient removed site-wide
         className={`
           ${variantClasses[variant]}
           ${sizeClasses[size]}

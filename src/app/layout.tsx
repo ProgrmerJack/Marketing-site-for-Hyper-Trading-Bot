@@ -7,9 +7,10 @@ import { SiteHeader } from "@/components/site-header";
 import { SkipToContent } from "@/components/skip-link";
 import { ThemeProvider } from "@/components/theme-provider";
 import { MotionProvider } from "@/components/motion/MotionProvider";
-import { PageTransition } from "@/components/motion/PageTransition";
+// Blob cursor removed per request: no cursor-following gradient; keep PageTransition disabled for now
 import { ErrorBoundary } from "@/components/error-boundary";
 import { PerformanceMonitor } from "@/components/performance-monitor";
+import { UnifiedBackground } from "@/components/backgrounds/UnifiedBackground";
 import "./globals.css";
 import "@/styles/motion.css";
 import { CookieBanner } from "@/components/cookie-banner";
@@ -77,13 +78,15 @@ export default function RootLayout({
           geistSans.variable,
           geistMono.variable,
           playfair.variable,
-          "font-sans antialiased",
+          "font-sans antialiased relative",
         )}
       >
         <ErrorBoundary>
           <ThemeProvider>
             <MotionProvider>
-              <PageTransition>
+              {/* Unified background for entire site */}
+              <UnifiedBackground />
+              {/* PageTransition removed to disable cinematic overlays */}
                 <SkipToContent />
                 <ComplianceBanner />
                 <SiteHeader />
@@ -91,9 +94,8 @@ export default function RootLayout({
                   {children}
                 </main>
                 <SiteFooter />
-                <CookieBanner />
+                {/* CookieBanner removed in favor of ConsentManager to centralize consent UI */}
                 <ConsentManager />
-              </PageTransition>
             </MotionProvider>
           </ThemeProvider>
           <PerformanceMonitor />

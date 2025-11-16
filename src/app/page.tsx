@@ -11,12 +11,9 @@ import { useMotion } from "@/components/motion/MotionProvider";
 import {
   StarBorder,
   ClickSpark,
-  DotGrid,
   SplashCursor,
   SpotlightCard,
 } from "@/components/reactbits/dynamic";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
-import { HeroBackground } from "@/components/backgrounds/HeroBackground";
 import { SplitText } from "@/components/motion/SplitText";
 import { AnimatedNumber } from "@/components/animated-number";
 import { InfoDisclosure } from "@/components/info-disclosure";
@@ -27,12 +24,17 @@ const heroBullets = [
   "Profit-share model only, and only after independent verification.",
 ] as const;
 
+type FeaturePanelAccent = {
+  border: string;
+  gradient: string;
+};
+
 type FeaturePanel = {
   title: string;
   description: string;
   icon: LucideIcon;
   tag: string;
-  accent: string;
+  accent: FeaturePanelAccent;
 };
 
 const featurePanels: FeaturePanel[] = [
@@ -42,7 +44,10 @@ const featurePanels: FeaturePanel[] = [
       "Market, on-chain, and venue microstructure data are normalised in under 120ms with drift monitoring and lineage tracking on every feature.",
     icon: Zap,
     tag: "Signals",
-    accent: "from-blue-400/15 to-cyan-500/10 border-blue-400/20",
+    accent: {
+      border: "border-blue-300/50 dark:border-blue-700/70",
+      gradient: "from-blue-50/40 via-blue-50/20 to-cyan-50/10 dark:from-slate-900 dark:via-blue-950/20 dark:to-cyan-950/15",
+    },
   },
   {
     title: "Risk rails that bite",
@@ -50,7 +55,10 @@ const featurePanels: FeaturePanel[] = [
       "Position limits, drawdown guards, circuit breakers, and venue health checks run before any order leaves the sandbox - no overrides, no hero trades.",
     icon: ShieldCheck,
     tag: "Risk",
-    accent: "from-emerald-400/15 to-green-500/10 border-emerald-400/20",
+    accent: {
+      border: "border-emerald-300/50 dark:border-emerald-700/70",
+      gradient: "from-emerald-50/40 via-emerald-50/25 to-teal-50/15 dark:from-slate-900 dark:via-emerald-950/20 dark:to-teal-950/15",
+    },
   },
   {
     title: "Latency-respectful execution",
@@ -58,7 +66,10 @@ const featurePanels: FeaturePanel[] = [
       "Smart-order routes split flow across venues with a live kill switch. Demo telemetry surfaces latency, slippage, and risk posture in plain language.",
     icon: Timer,
     tag: "Execution",
-    accent: "from-purple-400/15 to-pink-500/10 border-purple-400/20",
+    accent: {
+      border: "border-purple-300/50 dark:border-purple-700/70",
+      gradient: "from-purple-50/40 via-purple-50/25 to-pink-50/15 dark:from-slate-900 dark:via-purple-950/25 dark:to-pink-950/15",
+    },
   },
   {
     title: "Observable automation",
@@ -66,7 +77,10 @@ const featurePanels: FeaturePanel[] = [
       "Signed SSE feeds, deterministic pipelines, and self-healing dags keep the automation explainable, observable, and regulator ready.",
     icon: Cpu,
     tag: "Automation",
-    accent: "from-orange-400/15 to-red-500/10 border-orange-400/20",
+    accent: {
+      border: "border-orange-300/50 dark:border-orange-700/70",
+      gradient: "from-orange-50/40 via-orange-50/25 to-amber-50/15 dark:from-slate-900 dark:via-orange-950/25 dark:to-amber-950/15",
+    },
   },
 ];
 
@@ -246,16 +260,12 @@ export default function Home() {
 }
 
 function HeroSection() {
-  const { backgroundsEnabled, cursorEnabled, hydrated } = useMotion();
+  const { cursorEnabled } = useMotion();
 
   return (
     <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
       {/* Background Layer */}
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
-        {backgroundsEnabled && hydrated ? (
-          <HeroBackground name="hyperspeed" />
-        ) : null}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white/80 dark:from-transparent dark:via-slate-950/60 dark:to-slate-900/80" />
+      <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
       </div>
 
@@ -309,7 +319,7 @@ function HeroSection() {
 
             {/* Hero Card */}
             <div>
-              <HeroTelemetryCard cursorEnabled={cursorEnabled} />
+                  <HeroTelemetryCard />
             </div>
           </div>
         </div>
@@ -370,7 +380,7 @@ function SecondaryCta({ href, children }: SecondaryCtaProps) {
 }
 
 type HeroTelemetryCardProps = {
-  cursorEnabled: boolean;
+  cursorEnabled?: boolean;
 };
 
 function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
@@ -378,26 +388,27 @@ function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
 
   return (
     <motion.div
+      data-testid="hero-telemetry-card"
       initial={{ opacity: 0, scale: 0.95, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative overflow-hidden rounded-3xl border-2 border-orange-200/60 bg-gradient-to-br from-white via-orange-50/40 to-amber-50/30 shadow-2xl dark:border-orange-800/60 dark:from-slate-900/95 dark:via-orange-950/30 dark:to-amber-950/20"
+      className="relative overflow-hidden rounded-3xl border-2 border-orange-300/40 bg-gradient-to-br from-slate-50 via-white to-orange-50/30 shadow-lg dark:border-orange-600/60 dark:from-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10"
     >
       {/* Card Background */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/8 via-transparent to-amber-500/8 dark:from-orange-500/15 dark:to-amber-500/15" />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-amber-500/5 dark:from-blue-500/10 dark:via-transparent dark:to-cyan-500/10" />
       </div>
 
       {/* Card Content */}
-      <div className="relative space-y-6 p-8">
+      <div className="relative space-y-6 p-8 text-slate-700 force-dark-black">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-900">
             Signed telemetry
           </span>
-          <span className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">p95 &lt; 150ms</span>
+          <span className="text-xs font-mono font-semibold text-slate-600 dark:text-slate-900">p95 &lt; 150ms</span>
         </div>
 
-        <p className="text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">
+        <p className="text-sm font-medium leading-relaxed text-slate-700 force-dark-black">
           Demo feeds run on SSE with signed payloads. Latency, slippage, and venue posture publish in
           plain language with integrity checks that halt playback when guarantees slip.
         </p>
@@ -408,11 +419,12 @@ function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
               key={metric.label}
               metric={metric}
               index={index}
+              darkTextBlack={true}
             />
           ))}
         </div>
 
-        <div className="rounded-2xl border-2 border-orange-200/60 bg-orange-50/50 p-4 text-xs font-medium text-orange-900 backdrop-blur-sm dark:border-orange-700/60 dark:bg-orange-950/40 dark:text-orange-200">
+        <div className="rounded-2xl border-2 border-orange-300/60 bg-orange-50/70 p-4 text-xs font-medium text-orange-900 backdrop-blur-sm dark:border-orange-700/50 dark:bg-orange-950/60 dark:text-orange-50">
           <span className="font-bold text-orange-900 dark:text-orange-100">Accessibility:</span> Prefers-reduced-motion
           freezes canvases, disables cursor effects, and swaps to static gradients automatically.
         </div>
@@ -424,30 +436,31 @@ function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
 type MetricRowProps = {
   metric: Metric;
   index: number;
+  darkTextBlack?: boolean;
 };
 
-function MetricRow({ metric, index }: MetricRowProps) {
+function MetricRow({ metric, index, darkTextBlack }: MetricRowProps) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-      className="flex items-center justify-between rounded-xl border-2 border-orange-200/60 bg-gradient-to-r from-white to-orange-50/40 px-5 py-4 backdrop-blur-sm transition-all hover:shadow-lg hover:border-orange-300/80 hover:-translate-y-0.5 dark:border-orange-800/60 dark:from-slate-800/90 dark:to-orange-950/40 dark:hover:border-orange-700/70 dark:hover:bg-slate-800/95"
+      className="flex items-center justify-between rounded-xl border-2 border-orange-300/60 bg-gradient-to-r from-white to-orange-50/60 px-5 py-4 backdrop-blur-sm transition-all hover:shadow-lg hover:border-orange-400/80 hover:-translate-y-0.5 dark:border-orange-700/50 dark:from-slate-800/80 dark:to-orange-900/30 dark:hover:border-orange-700/60 dark:hover:bg-slate-800/90"
     >
       <div className="flex-1">
-        <span className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-200">
+        <span className={clsx("text-xs font-bold uppercase tracking-wider text-slate-600", darkTextBlack && "force-dark-black", !darkTextBlack && "dark:text-slate-300")}>
           {metric.label}
         </span>
-        <p className="mt-1 text-xs font-medium text-slate-700 dark:text-slate-300">
+        <p className={clsx("mt-1 text-xs font-medium text-slate-600", darkTextBlack && "force-dark-black", !darkTextBlack && "dark:text-slate-400")}>
           {metric.description}
         </p>
       </div>
       <div className="text-right">
-        <span className="text-2xl font-bold tabular-nums text-slate-900 dark:text-white">
+        <span className={clsx("text-2xl font-bold tabular-nums text-slate-900", darkTextBlack && "force-dark-black", !darkTextBlack && "dark:text-white")}>
           <AnimatedNumber value={metric.value} decimals={metric.decimals} duration={1 + index * 0.15} />
         </span>
         {metric.suffix && (
-          <span className="ml-1 text-sm font-bold text-slate-700 dark:text-slate-300">
+          <span className={clsx("ml-1 text-sm font-bold text-slate-600", darkTextBlack && "dark:text-slate-900", !darkTextBlack && "dark:text-slate-400")}>
             {metric.suffix.trim()}
           </span>
         )}
@@ -457,22 +470,11 @@ function MetricRow({ metric, index }: MetricRowProps) {
 }
 
 function FeatureStorySection() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {backgroundsEnabled && hydrated ? (
-          <AnimatedBackground
-            variant="threads"
-            colors={["rgba(59,130,246,0.4)", "rgba(14,165,233,0.3)", "rgba(148,163,184,0.25)"]}
-            speed="34s"
-            opacity={0.6}
-          />
-        ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
-        )}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
         <div className="section-surface" />
       </div>
 
@@ -520,14 +522,22 @@ function FeatureCard({ panel, index }: FeatureCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="h-full"
     >
-      <SpotlightCard
+          <SpotlightCard
+        data-testid="feature-card"
         className={clsx(
-          "group relative h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/40 to-slate-50/20 p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/60 dark:to-slate-900/80",
-          panel.accent
+          "group relative h-full overflow-hidden rounded-3xl border-2 border-slate-200/60 bg-card p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 dark:border-slate-700/60 dark:bg-slate-900",
+          panel.accent.border
         )}
-        spotlightColor="rgba(251, 146, 60, 0.25)"
+        spotlightColor="rgba(251, 146, 60, 0.15)"
       >
-        <div className="flex h-full flex-col">
+        <div
+          aria-hidden
+          className={clsx(
+            "pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br opacity-95 transition-opacity duration-300 group-hover:opacity-100",
+            panel.accent.gradient
+          )}
+        />
+        <div className="relative flex h-full flex-col">
           <div className="flex items-center gap-4 mb-6">
             <div className={clsx(
               "flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
@@ -553,7 +563,7 @@ function FeatureCard({ panel, index }: FeatureCardProps) {
             {panel.title}
           </h3>
 
-          <p className="flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+          <p className="flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200">
             {panel.description}
           </p>
 
@@ -581,22 +591,11 @@ function AccentBadge({ children, color = "bg-primary/10 text-primary" }: AccentB
 }
 
 function WorkflowSection() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {backgroundsEnabled && hydrated ? (
-          <AnimatedBackground
-            variant="dither"
-            colors={["rgba(56,189,248,0.3)", "rgba(14,165,233,0.25)", "rgba(45,212,191,0.2)"]}
-            speed="32s"
-            opacity={0.65}
-          />
-        ) : (
-          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(15,23,42,0.05)_0%,transparent_55%,rgba(56,189,248,0.08)_100%)]" />
-        )}
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(15,23,42,0.05)_0%,transparent_55%,rgba(56,189,248,0.08)_100%)]" />
         <div className="section-surface" />
       </div>
 
@@ -686,22 +685,11 @@ function WorkflowCard({ step, index }: WorkflowCardProps) {
 }
 
 function MetricsSection() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {backgroundsEnabled && hydrated ? (
-          <AnimatedBackground
-            variant="beams"
-            colors={["rgba(56,189,248,0.4)", "rgba(14,165,233,0.35)", "rgba(99,102,241,0.3)"]}
-            speed="26s"
-            opacity={0.6}
-          />
-        ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(99,102,241,0.15),transparent_70%)]" />
-        )}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(99,102,241,0.15),transparent_70%)]" />
         <div className="section-surface" />
       </div>
 
@@ -781,19 +769,11 @@ function MetricCard({ metric }: MetricCardProps) {
 }
 
 function IntegrationsSection() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {backgroundsEnabled && hydrated ? (
-          <div className="absolute inset-0 opacity-60">
-            <DotGrid baseColor="#334155" />
-          </div>
-        ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(14,165,233,0.12),transparent_70%)]" />
-        )}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(14,165,233,0.12),transparent_70%)]" />
         <div className="section-surface" />
       </div>
 
@@ -862,22 +842,11 @@ function IntegrationTileCard({ tile }: IntegrationTileCardProps) {
 }
 
 function TestimonialsSection() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {backgroundsEnabled && hydrated ? (
-          <AnimatedBackground
-            variant="threads"
-            colors={["rgba(94,234,212,0.3)", "rgba(56,189,248,0.25)", "rgba(15,118,110,0.2)"]}
-            speed="36s"
-            opacity={0.65}
-          />
-        ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(94,234,212,0.1),transparent_70%)]" />
-        )}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(94,234,212,0.1),transparent_70%)]" />
         <div className="section-surface" />
       </div>
 
@@ -899,11 +868,12 @@ function TestimonialsSection() {
             {testimonialItems.map((item, index) => (
               <motion.div
                 key={index}
+                data-testid="testimonial-card"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl border-2 border-teal-200/60 bg-gradient-to-br from-white via-teal-50/30 to-cyan-50/20 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-teal-300/80 dark:border-teal-700/60 dark:from-slate-900/95 dark:via-teal-950/40 dark:to-cyan-950/30 dark:hover:border-teal-600/70"
+                className="group relative overflow-hidden rounded-3xl border-2 border-teal-200/40 bg-card p-8 shadow-md backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-teal-300/60 dark:border-teal-700/70 dark:bg-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10 dark:hover:border-teal-600/80"
               >
                 <div
                   className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 opacity-5 rounded-full blur-3xl dark:opacity-25"
@@ -912,12 +882,12 @@ function TestimonialsSection() {
                     backgroundSize: "cover",
                   }}
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/3 via-transparent to-cyan-500/3 dark:from-teal-500/15 dark:to-cyan-500/15" />
-                <p className="relative text-base font-medium leading-relaxed text-slate-800 dark:text-slate-200">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-transparent dark:from-blue-500/15 dark:to-cyan-500/15" />
+                <p className="relative text-base font-medium leading-relaxed text-slate-900 dark:text-slate-50">
                   {item.text}
                 </p>
                 {/* Shimmer effect */}
-                <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-teal-400/25 to-transparent transition-all duration-1000 group-hover:left-full dark:via-teal-400/20" />
+                <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-teal-300/20 to-transparent transition-all duration-1000 group-hover:left-full dark:via-teal-400/30" />
               </motion.div>
             ))}
           </div>
@@ -928,7 +898,7 @@ function TestimonialsSection() {
 }
 
 function DemoSection() {
-  const { backgroundsEnabled, cursorEnabled, hydrated } = useMotion();
+  const { cursorEnabled, hydrated } = useMotion();
 
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
@@ -936,26 +906,7 @@ function DemoSection() {
         <div className="relative overflow-hidden rounded-3xl border-2 border-blue-200/60 bg-gradient-to-br from-white via-blue-50/40 to-cyan-50/30 shadow-2xl dark:border-blue-800/60 dark:from-slate-900/95 dark:via-blue-950/30 dark:to-cyan-950/20">
           {/* Background Effects */}
           <div className="pointer-events-none absolute inset-0 opacity-30 dark:opacity-20">
-            {backgroundsEnabled && hydrated ? (
-              <>
-                <AnimatedBackground
-                  className="absolute inset-0 opacity-45"
-                  variant="liquid"
-                  colors={["rgba(14,165,233,0.4)", "rgba(56,189,248,0.35)", "rgba(59,130,246,0.3)"]}
-                  speed="30s"
-                  opacity={0.6}
-                />
-                <AnimatedBackground
-                  className="absolute inset-0 opacity-35"
-                  variant="balatro"
-                  colors={["rgba(14,165,233,0.4)", "rgba(56,189,248,0.35)", "rgba(129,140,248,0.3)"]}
-                  speed="36s"
-                  opacity={0.55}
-                />
-              </>
-            ) : (
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.25),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.15),transparent_70%)]" />
-            )}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.25),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.15),transparent_70%)]" />
           </div>
 
           {/* Cursor Effect */}
@@ -1091,22 +1042,11 @@ function DemoSection() {
 }
 
 function TrustSection() {
-  const { backgroundsEnabled, hydrated } = useMotion();
-
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {backgroundsEnabled && hydrated ? (
-          <AnimatedBackground
-            variant="dither"
-            colors={["rgba(56,189,248,0.3)", "rgba(59,130,246,0.25)", "rgba(94,234,212,0.2)"]}
-            speed="36s"
-            opacity={0.65}
-          />
-        ) : (
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.15),transparent_60%)]" />
-        )}
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.15),transparent_60%)]" />
         <div className="section-surface" />
       </div>
 
@@ -1187,22 +1127,13 @@ function TrustSection() {
 }
 
 function FinalCtaSection() {
-  const { cursorEnabled, backgroundsEnabled, hydrated } = useMotion();
+  const { cursorEnabled } = useMotion();
 
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {backgroundsEnabled && hydrated ? (
-          <AnimatedBackground
-            variant="beams"
-            colors={["rgba(251,146,60,0.3)", "rgba(59,130,246,0.25)", "rgba(249,115,22,0.2)"]}
-            speed="28s"
-            opacity={0.6}
-          />
-        ) : (
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.15),transparent_60%)]" />
-        )}
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.15),transparent_60%)]" />
         <div className="section-surface" />
       </div>
 
@@ -1215,14 +1146,8 @@ function FinalCtaSection() {
           className="mx-auto max-w-5xl"
         >
           <div className="relative overflow-hidden rounded-3xl border border-orange-200 bg-gradient-to-br from-white via-orange-50/50 to-amber-50/30 p-12 shadow-2xl dark:border-orange-800 dark:from-slate-900 dark:via-orange-950/30 dark:to-amber-950/20 md:p-16 lg:p-20">
-            {/* Animated Background */}
-            <AnimatedBackground
-              className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-30"
-              variant="threads"
-              colors={["rgba(251,146,60,0.4)", "rgba(249,115,22,0.3)", "rgba(59,130,246,0.25)"]}
-              speed="30s"
-              opacity={0.6}
-            />
+            {/* Gradient overlay for visual effect */}
+            <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-30 bg-[radial-gradient(ellipse_at_center,rgba(251,146,60,0.2),transparent_70%)]" />
 
             <div className="relative z-10 space-y-8 text-center">
               {/* Icon */}

@@ -6,8 +6,8 @@
  */
 
 .split-parent {
-  display: inline-block;
   position: relative;
+  display: inline-block;
 }
 
 .reactbits-hidden {

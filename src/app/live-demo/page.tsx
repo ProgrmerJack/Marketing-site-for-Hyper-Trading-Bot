@@ -1,52 +1,49 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Section } from "@hyper/ui";
-import { PageHeader } from "@/components/page-header";
+import { Section, Container } from "@hyper/ui";
 import { DemoTelemetry } from "@/components/demo-telemetry";
 import { DemoChart } from "@/components/charts/demo-chart";
 import { DemoStreamClient } from "@/components/live-demo-client";
 import MarketDataDemo from "@/components/market-data-demo";
 import { AdvancedChartsDemo } from "@/components/charts/advanced-charts-demo";
-import { FlowingMenu } from "@/components/reactbits/dynamic";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { useMotion } from "@/components/motion/MotionProvider";
 
-const buildGradient = (from: string, to: string) => {
-  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='${from}'/><stop offset='100%' stop-color='${to}'/></linearGradient></defs><rect width='200' height='200' fill='url(%23g)' rx='40' ry='40'/></svg>`;
-  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
-};
-
-const menuItems = [
-  { link: "#advanced-charts", text: "Charts", image: buildGradient("#38bdf8", "#0ea5e9") },
-  { link: "#market-data", text: "Market data", image: buildGradient("#6366f1", "#ec4899") },
-  { link: "#demo", text: "Signed feed", image: buildGradient("#14b8a6", "#0ea5e9") },
-];
-
 export default function LiveDemoPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
+  // Live demo page uses global UnifiedBackground; motion hooks not required here
 
   return (
     <div className="relative space-y-0">
-      {/* Global background animation */}
-      <div className="pointer-events-none fixed inset-0 -z-20">
-        {backgroundsEnabled && hydrated ? (
-          <AnimatedBackground
-            variant="beams"
-            colors={["rgba(59,130,246,0.35)", "rgba(139,92,246,0.3)", "rgba(34,197,94,0.25)"]}
-            speed="35s"
-            opacity={0.4}
-          />
-        ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
-        )}
-      </div>
-
-      <PageHeader
+      {/* Hero Section */}
+      <PageHeaderAnimated
         eyebrow="Live demo"
         title="Experience Professional-Grade Trading Technology in Action"
         description="Witness the power of our advanced trading platform with institutional-quality charts, real-time market data, and cutting-edge technical indicators. See why traders choose our platform for superior performance.*"
-      />
+        backgroundVariant="hyperspeed"
+        backgroundOpacity={0.9}
+        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+      >
+        <div className="hidden lg:block">
+          <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Live demo</div>
+            <div className="mb-3 text-xl font-bold">Interactive trading visualization</div>
+            <p className="text-xs text-muted-foreground">Latency-aware charts, signed demo telemetry, and a professional analytics dashboard. Try the interactive demo below.</p>
+            <div className="mt-4">
+              <motion.a
+                href="#demo"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.18 }}
+              >
+                Try demo
+                <span aria-hidden>→</span>
+              </motion.a>
+            </div>
+          </SpotlightCard>
+        </div>
+      </PageHeaderAnimated>
 
       <Section
         id="advanced-charts"

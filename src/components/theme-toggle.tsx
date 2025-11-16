@@ -31,8 +31,8 @@ export function ThemeToggle() {
     <button
       onClick={cycleTheme}
       className="group relative h-9 w-9 rounded-lg border border-[color:var(--color-line-muted)] bg-transparent transition-all duration-200 hover:border-[color:var(--color-accent-primary)] hover:bg-[color:var(--color-surface-100)]"
-      aria-label={`Current theme: ${theme}. Click to change theme.`}
-      title={`Theme: ${theme} (${resolvedTheme})`}
+      aria-label="Toggle theme"
+      title={`Current theme: ${theme} (${resolvedTheme})`}
     >
       {/* Sun icon for light mode */}
       {resolvedTheme === "light" && (

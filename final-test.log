@@ -1,0 +1,181 @@
+
+> marketing-site@0.1.0 test:visual
+> playwright test
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m> marketing-site@0.1.0 dev
+[2m[WebServer] [22m> next dev
+[2m[WebServer] [22m
+
+[1A[2K[2m[WebServer] [22m   [1m[38;2;173;127;168mΓû▓ Next.js 15.5.5[39m[22m
+
+[1A[2K[2m[WebServer] [22m   - Local:        http://localhost:3000
+[2m[WebServer] [22m   - Network:      http://172.29.32.1:3000
+[2m[WebServer] [22m   - Experiments (use with caution):
+[2m[WebServer] [22m     ┬╖ optimizePackageImports
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Starting...
+
+[1A[2K[2m[WebServer] [22mWarning: Contentlayer might not work as expected on Windows
+
+[1A[2K[2m[WebServer] [22mContentlayer config change detected. Updating type definitions and data...
+
+[1A[2K[2m[WebServer] [22mGenerated 0 documents in .contentlayer
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Ready in 9.6s
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling / ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled / in 14s (5441 modules)
+
+
+Running 30 tests using 2 workers
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 16111ms
+
+[1A[2K[1/30] [chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[2/30] [chromium] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[3/30] [chromium] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 618ms
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /contact ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /contact in 3.9s (5466 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 4662ms
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+URL: http://localhost:3000/
+
+[1A[2KScreenshot saved
+
+[1A[2KMethod 1 - getByLabel:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 2 - getByRole:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 3 - locator by aria-label:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 4 - All buttons:
+
+[1A[2K  Total: [33m11[39m
+
+[1A[2K  Button 0: text="A" aria-label="Toggle theme" html="<svg class="absolute inset-0 m-auto h-5 w-5 text-["
+
+[1A[2K  Button 1: text="What gets logged?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 2: text="Is this a live trading system?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 3: text="Can we review the telemetry feed?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 4: text="What does onboarding look like?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 5: text="Accept all" aria-label="null" html="Accept all"
+
+[1A[2K  Button 6: text="Decline optional" aria-label="null" html="Decline optional"
+
+[1A[2K  Button 7: text="Accept All" aria-label="null" html="Accept All"
+
+[1A[2K  Button 8: text="Reject Non-Essential" aria-label="null" html="Reject Non-Essential"
+
+[1A[2K  Button 9: text="Customize" aria-label="null" html="Customize"
+
+[1A[2K[4/30] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[5/30] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[6/30] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[7/30] [firefox] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[8/30] [firefox] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[9/30] [firefox] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 1160ms
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /favicon.ico ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /favicon.ico in 3.5s (2857 modules)
+
+[1A[2K[2m[WebServer] [22m GET /favicon.ico [32m200[39m in 5861ms
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /api/contact ...
+
+[1A[2K[10/30] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[11/30] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /api/contact in 6.1s (5484 modules)
+
+[1A[2K[12/30] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[13/30] [webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[14/30] [webkit] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[15/30] [webkit] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 824ms
+
+[1A[2K[16/30] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[17/30] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[18/30] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[19/30] [Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 412ms
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+URL: http://localhost:3000/
+
+[1A[2KScreenshot saved
+
+[1A[2KMethod 1 - getByLabel:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 2 - getByRole:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 3 - locator by aria-label:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 4 - All buttons:
+
+[1A[2K  Total: [33m11[39m
+
+[1A[2K  Button 0: text="Toggle navigation" aria-label="null" html="<span class="sr-only">Toggle navigation</span><svg"
+
+[1A[2K  Button 1: text="What gets logged?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 2: text="Is this a live trading system?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 3: text="Can we review the telemetry feed?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 4: text="What does onboarding look like?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 5: text="Accept all" aria-label="null" html="Accept all"
+
+[1A[2K  Button 6: text="Decline optional" aria-label="null" html="Decline optional"
+
+[1A[2K  Button 7: text="Accept All" aria-label="null" html="Accept All"
+
+[1A[2K  Button 8: text="Reject Non-Essential" aria-label="null" html="Reject Non-Essential"
+
+[1A[2K  Button 9: text="Customize" aria-label="null" html="Customize"
+
+[1A[2K[20/30] [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[21/30] [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[22/30] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[23/30] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[24/30] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[25/30] [Mobile Safari] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[26/30] [Mobile Safari] ΓÇ║ tests\functional.spec.ts:7:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[27/30] [Mobile Safari] ΓÇ║ tests\functional.spec.ts:11:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[28/30] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[29/30] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[30/30] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m POST /api/contact [32m202[39m in 30ms
+
+[1A[2K  25 skipped
+  5 passed (1.5m)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m

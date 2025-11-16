@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { AuroraBlob } from "@/components/aurora-blob";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { Container } from "@hyper/ui";
 import { revealUp, fadeIn } from "@/lib/advanced-animations";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
-import { useMotion } from "@/components/motion/MotionProvider";
+// No motion required in header; backgrounds now handled by UnifiedBackground.
 
 interface PageHeaderAnimatedProps {
   eyebrow?: string;
@@ -12,8 +13,9 @@ interface PageHeaderAnimatedProps {
   description?: string;
   kicker?: string;
   children?: React.ReactNode;
-  backgroundVariant?: "threads" | "dither" | "beams" | "liquid";
+  backgroundVariant?: "threads" | "dither" | "beams" | "liquid" | "hyperspeed";
   backgroundColors?: string[];
+  backgroundOpacity?: number;
 }
 
 export function PageHeaderAnimated({
@@ -22,28 +24,24 @@ export function PageHeaderAnimated({
   description,
   kicker,
   children,
-  backgroundVariant = "threads",
-  backgroundColors = ["rgba(59, 130, 246, 0.4)", "rgba(139, 92, 246, 0.3)", "rgba(16, 185, 129, 0.25)"],
+  /* consumed by some pages but intentionally no longer applied here - kept as configuration props */
+  backgroundVariant: _backgroundVariant = "hyperspeed",
+  backgroundColors: _backgroundColors = ["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"],
+  backgroundOpacity: _backgroundOpacity = 0.4,
 }: PageHeaderAnimatedProps) {
-  const { backgroundsEnabled, hydrated } = useMotion();
 
   return (
-    <header className="relative overflow-hidden border-b border-slate-200/80 bg-white/50 py-24 dark:border-slate-700/50 dark:bg-slate-950">
-      {/* Animated Background */}
+    <header className="relative overflow-hidden border-b border-slate-200/80 bg-white/50 min-h-[90vh] py-20 md:py-32 dark:border-slate-700/50 dark:bg-slate-950">
+      {/* No per-header AnimatedBackground when UnifiedBackground is active. We rely on UnifiedBackground for consistent site-wide hyperspeed animation.
+          Keep a radial gradient overlay for readability. */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {backgroundsEnabled && hydrated ? (
-          <AnimatedBackground
-            variant={backgroundVariant}
-            colors={backgroundColors}
-            speed="32s"
-            opacity={0.4}
-          />
-        ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(93,100,255,0.08),_transparent_70%)] dark:bg-[radial-gradient(circle_at_top,_rgba(96,165,250,0.05),_transparent_70%)]" />
-        )}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(93,100,255,0.08),transparent_70%)] dark:bg-[radial-gradient(circle_at_top,rgba(96,165,250,0.05),transparent_70%)]" />
       </div>
 
-      <Container className="relative z-10 flex flex-col gap-6">
+      {/* Decorative animated aurora blob: subtle, site-wide micro-animation that harmonises with UnifiedBackground */}
+      <AuroraBlob />
+
+      <Container className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         {eyebrow ? (
           <motion.span
             variants={fadeIn}
@@ -84,7 +82,27 @@ export function PageHeaderAnimated({
             {description}
           </motion.p>
         ) : null}
-        {children}
+        {/* Right-side children (hero visual elements) will render here on wider screens */}
+        <motion.div
+          className="mt-6 lg:mt-0 lg:ml-8 lg:flex-none"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.995 }}
+        >
+          {children ?? (
+            <div className="hidden lg:block">
+              <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
+                <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Get started</div>
+                <div className="mb-3 text-lg font-bold">Explore the demo</div>
+                <p className="text-xs text-muted-foreground">Request gated access to the signed demo feed and explore the platform.</p>
+                <div className="mt-4">
+                  <a href="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white">Contact sales</a>
+                </div>
+              </SpotlightCard>
+            </div>
+          )}
+        </motion.div>
       </Container>
     </header>
   );

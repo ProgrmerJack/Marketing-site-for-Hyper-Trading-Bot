@@ -5,7 +5,8 @@ import type { Route } from "next";
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
+// Use UnifiedBackground for consistent site-wide animation; remove local AnimatedBackground
 import {
   Calendar,
   Clock,
@@ -116,20 +117,29 @@ export default function BlogPage() {
         eyebrow="Insights & Updates"
         title="Trading wisdom, technical deep-dives, and transparency reports"
         description="No fluff, no hype. Just honest insights into building responsible automated trading systems for cryptocurrency markets."
-        backgroundVariant="threads"
-        backgroundColors={["rgba(59, 130, 246, 0.4)", "rgba(236, 72, 153, 0.3)", "rgba(16, 185, 129, 0.25)"]}
-      />
+        backgroundVariant="hyperspeed"
+        backgroundOpacity={0.9}
+        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+      >
+        <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
+            <div className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">Featured</div>
+            <div className="mb-3 text-xl font-bold">Building Transparent Trading Systems</div>
+            <p className="text-xs text-muted-foreground">How we prioritize auditability and risk controls over shallow ROI claims.</p>
+            <div className="mt-4">
+              <motion.a href="#newsletter" className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
+                Subscribe to updates
+              </motion.a>
+            </div>
+          </SpotlightCard>
+        </motion.div>
+      </PageHeaderAnimated>
 
       {/* Categories Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        {/* Animated Background */}
+      <section id="newsletter" className="relative isolate overflow-hidden py-24 md:py-32">
+        {/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="beams"
-            colors={["rgba(59, 130, 246, 0.5)", "rgba(236, 72, 153, 0.4)", "rgba(16, 185, 129, 0.35)"]}
-            speed="28s"
-            opacity={0.75}
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
@@ -200,15 +210,10 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Post Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="liquid"
-            colors={["rgba(236, 72, 153, 0.45)", "rgba(139, 92, 246, 0.35)", "rgba(59, 130, 246, 0.3)"]}
-            speed="26s"
-            opacity={0.75}
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
@@ -286,15 +291,10 @@ export default function BlogPage() {
       </section>
 
       {/* All Posts Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        {/* Animated Background */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        {/* Animated Background (replaced with consistent UnifiedBackground fallback) */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="dither"
-            colors={["rgba(16, 185, 129, 0.45)", "rgba(59, 130, 246, 0.35)", "rgba(245, 158, 11, 0.3)"]}
-            speed="24s"
-            opacity={0.8}
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
@@ -384,15 +384,10 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        {/* Animated Background */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        {/* Animated Background (replaced with consistent UnifiedBackground fallback) */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="threads"
-            colors={["rgba(59, 130, 246, 0.45)", "rgba(139, 92, 246, 0.35)", "rgba(16, 185, 129, 0.3)"]}
-            speed="28s"
-            opacity={0.75}
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />

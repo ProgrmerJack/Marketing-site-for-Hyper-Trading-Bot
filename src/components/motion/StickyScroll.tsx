@@ -22,7 +22,7 @@ export function StickyScroll({
   end = 1,
   className = "",
 }: StickyScrollProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null!);
   const shouldReduce = useReducedMotion();
 
   const { scrollYProgress } = useScroll({

@@ -1,0 +1,406 @@
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m> marketing-site@0.1.0 dev
+[2m[WebServer] [22m> next dev
+[2m[WebServer] [22m
+
+[1A[2K[2m[WebServer] [22m   [1m[38;2;173;127;168mΓû▓ Next.js 15.5.5[39m[22m
+
+[1A[2K[2m[WebServer] [22m   - Local:        http://localhost:3000
+[2m[WebServer] [22m   - Network:      http://172.29.32.1:3000
+[2m[WebServer] [22m   - Experiments (use with caution):
+[2m[WebServer] [22m     ┬╖ optimizePackageImports
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Starting...
+
+[1A[2K[2m[WebServer] [22mWarning: Contentlayer might not work as expected on Windows
+
+[1A[2K[2m[WebServer] [22mContentlayer config change detected. Updating type definitions and data...
+
+[1A[2K[2m[WebServer] [22mGenerated 0 documents in .contentlayer
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Ready in 7.2s
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling / ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled / in 11.1s (5441 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 12584ms
+
+
+Running 5 tests using 2 workers
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1961ms (2615 modules)
+
+[1A[2K[1/5] [firefox] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 739ms (2615 modules)
+
+[1A[2K[2/5] [chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 474ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1179ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 976ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 718ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1064ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 639ms
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+=== HOME PAGE ===
+
+[1A[2KTheme button count: [33m1[39m
+
+[1A[2KTheme button visible: [33mtrue[39m
+
+[1A[2KTotal buttons: [33m11[39m
+
+[1A[2KButton 0: text="A" aria-label="Toggle theme"
+
+[1A[2KButton 1: text="What gets logged?" aria-label="null"
+
+[1A[2KButton 2: text="Is this a live trading system?" aria-label="null"
+
+[1A[2KButton 3: text="Can we review the telemetry feed?" aria-label="null"
+
+[1A[2KButton 4: text="What does onboarding look like?" aria-label="null"
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 672ms
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /contact ...
+
+[1A[2K[firefox] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+=== HOME PAGE ===
+
+[1A[2KTheme button count: [33m0[39m
+
+[1A[2KTheme button visible: [33mfalse[39m
+
+[1A[2KTotal buttons: [33m4[39m
+
+[1A[2KButton 0: text="What gets logged?" aria-label="null"
+
+[1A[2KButton 1: text="Is this a live trading system?" aria-label="null"
+
+[1A[2KButton 2: text="Can we review the telemetry feed?" aria-label="null"
+
+[1A[2KButton 3: text="What does onboarding look like?" aria-label="null"
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /favicon.ico in 14s (5483 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 15725ms
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 8647ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 2.4s (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /favicon.ico [32m200[39m in 111ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 782ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 782ms (2626 modules)
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+
+=== CONTACT PAGE ===
+
+[1A[2K[firefox] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+
+=== CONTACT PAGE ===
+
+[1A[2KEmail field exists: [33m1[39m
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Email field exists: [33m1[39m
+
+[1A[2KEmail field visible: [33mtrue[39m
+
+[1A[2K[firefox] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Email field visible: [33mtrue[39m
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1290ms (2626 modules)
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Consent checkbox count: [33m1[39m
+
+[1A[2K[firefox] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Consent checkbox count: [33m1[39m
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 970ms
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 991ms
+
+[1A[2KSubmit button count: [33m1[39m
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1655ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 824ms
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 799ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1266ms (2626 modules)
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Submit button count: [33m1[39m
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /api/contact ...
+
+[1A[2K[firefox] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Page content after submit: <!DOCTYPE html><html lang="en" class="scroll-smooth" data-motion="enabled" data-motion-intensity="high" data-cursor-effects="true" data-background-effects="true" data-system-reduced-motion="false" data-reduced-motion="false" style="--motion-duration-scale: 1.25;"><head><link rel="stylesheet" href="/_next/static/css/app/layout.css?v=1762698818811" crossorigin="anonymous" data-precedence="next_static/css/app/layout.css"><link rel="stylesheet" href="/_next/static/css/app/contact/page.css?v=17626988
+
+[1A[2KMessage "Thanks. We'll be in touch" count: [33m0[39m
+
+[1A[2KMessage "Thank you" count: [33m0[39m
+
+[1A[2KMessage "Thanks" count: [33m0[39m
+
+[1A[2KParagraphs found: [33m29[39m
+
+[1A[2KP[0]: Capital at risk -- demo environment only.
+
+[1A[2KP[1]: This public experience streams signed, sandboxed market data for illustrative purposes. No live trad
+
+[1A[2KP[2]: Complete the consent-aware form below. You'll receive a double opt-in email with our postal address 
+
+[1A[2KP[3]: Share your details so compliance and engineering can evaluate whether we're a fit.
+
+[1A[2KP[4]: We honour Global Privacy Control and Do Not Sell/Share requests. Each email includes our postal addr
+
+[1A[2KP[5]: We verify your jurisdiction, regulatory status, and mandate.
+
+[1A[2KP[6]: You receive a double opt-in confirmation email with disclosures.
+
+[1A[2KP[7]: Compliance schedules a walkthrough of the signed demo data.
+
+[1A[2KP[8]: Do you ever take custody?
+
+[1A[2KP[9]: No. We integrate with venues via API and never take possession of client funds. You maintain custody
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Page content after submit: <!DOCTYPE html><html lang="en" class="scroll-smooth" data-motion="enabled" data-motion-intensity="high" data-cursor-effects="true" data-background-effects="true" data-system-reduced-motion="false" data-reduced-motion="false" style="--motion-duration-scale: 1.25;"><head><link rel="stylesheet" href="/_next/static/css/app/layout.css?v=1762698817241" crossorigin="anonymous" data-precedence="next_static/css/app/layout.css"><link rel="stylesheet" href="/_next/static/css/app/contact/page.css?v=17626988
+
+[1A[2KMessage "Thanks. We'll be in touch" count: [33m0[39m
+
+[1A[2KMessage "Thank you" count: [33m0[39m
+
+[1A[2KMessage "Thanks" count: [33m0[39m
+
+[1A[2KParagraphs found: [33m29[39m
+
+[1A[2KP[0]: Capital at risk -- demo environment only.
+
+[1A[2KP[1]: This public experience streams signed, sandboxed market data for illustrative purposes. No live trad
+
+[1A[2KP[2]: Complete the consent-aware form below. You'll receive a double opt-in email with our postal address 
+
+[1A[2KP[3]: Share your details so compliance and engineering can evaluate whether we're a fit.
+
+[1A[2KP[4]: We honour Global Privacy Control and Do Not Sell/Share requests. Each email includes our postal addr
+
+[1A[2KP[5]: We verify your jurisdiction, regulatory status, and mandate.
+
+[1A[2KP[6]: You receive a double opt-in confirmation email with disclosures.
+
+[1A[2KP[7]: Compliance schedules a walkthrough of the signed demo data.
+
+[1A[2KP[8]: Do you ever take custody?
+
+[1A[2KP[9]: No. We integrate with venues via API and never take possession of client funds. You maintain custody
+
+[1A[2K[3/5] [webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+[1A[2K[4/5] [Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /api/contact in 11.9s (5498 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 6606ms
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 5542ms
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+=== HOME PAGE ===
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+=== HOME PAGE ===
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Theme button count: [33m1[39m
+
+[1A[2KTheme button visible: [33mfalse[39m
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Theme button count: [33m0[39m
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Total buttons: [33m11[39m
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Theme button visible: [33mfalse[39m
+
+[1A[2KTotal buttons: [33m4[39m
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Button 0: text="Toggle navigation" aria-label="null"
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Button 0: text="What gets logged?" aria-label="null"
+
+[1A[2KButton 1: text="Is this a live trading system?" aria-label="null"
+
+[1A[2KButton 2: text="Can we review the telemetry feed?" aria-label="null"
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Button 1: text="What gets logged?" aria-label="null"
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Button 3: text="What does onboarding look like?" aria-label="null"
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Button 2: text="Is this a live trading system?" aria-label="null"
+
+[1A[2KButton 3: text="Can we review the telemetry feed?" aria-label="null"
+
+[1A[2KButton 4: text="What does onboarding look like?" aria-label="null"
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 1086ms
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 880ms
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+
+=== CONTACT PAGE ===
+
+[1A[2KEmail field exists: [33m1[39m
+
+[1A[2KEmail field visible: [33mtrue[39m
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+
+=== CONTACT PAGE ===
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Consent checkbox count: [33m1[39m
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Email field exists: [33m1[39m
+
+[1A[2KEmail field visible: [33mtrue[39m
+
+[1A[2KConsent checkbox count: [33m1[39m
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Submit button count: [33m1[39m
+
+[1A[2K[2m[WebServer] [22m POST /api/contact [32m202[39m in 27ms
+
+[1A[2KPage content after submit: <!DOCTYPE html><html lang="en" class="scroll-smooth" data-motion="enabled" data-motion-intensity="high" data-cursor-effects="true" data-background-effects="true" data-system-reduced-motion="false" data-reduced-motion="false" style="--motion-duration-scale: 1.25;"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="stylesheet" href="/_next/static/css/app/layout.css?v=1762698834115" crossorigin="anonymous" data-precedence="
+
+[1A[2KMessage "Thanks. We'll be in touch" count: [33m0[39m
+
+[1A[2KMessage "Thank you" count: [33m0[39m
+
+[1A[2KMessage "Thanks" count: [33m1[39m
+
+[1A[2KParagraphs found: [33m30[39m
+
+[1A[2KP[0]: Capital at risk -- demo environment only.
+
+[1A[2KP[1]: This public experience streams signed, sandboxed market data for illustrative purposes. No live trad
+
+[1A[2KP[2]: Complete the consent-aware form below. You'll receive a double opt-in email with our postal address 
+
+[1A[2KP[3]: Share your details so compliance and engineering can evaluate whether we're a fit.
+
+[1A[2KP[4]: Thanks. WeΓÇÖll be in touch after reviewing compliance requirements.
+
+[1A[2KP[5]: We honour Global Privacy Control and Do Not Sell/Share requests. Each email includes our postal addr
+
+[1A[2KP[6]: We verify your jurisdiction, regulatory status, and mandate.
+
+[1A[2KP[7]: You receive a double opt-in confirmation email with disclosures.
+
+[1A[2KP[8]: Compliance schedules a walkthrough of the signed demo data.
+
+[1A[2KP[9]: Do you ever take custody?
+
+[1A[2K[5/5] [Mobile Safari] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 281ms
+
+[1A[2K[Mobile Safari] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+=== HOME PAGE ===
+
+[1A[2KTheme button count: [33m0[39m
+
+[1A[2KTheme button visible: [33mfalse[39m
+
+[1A[2KTotal buttons: [33m5[39m
+
+[1A[2KButton 0: text="Toggle navigation" aria-label="null"
+
+[1A[2KButton 1: text="What gets logged?" aria-label="null"
+
+[1A[2KButton 2: text="Is this a live trading system?" aria-label="null"
+
+[1A[2KButton 3: text="Can we review the telemetry feed?" aria-label="null"
+
+[1A[2KButton 4: text="What does onboarding look like?" aria-label="null"
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 165ms
+
+[1A[2K
+=== CONTACT PAGE ===
+
+[1A[2KEmail field exists: [33m1[39m
+
+[1A[2KEmail field visible: [33mtrue[39m
+
+[1A[2KConsent checkbox count: [33m1[39m
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Failed to check consent, trying JS
+
+[1A[2K  1) [Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.count: Target page, context or browser has been closed
+
+      48 |   // Submit
+      49 |   const submitBtn = page.getByRole('button', { name: 'Request gated access' });
+    > 50 |   console.log('Submit button count:', await submitBtn.count());
+         |                                                       ^
+      51 |   await submitBtn.click().catch(() => console.log('Failed to click submit'));
+      52 |   
+      53 |   // Wait and check for success
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\debug.spec.ts:50:55
+
+    Error Context: test-results\debug-Debug-Check-page-structure-Mobile-Chrome\error-context.md
+
+
+[1A[2K[Mobile Safari] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure
+Failed to check consent, trying JS
+
+[1A[2K  2) [Mobile Safari] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.count: Target page, context or browser has been closed
+
+      48 |   // Submit
+      49 |   const submitBtn = page.getByRole('button', { name: 'Request gated access' });
+    > 50 |   console.log('Submit button count:', await submitBtn.count());
+         |                                                       ^
+      51 |   await submitBtn.click().catch(() => console.log('Failed to click submit'));
+      52 |   
+      53 |   // Wait and check for success
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\debug.spec.ts:50:55
+
+    Error Context: test-results\debug-Debug-Check-page-structure-Mobile-Safari\error-context.md
+
+
+[1A[2K  2 failed
+    [Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    [Mobile Safari] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Check page structure ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  3 passed (2.4m)
+
+[36m  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.[39m

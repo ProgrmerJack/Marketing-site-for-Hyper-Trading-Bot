@@ -14,7 +14,7 @@ type ScrollStoryProps = {
 };
 
 export function ScrollStory({ steps }: ScrollStoryProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null!);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],

@@ -1,0 +1,509 @@
+
+> marketing-site@0.1.0 test:visual
+> playwright test
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m> marketing-site@0.1.0 dev
+[2m[WebServer] [22m> next dev
+[2m[WebServer] [22m
+
+[1A[2K[2m[WebServer] [22m   [1m[38;2;173;127;168mΓû▓ Next.js 15.5.5[39m[22m
+
+[1A[2K[2m[WebServer] [22m   - Local:        http://localhost:3000
+[2m[WebServer] [22m   - Network:      http://172.29.32.1:3000
+[2m[WebServer] [22m   - Experiments (use with caution):
+[2m[WebServer] [22m     ┬╖ optimizePackageImports
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Starting...
+
+[1A[2K[2m[WebServer] [22mWarning: Contentlayer might not work as expected on Windows
+
+[1A[2K[2m[WebServer] [22mContentlayer config change detected. Updating type definitions and data...
+
+[1A[2K[2m[WebServer] [22mGenerated 0 documents in .contentlayer
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Ready in 8.2s
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling / ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled / in 13.6s (5441 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 15464ms
+
+
+Running 30 tests using 2 workers
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 2.2s (2615 modules)
+
+[1A[2K[1/30] [chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[2/30] [chromium] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1027ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 1143ms
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 1109ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1572ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 837ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 629ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 810ms (2615 modules)
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+URL: http://localhost:3000/
+
+[1A[2KScreenshot saved
+
+[1A[2KMethod 1 - getByLabel:
+
+[1A[2K  Count: [33m0[39m
+
+[1A[2KMethod 2 - getByRole:
+
+[1A[2K  Count: [33m0[39m
+
+[1A[2KMethod 3 - locator by aria-label:
+
+[1A[2K  Count: [33m0[39m
+
+[1A[2KMethod 4 - All buttons:
+
+[1A[2K  Total: [33m4[39m
+
+[1A[2K  Button 0: text="What gets logged?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 1: text="Is this a live trading system?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 2: text="Can we review the telemetry feed?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 3: text="What does onboarding look like?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K[3/30] [chromium] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1013ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /contact ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /contact in 4.5s (5466 modules)
+
+[1A[2K  1) [chromium] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes 
+
+    TimeoutError: locator.click: Timeout 5000ms exceeded.
+    Call log:
+    [2m  - waiting for getByLabel('Toggle theme')[22m
+
+
+      20 |
+      21 |     // Click to toggle - use force to bypass hidden/pointer-events checks
+    > 22 |     await themeToggleButton.click({ force: true, timeout: 5000 });
+         |                             ^
+      23 |     await page.waitForTimeout(300);
+      24 |
+      25 |     // Check that class changed
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:22:29
+
+    Error Context: test-results\functional-Functional-Test-74d28-etween-light-and-dark-modes-chromium\error-context.md
+
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 5675ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1544ms (2626 modules)
+
+[1A[2K[4/30] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[5/30] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 835ms (2626 modules)
+
+[1A[2K[6/30] [chromium] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 714ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 773ms (2626 modules)
+
+[1A[2K[7/30] [firefox] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 864ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 1287ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1857ms (2626 modules)
+
+[1A[2K[8/30] [firefox] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 969ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1413ms (2626 modules)
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 619ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 997ms (2626 modules)
+
+[1A[2K[9/30] [firefox] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 838ms
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /api/contact ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /api/contact in 9.6s (5496 modules)
+
+[1A[2K[2m[WebServer] [22m POST /api/contact [32m202[39m in 9499ms
+
+[1A[2K  2) [chromium] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('p:has-text("Thanks")').first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('p:has-text("Thanks")').first()[22m
+
+
+      51 |     // Message is: "Thanks. We'll be in touch after reviewing compliance requirements."
+      52 |     const successMessage = page.locator('p:has-text("Thanks")').first();
+    > 53 |     await expect(successMessage).toBeVisible({ timeout: 10000 });
+         |                                  ^
+      54 |   });
+      55 | });
+      56 |
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:53:34
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-chromium\error-context.md
+
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 1240ms
+
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 8484ms
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /favicon.ico ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /favicon.ico in 1293ms (2871 modules)
+
+[1A[2K[10/30] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[2m[WebServer] [22m GET /favicon.ico [32m200[39m in 1507ms
+
+[1A[2K[11/30] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[12/30] [firefox] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m POST /api/contact [32m202[39m in 40ms
+
+[1A[2K[13/30] [webkit] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[14/30] [webkit] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[15/30] [webkit] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[16/30] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[17/30] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[18/30] [webkit] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 653ms
+
+[1A[2K[19/30] [Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 358ms
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+URL: http://localhost:3000/
+
+[1A[2KScreenshot saved
+
+[1A[2KMethod 1 - getByLabel:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 2 - getByRole:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 3 - locator by aria-label:
+
+[1A[2K  Count: [33m1[39m
+
+[1A[2KMethod 4 - All buttons:
+
+[1A[2K  Total: [33m11[39m
+
+[1A[2K  Button 0: text="Toggle navigation" aria-label="null" html="<span class="sr-only">Toggle navigation</span><svg"
+
+[1A[2K  Button 1: text="What gets logged?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 2: text="Is this a live trading system?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 3: text="Can we review the telemetry feed?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 4: text="What does onboarding look like?" aria-label="null" html="<span class="text-sm font-semibold text-[color:var"
+
+[1A[2K  Button 5: text="Accept all" aria-label="null" html="Accept all"
+
+[1A[2K  Button 6: text="Decline optional" aria-label="null" html="Decline optional"
+
+[1A[2K  Button 7: text="Accept All" aria-label="null" html="Accept All"
+
+[1A[2K  Button 8: text="Reject Non-Essential" aria-label="null" html="Reject Non-Essential"
+
+[1A[2K  Button 9: text="Customize" aria-label="null" html="Customize"
+
+[1A[2K[20/30] [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 250ms
+
+[1A[2K  3) [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes 
+
+    Error: locator.click: Element is not visible
+    Call log:
+    [2m  - waiting for getByLabel('Toggle theme')[22m
+    [2m    - locator resolved to <button aria-label="Toggle theme" title="Current theme: system (light)" class="group relative h-9 w-9 rounded-lg border border-[color:var(--color-line-muted)] bg-transparent transition-all duration-200 hover:border-[color:var(--color-accent-primary)] hover:bg-[color:var(--color-surface-100)]">ΓÇª</button>[22m
+    [2m  - attempting click action[22m
+    [2m    - scrolling into view if needed[22m
+
+
+      20 |
+      21 |     // Click to toggle - use force to bypass hidden/pointer-events checks
+    > 22 |     await themeToggleButton.click({ force: true, timeout: 5000 });
+         |                             ^
+      23 |     await page.waitForTimeout(300);
+      24 |
+      25 |     // Check that class changed
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:22:29
+
+    Error Context: test-results\functional-Functional-Test-74d28-etween-light-and-dark-modes-Mobile-Chrome\error-context.md
+
+
+[1A[2K[21/30] [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 193ms
+
+[1A[2K[2m[WebServer] [22m POST /api/contact [32m202[39m in 28ms
+
+[1A[2K[22/30] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[23/30] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[24/30] [Mobile Chrome] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K[25/30] [Mobile Safari] ΓÇ║ tests\debug.spec.ts:3:5 ΓÇ║ Debug: Homepage
+[1A[2K[26/30] [Mobile Safari] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes
+[1A[2K[27/30] [Mobile Safari] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully
+[1A[2K[2m[WebServer] [22m GET /contact [32m200[39m in 206ms
+
+[1A[2K  4) [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.check: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for getByLabel(/I consent to receiving compliance/)[22m
+    [2m    - locator resolved to <input required="" value="true" name="consent" type="checkbox" class="mt-1 h-5 w-5 rounded border border-[color:var(--color-line-muted)] text-[color:var(--color-accent-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-accent-primary)]"/>[22m
+    [2m  - attempting click action[22m
+    [2m    2 ├ù waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="p-6">ΓÇª</div> from <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> subtree intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m    - waiting 20ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 100ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <div class="p-6">ΓÇª</div> from <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> subtree intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 100ms[22m
+    [2m    11 ├ù waiting for element to be visible, enabled and stable[22m
+    [2m       - element is visible, enabled and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <a href="/" class="flex items-center gap-4 group">ΓÇª</a> from <header class="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md">ΓÇª</header> subtree intercepts pointer events[22m
+    [2m     - retrying click action[22m
+    [2m       - waiting 500ms[22m
+    [2m       - waiting for element to be visible, enabled and stable[22m
+    [2m       - element is visible, enabled and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <a href="/" class="flex items-center gap-4 group">ΓÇª</a> from <header class="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md">ΓÇª</header> subtree intercepts pointer events[22m
+    [2m     - retrying click action[22m
+    [2m       - waiting 500ms[22m
+    [2m       - waiting for element to be visible, enabled and stable[22m
+    [2m       - element is visible, enabled and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> intercepts pointer events[22m
+    [2m     - retrying click action[22m
+    [2m       - waiting 500ms[22m
+    [2m       - waiting for element to be visible, enabled and stable[22m
+    [2m       - element is visible, enabled and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <div class="p-6">ΓÇª</div> from <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> subtree intercepts pointer events[22m
+    [2m     - retrying click action[22m
+    [2m       - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <a href="/" class="flex items-center gap-4 group">ΓÇª</a> from <header class="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md">ΓÇª</header> subtree intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 500ms[22m
+
+
+      43 |     
+      44 |     // Check consent checkbox
+    > 45 |     await page.getByLabel(/I consent to receiving compliance/).check();
+         |                                                                ^
+      46 |
+      47 |     // Submit form
+      48 |     await page.getByRole('button', { name: 'Request gated access' }).click();
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:45:64
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-Mobile-Chrome\error-context.md
+
+
+[1A[2K[28/30] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for home page
+[1A[2K[29/30] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for live-demo page
+[1A[2K[30/30] [Mobile Safari] ΓÇ║ tests\visual-regression.spec.ts:11:7 ΓÇ║ Visual regression test for contact page
+[1A[2K  5) [Mobile Safari] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.check: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for getByLabel(/I consent to receiving compliance/)[22m
+    [2m    - locator resolved to <input required="" value="true" name="consent" type="checkbox" class="mt-1 h-5 w-5 rounded border border-[color:var(--color-line-muted)] text-[color:var(--color-accent-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-accent-primary)]"/>[22m
+    [2m  - attempting click action[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <div class="flex-1">ΓÇª</div> from <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> subtree intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is not stable[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 ├ù waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="flex-1">ΓÇª</div> from <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> subtree intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 100ms[22m
+    [2m    2 ├ù waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <a href="/" class="flex items-center gap-4 group">ΓÇª</a> from <header class="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md">ΓÇª</header> subtree intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <div class="flex-1">ΓÇª</div> from <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> subtree intercepts pointer events[22m
+    [2m  2 ├ù retrying click action[22m
+    [2m      - waiting 500ms[22m
+    [2m      - waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <a href="/" class="flex items-center gap-4 group">ΓÇª</a> from <header class="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md">ΓÇª</header> subtree intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <div class="p-6">ΓÇª</div> from <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> subtree intercepts pointer events[22m
+    [2m  2 ├ù retrying click action[22m
+    [2m      - waiting 500ms[22m
+    [2m      - waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <a href="/" class="flex items-center gap-4 group">ΓÇª</a> from <header class="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md">ΓÇª</header> subtree intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 500ms[22m
+    [2m      - waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <a href="/" class="flex items-center gap-4 group">ΓÇª</a> from <header class="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md">ΓÇª</header> subtree intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 500ms[22m
+    [2m      - waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 500ms[22m
+    [2m      - waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="flex-1">ΓÇª</div> from <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> subtree intercepts pointer events[22m
+    [2m  2 ├ù retrying click action[22m
+    [2m      - waiting 500ms[22m
+    [2m      - waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <a href="/" class="flex items-center gap-4 group">ΓÇª</a> from <header class="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md">ΓÇª</header> subtree intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <h3 class="text-lg font-semibold mb-2">Your Privacy Choices</h3> from <div class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">ΓÇª</div> subtree intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+    [2m    - <a href="/" class="flex items-center gap-4 group">ΓÇª</a> from <header class="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md">ΓÇª</header> subtree intercepts pointer events[22m
+    [2m  - retrying click action[22m
+    [2m    - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+
+
+      43 |     
+      44 |     // Check consent checkbox
+    > 45 |     await page.getByLabel(/I consent to receiving compliance/).check();
+         |                                                                ^
+      46 |
+      47 |     // Submit form
+      48 |     await page.getByRole('button', { name: 'Request gated access' }).click();
+        at C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\tests\functional.spec.ts:45:64
+
+    Error Context: test-results\functional-Functional-Test-17fb3--should-submit-successfully-Mobile-Safari\error-context.md
+
+
+[1A[2K  5 failed
+    [chromium] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes 
+    [chromium] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:5:7 ΓÇ║ Functional Tests ΓÇ║ Theme toggle should switch between light and dark modes 
+    [Mobile Chrome] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+    [Mobile Safari] ΓÇ║ tests\functional.spec.ts:33:7 ΓÇ║ Functional Tests ΓÇ║ Contact form should submit successfully 
+  21 skipped
+  4 passed (2.5m)
+
+[36m  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.[39m

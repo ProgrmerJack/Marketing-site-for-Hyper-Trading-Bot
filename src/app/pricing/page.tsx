@@ -4,10 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
-import { PageHeader } from "@/components/page-header";
-import { Calculator, TrendingUp, Check, X, DollarSign, Shield, Zap } from "lucide-react";
-import { GlareHover, SpotlightCard } from "@/components/reactbits/dynamic";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+import { Calculator, TrendingUp, Check, X, DollarSign, Shield, ArrowRight } from "lucide-react";
+import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
+// Use UnifiedBackground for consistent site-wide animation; no per-section AnimatedBackground
 import { useMotion } from "@/components/motion/MotionProvider";
 import type { Route } from "next";
 
@@ -40,26 +39,114 @@ export default function PricingPage() {
 
   return (
     <div className="relative">
-      <PageHeader
-        eyebrow="Pricing"
-        title="Revolutionary profit-share model designed for your success"
-        description="We only succeed when you succeed. Zero management fees, zero monthly charges. Experience true alignment with your trading partner.*"
-      />
+      {/* Hero Section */}
+      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
+        {/* Use unified global AnimatedBackground for consistent hyperspeed animation */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
+        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex w-fit items-center rounded-full border border-blue-300 bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400"
+            >
+              Pricing
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
+            >
+              Revolutionary profit-share model designed for your success
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl"
+            >
+              We only succeed when you succeed. Zero management fees, zero monthly charges. Experience true alignment with your trading partner.*
+            </motion.p>
+
+            {/* Pricing Highlight Cards */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="grid gap-4 pt-8 sm:grid-cols-3"
+            >
+              {pricingHighlights.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                    className="group"
+                  >
+                    <SpotlightCard
+                      className="relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/80"
+                      spotlightColor="rgba(59, 130, 246, 0.2)"
+                    >
+                      <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} shadow-md transition-transform duration-300 group-hover:scale-110`}>
+                        <Icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{item.title}</h3>
+                      <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{item.description}</p>
+                    </SpotlightCard>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap items-center justify-center gap-4 pt-4"
+            >
+              <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
+                <div className="inline-block">
+                  <div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
+                    <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+                      <Link
+                        href={("/contact" as Route)}
+                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5"
+                      >
+                        <span className="relative z-10">Get started today</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
+                      </Link>
+                    </StarBorder>
+                  </div>
+                </div>
+              </ClickSpark>
+              <Link
+                href={("/live-demo" as Route)}
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20"
+              >
+                Try live demo
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+          </div>
+        </Container>
+      </section>
 
       {/* Pricing Highlights Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="threads"
-              colors={["rgba(59,130,246,0.4)", "rgba(16,185,129,0.3)", "rgba(147,51,234,0.25)"]}
-              speed="32s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
-          )}
+          {/* Per-section AnimatedBackground removed to rely on UnifiedBackground */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.06),rgba(59,130,246,0.04),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.04),rgba(96,165,250,0.03),transparent_70%)]" />
           <div className="section-surface" />
         </div>
 
@@ -115,16 +202,8 @@ export default function PricingPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="liquid"
-              colors={["rgba(139, 92, 246, 0.3)", "rgba(236, 72, 153, 0.25)", "rgba(59, 130, 246, 0.2)"]}
-              speed="30s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.1),transparent_70%)]" />
-          )}
+          {/* Per-section AnimatedBackground removed to rely on UnifiedBackground */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.1),transparent_70%)]" />
           <div className="section-surface" />
         </div>
 
@@ -151,16 +230,8 @@ export default function PricingPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="beams"
-              colors={["rgba(16,185,129,0.4)", "rgba(59,130,246,0.3)", "rgba(245,158,11,0.25)"]}
-              speed="28s"
-              opacity={0.6}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
-          )}
+          {/* Per-section AnimatedBackground removed to rely on UnifiedBackground */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
           <div className="section-surface" />
         </div>
 
@@ -175,20 +246,20 @@ export default function PricingPage() {
               </p>
             </div>
 
-            <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/50 to-emerald-50/30 shadow-xl backdrop-blur-sm dark:border-slate-700/50 dark:from-slate-900 dark:via-slate-850 dark:to-emerald-950/30">
+            <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/60 to-emerald-50/40 shadow-2xl backdrop-blur-sm dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-emerald-950/40">
               {/* Gradient overlay */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-blue-500/5 dark:from-emerald-500/10 dark:to-blue-500/10" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-blue-500/8 dark:from-emerald-500/15 dark:to-blue-500/15" />
 
               <div className="relative overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 dark:border-slate-700 dark:from-slate-900 dark:to-slate-800">
-                      <th className="p-4 font-bold text-slate-900 dark:text-white">Feature</th>
-                      <th className="p-4 font-bold text-emerald-700 dark:text-emerald-400">
+                    <tr className="border-b-2 border-slate-300/60 bg-gradient-to-r from-slate-100/90 to-slate-50/90 dark:border-slate-600/60 dark:from-slate-800/95 dark:to-slate-700/90">
+                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Feature</th>
+                      <th className="p-4 font-bold text-emerald-700 dark:text-emerald-300">
                         Hyper Trading Automation
                       </th>
-                      <th className="p-4 font-bold text-slate-900 dark:text-white">Traditional Hedge Fund</th>
-                      <th className="p-4 font-bold text-slate-900 dark:text-white">Typical Crypto Bot</th>
+                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Traditional Hedge Fund</th>
+                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Typical Crypto Bot</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -235,25 +306,25 @@ export default function PricingPage() {
                         traditional: "Quarterly with 30–90 day notice",
                         crypto: "Instant (exchange custody risk)",
                       },
-                    ].map((row, index) => (
+                    ].map((row) => (
                       <tr
                         key={row.feature}
-                        className="border-b border-slate-100 transition-colors hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-700/50"
+                        className="border-b border-slate-200/60 transition-colors hover:bg-slate-50/80 dark:border-slate-700/60 dark:hover:bg-slate-800/60"
                       >
-                        <td className="p-4 font-medium text-slate-900 dark:text-white">{row.feature}</td>
+                        <td className="p-4 font-medium text-slate-900 dark:text-slate-100">{row.feature}</td>
                         <td className="p-4">
                           {typeof row.hyper === "object" ? (
-                            <span className={row.hyper.positive ? "font-semibold text-emerald-600 dark:text-emerald-400" : ""}>
+                            <span className={row.hyper.positive ? "font-semibold text-emerald-600 dark:text-emerald-300" : ""}>
                               {row.hyper.icon && (
                                 <row.hyper.icon className="mb-0.5 inline h-5 w-5" />
                               )}{" "}
                               {row.hyper.text}
                             </span>
                           ) : (
-                            <span className="font-semibold text-emerald-600 dark:text-emerald-400">{row.hyper}</span>
+                            <span className="font-semibold text-emerald-600 dark:text-emerald-300">{row.hyper}</span>
                           )}
                         </td>
-                        <td className="p-4 text-slate-700 dark:text-slate-300">
+                        <td className="p-4 font-medium text-slate-700 dark:text-slate-200">
                           {typeof row.traditional === "object" ? (
                             <span className="text-red-600 dark:text-red-400">
                               {row.traditional.icon && <row.traditional.icon className="mb-0.5 inline h-5 w-5" />}{" "}
@@ -263,7 +334,7 @@ export default function PricingPage() {
                             row.traditional
                           )}
                         </td>
-                        <td className="p-4 text-slate-700 dark:text-slate-300">
+                        <td className="p-4 font-medium text-slate-700 dark:text-slate-200">
                           {typeof row.crypto === "object" ? (
                             <span className="text-red-600 dark:text-red-400">
                               {row.crypto.icon && <row.crypto.icon className="mb-0.5 inline h-5 w-5" />}{" "}
@@ -278,8 +349,8 @@ export default function PricingPage() {
                   </tbody>
                 </table>
               </div>
-              <div className="border-t border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
-                <p className="text-xs text-slate-600 dark:text-slate-400">
+              <div className="border-t-2 border-slate-300/60 bg-slate-100/80 p-4 dark:border-slate-600/60 dark:bg-slate-800/80">
+                <p className="text-xs font-medium text-slate-600 dark:text-slate-300">
                   * Comparison based on typical industry structures. Actual terms may vary. See{" "}
                   <Link href="/risk-disclosure" className="text-blue-600 underline dark:text-blue-400">
                     full disclaimers
@@ -295,16 +366,7 @@ export default function PricingPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {backgroundsEnabled && hydrated ? (
-            <AnimatedBackground
-              variant="dither"
-              colors={["rgba(16, 185, 129, 0.3)", "rgba(239, 68, 68, 0.25)", "rgba(245, 158, 11, 0.2)"]}
-              speed="28s"
-              opacity={0.65}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(16,185,129,0.1),transparent_70%)]" />
-          )}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(16,185,129,0.1),transparent_70%)]" />
           <div className="section-surface" />
         </div>
 
@@ -445,19 +507,19 @@ function FeeCalculator() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <div className="relative rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-purple-50/30 to-blue-50/20 p-8 shadow-xl backdrop-blur-sm dark:border-slate-700/50 dark:from-slate-900 dark:via-purple-950/40 dark:to-blue-950/30">
+      <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-purple-50/40 to-blue-50/30 p-8 shadow-2xl backdrop-blur-sm dark:border-slate-700/70 dark:from-slate-900/95 dark:via-purple-950/50 dark:to-blue-950/40 md:p-10">
         {/* Gradient overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 dark:from-purple-500/10 dark:to-blue-500/10" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-blue-500/8 dark:from-purple-500/15 dark:to-blue-500/15" />
 
         <div className="relative mb-8 flex items-center gap-4">
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg">
             <Calculator className="h-7 w-7 text-white" />
           </div>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Profit-Share Estimator</h3>
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Profit-Share Estimator</h3>
         </div>
 
         <div className="relative mb-8">
-          <label className="mb-3 block text-sm font-bold text-slate-900 dark:text-white">
+          <label className="mb-3 block text-sm font-bold text-slate-900 dark:text-slate-100">
             Hypothetical Net Profit (after trading costs)
           </label>
           <input
@@ -467,31 +529,31 @@ function FeeCalculator() {
             step="1000"
             value={profit}
             onChange={(e) => setProfit(Number(e.target.value))}
-            className="h-3 w-full cursor-pointer appearance-none rounded-full bg-gradient-to-r from-red-200 via-slate-200 to-emerald-200 dark:from-red-900 dark:via-slate-700 dark:to-emerald-900"
+            className="h-3 w-full cursor-pointer appearance-none rounded-full bg-gradient-to-r from-red-200 via-slate-200 to-emerald-200 dark:from-red-800 dark:via-slate-600 dark:to-emerald-800"
           />
           <div className="mt-3 text-center">
-            <span className="text-4xl font-bold text-slate-900 dark:text-white">
+            <span className="text-4xl font-bold text-slate-900 dark:text-slate-100">
               ${profit.toLocaleString()}
             </span>
           </div>
         </div>        <div className="relative grid gap-6 md:grid-cols-2">
-          <div className="space-y-4 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 p-6 dark:from-emerald-950/30 dark:to-teal-950/30">
-            <h4 className="font-bold text-slate-900 dark:text-white">Hyper Trading Automation</h4>
+          <div className="space-y-4 rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/80 to-teal-50/70 p-6 dark:border-emerald-800/60 dark:from-emerald-950/40 dark:to-teal-950/40">
+            <h4 className="font-bold text-slate-900 dark:text-slate-100">Hyper Trading Automation</h4>
             <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-slate-700 dark:text-slate-300">Management Fee (Annual):</span>
-                  <span className="font-bold text-emerald-600 dark:text-emerald-400">$0</span>
+                  <span className="font-medium text-slate-700 dark:text-slate-200">Management Fee (Annual):</span>
+                  <span className="font-bold text-emerald-600 dark:text-emerald-300">$0</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-700 dark:text-slate-300">Profit-Share (20% illustrative):</span>
-                  <span className="font-bold text-slate-900 dark:text-white">
+                  <span className="font-medium text-slate-700 dark:text-slate-200">Profit-Share (20% illustrative):</span>
+                  <span className="font-bold text-slate-900 dark:text-slate-100">
                     ${profitShare.toLocaleString()}
                   </span>
                 </div>
-                <div className="flex justify-between border-t-2 border-emerald-200 pt-3 dark:border-emerald-900/30">
-                  <span className="font-bold text-slate-900 dark:text-white">Your Net Gain/Loss:</span>
+                <div className="flex justify-between border-t-2 border-emerald-300/60 pt-3 dark:border-emerald-800/60">
+                  <span className="font-bold text-slate-900 dark:text-slate-100">Your Net Gain/Loss:</span>
                   <span
-                    className={`text-xl font-bold ${yourNet >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}
+                    className={`text-xl font-bold ${yourNet >= 0 ? "text-emerald-600 dark:text-emerald-300" : "text-red-600 dark:text-red-400"}`}
                   >
                     ${yourNet.toLocaleString()}
                   </span>
@@ -499,25 +561,25 @@ function FeeCalculator() {
             </div>
           </div>
 
-          <div className="space-y-4 rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 p-6 dark:from-orange-950/30 dark:to-amber-950/30">
-            <h4 className="font-bold text-slate-900 dark:text-white">Traditional Fund (2% + 20%)</h4>
+          <div className="space-y-4 rounded-2xl border border-orange-200/60 bg-gradient-to-br from-orange-50/80 to-amber-50/70 p-6 dark:border-orange-800/60 dark:from-orange-950/40 dark:to-amber-950/40">
+            <h4 className="font-bold text-slate-900 dark:text-slate-100">Traditional Fund (2% + 20%)</h4>
             <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-slate-700 dark:text-slate-300">Management Fee (2% of $100k):</span>
-                  <span className="font-bold text-slate-900 dark:text-white">
+                  <span className="font-medium text-slate-700 dark:text-slate-200">Management Fee (2% of $100k):</span>
+                  <span className="font-bold text-slate-900 dark:text-slate-100">
                     ${managementFee.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-700 dark:text-slate-300">Performance Fee (20%):</span>
-                  <span className="font-bold text-slate-900 dark:text-white">
+                  <span className="font-medium text-slate-700 dark:text-slate-200">Performance Fee (20%):</span>
+                  <span className="font-bold text-slate-900 dark:text-slate-100">
                     ${traditionalPerfFee.toLocaleString()}
                   </span>
                 </div>
-                <div className="flex justify-between border-t-2 border-orange-200 pt-3 dark:border-orange-900/30">
-                  <span className="font-bold text-slate-900 dark:text-white">Your Net Gain/Loss:</span>
+                <div className="flex justify-between border-t-2 border-orange-300/60 pt-3 dark:border-orange-800/60">
+                  <span className="font-bold text-slate-900 dark:text-slate-100">Your Net Gain/Loss:</span>
                   <span
-                    className={`text-xl font-bold ${traditionalNet >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}
+                    className={`text-xl font-bold ${traditionalNet >= 0 ? "text-emerald-600 dark:text-emerald-300" : "text-red-600 dark:text-red-400"}`}
                   >
                     ${traditionalNet.toLocaleString()}
                   </span>
@@ -526,7 +588,7 @@ function FeeCalculator() {
           </div>
         </div>
 
-        <p className="relative mt-6 text-xs text-slate-600 dark:text-slate-400">
+        <p className="relative mt-6 text-xs font-medium text-slate-600 dark:text-slate-300">
           * Hypothetical calculation based on $100,000 account size. Results may vary. Not financial advice.
         </p>
       </div>

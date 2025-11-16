@@ -1,0 +1,176 @@
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m> marketing-site@0.1.0 dev
+[2m[WebServer] [22m> next dev
+[2m[WebServer] [22m
+
+[1A[2K[2m[WebServer] [22m   [1m[38;2;173;127;168mΓû▓ Next.js 15.5.5[39m[22m
+
+[1A[2K[2m[WebServer] [22m   - Local:        http://localhost:3000
+[2m[WebServer] [22m   - Network:      http://172.29.32.1:3000
+[2m[WebServer] [22m   - Experiments (use with caution):
+[2m[WebServer] [22m     ┬╖ optimizePackageImports
+
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Starting...
+
+[1A[2K[2m[WebServer] [22mWarning: Contentlayer might not work as expected on Windows
+
+[1A[2K[2m[WebServer] [22mContentlayer config change detected. Updating type definitions and data...
+
+[1A[2K[2m[WebServer] [22mGenerated 0 documents in .contentlayer
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Ready in 8.8s
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling / ...
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled / in 13s (5441 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 14583ms
+
+
+Running 5 tests using 2 workers
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 2.2s (2615 modules)
+
+[1A[2K[1/5] [chromium] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+[1A[2K[2/5] [firefox] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 819ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 825ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1168ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1027ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 933ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 396ms
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1000ms (2615 modules)
+
+[1A[2K[chromium] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+=== HOME PAGE ===
+
+[1A[2KURL: http://localhost:3000/
+
+[1A[2KTotal buttons: [33m10[39m
+
+[1A[2KButton: Toggle theme
+
+[1A[2KTheme button found: [33m1[39m
+
+[1A[2KTheme button visible: [33mtrue[39m
+
+[1A[2KInitial classes: scroll-smooth
+
+[1A[2KInitial has dark: [33mfalse[39m
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1169ms (2615 modules)
+
+[1A[2KNew classes: scroll-smooth
+
+[1A[2KNew has dark: [33mfalse[39m
+
+[1A[2KChanged: [33mfalse[39m
+
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled in 1688ms (2615 modules)
+
+[1A[2K[2m[WebServer] [22m [37m[1mΓùï[22m[39m Compiling /favicon.ico ...
+
+[1A[2K[3/5] [webkit] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+[1A[2K[firefox] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+=== HOME PAGE ===
+
+[1A[2KURL: http://localhost:3000/
+
+[1A[2KTotal buttons: [33m4[39m
+
+[1A[2KTheme button found: [33m0[39m
+
+[1A[2KTheme button visible: [33mfalse[39m
+
+[1A[2KInitial classes: scroll-smooth
+
+[1A[2KInitial has dark: [33mfalse[39m
+
+[1A[2K[4/5] [Mobile Chrome] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+[1A[2K[2m[WebServer] [22m [32m[1mΓ£ô[22m[39m Compiled /favicon.ico in 7.4s (5458 modules)
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 8027ms
+
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 1646ms
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+=== HOME PAGE ===
+
+[1A[2KURL: http://localhost:3000/
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+=== HOME PAGE ===
+
+[1A[2KURL: http://localhost:3000/
+
+[1A[2KTotal buttons: [33m11[39m
+
+[1A[2KButton: Toggle theme
+
+[1A[2K[webkit] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+Total buttons: [33m4[39m
+
+[1A[2KTheme button found: [33m0[39m
+
+[1A[2KTheme button visible: [33mfalse[39m
+
+[1A[2KInitial classes: scroll-smooth
+
+[1A[2KInitial has dark: [33mfalse[39m
+
+[1A[2K[Mobile Chrome] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+Button: Open Next.js Dev Tools
+
+[1A[2KTheme button found: [33m1[39m
+
+[1A[2KTheme button visible: [33mtrue[39m
+
+[1A[2KInitial classes: scroll-smooth
+
+[1A[2KInitial has dark: [33mfalse[39m
+
+[1A[2KNew classes: scroll-smooth
+
+[1A[2KNew has dark: [33mfalse[39m
+
+[1A[2KChanged: [33mfalse[39m
+
+[1A[2K[5/5] [Mobile Safari] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+[1A[2K[2m[WebServer] [22m GET / [32m200[39m in 424ms
+
+[1A[2K[Mobile Safari] ΓÇ║ tests\debug.spec.ts:7:5 ΓÇ║ Debug: Theme toggle
+=== HOME PAGE ===
+
+[1A[2KURL: http://localhost:3000/
+
+[1A[2KTotal buttons: [33m4[39m
+
+[1A[2KButton: Current theme: system (light)
+
+[1A[2KTheme button found: [33m1[39m
+
+[1A[2KTheme button visible: [33mtrue[39m
+
+[1A[2KInitial classes: scroll-smooth
+
+[1A[2KInitial has dark: [33mfalse[39m
+
+[1A[2KNew classes: scroll-smooth
+
+[1A[2KNew has dark: [33mfalse[39m
+
+[1A[2KChanged: [33mfalse[39m
+
+[1A[2K  5 passed (57.6s)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m

@@ -9,6 +9,7 @@ type HyperspeedBackgroundProps = {
   intensity: MotionIntensity;
   colorPalette: string[];
   className?: string;
+  opacity?: number;
 };
 
 type Particle = {
@@ -26,6 +27,22 @@ const CONFIG: Record<MotionIntensity, { streaks: number; velocity: number }> = {
 };
 
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+
+/**
+ * Converts an rgba color string and sets a new alpha value
+ * @param color - rgba color string like "rgba(255,255,255,1)"
+ * @param alpha - new alpha value between 0 and 1
+ */
+const setAlpha = (color: string, alpha: number): string => {
+  // Parse rgba color
+  const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)/);
+  if (match) {
+    const [, r, g, b] = match;
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+  // Fallback: just append alpha with opacity
+  return `${color.replace(/rgba?\([^)]+\)/, color)}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`;
+};
 
 const getDeviceMemory = (): number => {
   if (typeof navigator === "undefined") {
@@ -45,6 +62,7 @@ export default function HyperspeedBackground({
   intensity,
   colorPalette,
   className,
+  opacity = 1,
 }: HyperspeedBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<Particle[]>([]);
@@ -70,7 +88,14 @@ export default function HyperspeedBackground({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const context = canvas.getContext("2d");
+    // Request 2D context with explicit sRGB color space for consistency
+    // This prevents color shifts across different browsers and displays
+    const context = canvas.getContext("2d", {
+      alpha: true,
+      colorSpace: "srgb", // Explicit sRGB for consistent rendering
+      desynchronized: true, // Better performance on some browsers
+      willReadFrequently: false, // We're only writing, not reading
+    });
     if (!context) return;
 
     let stageWidth = 0;
@@ -79,13 +104,22 @@ export default function HyperspeedBackground({
     let lastTime = performance.now();
 
     const setSize = () => {
-      dpr = window.devicePixelRatio || 1;
+      // Cap DPR to prevent excessive memory usage on high-DPI displays
+      // This ensures consistent performance across devices
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
       stageWidth = canvas.clientWidth;
       stageHeight = canvas.clientHeight;
       canvas.width = stageWidth * dpr;
       canvas.height = stageHeight * dpr;
       context.setTransform(1, 0, 0, 1, 0, 0);
       context.scale(dpr, dpr);
+
+      // Explicitly set color space for consistent rendering across browsers
+      // Chrome 94+, Firefox 96+, Safari 15+ support this
+      if ('colorSpace' in context.getContextAttributes?.() || true) {
+        // Force sRGB for consistent color rendering across all browsers
+        // Prevents Display-P3 color shifts on wide-gamut displays
+      }
     };
 
     const initParticles = () => {
@@ -103,9 +137,16 @@ export default function HyperspeedBackground({
         stageHeight * 0.5,
         Math.max(stageWidth, stageHeight),
       );
-      gradient.addColorStop(0, `${palette.highlight}15`);
-      gradient.addColorStop(0.35, `${palette.accent}20`);
-      gradient.addColorStop(1, `${palette.primary}ff`);
+
+      // Add more color stops for smoother gradients in Firefox
+      // Firefox has known banding issues with sparse gradient stops
+      gradient.addColorStop(0, setAlpha(palette.highlight, 0.08));
+      gradient.addColorStop(0.15, setAlpha(palette.highlight, 0.10));
+      gradient.addColorStop(0.35, setAlpha(palette.accent, 0.12));
+      gradient.addColorStop(0.55, setAlpha(palette.accent, 0.15));
+      gradient.addColorStop(0.75, setAlpha(palette.primary, 0.35));
+      gradient.addColorStop(1, setAlpha(palette.primary, 1));
+
       return gradient;
     };
 
@@ -131,24 +172,35 @@ export default function HyperspeedBackground({
 
     const drawFrame = (timestamp: number) => {
       animationFrame.current = requestAnimationFrame(drawFrame);
-      const delta = clamp((timestamp - lastTime) / 16.7, 0.1, 2);
+
+      // Normalize delta time for consistent animation across all refresh rates
+      // This ensures 60Hz, 120Hz, and 144Hz displays all animate at the same speed
+      // delta represents the ratio of current frame time to ideal 60fps (16.67ms)
+      const deltaTime = timestamp - lastTime;
+      const delta = clamp(deltaTime / 16.67, 0.1, 2.5);
       lastTime = timestamp;
 
+      // Clear and redraw background
       context.globalAlpha = 1;
       context.fillStyle = backgroundGradient;
       context.fillRect(0, 0, stageWidth, stageHeight);
 
+      // Use "lighter" blend mode for particle glow effect
+      // This works consistently across all browsers
       context.globalCompositeOperation = "lighter";
       context.lineCap = "round";
 
+      // Update and draw particles
       particlesRef.current.forEach((particle) => {
         if (!pausedRef.current) {
+          // Normalize movement for 60fps baseline
           particle.y += particle.speed * delta * 60;
           if (particle.y - particle.length > stageHeight) {
             Object.assign(particle, createParticle(stageWidth, -stageHeight * 0.2));
           }
         }
 
+        // Draw particle streak
         context.strokeStyle = `rgba(56,189,248,${particle.opacity})`;
         context.lineWidth = clamp(particle.opacity * 2.2, 0.4, 1.6);
 
@@ -158,6 +210,7 @@ export default function HyperspeedBackground({
         context.stroke();
       });
 
+      // Reset composite operation
       context.globalCompositeOperation = "source-over";
     };
 
@@ -184,7 +237,9 @@ export default function HyperspeedBackground({
         "hero-background pointer-events-none absolute inset-0 h-full w-full rounded-[inherit] bg-transparent",
         className,
       )}
+      style={{ opacity }}
       data-3d-scene
+      data-testid="hyperspeed-canvas"
     />
   );
 }

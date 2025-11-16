@@ -1,8 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import clsx from "clsx";
 import type { CSSProperties } from "react";
+import { useMotion } from "@/components/motion/MotionProvider";
 import "@/styles/animated-backgrounds.css";
+
+const HyperspeedBG = dynamic(() => import("./bg/hyperspeed"), { ssr: false });
 
 type AnimatedBackgroundVariant =
   | "threads"
@@ -40,11 +44,31 @@ export function AnimatedBackground({
   variant,
   colors = [],
   speed = "28s",
-  opacity = 0.75,
+  opacity = 0.9,
   blendMode = "normal",
   className,
   style,
 }: AnimatedBackgroundProps) {
+  const { intensity, hydrated } = useMotion();
+
+  // For hyperspeed variant, render the canvas-based hyperspeed background
+  if (variant === "hyperspeed" && hydrated) {
+    const colorPalette = colors.length > 0 
+      ? colors 
+      : ["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"];
+    
+    return (
+      <HyperspeedBG
+        paused={false}
+        intensity={intensity}
+        colorPalette={colorPalette}
+        className={className}
+        opacity={opacity}
+      />
+    );
+  }
+
+  // For other variants, use CSS-based animations
   const colorVariables = VARIABLE_KEYS.reduce<Record<string, string>>((acc, key, index) => {
     const color = colors[index];
     if (color) {

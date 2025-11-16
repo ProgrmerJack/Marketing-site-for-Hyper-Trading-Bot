@@ -3,10 +3,11 @@
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { ContactForm } from "@/components/forms/contact-form";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
 import { Mail, Shield, FileCheck, CheckCircle2, HelpCircle } from "lucide-react";
-import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+// UnifiedBackground provides site-wide background animation; remove local AnimatedBackground usage
 
 const faqs = [
   {
@@ -57,21 +58,31 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Tell us about your mandate -- no sales fluff, just validation"
         description="Complete the consent-aware form below. You&apos;ll receive a double opt-in email with our postal address and unsubscribe option per CAN-SPAM."
-        backgroundVariant="threads"
-        backgroundColors={["rgba(59, 130, 246, 0.4)", "rgba(139, 92, 246, 0.3)", "rgba(16, 185, 129, 0.25)"]}
-      />
+        backgroundVariant="hyperspeed"
+        backgroundOpacity={0.9}
+        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+      >
+        <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Request gated demo</div>
+            <div className="mb-3 text-xl font-bold">Qualified access</div>
+            <p className="text-xs text-muted-foreground">We gate demos; provide minimal context and we&apos;ll reach out to qualify access.</p>
+            <div className="mt-4">
+              <motion.a href="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
+                Request gated demo
+              </motion.a>
+            </div>
+          </SpotlightCard>
+        </motion.div>
+      </PageHeaderAnimated>
 
       {/* Contact Form Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="threads"
-            colors={["rgba(59, 130, 246, 0.5)", "rgba(139, 92, 246, 0.4)", "rgba(16, 185, 129, 0.35)"]}
-            speed="28s"
-            opacity={0.75}
-          />
-        </div>
+          <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+            {/* Local AnimatedBackground removed in favor of UnifiedBackground */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.06),rgba(59,130,246,0.04),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.04),rgba(96,165,250,0.03),transparent_70%)]" />
+          </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="section-surface" />
         </div>
@@ -201,12 +212,7 @@ export default function ContactPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <AnimatedBackground
-            variant="beams"
-            colors={["rgba(139, 92, 246, 0.45)", "rgba(236, 72, 153, 0.35)", "rgba(59, 130, 246, 0.3)"]}
-            speed="24s"
-            opacity={0.8}
-          />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="section-surface" />
