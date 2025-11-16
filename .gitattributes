@@ -1,0 +1,13 @@
+* text eol=lf
+
+# Images and other binary assets should maintain their original bytes
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.mp4 binary
+*.mp3 binary
+*.woff binary
+*.woff2 binary
