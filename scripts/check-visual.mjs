@@ -28,7 +28,7 @@ function waitForPort(port, host = '127.0.0.1', retries = 30, delay = 1000) {
       await waitForPort(p, '127.0.0.1', 30, 250);
       hostPort = p;
       break;
-    } catch (e) {
+    } catch {
       // continue
     }
   }
@@ -64,23 +64,23 @@ function waitForPort(port, host = '127.0.0.1', retries = 30, delay = 1000) {
   try {
     await page.waitForSelector('[data-testid="feature-card"]', { timeout: 60000 });
     firstCardClass = await page.$eval('[data-testid="feature-card"]', el => el.className);
-  } catch (e) {
+    } catch {
     console.warn('No feature card found on the page within 60s (slot might be dynamic).');
     // Take a screenshot for debugging
     try {
       await page.screenshot({ path: 'tmp_feature_card_missing.png', fullPage: true });
       console.log('Saved screenshot tmp_feature_card_missing.png');
-    } catch (e) {
+    } catch {
       // ignore
     }
   }
 
   // Debug: list children in the workflow feature grid (by heading text)
   try {
-    const gridInfo = await page.$eval('h2', header => {
+    const gridInfo = await page.evaluate(() => {
       // Find the H2 with the matching text
       const headings = Array.from(document.querySelectorAll('h2'));
-      const target = headings.find(h => /Signals, controls, execution/i.test(h.textContent || ''));
+      const target = headings.find((h) => /Signals, controls, execution/i.test(h.textContent || ''));
       const section = target ? target.closest('section') : null;
       const grid = section ? section.querySelector('.grid') : null;
       return {
@@ -90,7 +90,7 @@ function waitForPort(port, host = '127.0.0.1', retries = 30, delay = 1000) {
       };
     });
     console.log('Grid info:', gridInfo);
-  } catch (e) {
+  } catch {
     // ignore
   }
 
@@ -109,7 +109,7 @@ function waitForPort(port, host = '127.0.0.1', retries = 30, delay = 1000) {
   const canvasCount = await page.$$eval('canvas', (els) => els.length);
   // Get computed background of card-spotlight elements (dark mode)
   const cardSpotlightInfoDark = await page.$$eval('.card-spotlight', els => els.map(el => ({ bg: window.getComputedStyle(el).backgroundColor, className: el.className })));
-  const cardSpotlightInfo = await page.$$eval('.card-spotlight', els => els.map(el => ({ bg: window.getComputedStyle(el).backgroundColor, className: el.className, outer: el.outerHTML.substring(0,200) })));
+  // Note: we intentionally use separate light/dark computations; combined result is not used.
 
   console.log('First feature card classes:', firstCardClass);
   console.log('Hero telemetry text color (light):', heroTextColorLight.color, 'class:', heroTextColorLight.className, 'priority:', heroTextColorLight.priority);

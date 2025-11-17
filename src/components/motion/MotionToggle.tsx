@@ -24,6 +24,12 @@ const MODE_OPTIONS = [
 		description: "Minimal motion",
 		icon: ZapOff,
 	},
+	{
+		value: "force" as const,
+		label: "Force",
+		description: "Force full motion (ignores system preference)",
+		icon: Sparkles,
+	},
 ];
 
 const INTENSITY_OPTIONS = [

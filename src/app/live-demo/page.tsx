@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Section, Container } from "@hyper/ui";
+import { Section } from "@hyper/ui";
 import { DemoTelemetry } from "@/components/demo-telemetry";
 import { DemoChart } from "@/components/charts/demo-chart";
 import { DemoStreamClient } from "@/components/live-demo-client";
@@ -9,7 +9,7 @@ import MarketDataDemo from "@/components/market-data-demo";
 import { AdvancedChartsDemo } from "@/components/charts/advanced-charts-demo";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { SpotlightCard } from "@/components/reactbits/dynamic";
-import { useMotion } from "@/components/motion/MotionProvider";
+// motion hooks are not used in this page
 
 export default function LiveDemoPage() {
   // Live demo page uses global UnifiedBackground; motion hooks not required here

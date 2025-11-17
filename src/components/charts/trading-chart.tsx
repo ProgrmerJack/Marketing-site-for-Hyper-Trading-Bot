@@ -122,7 +122,7 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
       </div>
 
       {/* Main Candlestick Chart */}
-      <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
+      <div className="bg-card dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
         <CandlestickChart
           data={data}
           showVolume={true}
@@ -133,7 +133,7 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
 
       {/* RSI Chart */}
       {activeIndicators.has("rsi") && (
-        <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
+        <div className="bg-card dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold dark:text-white">RSI (14)</h3>
             <div className="text-sm text-gray-500 dark:text-slate-400">
@@ -149,7 +149,7 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
 
       {/* MACD Chart */}
       {activeIndicators.has("macd") && (
-        <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
+        <div className="bg-card dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold dark:text-white">MACD (12, 26, 9)</h3>
             <div className="flex gap-4 text-sm dark:text-slate-300">
@@ -177,7 +177,7 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
       {data.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {activeIndicators.has("sma") && (
-            <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+            <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
               <p className="text-sm text-gray-500 dark:text-slate-400">SMA ({smaPeriod})</p>
               <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                 ${indicators.sma[indicators.sma.length - 1]?.toFixed(2) || "—"}
@@ -186,7 +186,7 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
           )}
 
           {activeIndicators.has("ema") && (
-            <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+            <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
               <p className="text-sm text-gray-500 dark:text-slate-400">EMA ({emaPeriod})</p>
               <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
                 ${indicators.ema[indicators.ema.length - 1]?.toFixed(2) || "—"}
@@ -195,7 +195,7 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
           )}
 
           {activeIndicators.has("rsi") && (
-            <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+            <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
               <p className="text-sm text-gray-500 dark:text-slate-400">RSI (14)</p>
               <p
                 className={`text-2xl font-bold ${
@@ -212,7 +212,7 @@ export function TradingChart({ data, className = "" }: TradingChartProps) {
           )}
 
           {activeIndicators.has("bollinger") && (
-            <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+            <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
               <p className="text-sm text-gray-500 dark:text-slate-400">Bollinger Width</p>
               <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">
                 {(() => {

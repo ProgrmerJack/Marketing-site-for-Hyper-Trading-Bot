@@ -64,7 +64,7 @@ export function AdvancedChartsDemo() {
       </Alert>
 
       {/* Controls */}
-      <div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
+      <div className="bg-card dark:bg-slate-900 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-slate-700">
         <div className="flex flex-wrap items-center gap-4">
           {/* Live Toggle */}
           <Button
@@ -131,11 +131,11 @@ export function AdvancedChartsDemo() {
 
       {/* Price Info */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+        <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
           <p className="text-sm text-gray-500 dark:text-slate-400 mb-1">Current Price</p>
           <p className="text-3xl font-bold dark:text-white">${currentPrice.toFixed(2)}</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+        <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
           <p className="text-sm text-gray-500 dark:text-slate-400 mb-1">24h Change</p>
           <p
             className={`text-3xl font-bold ${
@@ -145,7 +145,7 @@ export function AdvancedChartsDemo() {
             {priceChange >= 0 ? "+" : ""}${priceChange.toFixed(2)}
           </p>
         </div>
-        <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
+        <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200 dark:border-slate-700">
           <p className="text-sm text-gray-500 dark:text-slate-400 mb-1">24h Change %</p>
           <p
             className={`text-3xl font-bold ${

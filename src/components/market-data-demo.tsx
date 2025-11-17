@@ -123,7 +123,7 @@ export default function MarketDataDemo() {
 
       {/* Latest Data Card */}
       {latestData ? (
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6 border border-gray-200">
+        <div className="bg-card dark:bg-slate-900 rounded-lg shadow-lg p-6 mb-6 border border-gray-200">
           <div className="flex items-start justify-between mb-4">
             <div>
               <h2 className="text-3xl font-bold">{latestData.symbol}</h2>
@@ -169,17 +169,17 @@ export default function MarketDataDemo() {
 
       {/* Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
+        <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200">
           <p className="text-sm text-gray-500 mb-1">Data Points</p>
           <p className="text-2xl font-bold">{stats.totalDataPoints}</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
+        <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200">
           <p className="text-sm text-gray-500 mb-1">Avg Price</p>
           <p className="text-2xl font-bold">
             {stats.averagePrice > 0 ? formatCurrency(stats.averagePrice) : "-"}
           </p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
+        <div className="bg-card dark:bg-slate-900 rounded-lg shadow p-4 border border-gray-200">
           <p className="text-sm text-gray-500 mb-1">Price Range</p>
           <p className="text-lg font-bold">
             {stats.priceRange.min > 0 
@@ -198,7 +198,7 @@ export default function MarketDataDemo() {
       </div>
 
       {/* Data History Table */}
-      <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+      <div className="bg-card dark:bg-slate-900 rounded-lg shadow-lg border border-gray-200 overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-200">
           <h3 className="text-xl font-semibold">Recent Updates</h3>
         </div>
@@ -225,7 +225,7 @@ export default function MarketDataDemo() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-card dark:bg-slate-900 divide-y divide-gray-200">
                 {dataHistory
                   .slice()
                   .reverse()

@@ -16,7 +16,6 @@ import { chromium } from 'playwright';
 
 const BASE_URL = process.argv[2] || 'http://localhost:3000';
 const MIN_TARGET_SIZE = 24; // WCAG 2.2 Level AA
-const RECOMMENDED_TARGET_SIZE = 44; // WCAG AAA / iOS guidelines
 
 console.log('\n╔════════════════════════════════════════════════════════════════╗');
 console.log('║      Keyboard Accessibility Audit (WCAG 2.2)                  ║');
@@ -131,7 +130,6 @@ async function testTargetSizes() {
       return elements
         .map((el) => {
           const rect = el.getBoundingClientRect();
-          const styles = window.getComputedStyle(el);
           
           if (rect.width === 0 || rect.height === 0) return null;
           
@@ -425,10 +423,8 @@ async function runTests() {
     await browser.close();
     
     process.exit(passed ? 0 : 1);
-  } catch (error) {
+  } catch {
     console.error('\n❌ Accessibility Test Failed:');
-    console.error(`   ${error.message}\n`);
-    
     if (browser) await browser.close();
     process.exit(1);
   }
@@ -438,7 +434,7 @@ async function runTests() {
 try {
   await import('playwright');
   runTests();
-} catch (error) {
+} catch {
   console.error('\n❌ Error: Playwright not installed\n');
   console.log('Install with: npm install --save-dev playwright\n');
   process.exit(1);

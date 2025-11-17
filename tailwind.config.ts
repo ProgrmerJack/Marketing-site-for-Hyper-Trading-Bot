@@ -6,6 +6,10 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx,md,mdx}",
     "./packages/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    "motion-zone",
+    "motion-zone-.*",
+  ],
   theme: {
     extend: {
       fontFamily: {

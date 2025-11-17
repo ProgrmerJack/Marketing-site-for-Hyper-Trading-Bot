@@ -38,7 +38,6 @@ async function testBasicStreaming() {
   let eventCount = 0;
   let lastEventId = null;
   let firstChunkTime = null;
-  let lastChunkTime = null;
   const chunkTimes = [];
   
   try {

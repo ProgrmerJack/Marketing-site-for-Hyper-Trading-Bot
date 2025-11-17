@@ -1,0 +1,18 @@
+# Ignore build artifacts and Playwright traces that are not source
+node_modules/
+.next/
+coverage/
+playwright-report/
+playwright-report/**
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+*.js.transform
+**/trace/**
+**/sw.bundle.js
+# Ignore compiled configs - prefer .ts/.mjs sources
+playwright.config.js
+vitest.config.js
+vitest.setup.js
+contentlayer.config.js
+scripts/*.js
+tests/*.js

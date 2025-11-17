@@ -134,6 +134,36 @@
     overflow-x: hidden;
   }
 
+  /* Cross-browser animation and performance hints */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+
+  /* Enable smooth-scrolling for iOS and webkit browsers */
+  html, body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* High-motion zone utility - use for animated elements to hint GPU usage */
+  .motion-zone {
+    will-change: transform, opacity;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
   /* Cross-browser canvas consistency */
   canvas {
     /* Hardware acceleration for better performance */
@@ -145,6 +175,16 @@
     /* Ensure smooth rendering */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+  }
+
+  /* Backdrop-filter fallbacks for Safari / WebKit */
+  .backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+  .backdrop-blur {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
   }
 
   h1, h2, h3, h4, h5, h6 {

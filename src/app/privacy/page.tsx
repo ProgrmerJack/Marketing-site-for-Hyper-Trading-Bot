@@ -5,7 +5,7 @@ import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 // AnimatedBackground was intentionally removed from per-page usage; UnifiedBackground provides the global animation.
 import {
-  Shield,
+  // Shield not used directly
   Lock,
   CheckCircle2,
   Clock,

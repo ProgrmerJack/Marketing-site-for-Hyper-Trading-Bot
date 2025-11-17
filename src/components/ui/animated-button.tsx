@@ -25,8 +25,8 @@ export function AnimatedButton({
 
   const variants = {
     primary: "bg-gradient-to-r from-blue-500 to-purple-600 text-white",
-    secondary: "bg-white/10 border border-white/20 text-white",
-    ghost: "text-white hover:bg-white/10",
+    secondary: "bg-card/10 border border-[color:var(--border)]/20 text-[color:var(--foreground)] dark:text-white",
+    ghost: "text-[color:var(--foreground)] hover:bg-card/10 dark:text-white dark:hover:bg-white/10",
   };
 
   return (

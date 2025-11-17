@@ -34,25 +34,7 @@ const NON_COMPOSITOR_PROPS = [
   'borderRadius', // Partially compositor-safe, but can trigger paint
 ];
 
-const SAFE_COMPOSITOR_PROPS = [
-  'x',
-  'y',
-  'z',
-  'scale',
-  'scaleX',
-  'scaleY',
-  'rotate',
-  'rotateX',
-  'rotateY',
-  'rotateZ',
-  'skew',
-  'skewX',
-  'skewY',
-  'opacity',
-  'translateX',
-  'translateY',
-  'translateZ',
-];
+
 
 module.exports = {
   rules: {

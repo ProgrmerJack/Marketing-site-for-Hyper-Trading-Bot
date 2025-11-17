@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { Calculator, TrendingUp, Check, X, DollarSign, Shield, ArrowRight } from "lucide-react";
 import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
+import { MorphingShape } from "@/components/motion/MorphingShape";
+import { MouseFollower } from "@/components/motion/MouseFollower";
+// ParallaxSection currently not used on the pricing page; remove import to avoid lints
 // Use UnifiedBackground for consistent site-wide animation; no per-section AnimatedBackground
 import { useMotion } from "@/components/motion/MotionProvider";
 import type { Route } from "next";
@@ -35,7 +38,8 @@ const pricingHighlights = [
 ];
 
 export default function PricingPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
+  // Motion toggles are handled globally; avoid local destructuring when unused
+  useMotion();
 
   return (
     <div className="relative">
@@ -46,6 +50,9 @@ export default function PricingPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
+        <div className="absolute left-[-6rem] -bottom-12 opacity-80 dark:opacity-40 pointer-events-none">
+          <MorphingShape size={280} className="motion-zone" color="rgb(var(--primary))" />
+        </div>
 
         <Container className="relative z-10">
           <div className="mx-auto max-w-4xl space-y-8 text-center">
@@ -57,6 +64,7 @@ export default function PricingPage() {
             >
               Pricing
             </motion.span>
+            <MouseFollower strength={0.7} className="motion-zone">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -65,6 +73,7 @@ export default function PricingPage() {
             >
               Revolutionary profit-share model designed for your success
             </motion.h1>
+            </MouseFollower>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,7 +101,7 @@ export default function PricingPage() {
                     className="group"
                   >
                     <SpotlightCard
-                      className="relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/80"
+                      className="relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/80 motion-zone"
                       spotlightColor="rgba(59, 130, 246, 0.2)"
                     >
                       <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} shadow-md transition-transform duration-300 group-hover:scale-110`}>
@@ -116,10 +125,10 @@ export default function PricingPage() {
               <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
                 <div className="inline-block">
                   <div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
-                    <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+                      <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
                       <Link
                         href={("/contact" as Route)}
-                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5"
+                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
                       >
                         <span className="relative z-10">Get started today</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -130,7 +139,7 @@ export default function PricingPage() {
               </ClickSpark>
               <Link
                 href={("/live-demo" as Route)}
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20"
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20 motion-zone"
               >
                 Try live demo
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

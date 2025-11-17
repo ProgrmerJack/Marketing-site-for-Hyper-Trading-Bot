@@ -1,0 +1,324 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content (press enter to focus)" [ref=e2]:
+    - /url: "#main-content"
+    - text: Skip to main content
+    - generic [ref=e3]: (press enter to focus)
+  - generic [ref=e5]:
+    - img [ref=e7]
+    - generic [ref=e9]:
+      - paragraph [ref=e10]: Capital at risk -- demo environment only.
+      - paragraph [ref=e11]: This public experience streams signed, sandboxed market data for illustrative purposes. No live trading or performance guarantees.
+  - banner [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - link "Hyper Trading Automation Demo only · No guarantees" [ref=e15]:
+          - /url: /
+          - generic [ref=e18]:
+            - generic [ref=e19]: Hyper Trading Automation
+            - generic [ref=e20]: Demo only · No guarantees
+        - navigation [ref=e21]:
+          - link "Home" [ref=e23]:
+            - /url: /
+          - link "How It Works" [ref=e25]:
+            - /url: /how-it-works
+          - link "Safety & Risk" [ref=e27]:
+            - /url: /safety
+          - link "Live Demo" [ref=e29]:
+            - /url: /live-demo
+          - link "Pricing" [ref=e31]:
+            - /url: /pricing
+          - link "Research" [ref=e33]:
+            - /url: /research
+          - link "Status" [ref=e35]:
+            - /url: /status
+      - generic [ref=e36]:
+        - link "Motion Controls" [ref=e38]:
+          - /url: /motion-playground
+        - link "Blog" [ref=e40]:
+          - /url: /blog
+        - link "Contact" [ref=e42]:
+          - /url: /contact
+        - link "Request gated access" [ref=e45]:
+          - /url: /contact
+  - main [ref=e46]:
+    - generic [ref=e47]:
+      - generic [ref=e48]:
+        - generic:
+          - generic:
+            - img
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - generic [ref=e53]: Regulated automation preview
+            - heading "Disciplined crypto automation without the hype" [level=1] [ref=e55]:
+              - generic [ref=e56]: Disciplined crypto automation without the hype
+              - generic [ref=e57]:
+                - generic [ref=e58]: Disciplined
+                - generic [ref=e60]: crypto
+                - generic [ref=e62]: automation
+                - generic [ref=e64]: without
+                - generic [ref=e66]: the
+                - generic [ref=e68]: hype
+            - paragraph [ref=e69]: The automation layer treats telemetry, controls, and execution with regulated-market discipline. Signed demo feeds, deterministic pipelines, and transparent runbooks arrive before any capital moves.
+            - generic [ref=e70]:
+              - link "Request gated access" [ref=e71]:
+                - /url: /contact
+                - generic [ref=e72]: Request gated access
+              - link "Explore signed demo" [ref=e74]:
+                - /url: /live-demo
+                - text: Explore signed demo
+                - img [ref=e75]
+            - generic [ref=e77]:
+              - generic [ref=e78]:
+                - img [ref=e80]
+                - generic [ref=e82]: No ROI claims. Every statement is risk-balanced and audit-ready.
+              - generic [ref=e83]:
+                - img [ref=e85]
+                - generic [ref=e87]: Demo data is cryptographically signed - inspect, verify, repeat.
+              - generic [ref=e88]:
+                - img [ref=e90]
+                - generic [ref=e92]: Profit-share model only, and only after independent verification.
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - generic [ref=e98]: Signed telemetry
+              - generic [ref=e99]: p95 < 150ms
+            - paragraph [ref=e100]: Demo feeds run on SSE with signed payloads. Latency, slippage, and venue posture publish in plain language with integrity checks that halt playback when guarantees slip.
+            - generic [ref=e101]:
+              - generic [ref=e102]:
+                - generic [ref=e103]:
+                  - text: Latency p95
+                  - paragraph [ref=e104]: On the signed market data demo feed
+                - generic [ref=e105]:
+                  - generic [ref=e108]: "0"
+                  - text: ms
+              - generic [ref=e109]:
+                - generic [ref=e110]:
+                  - text: Integrations gated
+                  - paragraph [ref=e111]: Risk and compliance-vetted exchange & custodian surfaces
+                - generic [ref=e112]:
+                  - generic [ref=e115]: "0"
+                  - text: venues
+              - generic [ref=e116]:
+                - generic [ref=e117]:
+                  - text: Control checks
+                  - paragraph [ref=e118]: Executed before any order legs stream outside the sandbox
+                - generic [ref=e119]:
+                  - generic [ref=e122]: "0"
+                  - text: per route
+            - generic [ref=e123]: "Accessibility: Prefers-reduced-motion freezes canvases, disables cursor effects, and swaps to static gradients automatically."
+      - generic [ref=e127]:
+        - generic [ref=e128]: Workflow clarity
+        - heading "Signals, controls, execution - choreographed" [level=2] [ref=e129]
+        - paragraph [ref=e130]: Every surface of the automation stack is observable. Feature stores, risk rails, and execution all communicate in the open so you can interrogate decisions before capital is at risk.
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - heading "A transparent workflow from signal to execution" [level=2] [ref=e136]
+          - paragraph [ref=e137]: Each phase is observable. Feature stores emit signed events. Risk controls publish pass/fail artefacts. Execution traces stay replayable.
+        - generic [ref=e138]:
+          - generic [ref=e139]:
+            - img [ref=e141]
+            - heading "Signals without the sorcery" [level=3] [ref=e143]
+            - paragraph [ref=e144]: Feature stores hydrate venue, market, and on-chain telemetry in under 120ms with schema drift detection and reproducible playbacks.
+            - generic [ref=e145]:
+              - generic [ref=e146]: Stage 1
+              - paragraph [ref=e147]: Deterministic outputs stored for replay. Signed artefacts attach to every pipeline hop for audit and post-trade analysis.
+          - generic [ref=e148]:
+            - img [ref=e150]
+            - heading "Risk rails first" [level=3] [ref=e153]
+            - paragraph [ref=e154]: Position sizing, drawdown bands, circuit breakers, and venue health checks must pass before any route leaves the sandbox.
+            - generic [ref=e155]:
+              - generic [ref=e156]: Stage 2
+              - paragraph [ref=e157]: Deterministic outputs stored for replay. Signed artefacts attach to every pipeline hop for audit and post-trade analysis.
+          - generic [ref=e158]:
+            - img [ref=e160]
+            - heading "Execution that respects latency" [level=3] [ref=e163]
+            - paragraph [ref=e164]: Adaptive smart-order routes split flow across venues under a live kill switch with signed audit events for every micro decision.
+            - generic [ref=e165]:
+              - generic [ref=e166]: Stage 3
+              - paragraph [ref=e167]: Deterministic outputs stored for replay. Signed artefacts attach to every pipeline hop for audit and post-trade analysis.
+      - generic [ref=e171]:
+        - generic [ref=e172]:
+          - generic [ref=e173]: Observable metrics
+          - heading "Numbers you can interrogate" [level=2] [ref=e174]
+          - paragraph [ref=e175]: Metrics stay live, signed, and replayable. The demo mimics the same observability surface the gated experience provides.
+          - generic [ref=e176]:
+            - button "What gets logged?" [expanded] [ref=e177] [cursor=pointer]:
+              - generic [ref=e178]: What gets logged?
+              - img [ref=e179]
+            - generic [ref=e181]:
+              - paragraph [ref=e182]: Latency, slippage, fill quality, route selection, and every control decision. Each record ships with a signature so you can verify integrity independently.
+              - paragraph [ref=e183]: Download a replay bundle to inspect the pipeline locally. Compare our telemetry with your venue data or reconciliation stack.
+        - generic [ref=e184]:
+          - generic [ref=e185]:
+            - generic [ref=e186]: Latency p95
+            - generic [ref=e187]:
+              - generic [ref=e188]:
+                - generic [ref=e190]: "0"
+                - text: ms
+              - img [ref=e192]
+            - paragraph [ref=e194]: On the signed market data demo feed
+          - generic [ref=e195]:
+            - generic [ref=e196]: Integrations gated
+            - generic [ref=e197]:
+              - generic [ref=e198]:
+                - generic [ref=e200]: "0"
+                - text: venues
+              - img [ref=e202]
+            - paragraph [ref=e204]: Risk and compliance-vetted exchange & custodian surfaces
+          - generic [ref=e205]:
+            - generic [ref=e206]: Control checks
+            - generic [ref=e207]:
+              - generic [ref=e208]:
+                - generic [ref=e210]: "0"
+                - text: per route
+              - img [ref=e212]
+            - paragraph [ref=e214]: Executed before any order legs stream outside the sandbox
+      - generic [ref=e217]:
+        - generic [ref=e218]:
+          - heading "Integrations ready for gated partners" [level=2] [ref=e219]
+          - paragraph [ref=e220]: Custody, execution, and compliance surfaces already wired. Toggle what you need, sign off on controls, and the sandbox mirrors your stack.
+        - generic [ref=e221]:
+          - generic [ref=e222]:
+            - generic [ref=e223]:
+              - heading "Coinbase Prime" [level=3] [ref=e224]
+              - paragraph [ref=e225]: Signed custody states, deterministic settlement hooks, and velocity-aware limits.
+            - generic [ref=e226]: Ready for sandbox
+          - generic [ref=e228]:
+            - generic [ref=e229]:
+              - heading "Binance Institutional" [level=3] [ref=e230]
+              - paragraph [ref=e231]: Route per-venue risk, real-time wallet balances, and throttle-safe smart ordering.
+            - generic [ref=e232]: Ready for sandbox
+          - generic [ref=e234]:
+            - generic [ref=e235]:
+              - heading "Fireblocks" [level=3] [ref=e236]
+              - paragraph [ref=e237]: Policy-controlled transfers with role-aware approvals and deterministic release windows.
+            - generic [ref=e238]: Ready for sandbox
+          - generic [ref=e240]:
+            - generic [ref=e241]:
+              - heading "Talos" [level=3] [ref=e242]
+              - paragraph [ref=e243]: Institutional smart order routing with signed post-trade execution telemetry.
+            - generic [ref=e244]: Ready for sandbox
+      - generic [ref=e248]:
+        - generic [ref=e249]:
+          - heading "Signals from the review desk" [level=2] [ref=e250]
+          - paragraph [ref=e251]: Advisors and partner desks have already wrung the automation surface through diligence. Their notes stay public so you know what to expect.
+        - generic [ref=e252]:
+          - paragraph [ref=e254]: "\"The only crypto automation stack we've seen that treats latency, controls, and telemetry with capital-markets discipline.\" - External quant advisory partner"
+          - paragraph [ref=e256]: Signed demo feeds and deterministic playbacks meant our compliance team could trace every decision before we ever touched capital. - Risk officer (prospective partner)
+          - paragraph [ref=e258]: The automation feels like a co-pilot. Magnetic UI, clear controls, instant explainability. - Product design advisor
+          - paragraph [ref=e260]: Micro-structure aware, policy driven, and observable. The bar for crypto automation just moved. - Institutional allocator
+      - generic [ref=e264]:
+        - generic [ref=e265]:
+          - heading "Every event signed and replayable" [level=3] [ref=e266]
+          - paragraph [ref=e267]: Hold the feed to the same standard your audit desk will expect. Download the signature chain, replay the run, and compare against your own reconciliations.
+          - list [ref=e268]:
+            - listitem [ref=e269]:
+              - generic [ref=e271]: SSE heartbeat every 10 seconds with Last-Event-ID resumption
+            - listitem [ref=e272]:
+              - generic [ref=e274]: HMAC signature per batch; mismatches trigger pause state
+            - listitem [ref=e275]:
+              - generic [ref=e277]: No order routing or PII exposed through the public site
+            - listitem [ref=e278]:
+              - generic [ref=e280]: Offline overlay appears if heartbeat is missed three times
+          - link "View SSE endpoint reference" [ref=e281]:
+            - /url: /api/demo-feed
+            - text: View SSE endpoint reference
+            - img [ref=e282]
+        - generic [ref=e284]:
+          - generic [ref=e285]:
+            - generic [ref=e286]: BTC/USDT demo
+            - generic [ref=e287]: Latency p95 < 150 ms
+          - img [ref=e289]
+          - paragraph [ref=e311]: Illustrative candlestick chart with moving average. Data shown is non-tradable and provided for demonstration purposes only.
+      - generic [ref=e315]:
+        - generic [ref=e316]:
+          - generic [ref=e317]:
+            - generic [ref=e318]: Trust surface
+            - heading "Risk, compliance, and transparency surface" [level=2] [ref=e319]
+          - generic [ref=e320]:
+            - generic [ref=e321]:
+              - generic [ref=e322]:
+                - img [ref=e324]
+                - heading "Independent review underway" [level=3] [ref=e327]
+              - paragraph [ref=e328]: Performance data stays gated until third-party audit concludes. Demo feed is signed so you can verify what you see.
+            - generic [ref=e329]:
+              - generic [ref=e330]:
+                - img [ref=e332]
+                - heading "Security posture" [level=3] [ref=e335]
+              - paragraph [ref=e336]: OWASP Top 10 scanning in CI, secrets are server-side only, and all routes enforce strict security headers.
+            - generic [ref=e337]:
+              - generic [ref=e338]:
+                - img [ref=e340]
+                - heading "Realtime transparency" [level=3] [ref=e343]
+              - paragraph [ref=e344]: Status page exposes latency, uptime, and incident retros in public. Demo stream pauses if data integrity ever drops.
+        - generic [ref=e345]:
+          - button "Is this a live trading system?" [ref=e348] [cursor=pointer]:
+            - generic [ref=e349]: Is this a live trading system?
+            - img [ref=e350]
+          - button "Can we review the telemetry feed?" [ref=e354] [cursor=pointer]:
+            - generic [ref=e355]: Can we review the telemetry feed?
+            - img [ref=e356]
+          - button "What does onboarding look like?" [ref=e360] [cursor=pointer]:
+            - generic [ref=e361]: What does onboarding look like?
+            - img [ref=e362]
+      - generic [ref=e368]:
+        - generic:
+          - img
+        - heading "Ready to review the gated experience?" [level=2] [ref=e369]
+        - paragraph [ref=e370]: Share your mandate, risk posture, and constraints. We will coordinate a walkthrough with the teams who built the automation.
+        - generic [ref=e371]:
+          - link "Contact the team" [ref=e372]:
+            - /url: /contact
+            - generic [ref=e373]: Contact the team
+          - link "Review status page" [ref=e375]:
+            - /url: /status
+            - text: Review status page
+            - img [ref=e376]
+        - paragraph [ref=e378]: Double opt-in. Runbooks exchanged up front. Postal address and compliance documentation in the first reply.
+  - contentinfo [ref=e379]:
+    - generic [ref=e380]:
+      - generic [ref=e381]:
+        - generic [ref=e382]:
+          - text: Hyper Trading Automation
+          - paragraph [ref=e383]: Demo environment for regulated automated trading. No guarantees, no speculative promises—focused purely on disciplined execution and transparent controls.
+        - generic [ref=e384]: Hyper Trading Automation, Yunusabad District, Tashkent 100093, Uzbekistan
+      - generic [ref=e386]:
+        - heading "Compliance" [level=3] [ref=e387]
+        - list [ref=e388]:
+          - listitem [ref=e389]:
+            - link "Privacy" [ref=e390]:
+              - /url: /privacy
+          - listitem [ref=e391]:
+            - link "Terms" [ref=e392]:
+              - /url: /terms
+          - listitem [ref=e393]:
+            - link "Risk Disclosure" [ref=e394]:
+              - /url: /risk-disclosure
+          - listitem [ref=e395]:
+            - link "Consent Preferences" [ref=e396]:
+              - /url: /consent
+    - generic [ref=e398]:
+      - heading "Important Disclaimers" [level=4] [ref=e399]
+      - generic [ref=e400]:
+        - paragraph [ref=e401]:
+          - generic [ref=e402]: "*"
+          - generic [ref=e403]: Automated trading involves significant risk of loss, including possible loss of principal.
+        - paragraph [ref=e404]:
+          - generic [ref=e405]: "*"
+          - generic [ref=e406]: No statements on this site should be interpreted as guarantees of returns or assurances of future performance.
+        - paragraph [ref=e407]:
+          - generic [ref=e408]: "*"
+          - generic [ref=e409]: Crypto markets remain highly volatile and speculative. Independent diligence is required.
+        - paragraph [ref=e410]:
+          - generic [ref=e411]: "*"
+          - generic [ref=e412]: Emails and updates comply with CAN-SPAM. Unsubscribe links are honored within 10 business days. Cookie preferences can be updated at any time.
+        - paragraph [ref=e413]:
+          - generic [ref=e414]: "*"
+          - generic [ref=e415]: This website is a demonstration environment. No live trading occurs on this public site. All market data shown is signed and verifiable but does not constitute investment advice.
+        - paragraph [ref=e416]:
+          - generic [ref=e417]: "*"
+          - generic [ref=e418]: Past performance is not indicative of future results. Cryptocurrency markets are highly volatile and speculative. Only invest what you can afford to lose.
+      - paragraph [ref=e419]: © 2025 Hyper Trading Automation. All rights reserved.
+```

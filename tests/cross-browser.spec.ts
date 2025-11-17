@@ -1,4 +1,5 @@
-import { test, expect, devices } from '@playwright/test';
+import { test, expect } from '@playwright/test';
+import { waitForStableElements, waitAndCount, guardAgainstChunkLoad } from './helpers/playwright.helpers';
 
 /**
  * Comprehensive Cross-Browser Visual Consistency Test
@@ -7,33 +8,46 @@ import { test, expect, devices } from '@playwright/test';
 
 test.describe('Cross-Browser Visual Consistency', () => {
   test.beforeEach(async ({ page }) => {
+    // Guard against ChunkLoadError that has been observed dynamically on slow mobile runs
+    guardAgainstChunkLoad(page, 1);
     // Disable animations for consistent visual testing
     await page.addInitScript(() => {
       const style = document.createElement('style');
       style.textContent = `
         * { animation-duration: 0s !important; animation-delay: 0s !important; transition-duration: 0s !important; }
       `;
-      document.head.appendChild(style);
+      try {
+        if (typeof document !== 'undefined' && document.head) document.head.appendChild(style);
+      } catch {
+        // Best-effort no-op in headless or SSR edge cases
+      }
     });
   });
 
   test('Homepage renders consistently across browsers', async ({ page, browserName }) => {
     await page.goto('/', { waitUntil: 'networkidle' });
-    await page.waitForTimeout(500);
+    await waitForStableElements(page, 'main');
 
     // Verify key visual elements exist and are visible
     const header = page.locator('header').first();
+    await waitForStableElements(page, 'header');
+    // Make sure header isn't off-screen prior to checking visibility
+    await header.scrollIntoViewIfNeeded().catch(() => {});
     await expect(header).toBeVisible();
 
     const mainContent = page.locator('main').first();
     await expect(mainContent).toBeVisible();
 
     const footer = page.locator('footer').first();
+    await waitForStableElements(page, 'footer');
+    // Scroll footer into view - some animations reveal it on scroll
+    await footer.scrollIntoViewIfNeeded().catch(() => {});
+    await page.waitForTimeout(350);
     await expect(footer).toBeVisible();
 
     // Check gradient backgrounds render
-    const gradientElements = await page.locator('[class*="gradient"], [class*="bg-gradient"]').all();
-    expect(gradientElements.length).toBeGreaterThan(0);
+    const gradientCount = await waitAndCount(page, '[class*="gradient"], [class*="bg-gradient"]');
+    expect(gradientCount).toBeGreaterThan(0);
 
     // Verify color scheme loads
     const htmlElement = page.locator('html');
@@ -45,19 +59,20 @@ test.describe('Cross-Browser Visual Consistency', () => {
 
   test('Contact form renders consistently across browsers', async ({ page, browserName }) => {
     await page.goto('/contact', { waitUntil: 'networkidle' });
-    await page.waitForTimeout(500);
+    await waitForStableElements(page, 'form');
 
     // Verify form structure
     const form = page.locator('form').first();
     await expect(form).toBeVisible();
 
     // Verify all form inputs render correctly
-    const inputs = await page.locator('input, textarea').all();
-    expect(inputs.length).toBeGreaterThanOrEqual(5);
+    const inputsCount = await waitAndCount(page, 'input, textarea');
+    expect(inputsCount).toBeGreaterThanOrEqual(5);
 
+    const inputs = await page.locator('input, textarea').all();
     for (const input of inputs) {
       const isVisible = await input.isVisible().catch(() => false);
-      const isInViewport = await input.boundingBox().catch(() => null) !== null;
+      const isInViewport = (await input.boundingBox().catch(() => null)) !== null;
       expect(isVisible || isInViewport).toBeTruthy();
     }
 
@@ -70,6 +85,7 @@ test.describe('Cross-Browser Visual Consistency', () => {
 
   test('Typography is consistent across browsers', async ({ page, browserName }) => {
     await page.goto('/', { waitUntil: 'networkidle' });
+    await waitForStableElements(page, 'main');
 
     // Get font family from various elements
     const h1 = page.locator('h1').first();
@@ -129,6 +145,7 @@ test.describe('Cross-Browser Visual Consistency', () => {
     // Check for responsive classes
     const main = page.locator('main');
     const mainClasses = await main.getAttribute('class');
+    console.log('Main classes:', mainClasses);
 
     // Verify layout doesn't overflow
     const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
@@ -152,12 +169,16 @@ test.describe('Cross-Browser Visual Consistency', () => {
     expect(buttonCount).toBeGreaterThan(0);
 
     // Verify button can be clicked (skip hover due to headless mode limitations)
-    await clickButton.evaluate(el => {
-      const event = new MouseEvent('click', { bubbles: true });
-      el.dispatchEvent(event);
-    }).catch(() => {
-      // Button might not be visible in headless, that's OK
-    });
+    if (clickButton) {
+      await clickButton.scrollIntoViewIfNeeded().catch(() => {});
+      await clickButton.waitFor({ state: 'visible', timeout: 15000 }).catch(() => {});
+      try {
+        await clickButton.click({ timeout: 10000 });
+      } catch {
+        // fallback dispatch if click is blocked or invisible
+        await clickButton.evaluate(el => el.dispatchEvent(new MouseEvent('click', { bubbles: true })) ).catch(() => {});
+      }
+    }
 
     console.log(`✅ ${browserName}: Interactive elements present and functional`);
   });
@@ -184,6 +205,7 @@ test.describe('Cross-Browser Visual Consistency', () => {
     // Get initial theme state
     const html = page.locator('html');
     const initialDarkClass = await html.evaluate(el => el.classList.contains('dark'));
+    console.log('Initial dark class present:', initialDarkClass);
 
     // Check if theme toggle button exists
     const themeToggle = page.getByLabel('Toggle theme');

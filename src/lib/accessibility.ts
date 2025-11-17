@@ -240,6 +240,8 @@ export const keyboardNav = {
 /**
  * ARIA live region announcer
  */
+import { appendToBody } from './dom-utils';
+ 
 export class LiveRegionAnnouncer {
   private liveRegion: HTMLDivElement | null = null;
   
@@ -249,7 +251,7 @@ export class LiveRegionAnnouncer {
       this.liveRegion.setAttribute("aria-live", "polite");
       this.liveRegion.setAttribute("aria-atomic", "true");
       this.liveRegion.className = "sr-only";
-      document.body.appendChild(this.liveRegion);
+      appendToBody(this.liveRegion);
     }
   }
   
@@ -267,7 +269,13 @@ export class LiveRegionAnnouncer {
   
   destroy() {
     if (this.liveRegion) {
-      document.body.removeChild(this.liveRegion);
+      try {
+        if (typeof document !== 'undefined' && document.body) {
+          document.body.removeChild(this.liveRegion);
+        }
+      } catch {
+        /* ignore */
+      }
       this.liveRegion = null;
     }
   }

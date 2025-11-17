@@ -1,14 +1,14 @@
 
 
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page, type TestInfo } from '@playwright/test';
 
 test.describe('Functional Tests', () => {
   // Theme toggle test - skip for now (button selector issues across browsers)
-  test('Theme toggle should switch between light and dark modes', async ({ page }) => {
+  test('Theme toggle should switch between light and dark modes', async () => {
     test.skip();
   });
 
-  test('Contact form should submit successfully', async ({ page }, testInfo) => {
+  test('Contact form should submit successfully', async ({ page }, testInfo: TestInfo) => {
     // Skip mobile browsers - they have visibility/timing issues
     const projectName = testInfo.project.name;
     if (projectName.includes('Mobile')) {
@@ -40,7 +40,7 @@ test.describe('Functional Tests', () => {
   });
 });
 
-async function checkFormSuccess(page: any): Promise<boolean> {
+async function checkFormSuccess(page: Page): Promise<boolean> {
   // Check 1: Look for "Thanks" text
   const thanksBtns = await page.getByText(/Thanks/).all();
   if (thanksBtns.length > 0) return true;

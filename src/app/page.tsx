@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight, Cpu, ShieldCheck, Timer, Zap } from "lucide-react";
+import { MorphingShape } from "@/components/motion/MorphingShape";
+import { MouseFollower } from "@/components/motion/MouseFollower";
 import { useMotion } from "@/components/motion/MotionProvider";
 import {
   StarBorder,
@@ -15,6 +17,7 @@ import {
   SpotlightCard,
 } from "@/components/reactbits/dynamic";
 import { SplitText } from "@/components/motion/SplitText";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
 import { AnimatedNumber } from "@/components/animated-number";
 import { InfoDisclosure } from "@/components/info-disclosure";
 
@@ -267,6 +270,9 @@ function HeroSection() {
       {/* Background Layer */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
+        <div className="absolute -right-24 -top-16 opacity-80 dark:opacity-40 pointer-events-none">
+          <MorphingShape size={380} className="motion-zone" color="rgb(var(--primary))" />
+        </div>
       </div>
 
       <Container className="relative z-10">
@@ -276,6 +282,7 @@ function HeroSection() {
             <div className="space-y-8">
               <AccentBadge>Regulated automation preview</AccentBadge>
 
+              <MouseFollower strength={0.9} className="motion-zone">
               <SplitText
                 as="h1"
                 splitBy="word"
@@ -284,6 +291,7 @@ function HeroSection() {
               >
                 Disciplined crypto automation without the hype
               </SplitText>
+              </MouseFollower>
 
               <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
                 The automation layer treats telemetry, controls, and execution with regulated-market
@@ -292,10 +300,10 @@ function HeroSection() {
               </p>
 
               <div className="flex flex-wrap items-center gap-4">
-                <PrimaryCta href="/contact" cursorEnabled={cursorEnabled}>
+                <PrimaryCta href="/contact" cursorEnabled={cursorEnabled} className="motion-zone">
                   Request gated access
                 </PrimaryCta>
-                <SecondaryCta href="/live-demo">Explore signed demo</SecondaryCta>
+                <SecondaryCta href="/live-demo" className="motion-zone">Explore signed demo</SecondaryCta>
               </div>
 
               {/* Trust Indicators */}
@@ -318,9 +326,9 @@ function HeroSection() {
             </div>
 
             {/* Hero Card */}
-            <div>
-                  <HeroTelemetryCard />
-            </div>
+            <ParallaxSection speed={0.35} className="relative">
+              <HeroTelemetryCard />
+            </ParallaxSection>
           </div>
         </div>
       </Container>
@@ -332,13 +340,17 @@ type PrimaryCtaProps = {
   href: string;
   children: React.ReactNode;
   cursorEnabled: boolean;
+  className?: string;
 };
 
-function PrimaryCta({ href, children, cursorEnabled }: PrimaryCtaProps) {
+function PrimaryCta({ href, children, cursorEnabled, className }: PrimaryCtaProps) {
   const button = (
     <Link
       href={href as Route}
-      className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-primary dark:text-primary-foreground dark:shadow-primary/30 dark:hover:shadow-primary/50"
+      className={clsx(
+        "group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-primary dark:text-primary-foreground dark:shadow-primary/30 dark:hover:shadow-primary/50",
+        className,
+      )}
     >
       <span className="relative z-10">{children}</span>
       <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100 dark:from-blue-500 dark:to-blue-700" />
@@ -365,13 +377,17 @@ function PrimaryCta({ href, children, cursorEnabled }: PrimaryCtaProps) {
 type SecondaryCtaProps = {
   href: string;
   children: React.ReactNode;
+  className?: string;
 };
 
-function SecondaryCta({ href, children }: SecondaryCtaProps) {
+function SecondaryCta({ href, children, className }: SecondaryCtaProps) {
   return (
     <Link
       href={href as Route}
-      className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className={clsx(
+        "group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+        className,
+      )}
     >
       {children}
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -379,11 +395,7 @@ function SecondaryCta({ href, children }: SecondaryCtaProps) {
   );
 }
 
-type HeroTelemetryCardProps = {
-  cursorEnabled?: boolean;
-};
-
-function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
+function HeroTelemetryCard() {
   const heroStats = metrics.slice(0, 3);
 
   return (
@@ -392,7 +404,7 @@ function HeroTelemetryCard({ cursorEnabled }: HeroTelemetryCardProps) {
       initial={{ opacity: 0, scale: 0.95, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative overflow-hidden rounded-3xl border-2 border-orange-300/40 bg-gradient-to-br from-slate-50 via-white to-orange-50/30 shadow-lg dark:border-orange-600/60 dark:from-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10"
+      className="relative overflow-hidden rounded-3xl border-2 border-orange-300/40 bg-gradient-to-br from-slate-50 via-white to-orange-50/30 shadow-lg dark:border-orange-600/60 dark:from-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10 motion-zone"
     >
       {/* Card Background */}
       <div className="pointer-events-none absolute inset-0">

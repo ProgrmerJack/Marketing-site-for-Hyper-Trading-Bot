@@ -6,6 +6,9 @@ import type { Route } from "next";
 import { Container } from "@hyper/ui";
 import { Shield, Zap, Scale, Eye, ArrowRight } from "lucide-react";
 import { GlareHover, ClickSpark, StarBorder, SpotlightCard } from "@/components/reactbits/dynamic";
+import { MorphingShape } from "@/components/motion/MorphingShape";
+import { MouseFollower } from "@/components/motion/MouseFollower";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
 // Using UnifiedBackground globally; local AnimatedBackground per-section removed
 import { useMotion } from "@/components/motion/MotionProvider";
 
@@ -113,7 +116,8 @@ const roadmap = [
 ];
 
 export default function AboutPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
+  // Use motion via MotionProvider globally; avoid local destructuring when unused
+  useMotion();
   return (
     <div className="relative">
       {/* Hero Section */}
@@ -124,6 +128,9 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
+        <div className="absolute right-[-5rem] top-10 opacity-80 dark:opacity-40 pointer-events-none">
+          <MorphingShape size={300} className="motion-zone" color="rgb(var(--accent))" />
+        </div>
 
         <Container className="relative z-10">
           <div className="mx-auto max-w-4xl space-y-8 text-center">
@@ -135,6 +142,7 @@ export default function AboutPage() {
             >
               About
             </motion.span>
+            <MouseFollower strength={0.7} className="motion-zone">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -143,6 +151,7 @@ export default function AboutPage() {
             >
               Revolutionizing crypto trading through automation and intelligence
             </motion.h1>
+            </MouseFollower>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -153,6 +162,7 @@ export default function AboutPage() {
             </motion.p>
 
             {/* Principle Cards in Hero */}
+            <ParallaxSection speed={0.2} className="relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -170,7 +180,7 @@ export default function AboutPage() {
                     className="group"
                   >
                     <SpotlightCard
-                      className="relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/80"
+                      className="relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/80 motion-zone"
                       spotlightColor="rgba(59, 130, 246, 0.2)"
                     >
                       <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${principle.gradient} shadow-md transition-transform duration-300 group-hover:scale-110`}>
@@ -183,6 +193,7 @@ export default function AboutPage() {
                 );
               })}
             </motion.div>
+            </ParallaxSection>
 
             {/* CTA Buttons */}
             <motion.div

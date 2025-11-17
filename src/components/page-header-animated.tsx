@@ -31,7 +31,12 @@ export function PageHeaderAnimated({
 }: PageHeaderAnimatedProps) {
 
   return (
-    <header className="relative overflow-hidden border-b border-slate-200/80 bg-white/50 min-h-[90vh] py-20 md:py-32 dark:border-slate-700/50 dark:bg-slate-950">
+    <header
+      className="relative overflow-hidden border-b border-slate-200/80 bg-white/50 min-h-[90vh] py-20 md:py-32 dark:border-slate-700/50 dark:bg-slate-950"
+      data-bg-variant={_backgroundVariant}
+      data-bg-colors={_backgroundColors.join(',')}
+      data-bg-opacity={String(_backgroundOpacity)}
+    >
       {/* No per-header AnimatedBackground when UnifiedBackground is active. We rely on UnifiedBackground for consistent site-wide hyperspeed animation.
           Keep a radial gradient overlay for readability. */}
       <div className="pointer-events-none absolute inset-0 -z-10">

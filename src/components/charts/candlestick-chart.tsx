@@ -358,7 +358,7 @@ export function CandlestickChart({
         ref={svgRef}
         width={dimensions.width}
         height={dimensions.height}
-        className="bg-white dark:bg-slate-900 rounded-lg border border-gray-200 dark:border-slate-700"
+        className="bg-card dark:bg-slate-900 rounded-lg border border-gray-200 dark:border-slate-700"
         role="img"
         aria-label="Candlestick chart showing market price data"
       />

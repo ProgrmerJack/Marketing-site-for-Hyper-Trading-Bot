@@ -37,8 +37,8 @@ async function main() {
   // Create outdir if requested so diagnostics can be written
   try {
     await import('node:fs/promises').then((fs) => fs.mkdir(outdir, { recursive: true }));
-  } catch (e) {
-    // ignore
+  } catch {
+    // ignore errors creating the directory
   }
   for (const asset of assets) {
     const fullUrl = new url.URL(asset.path, base).toString();
@@ -51,7 +51,7 @@ async function main() {
       await delay(1000);
     }
     if (!result || !result.ok) {
-      console.error(Asset check failed: );
+      console.error('Asset check failed:', asset.path);
       console.error(result);
       if (verbose) {
         console.error('Attempting to curl (GET) details for diagnostics...');
@@ -71,19 +71,19 @@ async function main() {
         };
         if (verbose) console.error(JSON.stringify(record, null, 2));
         try {
-          const fname = ${outdir.replace(/\/$/, '')}/-.json;
+          const fname = outdir.replace(/\/$/, '') + '/diagnostic.json';
           await import('node:fs/promises').then((fs) => fs.writeFile(fname, JSON.stringify(record, null, 2)));
-          console.error(Wrote diagnostic to );
-        } catch (e) {
+          console.error('Wrote diagnostic to', fname);
+        } catch {
           // ignore file write errors
         }
-      } catch (e) {
-        if (verbose) console.error('Failed to GET asset for diagnostics: ', String(e));
+      } catch (err) {
+        if (verbose) console.error('Failed to GET asset for diagnostics: ', String(err));
       }
       process.exitCode = 1;
       return;
     }
-    console.log(OK:  content-type );
+    console.log('OK:', fullUrl, 'content-type:', result.contentType);
   }
   process.exitCode = 0;
 }

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import clsx from "clsx";
 import type { CSSProperties } from "react";
 import { useMotion } from "@/components/motion/MotionProvider";
+import { AsyncErrorBoundary } from "@/components/error-boundary";
 import "@/styles/animated-backgrounds.css";
 
 const HyperspeedBG = dynamic(() => import("./bg/hyperspeed"), { ssr: false });
@@ -58,13 +59,15 @@ export function AnimatedBackground({
       : ["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"];
     
     return (
-      <HyperspeedBG
-        paused={false}
-        intensity={intensity}
-        colorPalette={colorPalette}
-        className={className}
-        opacity={opacity}
-      />
+      <AsyncErrorBoundary fallback={<div aria-hidden className={clsx("animated-background", className)} style={{ opacity }}>{/* Placeholder */}</div>}>
+        <HyperspeedBG
+          paused={false}
+          intensity={intensity}
+          colorPalette={colorPalette}
+          className={className}
+          opacity={opacity}
+        />
+      </AsyncErrorBoundary>
     );
   }
 

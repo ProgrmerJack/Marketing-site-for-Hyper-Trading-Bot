@@ -79,7 +79,8 @@ const complianceControls = [
 ];
 
 export default function SafetyPage() {
-  const { backgroundsEnabled, hydrated } = useMotion();
+  // Motion toggles are handled globally; avoid local destructuring when unused
+  useMotion();
   return (
     <div className="relative space-y-0">
       <PageHeaderAnimated

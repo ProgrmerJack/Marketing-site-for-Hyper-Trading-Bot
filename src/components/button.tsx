@@ -10,7 +10,7 @@
  * - Icon support
  */
 
-import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
+import { ButtonHTMLAttributes, forwardRef, ReactNode, useRef } from "react";
 import { Loader2 } from "lucide-react";
 import { focusClasses, minTargetSize } from "@/lib/accessibility";
 
@@ -95,6 +95,32 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const isDisabled = disabled || loading;
+    // Prevent duplicate click triggers from pointer fallback
+    const handledRef = useRef(false);
+
+    function handlePointerUp(e: React.PointerEvent<HTMLButtonElement>) {
+      const onClick = props.onClick as React.MouseEventHandler<HTMLButtonElement> | undefined;
+      if (isDisabled || !onClick || !e.isPrimary) return;
+
+      const ua = typeof navigator !== "undefined" ? navigator.userAgent : "";
+      const isWebkitOnly = /AppleWebKit/.test(ua) && !/Chrome|Chromium|Edg/.test(ua);
+      const pointerIsTouchOrWebkit = e.pointerType === "touch" || isWebkitOnly;
+
+      if (!pointerIsTouchOrWebkit) return;
+      if (handledRef.current) return;
+      handledRef.current = true;
+      onClick?.(e as unknown as React.MouseEvent<HTMLButtonElement>);
+      setTimeout(() => (handledRef.current = false), 120);
+    }
+
+    function handleKeyUp(e: React.KeyboardEvent<HTMLButtonElement>) {
+      if (isDisabled) return;
+      const onClick = props.onClick as React.MouseEventHandler<HTMLButtonElement> | undefined;
+      if (!onClick) return;
+      if (e.key === "Enter" || e.key === " ") {
+        onClick?.(e as unknown as React.MouseEvent<HTMLButtonElement>);
+      }
+    }
 
     return (
       <button
@@ -114,6 +140,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         `}
         aria-busy={loading}
         aria-disabled={isDisabled}
+        style={{ touchAction: "manipulation" }}
+        onPointerUp={(e) => {
+          handlePointerUp(e);
+          props.onPointerUp?.(e);
+        }}
+        onKeyUp={(e) => {
+          handleKeyUp(e);
+          props.onKeyUp?.(e);
+        }}
         {...props}
       >
         {loading && (

@@ -22,7 +22,7 @@ for (const route of pagesToTest) {
     const backgroundsOn = backgroundsOnHandle ? await backgroundsOnHandle.jsonValue().catch(() => false) : false;
 
     // Wait for the hyperspeed canvas test-id to appear (if animated)
-    const canvas = page.locator('canvas[data-testid="hyperspeed-canvas"]');
+    // Not using the direct locator; prefer page.$$eval for speed and stability
     // Instead of relying solely on locator.count() which can sometimes hang, wait for either canvas
     // to be attached or the fallback to exist, then count to avoid timeout-race conditions.
     await page.waitForSelector('canvas[data-testid="hyperspeed-canvas"], div[data-testid="hyperspeed-fallback"]', { timeout: 6000 }).catch(() => null);
@@ -37,7 +37,7 @@ for (const route of pagesToTest) {
         count = await page.$$eval('canvas[data-testid="hyperspeed-canvas"]', (r) => r.length);
       }
       if (count > 0) {
-      const first = await page.$('canvas[data-testid="hyperspeed-canvas"]');
+        const first = await page.$('canvas[data-testid="hyperspeed-canvas"]');
           if (first) {
             // ElementHandle does not have a waitFor helper, use a selector wait instead
             await page.waitForSelector('canvas[data-testid="hyperspeed-canvas"]', { state: 'attached', timeout: 5000 }).catch(() => {});

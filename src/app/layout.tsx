@@ -13,7 +13,7 @@ import { PerformanceMonitor } from "@/components/performance-monitor";
 import { UnifiedBackground } from "@/components/backgrounds/UnifiedBackground";
 import "./globals.css";
 import "@/styles/motion.css";
-import { CookieBanner } from "@/components/cookie-banner";
+// CookieBanner removed a while ago; using ConsentManager instead
 import { ConsentManager } from "@/components/consent-manager";
 import {
   baseMetadata,
@@ -56,6 +56,20 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                try{
+                  if (typeof document !== 'undefined' && !document.head) {
+                    const head = document.createElement('head');
+                    document.documentElement.insertBefore(head, document.body);
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

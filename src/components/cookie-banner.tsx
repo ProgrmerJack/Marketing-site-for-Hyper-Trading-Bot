@@ -29,7 +29,7 @@ export function CookieBanner() {
         if (parsed && typeof parsed.analytics !== "undefined") {
           document.cookie = `analytics_consent=${parsed.analytics ? "yes" : "no"}; path=/; SameSite=Lax`;
         }
-      } catch (e) {
+      } catch {
         // ignore parse errors
       }
       return;

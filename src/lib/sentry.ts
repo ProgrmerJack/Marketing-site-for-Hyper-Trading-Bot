@@ -5,7 +5,7 @@
 
 import * as Sentry from "@sentry/nextjs";
 import { browserTracingIntegration, replayIntegration } from "@sentry/nextjs";
-import type { ErrorEvent as SentryErrorEvent, EventHint } from "@sentry/core";
+import type { ErrorEvent as SentryErrorEvent } from "@sentry/core";
 
 const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN;
 const SENTRY_ENVIRONMENT = process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT || process.env.NODE_ENV;
@@ -39,7 +39,7 @@ if (SENTRY_DSN) {
     ],
     
   // Filter out sensitive data
-  beforeSend(event: SentryErrorEvent, _hint?: EventHint) {
+  beforeSend(event: SentryErrorEvent) {
     // Remove sensitive query parameters
     if (event.request?.url) {
       try {

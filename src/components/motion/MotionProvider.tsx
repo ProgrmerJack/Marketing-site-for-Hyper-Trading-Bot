@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 
-type MotionMode = "system" | "enabled" | "reduced";
+type MotionMode = "system" | "enabled" | "reduced" | "force";
 export type MotionIntensity = "low" | "standard" | "high";
 
 type MotionPreferences = {
@@ -161,8 +161,11 @@ export function MotionProvider({ children }: { children: ReactNode }) {
       preferences.mode === "reduced" ||
       (preferences.mode === "system" && systemPrefersReduced);
 
-    const resolvedEnabled = !prefersReduced && preferences.mode !== "reduced";
-    const resolvedIntensity: MotionIntensity = prefersReduced
+    // If user explicitly forces motion we don't reduce it even if OS prefers reduced.
+    const forced = preferences.mode === "force";
+
+    const resolvedEnabled = forced ? true : !prefersReduced && preferences.mode !== "reduced";
+    const resolvedIntensity: MotionIntensity = prefersReduced && !forced
       ? "low"
       : preferences.intensity;
 
@@ -174,7 +177,7 @@ export function MotionProvider({ children }: { children: ReactNode }) {
     const resolvedCursor =
       resolvedEnabled && preferences.cursor && hasFinePointer;
 
-    const resolvedBackgrounds = resolvedEnabled && preferences.backgrounds && isHydrated;
+    const resolvedBackgrounds = resolvedEnabled && (preferences.backgrounds || forced) && isHydrated;
 
     return {
       enabled: resolvedEnabled,

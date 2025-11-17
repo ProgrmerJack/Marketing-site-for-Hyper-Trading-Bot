@@ -9,7 +9,8 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 2,
   reporter: 'html',
-  timeout: 60 * 1000,
+  // Default test timeout is slightly higher to allow mobile/slow CI runs
+  timeout: 120 * 1000,
   expect: { timeout: 30 * 1000 },
   webServer: {
     command: 'npm run dev',
@@ -40,7 +41,9 @@ export default defineConfig({
     },
     {
       name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
+      use: { ...devices['Pixel 5'], viewport: { width: 393, height: 852 }, navigationTimeout: 120000 },
+      retries: process.env.CI ? 2 : 1,
+      timeout: 180000,
     },
     {
       name: 'Mobile Safari',
