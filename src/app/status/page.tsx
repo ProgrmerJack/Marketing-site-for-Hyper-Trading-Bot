@@ -5,6 +5,7 @@ import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { CheckCircle2, AlertCircle, Activity, Zap, Shield } from "lucide-react";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
 // UnifiedBackground provides site-wide background animation; removed local AnimatedBackground
 
@@ -72,6 +73,7 @@ export default function StatusPage() {
 
       {/* Services Overview Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <SectionMini3D icon={Zap} color="emerald" size={180} position="left" className="hidden xl:block opacity-35" />
         {/* Local AnimatedBackground removed in favor of UnifiedBackground */}
           <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
@@ -94,7 +96,7 @@ export default function StatusPage() {
                 <CheckCircle2 className="mr-2 h-4 w-4" />
                 Services overview
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Current snapshot
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -115,7 +117,7 @@ export default function StatusPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                    className="group relative overflow-hidden rounded-3xl border-2 border-emerald-200/70 bg-gradient-to-br from-white via-emerald-50/40 to-teal-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-emerald-300/80 hover:shadow-2xl dark:border-emerald-700/70 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30 md:p-10"
+                    className="modern-card-emerald group relative overflow-hidden md:p-10"
                   >
                     {/* Gradient overlay */}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
@@ -180,7 +182,7 @@ export default function StatusPage() {
                 <AlertCircle className="mr-2 h-4 w-4" />
                 Incident history
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 No cover-up – root cause or bust
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -199,7 +201,7 @@ export default function StatusPage() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                   whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                  className="group relative overflow-hidden rounded-3xl border-2 border-amber-200/70 bg-gradient-to-br from-white via-amber-50/40 to-orange-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-amber-300/80 hover:shadow-2xl dark:border-amber-700/70 dark:from-slate-900/95 dark:via-amber-950/40 dark:to-orange-950/30 md:p-10"
+                  className="group relative overflow-hidden rounded-3xl border-2 border-amber-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-amber-50/40 to-orange-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-amber-300/80 hover:shadow-2xl dark:border-amber-700/70 dark:from-slate-900/95 dark:via-amber-950/40 dark:to-orange-950/30 md:p-10"
                 >
                   {/* Gradient overlay */}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/8 via-transparent to-orange-500/8 dark:from-amber-500/15 dark:to-orange-500/15" />

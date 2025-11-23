@@ -65,7 +65,7 @@ export function CookieBanner() {
 
   return (
     // Raise z-index above cinematic overlays so banner receives clicks reliably
-    <div className="fixed inset-x-4 bottom-6 z-50 mx-auto max-w-3xl rounded-3xl border border-orange-200 bg-white p-6 shadow-2xl backdrop-blur dark:border-orange-800 dark:bg-slate-900 pointer-events-auto">
+    <div className="fixed inset-x-4 bottom-6 z-50 mx-auto max-w-3xl rounded-3xl border border-orange-200 bg-[rgb(var(--card))] p-6 shadow-2xl backdrop-blur dark:border-orange-800 dark:bg-slate-900 pointer-events-auto">
       <div className="space-y-4 text-sm text-slate-700 dark:text-slate-300" data-testid="cookie-banner">
         <p className="font-semibold text-slate-900 dark:text-white">
           Cookies & consent
@@ -119,7 +119,7 @@ export function CookieBanner() {
           </button>
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-[rgb(var(--card))] px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
             onPointerDown={(e: React.PointerEvent<HTMLButtonElement>) => {
               if (!e.isPrimary) return;
               persist({

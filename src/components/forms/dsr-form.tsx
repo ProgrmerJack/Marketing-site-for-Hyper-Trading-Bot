@@ -34,7 +34,7 @@ export function DsrForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-6 dark:bg-slate-900/90">
+    <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-[rgb(var(--card))/0.85] p-6 dark:bg-slate-900/90">
       <div>
         <h2 className="text-base font-semibold text-[color:var(--color-surface-900)] dark:text-white">
           Do Not Sell/Share request

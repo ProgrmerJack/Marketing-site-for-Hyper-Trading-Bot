@@ -101,7 +101,7 @@ export function AnimatedModal({
                   <h2 className="text-2xl font-bold">{title}</h2>
                   <button
                     onClick={onClose}
-                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                    className="p-2 hover:bg-[rgb(var(--card))/0.06] rounded-lg transition-colors"
                     aria-label="Close modal"
                   >
                     <X className="w-5 h-5" />

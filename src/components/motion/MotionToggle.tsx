@@ -59,7 +59,7 @@ export function MotionToggle() {
 	return (
 		<section
 			aria-label="Motion preferences"
-			className="rounded-2xl border border-[color:var(--color-line-muted)]/50 bg-gradient-to-br from-white/90 to-white/60 p-6 shadow-sm transition-all dark:from-black/30 dark:to-black/10"
+			className="rounded-2xl border border-[color:var(--color-line-muted)]/50 bg-gradient-to-br from-[rgb(var(--card))/0.9] to-[rgb(var(--card))/0.6] p-6 shadow-sm transition-all dark:from-black/30 dark:to-black/10"
 		>
 			<header className="space-y-1">
 				<p className="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--color-surface-500)] dark:text-[color:var(--color-surface-400)]">
@@ -93,7 +93,7 @@ export function MotionToggle() {
 										"relative flex items-center gap-4 rounded-xl border px-4 py-3 text-left transition-all",
 										selected
 											? "border-[color:var(--color-accent-primary)] bg-[color:var(--color-accent-primary)]/12 shadow-sm"
-											: "border-[color:var(--color-line-muted)]/60 hover:border-[color:var(--color-accent-primary)]/60 hover:bg-white/50 dark:hover:bg-white/10",
+											  : "border-[color:var(--color-line-muted)]/60 hover:border-[color:var(--color-accent-primary)]/60 hover:bg-[rgb(var(--card))/0.5] dark:hover:bg-[rgb(var(--card))/0.06]",
 									)}
 								>
 									<AnimatePresence>
@@ -187,7 +187,7 @@ export function MotionToggle() {
 				</div>
 			</div>
 
-			<footer className="mt-6 rounded-xl bg-[color:var(--color-surface-100)]/60 p-4 text-xs text-[color:var(--color-surface-600)] dark:bg-white/5 dark:text-[color:var(--color-surface-400)]">
+			<footer className="mt-6 rounded-xl bg-[color:var(--color-surface-100)]/60 p-4 text-xs text-[color:var(--color-surface-600)] dark:bg-[rgb(var(--card))/0.05] dark:text-[color:var(--color-surface-400)]">
 				<span className="font-semibold text-[color:var(--color-surface-800)] dark:text-white">
 					Status:
 				</span>{" "}
@@ -257,7 +257,7 @@ function ToggleRow({
 				<span
 					aria-hidden
 					className={clsx(
-						"absolute top-1/2 h-4 w-4 -translate-y-1/2 transform rounded-full bg-white shadow transition-all",
+						"absolute top-1/2 h-4 w-4 -translate-y-1/2 transform rounded-full bg-[rgb(var(--card))/0.9] shadow transition-all",
 						active ? "translate-x-6" : "translate-x-1",
 					)}
 				/>

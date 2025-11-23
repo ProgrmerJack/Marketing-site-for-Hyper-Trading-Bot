@@ -24,7 +24,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-12">
           <Link href="/" className="flex items-center gap-4 group">
             <span className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-blue-600 ring-2 ring-primary/30 flex items-center justify-center shadow-lg transition-all duration-300 group-hover:ring-primary/50 group-hover:scale-105">
-              <span className="block h-7 w-7 rounded-full bg-white group-hover:scale-110 transition-transform shadow-lg" />
+              <span className="block h-7 w-7 rounded-full bg-white dark:bg-[rgb(var(--card))] group-hover:scale-110 transition-transform shadow-lg" />
             </span>
             <div className="flex flex-col leading-tight">
               <span className="font-display text-2xl font-bold tracking-tight text-foreground">
@@ -57,7 +57,7 @@ export function SiteHeader() {
         </div>
 
         <button
-          className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-secondary hover:bg-muted dark:bg-white/10 dark:hover:bg-white/20 transition-all duration-300 lg:hidden shadow-md backdrop-blur"
+          className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-secondary hover:bg-muted dark:bg-[rgb(var(--card))/0.08] dark:hover:bg-[rgb(var(--card))/0.12] transition-all duration-300 lg:hidden shadow-md backdrop-blur"
           onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -163,7 +163,7 @@ function CallToActionLink({ href, children }: { href: string; children: ReactNod
     >
       <Link
         href={href as Route}
-        className="inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-r from-primary to-blue-600 px-9 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/40 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-r from-primary to-blue-600 px-9 text-sm font-bold text-white shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/40 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         {children}
       </Link>

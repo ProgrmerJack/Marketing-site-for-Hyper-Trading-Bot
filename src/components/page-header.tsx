@@ -16,7 +16,7 @@ export function PageHeader({
   children,
 }: PageHeaderProps) {
   return (
-    <header className="relative overflow-hidden border-b border-[color:var(--color-line-muted)] bg-white/70 py-24 dark:bg-slate-950/95">
+    <header className="relative overflow-hidden border-b border-[color:var(--color-line-muted)] bg-[rgb(var(--card))/0.7] py-24 dark:bg-slate-950/95">
       <Container className="relative z-10 flex flex-col gap-6">
         {eyebrow ? (
           <span className="inline-flex w-fit items-center rounded-full border border-[color:var(--color-line-muted)] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent-primary)]">

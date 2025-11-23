@@ -8,6 +8,7 @@ import { SpotlightCard } from "@/components/reactbits/dynamic";
 import Link from "next/link";
 import type { Route } from "next";
 import { AlertTriangle, TrendingDown, Cpu, Scale, Shield, CheckCircle2 } from "lucide-react";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 
 const riskSections = [
   {
@@ -133,7 +134,8 @@ export default function RiskDisclosurePage() {
       </PageHeaderAnimated>
 
       {/* Main Content Section */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-24 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <SectionMini3D icon={AlertTriangle} color="amber" size={200} position="left" className="hidden xl:block opacity-25" />
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 dark:opacity-35">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.06),rgba(59,130,246,0.04),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.04),rgba(96,165,250,0.03),transparent_70%)]" />
         </div>
@@ -150,14 +152,14 @@ export default function RiskDisclosurePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="rounded-3xl border border-slate-200 bg-card/90 p-8 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/90 md:p-10"
+                  className="modern-card"
                 >
                   <div className="mb-6 flex items-start gap-4">
                     <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg`}>
                       <Icon className="h-7 w-7 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                      <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
                         {section.title}
                       </h2>
                       <p className={`text-sm leading-relaxed ${section.id === 'warning' ? 'font-semibold text-red-700 dark:text-red-400' : 'text-slate-700 dark:text-slate-300'}`}>
@@ -195,14 +197,14 @@ export default function RiskDisclosurePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="rounded-3xl border border-red-200 bg-gradient-to-br from-white via-red-50/30 to-orange-50/20 p-8 shadow-lg dark:border-red-800/50 dark:from-slate-900 dark:via-red-950/30 dark:to-orange-950/20 md:p-10"
+              className="rounded-3xl border border-red-200 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-red-50/30 to-orange-50/20 p-8 shadow-lg dark:border-red-800/50 dark:from-slate-900 dark:via-red-950/30 dark:to-orange-950/20 md:p-10"
             >
               <div className="mb-6 flex items-start gap-4">
                 <div className="flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
                   <AlertTriangle className="h-7 w-7 text-white" />
                 </div>
                 <div className="flex-1">
-                  <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                  <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
                     Your Acknowledgment
                   </h2>
                   <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
@@ -231,9 +233,9 @@ export default function RiskDisclosurePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="rounded-3xl border border-blue-200 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 p-8 shadow-lg dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20 md:p-10"
+              className="rounded-3xl border border-blue-200 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-blue-50/30 to-cyan-50/20 p-8 shadow-lg dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20 md:p-10"
             >
-              <h2 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">Related Documentation</h2>
+              <h2 className="heading-contrast mb-6 text-2xl font-bold text-slate-900 dark:text-white">Related Documentation</h2>
               <p className="mb-6 text-sm text-slate-700 dark:text-slate-300">
                 Review these documents for complete information:
               </p>

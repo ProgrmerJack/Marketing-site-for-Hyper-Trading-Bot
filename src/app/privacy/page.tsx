@@ -20,6 +20,7 @@ import {
   Phone,
   FileText,
 } from "lucide-react";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 
 const sections = [
   {
@@ -124,7 +125,7 @@ export default function PrivacyPage() {
       >
         <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div className="w-96">
-            <div className="rounded-2xl p-6 shadow-lg bg-gradient-to-br from-white to-blue-50">
+            <div className="rounded-2xl p-6 shadow-lg bg-gradient-to-br from-[rgb(var(--card))/0.9] to-blue-50">
               <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Privacy</div>
               <div className="mb-3 text-lg font-bold">We minimise data collection</div>
               <p className="text-xs text-muted-foreground">We collect minimal personal data and we never sell your information. Read the full policy for details.</p>
@@ -144,7 +145,8 @@ export default function PrivacyPage() {
       </PageHeaderAnimated>
 
       {/* Main Content Section */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-24 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <SectionMini3D icon={FileText} color="cyan" size={200} position="left" className="hidden xl:block opacity-25" />
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 dark:opacity-30">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
         </div>
@@ -162,7 +164,7 @@ export default function PrivacyPage() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                  className="group relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-slate-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-blue-950/30 md:p-10"
+                  className="modern-card group relative overflow-hidden"
                 >
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
                   <div className="relative mb-6 flex items-start gap-4">
@@ -170,7 +172,7 @@ export default function PrivacyPage() {
                       <Icon className="h-7 w-7 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                      <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
                         {section.title}
                       </h2>
                       <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
@@ -216,7 +218,7 @@ export default function PrivacyPage() {
                   <Server className="h-7 w-7 text-white" />
                 </div>
                 <div className="flex-1">
-                  <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                  <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
                     Third-party service providers
                   </h2>
                   <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
@@ -343,7 +345,7 @@ export default function PrivacyPage() {
                       <Icon className="h-7 w-7 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                      <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
                         {section.title}
                       </h2>
                     </div>

@@ -8,9 +8,11 @@ import { Calculator, TrendingUp, Check, X, DollarSign, Shield, ArrowRight } from
 import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
 import { MorphingShape } from "@/components/motion/MorphingShape";
 import { MouseFollower } from "@/components/motion/MouseFollower";
-// ParallaxSection currently not used on the pricing page; remove import to avoid lints
-// Use UnifiedBackground for consistent site-wide animation; no per-section AnimatedBackground
+import { CryptoVaultHero } from "@/components/hero/CryptoVaultHero";
+import { Icon3D } from "@/components/3d-icons/Icon3D";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
 import { useMotion } from "@/components/motion/MotionProvider";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 import type { Route } from "next";
 
 const pricingHighlights = [
@@ -43,13 +45,17 @@ export default function PricingPage() {
 
   return (
     <div className="relative">
-      {/* Hero Section */}
-      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
-        {/* Use unified global AnimatedBackground for consistent hyperspeed animation */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
+      {/* Hero Section - Vibrant emerald/cyan theme */}
+      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-cyan-50 to-teal-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-emerald-950/40 dark:to-cyan-950/40 md:py-32">
+        <Unified3DBackground variant="pricing" intensity={0.55} />
+        
+        {/* CryptoVaultHero - 3D Vault Visualization */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-40 dark:opacity-25 pointer-events-none hidden xl:block">
+          <div className="w-[500px] h-[500px]">
+            <CryptoVaultHero />
+          </div>
         </div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
+        
         <div className="absolute left-[-6rem] -bottom-12 opacity-80 dark:opacity-40 pointer-events-none">
           <MorphingShape size={280} className="motion-zone" color="rgb(var(--primary))" />
         </div>
@@ -60,7 +66,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex w-fit items-center rounded-full border border-blue-300 bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400"
+              className="inline-flex w-fit items-center rounded-full border-2 border-cyan-300 bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/60 dark:text-cyan-300"
             >
               Pricing
             </motion.span>
@@ -92,6 +98,9 @@ export default function PricingPage() {
             >
               {pricingHighlights.map((item, index) => {
                 const Icon = item.icon;
+                // Map gradient to Icon3D color
+                const iconColor = index === 0 ? "cyan" : index === 1 ? "emerald" : "purple";
+                
                 return (
                   <motion.div
                     key={item.title}
@@ -101,11 +110,11 @@ export default function PricingPage() {
                     className="group"
                   >
                     <SpotlightCard
-                      className="relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/80 motion-zone"
+                      className="modern-card-info motion-zone"
                       spotlightColor="rgba(59, 130, 246, 0.2)"
                     >
-                      <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} shadow-md transition-transform duration-300 group-hover:scale-110`}>
-                        <Icon className="h-6 w-6 text-white" />
+                      <div className="mb-6 flex justify-center">
+                        <Icon3D icon={Icon} color={iconColor} size={48} />
                       </div>
                       <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{item.title}</h3>
                       <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{item.description}</p>
@@ -128,7 +137,7 @@ export default function PricingPage() {
                       <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
                       <Link
                         href={("/contact" as Route)}
-                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
+                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
                       >
                         <span className="relative z-10">Get started today</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -151,6 +160,7 @@ export default function PricingPage() {
 
       {/* Pricing Highlights Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <SectionMini3D icon={DollarSign} color="emerald" size={190} position="left" className="hidden xl:block opacity-25" />
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           {/* Per-section AnimatedBackground removed to rely on UnifiedBackground */}
@@ -162,7 +172,7 @@ export default function PricingPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 The Fairest Profit-Share Model in Crypto Trading
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -173,6 +183,8 @@ export default function PricingPage() {
             <div className="grid gap-8 md:grid-cols-3">
               {pricingHighlights.map((item, index) => {
                 const Icon = item.icon;
+                const iconColor = index === 0 ? "cyan" : index === 1 ? "emerald" : "purple";
+
                 return (
                   <motion.div
                     key={item.title}
@@ -183,13 +195,13 @@ export default function PricingPage() {
                     className="group"
                   >
                     <SpotlightCard
-                      className="relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 dark:border-slate-700/50 dark:from-slate-900 dark:via-blue-950/40 dark:to-purple-950/30"
+                      className="modern-card relative h-full overflow-hidden p-8 shadow-lg transition-all duration-300 hover:shadow-2xl"
                       spotlightColor="rgba(59, 130, 246, 0.25)"
                     >
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
                       <div className="relative flex h-full flex-col gap-6">
-                        <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                          <Icon className="h-7 w-7 text-white" />
+                        <div className="flex justify-start">
+                          <Icon3D icon={Icon} color={iconColor} size={56} />
                         </div>
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white">{item.title}</h3>
                         <p className="flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
@@ -222,7 +234,7 @@ export default function PricingPage() {
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
                 Estimator
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Interactive Fee Calculator
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -247,7 +259,7 @@ export default function PricingPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Why We&apos;re Superior to Traditional Funds
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -255,14 +267,14 @@ export default function PricingPage() {
               </p>
             </div>
 
-            <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/60 to-emerald-50/40 shadow-2xl backdrop-blur-sm dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-emerald-950/40">
+            <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-slate-50/60 to-emerald-50/40 shadow-2xl backdrop-blur-sm dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-emerald-950/40">
               {/* Gradient overlay */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-blue-500/8 dark:from-emerald-500/15 dark:to-blue-500/15" />
 
               <div className="relative overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b-2 border-slate-300/60 bg-gradient-to-r from-slate-100/90 to-slate-50/90 dark:border-slate-600/60 dark:from-slate-800/95 dark:to-slate-700/90">
+                    <tr className="border-b-2 border-slate-300/60 bg-[rgb(var(--card))/0.9] dark:bg-[rgb(var(--card))/0.02] dark:border-slate-600/60">
                       <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Feature</th>
                       <th className="p-4 font-bold text-emerald-700 dark:text-emerald-300">
                         Hyper Trading Automation
@@ -318,7 +330,7 @@ export default function PricingPage() {
                     ].map((row) => (
                       <tr
                         key={row.feature}
-                        className="border-b border-slate-200/60 transition-colors hover:bg-slate-50/80 dark:border-slate-700/60 dark:hover:bg-slate-800/60"
+                        className="border-b border-slate-200/60 even:bg-[rgb(var(--card))/0.02] transition-colors hover:bg-[rgb(var(--card))/0.06] dark:border-slate-700/60 dark:even:bg-[rgb(var(--card))/0.02] dark:hover:bg-[rgb(var(--card))/0.06]"
                       >
                         <td className="p-4 font-medium text-slate-900 dark:text-slate-100">{row.feature}</td>
                         <td className="p-4">
@@ -382,7 +394,7 @@ export default function PricingPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Real-World Fee Examples
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -516,37 +528,45 @@ function FeeCalculator() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-purple-50/40 to-blue-50/30 p-8 shadow-2xl backdrop-blur-sm dark:border-slate-700/70 dark:from-slate-900/95 dark:via-purple-950/50 dark:to-blue-950/40 md:p-10">
-        {/* Gradient overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-blue-500/8 dark:from-purple-500/15 dark:to-blue-500/15" />
+      <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-purple-100/60 to-blue-100/50 p-8 shadow-2xl backdrop-blur-md dark:border-slate-700/70 dark:from-slate-900/95 dark:via-purple-900/40 dark:to-blue-900/30 md:p-10">
+        {/* Vibrant Gradient overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 dark:from-purple-500/30 dark:to-blue-500/30 mix-blend-overlay" />
+        
+        {/* Animated Glow Orb behind */}
+        <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-500/30 blur-3xl filter dark:bg-purple-500/20" />
+        <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-blue-500/30 blur-3xl filter dark:bg-blue-500/20" />
 
         <div className="relative mb-8 flex items-center gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg">
-            <Calculator className="h-7 w-7 text-white" />
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-purple-500/20 ring-4 ring-white/20 dark:ring-white/10">
+            <Calculator className="h-8 w-8 text-white" />
           </div>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Profit-Share Estimator</h3>
+          <h3 className="text-3xl font-bold text-slate-900 dark:text-white drop-shadow-sm">Profit-Share Estimator</h3>
         </div>
 
-        <div className="relative mb-8">
-          <label className="mb-3 block text-sm font-bold text-slate-900 dark:text-slate-100">
+        <div className="relative mb-10">
+          <label className="mb-4 block text-sm font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
             Hypothetical Net Profit (after trading costs)
           </label>
-          <input
-            type="range"
-            min="-10000"
-            max="50000"
-            step="1000"
-            value={profit}
-            onChange={(e) => setProfit(Number(e.target.value))}
-            className="h-3 w-full cursor-pointer appearance-none rounded-full bg-gradient-to-r from-red-200 via-slate-200 to-emerald-200 dark:from-red-800 dark:via-slate-600 dark:to-emerald-800"
-          />
-          <div className="mt-3 text-center">
-            <span className="text-4xl font-bold text-slate-900 dark:text-slate-100">
+          <div className="relative h-16">
+             <input
+              type="range"
+              min="-10000"
+              max="50000"
+              step="1000"
+              value={profit}
+              onChange={(e) => setProfit(Number(e.target.value))}
+              className="absolute top-1/2 -translate-y-1/2 h-4 w-full cursor-pointer appearance-none rounded-full bg-gradient-to-r from-red-400 via-slate-300 to-emerald-400 shadow-inner dark:from-red-900 dark:via-slate-700 dark:to-emerald-600"
+            />
+            {/* Custom Thumb styling would be ideal here, but standard range input is robust */}
+          </div>
+          
+          <div className="mt-2 text-center">
+            <span className="text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
               ${profit.toLocaleString()}
             </span>
           </div>
         </div>        <div className="relative grid gap-6 md:grid-cols-2">
-          <div className="space-y-4 rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/80 to-teal-50/70 p-6 dark:border-emerald-800/60 dark:from-emerald-950/40 dark:to-teal-950/40">
+          <div className="space-y-4 modern-card-emerald p-6">
             <h4 className="font-bold text-slate-900 dark:text-slate-100">Hyper Trading Automation</h4>
             <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
@@ -570,7 +590,7 @@ function FeeCalculator() {
             </div>
           </div>
 
-          <div className="space-y-4 rounded-2xl border border-orange-200/60 bg-gradient-to-br from-orange-50/80 to-amber-50/70 p-6 dark:border-orange-800/60 dark:from-orange-950/40 dark:to-amber-950/40">
+          <div className="space-y-4 modern-card p-6">
             <h4 className="font-bold text-slate-900 dark:text-slate-100">Traditional Fund (2% + 20%)</h4>
             <div className="space-y-3 text-sm">
                 <div className="flex justify-between">

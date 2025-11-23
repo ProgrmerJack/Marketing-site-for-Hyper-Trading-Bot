@@ -78,7 +78,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       // Default error UI
       return (
         <div className="flex min-h-screen items-center justify-center bg-[color:var(--color-surface-50)] px-4">
-          <div className="w-full max-w-md space-y-6 rounded-2xl border border-[color:var(--color-line-muted)] bg-white p-8 shadow-xl">
+          <div className="w-full max-w-md space-y-6 rounded-2xl border border-[color:var(--color-line-muted)] bg-[rgb(var(--card))] p-8 shadow-xl dark:border-[color:var(--color-line-muted)]">
             <div className="flex items-center gap-3 text-red-600">
               <AlertCircle className="h-8 w-8" aria-hidden="true" />
               <h1 className="text-2xl font-bold">Something went wrong</h1>

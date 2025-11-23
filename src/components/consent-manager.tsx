@@ -140,7 +140,7 @@ export function ConsentManager() {
           data-testid="cookie-banner"
           className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
         >
-          <div className="max-w-6xl mx-auto bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden">
+          <div className="max-w-6xl mx-auto bg-[rgb(var(--card))] dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden">
             <div className="p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-1">

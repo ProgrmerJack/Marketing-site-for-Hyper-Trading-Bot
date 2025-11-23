@@ -20,6 +20,13 @@ import { SplitText } from "@/components/motion/SplitText";
 import { ParallaxSection } from "@/components/motion/ParallaxSection";
 import { AnimatedNumber } from "@/components/animated-number";
 import { InfoDisclosure } from "@/components/info-disclosure";
+import { FloatingBot3D } from "@/components/hero/FloatingBot3D";
+import { MarketConstellation } from "@/components/hero/MarketConstellation";
+import { EmailCaptureSection } from "@/components/EmailCaptureSection";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
+import { Icon3D } from "@/components/3d-icons/Icon3D";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 
 const heroBullets = [
   "No ROI claims. Every statement is risk-balanced and audit-ready.",
@@ -93,6 +100,7 @@ type Metric = {
   suffix?: string;
   decimals?: number;
   description: string;
+  icon: LucideIcon;
 };
 
 const metrics: Metric[] = [
@@ -101,18 +109,21 @@ const metrics: Metric[] = [
     value: 142,
     suffix: " ms",
     description: "On the signed market data demo feed",
+    icon: Timer,
   },
   {
     label: "Integrations gated",
     value: 18,
     suffix: " venues",
     description: "Risk and compliance-vetted exchange & custodian surfaces",
+    icon: Cpu,
   },
   {
     label: "Control checks",
     value: 42,
     suffix: " per route",
     description: "Executed before any order legs stream outside the sandbox",
+    icon: ShieldCheck,
   },
 ];
 
@@ -255,6 +266,7 @@ export default function Home() {
       <MetricsSection />
       <IntegrationsSection />
       <TestimonialsSection />
+      <EmailCaptureSection />
       <DemoSection />
       <TrustSection />
       <FinalCtaSection />
@@ -266,10 +278,10 @@ function HeroSection() {
   const { cursorEnabled } = useMotion();
 
   return (
-    <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
-      {/* Background Layer */}
+    <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-slate-50 via-sky-50/40 to-cyan-50/30 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-slate-950 dark:to-slate-900 md:py-32">
+      {/* Background Layer - Updated with neon accents */}
+      <Unified3DBackground variant="home" intensity={0.9} />
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
         <div className="absolute -right-24 -top-16 opacity-80 dark:opacity-40 pointer-events-none">
           <MorphingShape size={380} className="motion-zone" color="rgb(var(--primary))" />
         </div>
@@ -277,7 +289,7 @@ function HeroSection() {
 
       <Container className="relative z-10">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16 xl:gap-20">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16 xl:gap-20">
             {/* Hero Content */}
             <div className="space-y-8">
               <AccentBadge>Regulated automation preview</AccentBadge>
@@ -325,10 +337,24 @@ function HeroSection() {
               </div>
             </div>
 
-            {/* Hero Card */}
-            <ParallaxSection speed={0.35} className="relative">
-              <HeroTelemetryCard />
-            </ParallaxSection>
+            {/* Hero Card with 3D Bot */}
+            <div className="relative">
+              {/* 3D Market Constellation */}
+              <div>
+                {/* Market constellation: static - animation disabled per user request. Small size for static view */}
+                <MarketConstellation animated={false} size={360} className="mx-auto" />
+              </div>
+              
+              {/* 3D Floating Bot */}
+              <div>
+                <FloatingBot3D />
+              </div>
+              
+              {/* Telemetry Card */}
+              <ParallaxSection speed={0.35} className="relative -mt-6 lg:-mt-8">
+                <HeroTelemetryCard />
+              </ParallaxSection>
+            </div>
           </div>
         </div>
       </Container>
@@ -348,12 +374,15 @@ function PrimaryCta({ href, children, cursorEnabled, className }: PrimaryCtaProp
     <Link
       href={href as Route}
       className={clsx(
-        "group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-primary dark:text-primary-foreground dark:shadow-primary/30 dark:hover:shadow-primary/50",
+        "group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full px-8 text-sm font-semibold shadow-lg transition-all duration-200 hover:shadow-2xl hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+        "bg-gradient-to-r from-[rgb(34,211,238)] to-[rgb(99,102,241)] text-white",
+        "hover:shadow-[rgb(34,211,238)]/50 dark:shadow-[rgb(34,211,238)]/40 dark:hover:shadow-[rgb(34,211,238)]/60",
+        "focus-visible:outline-[rgb(34,211,238)]",
         className,
       )}
     >
-      <span className="relative z-10">{children}</span>
-      <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100 dark:from-blue-500 dark:to-blue-700" />
+      <span className="relative z-10 font-bold">{children}</span>
+      <div className="absolute inset-0 bg-gradient-to-r from-[rgb(99,102,241)] to-[rgb(34,211,238)] opacity-0 transition-opacity group-hover:opacity-100" />
     </Link>
   );
 
@@ -362,10 +391,10 @@ function PrimaryCta({ href, children, cursorEnabled, className }: PrimaryCtaProp
   }
 
   return (
-    <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
+    <ClickSpark sparkColor="rgba(34, 211, 238, 0.9)" sparkCount={16} sparkRadius={38} sparkSize={12}>
       <div className="inline-block">
         <div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
-          <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+          <StarBorder as="div" color="rgb(34, 211, 238)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
             {button}
           </StarBorder>
         </div>
@@ -404,23 +433,25 @@ function HeroTelemetryCard() {
       initial={{ opacity: 0, scale: 0.95, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative overflow-hidden rounded-3xl border-2 border-orange-300/40 bg-gradient-to-br from-slate-50 via-white to-orange-50/30 shadow-lg dark:border-orange-600/60 dark:from-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10 motion-zone"
+      className="relative overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.06)] bg-[rgb(var(--card))/0.36] dark:bg-[rgba(10,12,16,0.65)] p-0 shadow-lg backdrop-blur-md motion-zone"
     >
       {/* Card Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-amber-500/5 dark:from-blue-500/10 dark:via-transparent dark:to-cyan-500/10" />
       </div>
 
+      {/* Decorative 3D Icon intentionally removed to reduce visual clutter (user request) */}
+
       {/* Card Content */}
-      <div className="relative space-y-6 p-8 text-slate-700 force-dark-black">
+      <div className="relative space-y-6 p-8 text-slate-700 dark:text-white">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-900">
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-white">
             Signed telemetry
           </span>
-          <span className="text-xs font-mono font-semibold text-slate-600 dark:text-slate-900">p95 &lt; 150ms</span>
+          <span className="text-xs font-mono font-semibold text-slate-600 dark:text-white">p95 &lt; 150ms</span>
         </div>
 
-        <p className="text-sm font-medium leading-relaxed text-slate-700 force-dark-black">
+        <p className="text-sm font-medium leading-relaxed text-slate-700 dark:text-white">
           Demo feeds run on SSE with signed payloads. Latency, slippage, and venue posture publish in
           plain language with integrity checks that halt playback when guarantees slip.
         </p>
@@ -431,7 +462,7 @@ function HeroTelemetryCard() {
               key={metric.label}
               metric={metric}
               index={index}
-              darkTextBlack={true}
+              darkTextBlack={false}
             />
           ))}
         </div>
@@ -457,13 +488,20 @@ function MetricRow({ metric, index, darkTextBlack }: MetricRowProps) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-      className="flex items-center justify-between rounded-xl border-2 border-orange-300/60 bg-gradient-to-r from-white to-orange-50/60 px-5 py-4 backdrop-blur-sm transition-all hover:shadow-lg hover:border-orange-400/80 hover:-translate-y-0.5 dark:border-orange-700/50 dark:from-slate-800/80 dark:to-orange-900/30 dark:hover:border-orange-700/60 dark:hover:bg-slate-800/90"
+      className="flex items-center justify-between rounded-xl border-2 border-orange-300/60 bg-gradient-to-r from-[rgb(var(--card))] to-orange-50/60 px-5 py-4 backdrop-blur-sm transition-all hover:shadow-lg hover:border-orange-400/80 hover:-translate-y-0.5 dark:border-orange-700/50 dark:from-slate-800/80 dark:to-orange-900/30 dark:hover:border-orange-700/60 dark:hover:bg-slate-800/90"
     >
+      <div className="mr-4 flex-none">
+        <Icon3D 
+          icon={metric.icon} 
+          color={index === 0 ? "orange" : index === 1 ? "blue" : "emerald"} 
+          size={20} 
+        />
+      </div>
       <div className="flex-1">
-        <span className={clsx("text-xs font-bold uppercase tracking-wider text-slate-600", darkTextBlack && "force-dark-black", !darkTextBlack && "dark:text-slate-300")}>
+        <span className={clsx("text-xs font-bold uppercase tracking-wider text-slate-600", darkTextBlack && "force-dark-black", !darkTextBlack && "dark:text-white")}>
           {metric.label}
         </span>
-        <p className={clsx("mt-1 text-xs font-medium text-slate-600", darkTextBlack && "force-dark-black", !darkTextBlack && "dark:text-slate-400")}>
+        <p className={clsx("mt-1 text-xs font-medium text-slate-600", darkTextBlack && "force-dark-black", !darkTextBlack && "dark:text-white")}>
           {metric.description}
         </p>
       </div>
@@ -484,10 +522,19 @@ function MetricRow({ metric, index, darkTextBlack }: MetricRowProps) {
 function FeatureStorySection() {
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
-      {/* Background */}
+      {/* Animated Liquid Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
-        <div className="section-surface" />
+        <AnimatedBackground
+          variant="liquid"
+          colors={[
+            "rgba(34,211,238,0.15)",
+            "rgba(99,102,241,0.12)",
+            "rgba(14,165,233,0.10)",
+          ]}
+          speed="34s"
+          opacity={0.75}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.85] via-transparent to-[rgb(var(--card))/0.85] dark:from-[rgb(5,8,15)]/85 dark:via-transparent dark:to-[rgb(5,8,15)]/85" />
       </div>
 
       <Container className="relative z-10">
@@ -505,6 +552,9 @@ function FeatureStorySection() {
               all communicate in the open so you can interrogate decisions before capital is at risk.
             </p>
           </div>
+
+          {/* Decorative 3D Mini */}
+          <SectionMini3D icon={Cpu} color="cyan" />
 
           {/* Feature Grid */}
           <div className="grid gap-6 md:grid-cols-2 md:gap-8">
@@ -534,35 +584,38 @@ function FeatureCard({ panel, index }: FeatureCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="h-full"
     >
-          <SpotlightCard
+      <SpotlightCard
         data-testid="feature-card"
         className={clsx(
-          "group relative h-full overflow-hidden rounded-3xl border-2 border-slate-200/60 bg-card p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 dark:border-slate-700/60 dark:bg-slate-900",
-          panel.accent.border
+          "group relative h-full overflow-hidden rounded-3xl border-2 shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-2",
+          index === 0 && "border-[rgb(34,211,238)]/40 bg-gradient-to-br from-[rgb(var(--card))] via-cyan-50/30 to-sky-50/20 dark:border-[rgb(34,211,238)]/60 dark:from-slate-950 dark:via-cyan-950/25 dark:to-blue-950/20 hover:neon-glow-cyan",
+          index === 1 && "border-emerald-400/40 bg-gradient-to-br from-[rgb(var(--card))] via-emerald-50/30 to-teal-50/20 dark:border-emerald-400/60 dark:from-slate-950 dark:via-emerald-950/25 dark:to-teal-950/20 hover:neon-glow-emerald",
+          index === 2 && "border-purple-400/40 bg-gradient-to-br from-[rgb(var(--card))] via-purple-50/30 to-pink-50/20 dark:border-purple-400/60 dark:from-slate-950 dark:via-purple-950/30 dark:to-pink-950/20 hover:neon-glow-purple",
+          index === 3 && "border-orange-400/40 bg-gradient-to-br from-[rgb(var(--card))] via-orange-50/30 to-amber-50/20 dark:border-orange-400/60 dark:from-slate-950 dark:via-orange-950/30 dark:to-amber-950/20 hover:neon-glow-orange"
         )}
-        spotlightColor="rgba(251, 146, 60, 0.15)"
+        spotlightColor={
+          (index === 0 ? "rgba(34, 211, 238, 0.15)" :
+          index === 1 ? "rgba(52, 211, 153, 0.15)" :
+          index === 2 ? "rgba(168, 85, 247, 0.15)" :
+          "rgba(251, 146, 60, 0.15)") as `rgba(${number}, ${number}, ${number}, ${number})`
+        }
       >
-        <div
-          aria-hidden
-          className={clsx(
-            "pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br opacity-95 transition-opacity duration-300 group-hover:opacity-100",
-            panel.accent.gradient
-          )}
-        />
-        <div className="relative flex h-full flex-col">
+        <div className="relative flex h-full flex-col p-8">
           <div className="flex items-center gap-4 mb-6">
-            <div className={clsx(
-              "flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
-              index === 0 && "bg-gradient-to-br from-blue-500 to-cyan-500",
-              index === 1 && "bg-gradient-to-br from-emerald-500 to-green-500",
-              index === 2 && "bg-gradient-to-br from-purple-500 to-pink-500",
-              index === 3 && "bg-gradient-to-br from-orange-500 to-red-500"
-            )}>
-              <Icon className="h-7 w-7 text-white" />
-            </div>
+            <Icon3D 
+              icon={Icon} 
+              color={
+                index === 0 ? "cyan" :
+                index === 1 ? "emerald" :
+                index === 2 ? "purple" :
+                "orange"
+              }
+              size={32}
+              className="flex-none"
+            />
             <span className={clsx(
               "text-xs font-bold uppercase tracking-widest",
-              index === 0 && "text-blue-600 dark:text-blue-400",
+              index === 0 && "text-[rgb(37,99,235)] dark:text-[rgb(34,211,238)]",
               index === 1 && "text-emerald-600 dark:text-emerald-400",
               index === 2 && "text-purple-600 dark:text-purple-400",
               index === 3 && "text-orange-600 dark:text-orange-400"
@@ -605,10 +658,18 @@ function AccentBadge({ children, color = "bg-primary/10 text-primary" }: AccentB
 function WorkflowSection() {
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
-      {/* Background */}
+      {/* Animated Beams Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(15,23,42,0.05)_0%,transparent_55%,rgba(56,189,248,0.08)_100%)]" />
-        <div className="section-surface" />
+        <AnimatedBackground
+          variant="beams"
+          colors={[
+            "rgba(0,179,255,0.25)",
+            "rgba(79,244,207,0.20)",
+          ]}
+          speed="26s"
+          opacity={0.75}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.7] via-transparent to-[rgb(var(--card))/0.7] dark:from-[rgb(10,10,15)]/70 dark:via-transparent dark:to-[rgb(10,10,15)]/70" />
       </div>
 
       <Container className="relative z-10">
@@ -650,7 +711,7 @@ function WorkflowCard({ step, index }: WorkflowCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 dark:border-slate-700 dark:from-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10"
+      className="group h-full modern-card p-8 shadow-lg transition-all duration-300 hover:shadow-xl"
     >
       <div className={clsx(
         "mb-6 flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
@@ -658,7 +719,7 @@ function WorkflowCard({ step, index }: WorkflowCardProps) {
         index === 1 && "bg-gradient-to-br from-red-500 to-orange-500",
         index === 2 && "bg-gradient-to-br from-purple-500 to-indigo-500"
       )}>
-        <Icon className="h-7 w-7 text-white" />
+        <Icon className="h-7 w-7 text-foreground dark:text-white" />
       </div>
 
       <h3 className="mb-4 text-xl font-bold text-foreground">
@@ -757,7 +818,7 @@ function MetricCard({ metric }: MetricCardProps) {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5 }}
-      className="flex h-full flex-col rounded-3xl border border-orange-200/50 bg-gradient-to-br from-white via-orange-50/20 to-amber-50/10 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 dark:border-orange-800/30 dark:from-slate-900 dark:via-orange-950/20 dark:to-amber-950/10"
+      className="flex h-full flex-col modern-card p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
     >
       <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
         {metric.label}
@@ -769,7 +830,7 @@ function MetricCard({ metric }: MetricCardProps) {
           {metric.suffix}
         </span>
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-lg">
-          <ArrowRight className="h-5 w-5 text-white" />
+          <ArrowRight className="h-5 w-5 text-foreground dark:text-white" />
         </div>
       </div>
 
@@ -826,7 +887,7 @@ function IntegrationTileCard({ tile }: IntegrationTileCardProps) {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5 }}
       className={clsx(
-        "group relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300/80 dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-800/80 dark:to-blue-950/50 dark:hover:border-blue-600/70",
+        "group relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.06)] bg-[rgb(var(--card))/0.36] dark:bg-[rgba(10,12,16,0.6)] p-6 shadow-lg backdrop-blur-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:ring-1 hover:ring-blue-400/20",
         tile.accent
       )}
     >
@@ -838,7 +899,9 @@ function IntegrationTileCard({ tile }: IntegrationTileCardProps) {
           backgroundPosition: "center",
         }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/80 via-transparent to-blue-500/5 dark:from-slate-950/80 dark:via-transparent dark:to-blue-500/15" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-transparent to-blue-500/5 dark:from-slate-950/80 dark:via-transparent dark:to-blue-500/15" />
+
+      {/* Decorative 3D icon removed from integration tile per user feedback */}
 
       <div className="relative space-y-4">
         <h3 className="text-xl font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">{tile.name}</h3>
@@ -885,7 +948,7 @@ function TestimonialsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl border-2 border-teal-200/40 bg-card p-8 shadow-md backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:border-teal-300/60 dark:border-teal-700/70 dark:bg-slate-900 dark:via-blue-950/20 dark:to-cyan-950/10 dark:hover:border-teal-600/80"
+                className="group relative overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.04)] bg-[rgb(var(--card))/0.28] dark:bg-[rgba(12,14,18,0.6)] p-8 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:ring-1 hover:ring-teal-300/20"
               >
                 <div
                   className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 opacity-5 rounded-full blur-3xl dark:opacity-25"
@@ -915,11 +978,13 @@ function DemoSection() {
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
       <Container className="relative z-10">
-        <div className="relative overflow-hidden rounded-3xl border-2 border-blue-200/60 bg-gradient-to-br from-white via-blue-50/40 to-cyan-50/30 shadow-2xl dark:border-blue-800/60 dark:from-slate-900/95 dark:via-blue-950/30 dark:to-cyan-950/20">
+        <div className="relative overflow-hidden rounded-3xl border border-[rgba(255,255,255,0.06)] bg-[rgb(var(--card))/0.32] shadow-2xl dark:border-blue-800/60 dark:bg-[rgba(10,12,16,0.6)] dark:via-blue-950/30 dark:to-cyan-950/20">
           {/* Background Effects */}
           <div className="pointer-events-none absolute inset-0 opacity-30 dark:opacity-20">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.25),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.15),transparent_70%)]" />
           </div>
+
+          {/* Decorative 3D Icon removed from demo section per user request */}
 
           {/* Cursor Effect */}
           {cursorEnabled && hydrated ? (
@@ -971,7 +1036,7 @@ function DemoSection() {
               </Link>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border-2 border-blue-200/70 bg-gradient-to-br from-white via-blue-50/30 to-slate-50/20 p-6 shadow-lg backdrop-blur-md dark:border-blue-800/70 dark:from-slate-900/95 dark:via-blue-950/40 dark:to-slate-800/60">
+            <div className="relative overflow-hidden rounded-2xl border-2 border-blue-200/70 bg-card p-6 shadow-lg backdrop-blur-md dark:border-blue-800/70 dark:bg-slate-900/95 dark:via-blue-950/40 dark:to-slate-800/60">
               <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300">
                 <span>BTC/USDT demo</span>
                 <span>Latency p95 &lt; 150 ms</span>
@@ -987,9 +1052,9 @@ function DemoSection() {
                       y1={40 * i}
                       x2="400"
                       y2={40 * i}
-                      stroke="currentColor"
-                      strokeWidth="0.5"
-                      className="text-slate-200 dark:text-slate-700"
+                        stroke="#e5e7eb"
+                        strokeWidth="0.5"
+                        className="dark:text-slate-700"
                       opacity="0.5"
                     />
                   ))}
@@ -1014,7 +1079,7 @@ function DemoSection() {
                         y1={candle.high}
                         x2={candle.x}
                         y2={candle.low}
-                        stroke="currentColor"
+                        stroke="#10b981"
                         strokeWidth="1"
                         className={candle.rising ? "text-emerald-500" : "text-red-500"}
                       />
@@ -1024,19 +1089,18 @@ function DemoSection() {
                         y={Math.min(candle.open, candle.close)}
                         width="12"
                         height={Math.abs(candle.close - candle.open) || 2}
-                        fill="currentColor"
-                        className={candle.rising ? "text-emerald-500" : "text-red-500"}
+                        fill={candle.rising ? "#10b981" : "#ef4444"}
                       />
                     </g>
                   ))}
 
                   {/* Moving average line */}
-                  <polyline
+                    <polyline
                     points="20,55 60,60 100,70 140,80 180,75 220,85 260,95 300,85 340,75 380,65"
                     fill="none"
-                    stroke="currentColor"
+                      stroke="#3b82f6"
                     strokeWidth="2"
-                    className="text-blue-500 dark:text-blue-400"
+                      className="dark:text-blue-400"
                     opacity="0.8"
                   />
                 </svg>
@@ -1090,7 +1154,7 @@ function TrustSection() {
                     stiffness: 100
                   }}
                   whileHover={{ scale: 1.02 }}
-                  className="rounded-2xl border border-emerald-200/50 bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/20 p-6 backdrop-blur-sm shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 dark:border-emerald-800/30 dark:from-slate-900 dark:via-emerald-950/30 dark:to-teal-950/20"
+                  className="modern-card-emerald"
                 >
                   <div className="mb-3 flex items-center gap-3">
                     <motion.div
@@ -1099,7 +1163,7 @@ function TrustSection() {
                       transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
                       className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg"
                     >
-                      <ShieldCheck className="h-5 w-5 text-white" />
+                      <ShieldCheck className="h-5 w-5 text-foreground dark:text-white" />
                     </motion.div>
                     <h3 className="text-base font-bold text-slate-900 dark:text-white">{signal.label}</h3>
                   </div>
@@ -1157,7 +1221,7 @@ function FinalCtaSection() {
           transition={{ duration: 0.8 }}
           className="mx-auto max-w-5xl"
         >
-          <div className="relative overflow-hidden rounded-3xl border border-orange-200 bg-gradient-to-br from-white via-orange-50/50 to-amber-50/30 p-12 shadow-2xl dark:border-orange-800 dark:from-slate-900 dark:via-orange-950/30 dark:to-amber-950/20 md:p-16 lg:p-20">
+          <div className="relative overflow-hidden modern-card p-12 shadow-2xl md:p-16 lg:p-20">
             {/* Gradient overlay for visual effect */}
             <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-30 bg-[radial-gradient(ellipse_at_center,rgba(251,146,60,0.2),transparent_70%)]" />
 
@@ -1170,7 +1234,7 @@ function FinalCtaSection() {
                 transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 200 }}
                 className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 shadow-2xl"
               >
-                <ArrowRight className="h-10 w-10 text-white" />
+                <ArrowRight className="h-10 w-10 text-foreground dark:text-white" />
               </motion.div>
 
               {/* Heading */}

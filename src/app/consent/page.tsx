@@ -7,6 +7,7 @@ import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { DsrForm } from "@/components/forms/dsr-form";
 // UnifiedBackground used globally; per-section AnimatedBackground removed
 import { Cookie, Shield, CheckCircle2, XCircle, Settings, Eye, Lock } from "lucide-react";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 
 const consentOptions = [
   {
@@ -83,12 +84,9 @@ export default function ConsentPage() {
 
       {/* Preferences Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <SectionMini3D icon={Cookie} color="purple" size={200} position="right" className="hidden xl:block opacity-30" />
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
           {/* Per-section AnimatedBackground removed in favour of UnifiedBackground */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
-        </div>
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 
         <Container className="relative z-10">
@@ -105,7 +103,7 @@ export default function ConsentPage() {
                 <Cookie className="mr-2 h-4 w-4" />
                 Your preferences
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Granular control over your data
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -125,7 +123,7 @@ export default function ConsentPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15 }}
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-purple-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-purple-950/30 dark:to-pink-950/20 dark:hover:border-purple-600/70"
+                    className="modern-card group relative flex flex-col gap-6 overflow-hidden"
                   >
                     {/* Gradient overlay */}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 dark:from-purple-500/15 dark:to-pink-500/15" />
@@ -168,10 +166,10 @@ export default function ConsentPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 
         <Container className="relative z-10">
@@ -188,7 +186,7 @@ export default function ConsentPage() {
                 <Shield className="mr-2 h-4 w-4" />
                 Privacy by design
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Built with your privacy in mind
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -208,7 +206,7 @@ export default function ConsentPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15 }}
                     whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                    className="group relative overflow-hidden rounded-3xl border-2 border-emerald-200/70 bg-gradient-to-br from-white via-emerald-50/40 to-teal-50/30 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-emerald-300/80 hover:shadow-2xl dark:border-emerald-700/70 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30 dark:hover:border-emerald-600/80"
+                    className="group relative overflow-hidden rounded-3xl border-2 border-emerald-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-emerald-50/40 to-teal-50/30 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-emerald-300/80 hover:shadow-2xl dark:border-emerald-700/70 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30 dark:hover:border-emerald-600/80"
                   >
                     {/* Gradient overlay */}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
@@ -245,10 +243,10 @@ export default function ConsentPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+           <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 
         <Container className="relative z-10">
@@ -264,7 +262,7 @@ export default function ConsentPage() {
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
                 Data rights
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Do Not Sell/Share
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">

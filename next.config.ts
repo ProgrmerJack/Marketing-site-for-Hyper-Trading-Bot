@@ -15,7 +15,13 @@ const structuredDataHashes = [
 ].map((payload) => createHash("sha256").update(payload).digest("base64"));
 
 const baseScriptSrc = ["'self'", "'unsafe-eval'"];
-const scriptSrc = isDev
+// By default we keep CSP strict in prod and allow 'unsafe-inline' in dev.
+// The ALLOW_UNSAFE_INLINE_SCRIPTS env var allows tests / CI runs to opt-in to
+// a looser CSP (temporarily and intentionally) for deterministic E2E testing
+// while we continue implementing a proper nonce approach or externalization
+// of inline scripts.
+const allowUnsafeInline = isDev || process.env.ALLOW_UNSAFE_INLINE_SCRIPTS === 'true';
+const scriptSrc = allowUnsafeInline
   ? [...baseScriptSrc, "'unsafe-inline'", "blob:"]
   : [...baseScriptSrc, ...structuredDataHashes.map((hash) => `'sha256-${hash}'`)];
 

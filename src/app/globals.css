@@ -2,34 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../styles/modern-cards.css';
+
 @layer base {
   :root {
     --motion-duration-scale: 1;
 
-    /* Light mode - Apple-inspired palette with proper contrast */
+    /* Light mode - Clean professional with vibrant accents */
     --background: 255 255 255;
     --foreground: 15 23 42;
     --card: 255 255 255;
     --card-foreground: 15 23 42;
     --popover: 255 255 255;
     --popover-foreground: 15 23 42;
-    --primary: 59 130 246;
+    --primary: 37 99 235;
     --primary-foreground: 255 255 255;
     --secondary: 241 245 249;
     --secondary-foreground: 15 23 42;
-    --muted: 241 245 249;
+    --muted: 248 250 252;
     --muted-foreground: 100 116 139;
-    --accent: 59 130 246;
+    --accent: 14 165 233;
     --accent-foreground: 255 255 255;
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
-    --success: 34 197 94;
+    --success: 16 185 129;
     --success-foreground: 255 255 255;
-    --warning: 251 146 60;
+    --warning: 245 158 11;
     --warning-foreground: 255 255 255;
     --border: 226 232 240;
     --input: 226 232 240;
-    --ring: 59 130 246;
+    --ring: 37 99 235;
 
     /* Surface colors - Light mode (Slate scale) */
     --color-surface-50: 248 250 252;
@@ -71,29 +73,29 @@
   }
 
   .dark {
-    --background: 3 7 18;
-    --foreground: 241 245 249;
-    --card: 15 23 42;
-    --card-foreground: 241 245 249;
-    --popover: 15 23 42;
-    --popover-foreground: 241 245 249;
-    --primary: 96 165 250;
-    --primary-foreground: 3 7 18;
-    --secondary: 30 41 59;
-    --secondary-foreground: 241 245 249;
-    --muted: 30 41 59;
-    --muted-foreground: 148 163 184;
-    --accent: 96 165 250;
-    --accent-foreground: 3 7 18;
-    --destructive: 248 113 113;
-    --destructive-foreground: 3 7 18;
-    --success: 74 222 128;
-    --success-foreground: 3 7 18;
-    --warning: 253 186 116;
-    --warning-foreground: 3 7 18;
+    --background: 5 8 15;
+    --foreground: 248 250 252;
+    --card: 12 17 29;
+    --card-foreground: 248 250 252;
+    --popover: 12 17 29;
+    --popover-foreground: 248 250 252;
+    --primary: 34 211 238;
+    --primary-foreground: 5 8 15;
+    --secondary: 20 27 45;
+    --secondary-foreground: 248 250 252;
+    --muted: 20 27 45;
+    --muted-foreground: 203 213 225;
+    --accent: 99 102 241;
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --success: 34 197 94;
+    --success-foreground: 5 8 15;
+    --warning: 251 146 60;
+    --warning-foreground: 5 8 15;
     --border: 30 41 59;
     --input: 30 41 59;
-    --ring: 96 165 250;
+    --ring: 34 211 238;
 
     /* Surface colors - Dark mode */
     --color-surface-50: 15 23 42;
@@ -276,6 +278,18 @@ header h1, header h2, header h3,
   background-color: rgb(71 85 105);
 }
 
+  /* Map Tailwind "bg-white" opacity tokens to dark-mode card color so white blocks don't show in dark themes */
+  .dark .bg-white { background-color: rgb(var(--card)) !important; }
+  .dark .bg-white\/5 { background-color: rgb(var(--card) / 0.05) !important; }
+  .dark .bg-white\/10 { background-color: rgb(var(--card) / 0.1) !important; }
+  .dark .bg-white\/20 { background-color: rgb(var(--card) / 0.2) !important; }
+  .dark .bg-white\/30 { background-color: rgb(var(--card) / 0.3) !important; }
+  .dark .bg-white\/40 { background-color: rgb(var(--card) / 0.4) !important; }
+  .dark .bg-white\/50 { background-color: rgb(var(--card) / 0.5) !important; }
+  .dark .bg-white\/70 { background-color: rgb(var(--card) / 0.7) !important; }
+  .dark .bg-white\/80 { background-color: rgb(var(--card) / 0.8) !important; }
+  .dark .bg-white\/90 { background-color: rgb(var(--card) / 0.9) !important; }
+
 /* Dark mode badge colors */
 .dark [class*="bg-blue-100"] {
   background-color: rgb(30 58 138 / 0.5);
@@ -381,6 +395,33 @@ header h1, header h2, header h3,
 }
 .card-spotlight::before {
   background: transparent !important;
+}
+
+/* Make icons with `text-white` visible on white/near-white backgrounds in light mode, while still being white in dark mode */
+.bg-white .text-white,
+.bg-white\/5 .text-white,
+.bg-white\/10 .text-white,
+.bg-white\/20 .text-white,
+.bg-white\/30 .text-white,
+.bg-white\/40 .text-white,
+.bg-white\/50 .text-white,
+.bg-white\/70 .text-white,
+.bg-white\/80 .text-white,
+.bg-white\/90 .text-white {
+  color: rgb(var(--foreground)) !important;
+}
+
+.dark .bg-white .text-white,
+.dark .bg-white\/5 .text-white,
+.dark .bg-white\/10 .text-white,
+.dark .bg-white\/20 .text-white,
+.dark .bg-white\/30 .text-white,
+.dark .bg-white\/40 .text-white,
+.dark .bg-white\/50 .text-white,
+.dark .bg-white\/70 .text-white,
+.dark .bg-white\/80 .text-white,
+.dark .bg-white\/90 .text-white {
+  color: rgb(255 255 255) !important;
 }
 
 /* Scrollbar styling */
@@ -491,3 +532,119 @@ header h1, header h2, header h3,
     scroll-behavior: auto !important;
   }
 }
+
+/* Futuristic Neon Effects - Updated for new color system */
+.neon-glow-cyan {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3), 0 0 60px rgba(34, 211, 238, 0.1);
+}
+
+.neon-glow-blue {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), 0 0 40px rgba(99, 102, 241, 0.3), 0 0 60px rgba(99, 102, 241, 0.1);
+}
+
+.neon-glow-emerald {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(16, 185, 129, 0.3), 0 0 60px rgba(16, 185, 129, 0.1);
+}
+
+.neon-glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.3), 0 0 60px rgba(168, 85, 247, 0.1);
+}
+
+.neon-glow-orange {
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.5), 0 0 40px rgba(251, 146, 60, 0.3), 0 0 60px rgba(251, 146, 60, 0.1);
+}
+
+.neon-text-cyan {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8), 0 0 20px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.4);
+}
+
+.neon-text-blue {
+  text-shadow: 0 0 10px rgba(99, 102, 241, 0.8), 0 0 20px rgba(99, 102, 241, 0.6), 0 0 30px rgba(99, 102, 241, 0.4);
+}
+
+/* Glassmorphism effect */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-panel {
+  background: rgba(12, 17, 29, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+/* Animated gradient backgrounds */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Icon pulse animation */
+@keyframes icon-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.icon-pulse {
+  animation: icon-pulse 3s ease-in-out infinite;
+}
+
+/* Subtle border glow animation */
+@keyframes border-glow {
+  0%, 100% {
+    border-color: rgba(34, 211, 238, 0.3);
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
+  }
+  50% {
+    border-color: rgba(34, 211, 238, 0.6);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+  }
+}
+
+.border-glow-animate {
+  animation: border-glow 3s ease-in-out infinite;
+}
+
+/* Ensure Lucide icons are always visible and properly styled */
+svg[class*="lucide"],
+[class*="lucide-icon"] {
+  display: inline-block;
+  vertical-align: middle;
+  stroke-width: 2;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+}
+
+/* Default icon color if not specified */
+.lucide:not([class*="text-"]) {
+  @apply text-slate-700 dark:text-slate-300;
+}
+
+/* Icon size utilities */
+.icon-xs { width: 1rem; height: 1rem; }
+.icon-sm { width: 1.25rem; height: 1.25rem; }
+.icon-md { width: 1.5rem; height: 1.5rem; }
+.icon-lg { width: 2rem; height: 2rem; }
+.icon-xl { width: 2.5rem; height: 2.5rem; }
+.icon-2xl { width: 3rem; height: 3rem; }
+

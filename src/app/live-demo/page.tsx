@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Section } from "@hyper/ui";
+import { Activity } from "lucide-react";
 import { DemoTelemetry } from "@/components/demo-telemetry";
 import { DemoChart } from "@/components/charts/demo-chart";
 import { DemoStreamClient } from "@/components/live-demo-client";
@@ -9,7 +10,9 @@ import MarketDataDemo from "@/components/market-data-demo";
 import { AdvancedChartsDemo } from "@/components/charts/advanced-charts-demo";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { SpotlightCard } from "@/components/reactbits/dynamic";
-// motion hooks are not used in this page
+import { TradingCockpit3D } from "@/components/hero/TradingCockpit3D";
+import { FloatingParticles, DataStream, OrbitingSpheres } from "@/components/3d-decorations";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 
 export default function LiveDemoPage() {
   // Live demo page uses global UnifiedBackground; motion hooks not required here
@@ -23,9 +26,33 @@ export default function LiveDemoPage() {
         description="Witness the power of our advanced trading platform with institutional-quality charts, real-time market data, and cutting-edge technical indicators. See why traders choose our platform for superior performance.*"
         backgroundVariant="hyperspeed"
         backgroundOpacity={0.9}
-        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+        backgroundColors={["rgba(5,8,15,1)", "rgba(34,211,238,1)", "rgba(99,102,241,1)"]}
       >
-        <div className="hidden lg:block">
+        {/* TradingCockpit3D - 3D Trading Cockpit Visualization positioned as background */}
+        <div className="absolute inset-0 opacity-20 dark:opacity-10 pointer-events-none">
+          <div className="w-full h-full flex items-center justify-center">
+            <TradingCockpit3D />
+          </div>
+        </div>
+        
+        {/* Floating chart particles */}
+        <FloatingParticles count={15} color="rgb(99,102,241)" />
+        
+        {/* Data streams from multiple directions */}
+        <div className="absolute right-20 top-1/4 hidden xl:block">
+          <DataStream count={6} color="rgb(34,211,238)" direction="left" />
+        </div>
+        <div className="absolute left-20 bottom-1/4 hidden xl:block">
+          <DataStream count={6} color="rgb(79,244,207)" direction="right" />
+        </div>
+        
+        {/* Orbiting indicators */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden xl:block">
+          <OrbitingSpheres radius={150} count={5} color="rgb(168,85,247)" duration={12} />
+        </div>
+        
+        <div className="relative z-10">
+          <div className="hidden lg:block">
           <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
             <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Live demo</div>
             <div className="mb-3 text-xl font-bold">Interactive trading visualization</div>
@@ -43,6 +70,7 @@ export default function LiveDemoPage() {
             </div>
           </SpotlightCard>
         </div>
+        </div>
       </PageHeaderAnimated>
 
       <Section
@@ -50,6 +78,8 @@ export default function LiveDemoPage() {
         title="Institutional-Quality Charts & Advanced Technical Analysis"
         description="Professional candlestick charts powered by cutting-edge technology, featuring comprehensive technical indicators including SMA, EMA, RSI, MACD, Bollinger Bands, and lightning-fast real-time updates for optimal trading decisions."
       >
+        {/* Decorative 3D Mini */}
+        <SectionMini3D icon={Activity} color="emerald" />
         <AdvancedChartsDemo />
       </Section>
 
@@ -72,7 +102,7 @@ export default function LiveDemoPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 p-8 shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/60 dark:to-blue-950/40"
+            className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-[rgb(var(--card))/0.9] via-slate-50/50 to-blue-50/30 p-8 shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/60 dark:to-blue-950/40"
           >
             <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
               <span>BTC/USDT - Demo only</span>

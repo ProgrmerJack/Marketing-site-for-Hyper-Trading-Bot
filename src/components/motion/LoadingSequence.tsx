@@ -60,7 +60,7 @@ export function LoadingSequence({
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Progress Bar */}
-      <div className="relative h-2 bg-white/10 rounded-full overflow-hidden">
+      <div className="relative h-2 bg-[rgb(var(--card))/0.06] rounded-full overflow-hidden">
         <motion.div
           className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-500 to-purple-600"
           initial={{ width: 0 }}

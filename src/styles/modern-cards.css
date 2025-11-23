@@ -1,0 +1,104 @@
+/* Modern Glassmorphism Card Styling System */
+
+/* Base modern card - cyan theme */
+.modern-card {
+  @apply rounded-3xl border-2 p-8 backdrop-blur-xl transition-all duration-500;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.9), rgba(255,255,255,0.8), rgba(255,255,255,0.7));
+  box-shadow: 0 8px 32px 0 rgba(79,244,207,0.15);
+}
+
+.modern-card:hover {
+  @apply -translate-y-2;
+  border-color: rgba(103, 232, 249, 0.4);
+  box-shadow: 0 16px 48px 0 rgba(79,244,207,0.25);
+}
+
+.dark .modern-card {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom right, rgba(15,23,42,0.95), rgba(15,23,42,0.9), rgba(30,41,59,0.95));
+  box-shadow: 0 8px 32px 0 rgba(79,244,207,0.2);
+}
+
+.dark .modern-card:hover {
+  box-shadow: 0 16px 48px 0 rgba(79,244,207,0.3);
+}
+
+/* Emerald theme - for features/pricing */
+.modern-card-emerald {
+  @apply rounded-2xl border-2 p-6 backdrop-blur-sm transition-all duration-300;
+  border-color: rgba(167, 243, 208, 0.4);
+  background: linear-gradient(to bottom right, rgba(236,253,245,0.8), rgba(255,255,255,0.7), rgba(207,250,254,0.6));
+  box-shadow: 0 8px 24px 0 rgba(16,185,129,0.12);
+}
+
+.modern-card-emerald:hover {
+  @apply -translate-y-1;
+  box-shadow: 0 12px 32px 0 rgba(16,185,129,0.2);
+}
+
+.dark .modern-card-emerald {
+  border-color: rgba(4, 120, 87, 0.4);
+  background: linear-gradient(to bottom right, rgba(15,23,42,0.95), rgba(5,46,22,0.5), rgba(19,78,74,0.4));
+}
+
+/* Form styling - cyan */
+.modern-card-form {
+  @apply rounded-3xl border-2 p-10 backdrop-blur-xl transition-all duration-500;
+  border-color: rgba(186, 230, 253, 0.4);
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.95), rgba(207,250,254,0.3), rgba(224,242,254,0.2));
+  box-shadow: 0 8px 32px 0 rgba(0,179,255,0.15);
+}
+
+.dark .modern-card-form {
+  border-color: rgba(14, 116, 144, 0.4);
+  background: linear-gradient(to bottom right, rgba(15,23,42,0.98), rgba(8,51,68,0.4), rgba(30,58,138,0.3));
+}
+
+/* Feature blocks - purple with shimmer */
+.modern-card-feature {
+  @apply relative rounded-2xl border-2 p-6 backdrop-blur-sm transition-all duration-300 overflow-hidden;
+  border-color: rgba(233, 213, 255, 0.4);
+  background: linear-gradient(to bottom right, rgba(250,245,255,0.7), rgba(255,255,255,0.6), rgba(252,231,243,0.5));
+  box-shadow: 0 8px 24px 0 rgba(168,85,247,0.12);
+}
+
+.modern-card-feature:hover {
+  @apply -translate-y-1;
+  box-shadow: 0 12px 32px 0 rgba(168,85,247,0.2);
+}
+
+.modern-card-feature::before {
+  content: '';
+  @apply absolute inset-0;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.dark .modern-card-feature {
+  border-color: rgba(107, 33, 168, 0.4);
+  background: linear-gradient(to bottom right, rgba(15,23,42,0.95), rgba(76,29,149,0.5), rgba(80,7,36,0.4));
+}
+
+/* Info cards - blue/indigo */
+.modern-card-info {
+  @apply rounded-2xl border-2 p-6 backdrop-blur-sm transition-all duration-300;
+  border-color: rgba(186, 230, 253, 0.4);
+  background: linear-gradient(to bottom right, rgba(239,246,255,0.7), rgba(255,255,255,0.6), rgba(238,242,255,0.5));
+  box-shadow: 0 8px 24px 0 rgba(59,130,246,0.12);
+}
+
+.modern-card-info:hover {
+  @apply -translate-y-1;
+  box-shadow: 0 12px 32px 0 rgba(59,130,246,0.2);
+}
+
+.dark .modern-card-info {
+  border-color: rgba(29, 78, 216, 0.4);
+  background: linear-gradient(to bottom right, rgba(15,23,42,0.95), rgba(30,58,138,0.5), rgba(49,46,129,0.4));
+}

@@ -21,7 +21,7 @@ export function DemoTelemetry() {
   return (
     <section
       aria-live="polite"
-      className="flex flex-col gap-5 rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-white/80 p-6 text-sm text-black/70 dark:bg-slate-900/90 dark:text-white/70"
+      className="flex flex-col gap-5 rounded-3xl border border-[color:var(--color-line-muted)]/50 bg-[rgb(var(--card))/0.85] p-6 text-sm text-black/70 dark:bg-slate-900/90 dark:text-white/70"
     >
       <header className="flex items-center justify-between">
         <span className="text-xs uppercase tracking-[0.2em] text-black/50 dark:text-white/50">

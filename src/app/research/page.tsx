@@ -8,6 +8,10 @@ import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
 import { FileText, Shield, CheckCircle2, Clock, ArrowRight } from "lucide-react";
+import { OrbitalDataLab3D } from "@/components/hero/OrbitalDataLab3D";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { Icon3D } from "@/components/3d-icons/Icon3D";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 // Use site-wide UnifiedBackground for consistent animation; removed per-section AnimatedBackground
 
 const researchRoadmap = [
@@ -54,7 +58,14 @@ export default function ResearchPage() {
           backgroundOpacity={0.9}
         backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
       >
-        <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <Unified3DBackground variant="research" intensity={0.6} />
+        
+        {/* 3D Orbital Data Lab - positioned as floating background */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-40 pointer-events-none hidden lg:block">
+          <OrbitalDataLab3D />
+        </div>
+        
+        <motion.div className="hidden lg:block relative z-10" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
             <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Roadmap</div>
             <div className="mb-3 text-lg font-bold">Methodology whitepaper</div>
@@ -70,6 +81,7 @@ export default function ResearchPage() {
 
       {/* Commitments Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <SectionMini3D icon={FileText} color="purple" size={180} position="right" className="hidden xl:block opacity-25" />
         {/* Local AnimatedBackground removed in favor of UnifiedBackground */}
           <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
@@ -92,7 +104,7 @@ export default function ResearchPage() {
                 <FileText className="mr-2 h-4 w-4" />
                 Our commitments
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Only publish materials that pass review
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -105,6 +117,8 @@ export default function ResearchPage() {
             <div className="grid gap-8 md:grid-cols-3">
               {researchRoadmap.map((item, index) => {
                 const Icon = item.icon;
+                const iconColor = item.gradient.includes("blue") ? "cyan" : item.gradient.includes("purple") ? "purple" : "emerald";
+
                 return (
                   <motion.article
                     key={item.title}
@@ -114,18 +128,18 @@ export default function ResearchPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-blue-50/40 to-purple-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl hover:-translate-y-2 dark:border-slate-700/70 dark:from-slate-900/95 dark:via-blue-950/50 dark:to-purple-950/40 dark:hover:border-blue-600/70"
+                    className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-blue-50/40 to-purple-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl hover:-translate-y-2 dark:border-slate-700/70 dark:from-slate-900/95 dark:via-blue-950/50 dark:to-purple-950/40 dark:hover:border-blue-600/70"
                   >
                     {/* Gradient overlay */}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-purple-500/8 dark:from-blue-500/15 dark:to-purple-500/15" />
 
                     {/* Icon with gradient */}
-                    <div className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                      <Icon className="h-8 w-8 text-white" />
+                    <div className="relative flex justify-start">
+                      <Icon3D icon={Icon} color={iconColor} size={64} />
                     </div>
 
                     <header className="relative space-y-3">
-                      <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                      <h2 className="heading-contrast text-xl font-bold text-slate-900 dark:text-white">
                         {item.title}
                       </h2>
                       <span className={`inline-flex items-center rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-widest ${item.statusColor}`}>
@@ -184,7 +198,7 @@ export default function ResearchPage() {
                 <Shield className="mr-2 h-4 w-4" />
                 Transparency principles
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Responsible disclosure, not secrecy
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -199,7 +213,7 @@ export default function ResearchPage() {
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               className="mx-auto max-w-4xl"
             >
-              <div className="relative overflow-hidden rounded-3xl border-2 border-blue-200/60 bg-gradient-to-br from-white via-blue-50/40 to-cyan-50/30 p-12 shadow-2xl backdrop-blur-sm dark:border-blue-800/60 dark:from-slate-900/95 dark:via-blue-950/40 dark:to-cyan-950/30">
+              <div className="relative overflow-hidden modern-card-info p-12 shadow-2xl">
               {/* Gradient overlay */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-cyan-500/8 dark:from-blue-500/15 dark:to-cyan-500/15" />
 

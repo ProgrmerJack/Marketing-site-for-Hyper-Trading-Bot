@@ -1,6 +1,7 @@
 .animated-background {
   position: absolute;
   inset: 0;
+  z-index: -20;
   overflow: hidden;
   pointer-events: none;
   opacity: 1;

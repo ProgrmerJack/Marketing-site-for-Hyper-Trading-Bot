@@ -119,14 +119,14 @@ export function DeviceCarousel({
         <div className="absolute bottom-4 right-4 flex gap-2">
           <button
             onClick={prevSlide}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-colors hover:bg-primary hover:text-primary-foreground"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-colors hover:bg-primary hover:text-white"
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={nextSlide}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-colors hover:bg-primary hover:text-primary-foreground"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-colors hover:bg-primary hover:text-white"
             aria-label="Next slide"
           >
             <ChevronRight className="h-5 w-5" />

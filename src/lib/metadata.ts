@@ -48,7 +48,11 @@ export const baseMetadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: siteMetadata.twitter,
-    creator: siteMetadata.twitter,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
   },
   alternates: {
     canonical: siteMetadata.url,

@@ -8,9 +8,12 @@ import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dy
 import { MorphingShape } from "@/components/motion/MorphingShape";
 import { MouseFollower } from "@/components/motion/MouseFollower";
 import { ParallaxSection } from "@/components/motion/ParallaxSection";
-// Using UnifiedBackground site-wide; removed per-section AnimatedBackgrounds
+import { NetworkNodeHero } from "@/components/hero/NetworkNodeHero";
+import { Icon3D } from "@/components/3d-icons/Icon3D";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { Zap, Shield, Activity, Check, ArrowRight } from "lucide-react";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 
 const pipeline = [
   {
@@ -72,13 +75,18 @@ export default function HowItWorksPage() {
 
   return (
     <div className="relative">
-      {/* Hero Section */}
-      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-20 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
-        {/* Use unified global AnimatedBackground for consistent hyperspeed animation */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
+      {/* Hero Section - Vibrant purple/indigo theme */}
+      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-purple-950/40 dark:to-indigo-950/40 md:py-32">
+        <SectionMini3D icon={Activity} color="purple" size={240} position="right" className="hidden xl:block opacity-20" />
+        <Unified3DBackground variant="how-it-works" intensity={0.6} />
+        
+        {/* NetworkNodeHero - 3D Network Node Visualization */}
+        <div className="absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none">
+          <div className="w-full h-full flex items-center justify-center">
+            <NetworkNodeHero />
+          </div>
         </div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.12),rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.08),rgba(96,165,250,0.06),transparent_70%)]" />
+        
         <div className="absolute -left-24 -top-12 opacity-80 dark:opacity-40 pointer-events-none">
           <MorphingShape size={320} className="motion-zone" color="rgb(var(--accent))" />
         </div>
@@ -89,7 +97,7 @@ export default function HowItWorksPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex w-fit items-center rounded-full border border-blue-300 bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400"
+              className="inline-flex w-fit items-center rounded-full border-2 border-cyan-300 bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/60 dark:text-cyan-300"
             >
               System architecture
             </motion.span>
@@ -131,11 +139,21 @@ export default function HowItWorksPage() {
                     className="group"
                   >
                     <SpotlightCard
-                      className="relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/80 motion-zone"
+                      className="relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-[rgb(var(--card))/0.85] p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/80 motion-zone"
                       spotlightColor="rgba(59, 130, 246, 0.2)"
                     >
-                      <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${stage.gradient} shadow-md transition-transform duration-300 group-hover:scale-110`}>
-                        <Icon className="h-6 w-6 text-white" />
+                      <div className="mb-6">
+                        <Icon3D 
+                          icon={Icon} 
+                          color={
+                            index === 0 ? "cyan" :
+                            index === 1 ? "purple" :
+                            index === 2 ? "emerald" :
+                            "orange"
+                          }
+                          size={28}
+                          className="flex-none"
+                        />
                       </div>
                       <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
                       <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{stage.details[0]}</p>
@@ -159,7 +177,7 @@ export default function HowItWorksPage() {
                     <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
                       <Link
                         href={("/live-demo" as Route)}
-                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
+                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
                       >
                         <span className="relative z-10">Try live demo</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -222,7 +240,7 @@ export default function HowItWorksPage() {
                     className="group"
                   >
                     <SpotlightCard
-                      className="group relative h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-slate-50/40 to-slate-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300/60 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/60 dark:to-slate-900/80 dark:hover:border-blue-600/40"
+                      className="group relative h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-slate-50/40 to-slate-50/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300/60 dark:border-slate-700/50 dark:from-slate-900/90 dark:via-slate-800/60 dark:to-slate-900/80 dark:hover:border-blue-600/40"
                       spotlightColor="rgba(147, 51, 234, 0.25)"
                     >
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
@@ -307,7 +325,7 @@ export default function HowItWorksPage() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02, y: -4, transition: { duration: 0.2 } }}
-                  className="group relative flex h-full items-start gap-4 rounded-3xl border-2 border-emerald-200/70 bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/70 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-emerald-300/80 dark:border-emerald-700/70 dark:from-emerald-950/50 dark:via-slate-900/95 dark:to-teal-950/50 dark:hover:border-emerald-600/80 dark:hover:shadow-emerald-500/20"
+                  className="group relative flex h-full items-start gap-4 rounded-3xl border-2 border-emerald-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-emerald-50/30 to-teal-50/70 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-emerald-300/80 dark:border-emerald-700/70 dark:from-emerald-950/50 dark:via-slate-900/95 dark:to-teal-950/50 dark:hover:border-emerald-600/80 dark:hover:shadow-emerald-500/20"
                 >
                   <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
 
@@ -360,7 +378,7 @@ export default function HowItWorksPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="group relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/60 to-blue-50/40 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-3xl hover:border-blue-300/80 dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/95 dark:to-blue-950/40 dark:hover:border-blue-600/70"
+              className="group relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-slate-50/60 to-blue-50/40 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-3xl hover:border-blue-300/80 dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/95 dark:to-blue-950/40 dark:hover:border-blue-600/70"
             >
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-purple-500/8 dark:from-blue-500/15 dark:to-purple-500/15" />
 
@@ -375,7 +393,7 @@ export default function HowItWorksPage() {
               <div className="relative overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b-2 border-slate-300/50 bg-gradient-to-r from-slate-100/80 to-slate-50/80 dark:border-slate-600/50 dark:from-slate-800/90 dark:to-slate-700/80">
+                    <tr className="border-b-2 border-slate-300/50 bg-[rgb(var(--card))/0.9] dark:bg-[rgb(var(--card))/0.02] dark:border-slate-600/50">
                       <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Metric</th>
                       <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Target (SLO)</th>
                       <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Current (Demo)</th>
@@ -400,7 +418,7 @@ export default function HowItWorksPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: rowIndex * 0.05 }}
                         whileHover={{ scale: 1.01, x: 4 }}
-                        className="group/row border-b border-slate-200/60 transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-50/70 hover:via-purple-50/60 hover:to-blue-50/70 hover:shadow-lg dark:border-slate-700/60 dark:hover:from-blue-950/40 dark:hover:via-purple-950/40 dark:hover:to-blue-950/40 dark:hover:shadow-blue-500/10"
+                        className="group/row border-b border-slate-200/60 even:bg-[rgb(var(--card))/0.02] transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-50/70 hover:via-purple-50/60 hover:to-blue-50/70 hover:shadow-lg dark:border-slate-700/60 dark:even:bg-[rgb(var(--card))/0.02] dark:hover:from-blue-950/40 dark:hover:via-purple-950/40 dark:hover:to-blue-950/40 dark:hover:shadow-blue-500/10"
                       >
                         <td className="p-4 font-medium text-slate-900 dark:text-slate-100">{row[0]}</td>
                         <td className="p-4 font-medium text-slate-700 dark:text-slate-200">{row[1]}</td>

@@ -188,7 +188,7 @@ export default function MarketDataDemo() {
             }
           </p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
+        <div className="bg-[rgb(var(--card))] rounded-lg shadow p-4 border border-gray-200 dark:border-gray-700">
           <p className="text-sm text-gray-500 mb-1">Price Events</p>
           <p className="text-2xl font-bold">{eventCounts.price}</p>
           <p className="text-xs text-gray-400 mt-1">

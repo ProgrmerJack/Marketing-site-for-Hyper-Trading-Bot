@@ -8,12 +8,14 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 2,
-  reporter: 'html',
+  reporter: [ ['line'], ['html', { open: 'never' }]],
   // Default test timeout is slightly higher to allow mobile/slow CI runs
   timeout: 120 * 1000,
   expect: { timeout: 30 * 1000 },
   webServer: {
-    command: 'npm run dev',
+    // Use a production-ready start when requested (helps avoid HMR/dev server flakiness)
+    // Set PLAYWRIGHT_USE_PROD_SERVER=true to run against a production start (npm run start)
+    command: process.env.PLAYWRIGHT_USE_PROD_SERVER === 'true' ? 'npm run start' : 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe',
@@ -24,6 +26,8 @@ export default defineConfig({
   use: {
     baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'on-first-retry',
     navigationTimeout: 30 * 1000,
   },
   projects: [
@@ -41,13 +45,13 @@ export default defineConfig({
     },
     {
       name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'], viewport: { width: 393, height: 852 }, navigationTimeout: 120000 },
+      use: { ...devices['Pixel 5'], viewport: { width: 393, height: 852 }, navigationTimeout: 120000, launchOptions: { args: ['--disable-gpu', '--disable-dev-shm-usage'] } },
       retries: process.env.CI ? 2 : 1,
       timeout: 180000,
     },
     {
       name: 'Mobile Safari',
-      use: { ...devices['iPhone 14 Pro'] },
+      use: { ...devices['iPhone 14 Pro'], launchOptions: { args: ['--disable-gpu'] } },
     },
   ],
 });

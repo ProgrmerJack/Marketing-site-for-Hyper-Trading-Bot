@@ -6,7 +6,11 @@ import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { ContactForm } from "@/components/forms/contact-form";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
+import { SignalTowerHero } from "@/components/hero/SignalTowerHero";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
 import { Mail, Shield, FileCheck, CheckCircle2, HelpCircle } from "lucide-react";
+import { Icon3D } from "@/components/3d-icons/Icon3D";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 // UnifiedBackground provides site-wide background animation; remove local AnimatedBackground usage
 
 const faqs = [
@@ -60,7 +64,7 @@ export default function ContactPage() {
         description="Complete the consent-aware form below. You&apos;ll receive a double opt-in email with our postal address and unsubscribe option per CAN-SPAM."
         backgroundVariant="hyperspeed"
         backgroundOpacity={0.9}
-        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+        backgroundColors={["rgba(5,8,15,1)", "rgba(34,211,238,1)", "rgba(99,102,241,1)"]}
       >
         <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
@@ -78,11 +82,16 @@ export default function ContactPage() {
 
       {/* Contact Form Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
-        {/* Animated Background */}
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-            {/* Local AnimatedBackground removed in favor of UnifiedBackground */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.06),rgba(59,130,246,0.04),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.04),rgba(96,165,250,0.03),transparent_70%)]" />
+        <SectionMini3D icon={Mail} color="cyan" size={200} position="left" className="hidden xl:block opacity-30" />
+        <Unified3DBackground variant="contact" intensity={0.45} />
+        
+        {/* SignalTowerHero - 3D Signal Tower Visualization */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-25 dark:opacity-15 pointer-events-none hidden lg:block">
+          <div className="w-[500px] h-[500px]">
+            <SignalTowerHero />
           </div>
+        </div>
+        
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="section-surface" />
         </div>
@@ -101,7 +110,7 @@ export default function ContactPage() {
                 <Mail className="mr-2 h-4 w-4" />
                 Request gated demo access
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Provide enough context for evaluation
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -130,11 +139,11 @@ export default function ContactPage() {
                 className="space-y-8"
               >
                 {/* What Happens Next Card */}
-                <div className="relative overflow-hidden rounded-3xl border-2 border-blue-200/60 bg-gradient-to-br from-white via-blue-50/40 to-cyan-50/30 p-8 shadow-xl backdrop-blur-sm dark:border-blue-700/60 dark:from-slate-900/95 dark:via-blue-950/40 dark:to-cyan-950/30">
+                <div className="modern-card relative overflow-hidden">
                   {/* Gradient overlay */}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-cyan-500/8 dark:from-blue-500/15 dark:to-cyan-500/15" />
 
-                  <h2 className="relative mb-6 text-xl font-bold text-slate-900 dark:text-white">
+                  <h2 className="heading-contrast relative mb-6 text-xl font-bold text-slate-900 dark:text-white">
                     What happens next
                   </h2>
                   <ol className="relative space-y-6">
@@ -164,7 +173,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* FAQ Card */}
-                <div className="relative overflow-hidden rounded-3xl border-2 border-emerald-200/60 bg-gradient-to-br from-white via-emerald-50/40 to-teal-50/30 p-8 shadow-xl backdrop-blur-sm dark:border-emerald-700/60 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30">
+                <div className="relative overflow-hidden rounded-3xl border-2 border-emerald-200/60 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-emerald-50/40 to-teal-50/30 p-8 shadow-xl backdrop-blur-sm dark:border-emerald-700/60 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30">
                   {/* Gradient overlay */}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
 
@@ -189,12 +198,14 @@ export default function ContactPage() {
                           className="relative space-y-2"
                         >
                           <div className="flex items-start gap-3">
-                            <Icon className="mt-0.5 h-5 w-5 flex-none text-emerald-600 dark:text-emerald-400" />
-                            <p className="font-semibold text-slate-900 dark:text-white">
+                            <div className="flex-none mt-1">
+                              <Icon3D icon={Icon} color="emerald" size={20} />
+                            </div>
+                            <p className="font-semibold text-slate-900 dark:text-white pt-1">
                               {faq.question}
                             </p>
                           </div>
-                          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 pl-14">
                             {faq.answer}
                           </p>
                         </motion.li>
@@ -226,14 +237,12 @@ export default function ContactPage() {
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             className="mx-auto max-w-4xl"
           >
-            <div className="relative overflow-hidden rounded-3xl border-2 border-purple-200/60 bg-gradient-to-br from-white via-purple-50/40 to-pink-50/30 p-12 shadow-2xl backdrop-blur-sm dark:border-purple-700/60 dark:from-slate-900/95 dark:via-purple-950/40 dark:to-pink-950/30">
+            <div className="relative overflow-hidden rounded-3xl border-2 border-purple-200/60 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-purple-50/40 to-pink-50/30 p-12 shadow-2xl backdrop-blur-sm dark:border-purple-700/60 dark:from-slate-900/95 dark:via-purple-950/40 dark:to-pink-950/30">
               {/* Gradient overlay */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 dark:from-purple-500/15 dark:to-pink-500/15" />
 
               <div className="relative mb-8 flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg">
-                  <Shield className="h-8 w-8 text-white" />
-                </div>
+                <Icon3D icon={Shield} color="purple" size={32} />
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                   Privacy and transparency
                 </h3>

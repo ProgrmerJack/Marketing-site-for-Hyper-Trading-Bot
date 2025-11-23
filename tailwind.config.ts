@@ -232,6 +232,17 @@ export default {
           900: "19 78 74",
           950: "4 47 46",
         },
+        // Neon accent colors for futuristic luxury theme
+        neon: {
+          cyan: "34 211 238", // #22D3EE - electric cyan (matches primary dark)
+          blue: "99 102 241", // #6366F1 - indigo blue (matches accent dark)
+          purple: "168 85 247", // #A855F7 - vivid purple
+          pink: "236 72 153", // #EC4899 - hot pink
+          emerald: "16 185 129", // #10B981 - emerald (matches success)
+          lime: "163 230 53", // #A3E635 - electric lime
+          orange: "251 146 60", // #FB923C - vibrant orange
+          sky: "14 165 233", // #0EA5E9 - sky blue
+        },
         // Legacy support - maintain backward compatibility
         "surface-50": "rgb(var(--color-surface-50) / <alpha-value>)",
         "surface-100": "rgb(var(--color-surface-100) / <alpha-value>)",

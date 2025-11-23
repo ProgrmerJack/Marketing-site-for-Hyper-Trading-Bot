@@ -19,6 +19,7 @@ import {
   XCircle,
   AlertCircle,
 } from "lucide-react";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 // Using UnifiedBackground for consistent site-wide animation; per-section AnimatedBackground removed
 import { useMotion } from "@/components/motion/MotionProvider";
 
@@ -106,7 +107,8 @@ export default function SafetyPage() {
       </PageHeaderAnimated>
 
       {/* Key Risks Section */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 py-24 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <SectionMini3D icon={Shield} color="emerald" size={220} position="right" className="hidden xl:block opacity-30" />
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 dark:opacity-35">
           {/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
@@ -127,7 +129,7 @@ export default function SafetyPage() {
                 <AlertTriangle className="mr-2 h-4 w-4" />
                 Key risks
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Understand the downside before entertaining upside
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -148,7 +150,7 @@ export default function SafetyPage() {
                     custom={index}
                     variants={cardEntrance}
                     whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                    className="group relative overflow-hidden rounded-3xl border-2 border-red-200/70 bg-gradient-to-br from-white via-red-50/40 to-orange-50/30 p-8 shadow-xl transition-all duration-300 hover:border-red-300/80 hover:shadow-2xl dark:border-red-800/70 dark:from-slate-900/95 dark:via-red-950/40 dark:to-orange-950/30 dark:hover:border-red-700/70"
+                    className="group relative overflow-hidden rounded-3xl border-2 border-red-200/30 bg-[rgb(var(--card))/0.06] p-8 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-red-300/50 hover:shadow-2xl dark:border-red-800/30 dark:bg-slate-900/40 dark:hover:border-red-700/50"
                   >
                     <div className="relative z-10 flex items-start gap-4">
                       <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
@@ -159,7 +161,7 @@ export default function SafetyPage() {
                       </p>
                     </div>
                     {/* Animated gradient overlay */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-500/8 via-transparent to-orange-500/8 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-red-500/15 dark:to-orange-500/15" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-orange-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-red-500/10 dark:to-orange-500/10" />
                   </motion.div>
                 );
               })}
@@ -188,7 +190,7 @@ export default function SafetyPage() {
               <span className="inline-flex items-center rounded-full bg-amber-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-amber-700 dark:bg-amber-950/50 dark:text-amber-400">
                 Fraud red flags
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Spot the classic crypto-cons
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -210,7 +212,7 @@ export default function SafetyPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-                    className="group relative overflow-hidden rounded-3xl border-2 border-amber-200/70 bg-gradient-to-br from-white via-amber-50/40 to-yellow-50/30 p-8 shadow-xl transition-all duration-300 hover:border-amber-300/80 hover:shadow-2xl dark:border-amber-800/70 dark:from-slate-900/95 dark:via-amber-950/40 dark:to-yellow-950/30 dark:hover:border-amber-700/70"
+                    className="group relative overflow-hidden rounded-3xl border-2 border-amber-200/30 bg-[rgb(var(--card))/0.06] p-8 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-amber-300/50 hover:shadow-2xl dark:border-amber-800/30 dark:bg-slate-900/40 dark:hover:border-amber-700/50"
                   >
                     <div className="flex items-start gap-4">
                       <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-gradient-to-br ${signal.color} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
@@ -252,7 +254,7 @@ export default function SafetyPage() {
                 <Shield className="mr-2 h-4 w-4" />
                 Compliance controls
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Controls baked into the experience
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -273,7 +275,7 @@ export default function SafetyPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-blue-50/40 to-purple-50/30 p-8 shadow-xl transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-blue-950/40 dark:to-purple-950/30 dark:hover:border-blue-600/70"
+                    className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-blue-50/40 to-purple-50/30 p-8 shadow-xl transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-blue-950/40 dark:to-purple-950/30 dark:hover:border-blue-600/70"
                   >
                     {/* Gradient overlay */}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-purple-500/8 dark:from-blue-500/15 dark:to-purple-500/15" />
@@ -283,7 +285,7 @@ export default function SafetyPage() {
                       <Icon className="h-8 w-8 text-white" />
                     </div>
 
-                    <h2 className="relative text-xl font-bold text-slate-900 dark:text-white">
+                    <h2 className="heading-contrast relative text-xl font-bold text-slate-900 dark:text-white">
                       {control.name}
                     </h2>
 

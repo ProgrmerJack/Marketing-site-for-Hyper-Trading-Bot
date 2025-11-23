@@ -32,7 +32,7 @@ export function PageHeaderAnimated({
 
   return (
     <header
-      className="relative overflow-hidden border-b border-slate-200/80 bg-white/50 min-h-[90vh] py-20 md:py-32 dark:border-slate-700/50 dark:bg-slate-950"
+      className="relative overflow-hidden border-b border-slate-200/80 bg-[rgb(var(--card))/0.5] min-h-[90vh] py-20 md:py-32 dark:border-slate-700/50 dark:bg-slate-950"
       data-bg-variant={_backgroundVariant}
       data-bg-colors={_backgroundColors.join(',')}
       data-bg-opacity={String(_backgroundOpacity)}

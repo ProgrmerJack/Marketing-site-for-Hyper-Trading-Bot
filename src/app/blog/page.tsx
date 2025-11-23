@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { SpotlightCard } from "@/components/reactbits/dynamic";
+import { HolographicBookHero } from "@/components/hero/HolographicBookHero";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { Icon3D } from "@/components/3d-icons/Icon3D";
 // Use UnifiedBackground for consistent site-wide animation; remove local AnimatedBackground
 import {
   Calendar,
@@ -18,6 +21,7 @@ import {
   Lightbulb,
   Zap,
 } from "lucide-react";
+import SectionMini3D from "@/components/mini/SectionMini3D";
 
 const categories = [
   {
@@ -136,13 +140,19 @@ export default function BlogPage() {
       </PageHeaderAnimated>
 
       {/* Categories Section */}
-      <section id="newsletter" className="relative isolate overflow-hidden py-24 md:py-32">
-        {/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+      <section id="newsletter" className="relative isolate overflow-hidden py-24 md:py-32 bg-gradient-to-br from-orange-50/50 via-amber-50/50 to-yellow-50/50 dark:from-orange-950/20 dark:via-amber-950/20 dark:to-yellow-950/20">
+        <SectionMini3D icon={BookOpen} color="amber" size={200} position="left" className="hidden xl:block opacity-25" />
+        <Unified3DBackground variant="blog" intensity={0.35} />
+        
+        {/* HolographicBookHero - 3D Book Visualization */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-30 dark:opacity-20 pointer-events-none hidden xl:block">
+          <div className="w-[450px] h-[450px]">
+            <HolographicBookHero />
+          </div>
         </div>
+        
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-[rgb(5,8,15)]/65 dark:to-[rgb(5,8,15)]/65" />
         </div>
 
         <Container className="relative z-10">
@@ -155,11 +165,11 @@ export default function BlogPage() {
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
+              <span className="inline-flex items-center rounded-full bg-cyan-100 border-2 border-cyan-300 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/60 dark:text-cyan-300">
                 <BookOpen className="mr-2 h-4 w-4" />
                 Categories
               </span>
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Explore by topic
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -171,6 +181,8 @@ export default function BlogPage() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {categories.map((category, index) => {
                 const Icon = category.icon;
+                const iconColor = index === 0 ? "cyan" : index === 1 ? "emerald" : index === 2 ? "purple" : "orange";
+
                 return (
                   <motion.div
                     key={category.name}
@@ -179,14 +191,14 @@ export default function BlogPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     whileHover={{ scale: 1.05, y: -8, transition: { duration: 0.3 } }}
-                    className="group relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/50 to-blue-50/30 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-blue-950/40 dark:hover:border-blue-600/70"
+                    className="group relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-slate-50/50 to-blue-50/30 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-blue-950/40 dark:hover:border-blue-600/70"
                   >
                     {/* Gradient overlay */}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-purple-500/8 dark:from-blue-500/15 dark:to-purple-500/15" />
 
                     <div className="relative space-y-6">
-                      <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${category.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                        <Icon className="h-8 w-8 text-white" />
+                      <div className="flex justify-start">
+                        <Icon3D icon={Icon} color={iconColor} size={64} />
                       </div>
 
                       <div>
@@ -213,10 +225,10 @@ export default function BlogPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 
         <Container className="relative z-10">
@@ -234,7 +246,7 @@ export default function BlogPage() {
                   return (
                     <div
                       key={post.title}
-                      className="group relative overflow-hidden rounded-3xl border-2 border-pink-200/60 bg-gradient-to-br from-white via-pink-50/40 to-purple-50/30 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:border-pink-300/80 hover:shadow-3xl dark:border-pink-800/60 dark:from-slate-900/95 dark:via-pink-950/40 dark:to-purple-950/30 dark:hover:border-pink-700/80"
+                      className="group relative overflow-hidden rounded-3xl border-2 border-pink-200/60 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-pink-50/40 to-purple-50/30 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:border-pink-300/80 hover:shadow-3xl dark:border-pink-800/60 dark:from-slate-900/95 dark:via-pink-950/40 dark:to-purple-950/30 dark:hover:border-pink-700/80"
                     >
                       {/* Gradient overlay */}
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-pink-500/8 via-transparent to-purple-500/8 dark:from-pink-500/15 dark:to-purple-500/15" />
@@ -248,7 +260,7 @@ export default function BlogPage() {
                             </span>
                           </div>
 
-                          <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+                          <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                             {post.title}
                           </h2>
 
@@ -277,9 +289,7 @@ export default function BlogPage() {
                         </div>
 
                         <div className="flex items-center justify-center">
-                          <div className={`flex h-48 w-48 items-center justify-center rounded-3xl bg-gradient-to-br ${post.gradient} shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`}>
-                            <Icon className="h-24 w-24 text-white" />
-                          </div>
+                          <Icon3D icon={Icon} color="cyan" size={160} />
                         </div>
                       </div>
                     </div>
@@ -294,10 +304,10 @@ export default function BlogPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background (replaced with consistent UnifiedBackground fallback) */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 
         <Container className="relative z-10">
@@ -310,7 +320,7 @@ export default function BlogPage() {
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Latest articles
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -324,6 +334,8 @@ export default function BlogPage() {
                 .filter((post) => !post.featured)
                 .map((post, index) => {
                   const Icon = post.icon;
+                  const iconColor = post.gradient.includes("emerald") ? "emerald" : post.gradient.includes("purple") ? "purple" : post.gradient.includes("amber") ? "orange" : "cyan";
+
                   return (
                     <motion.article
                       key={post.title}
@@ -332,14 +344,14 @@ export default function BlogPage() {
                       viewport={{ once: true, amount: 0.3 }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                      className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white via-slate-50/60 to-blue-50/40 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-blue-950/40 dark:hover:border-blue-600/70"
+                      className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-slate-50/60 to-blue-50/40 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-blue-300/80 hover:shadow-2xl dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-blue-950/40 dark:hover:border-blue-600/70"
                     >
                       {/* Gradient overlay */}
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/8 via-transparent to-purple-500/8 dark:from-blue-500/15 dark:to-purple-500/15" />
 
                       <div className="relative flex-1 space-y-6 p-8">
-                        <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${post.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                          <Icon className="h-8 w-8 text-white" />
+                        <div className="flex justify-start">
+                          <Icon3D icon={Icon} color={iconColor} size={64} />
                         </div>
 
                         <div className="space-y-4">
@@ -387,10 +399,10 @@ export default function BlogPage() {
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         {/* Animated Background (replaced with consistent UnifiedBackground fallback) */}
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 
         <Container className="relative z-10">
@@ -401,7 +413,7 @@ export default function BlogPage() {
             transition={{ duration: 0.8 }}
             className="mx-auto max-w-4xl"
           >
-            <div className="relative overflow-hidden rounded-3xl border-2 border-emerald-200/60 bg-gradient-to-br from-white via-emerald-50/40 to-teal-50/30 p-12 shadow-2xl backdrop-blur-sm dark:border-emerald-800/60 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30 md:p-16">
+            <div className="relative overflow-hidden rounded-3xl border-2 border-emerald-200/60 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-emerald-50/40 to-teal-50/30 p-12 shadow-2xl backdrop-blur-sm dark:border-emerald-800/60 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30 md:p-16">
               {/* Gradient overlay */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
 
@@ -410,7 +422,7 @@ export default function BlogPage() {
                   <BookOpen className="h-10 w-10 text-white" />
                 </div>
 
-                <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+                <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                   Stay updated
                 </h2>
 

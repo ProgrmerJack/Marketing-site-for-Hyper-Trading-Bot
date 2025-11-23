@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from 'next/script';
 import clsx from "clsx";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import { ComplianceBanner } from "@/components/compliance-banner";
@@ -56,36 +57,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(){
-                try{
-                  if (typeof document !== 'undefined' && !document.head) {
-                    const head = document.createElement('head');
-                    document.documentElement.insertBefore(head, document.body);
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const stored = localStorage.getItem('hyper-theme');
-                  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const isDark = stored === 'dark' || (stored !== 'light' && systemPrefersDark);
-                  if (isDark) {
-                    document.documentElement.classList.add('dark');
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
+        {/* Externalized head and theme init scripts to avoid CSP blocking for inline scripts */}
+        <Script src="/js/head-ensure.js" strategy="beforeInteractive" />
+        <Script src="/js/theme-init.js" strategy="beforeInteractive" />
       </head>
       <body
         className={clsx(
