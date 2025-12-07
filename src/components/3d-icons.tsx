@@ -32,7 +32,7 @@ export function Icon3D({
       case "high":
         return { outer: "blur-3xl", middle: "blur-2xl", inner: "blur-xl", opacity: [0.25, 0.35, 0.45] };
       default: // medium
-        return { outer: "blur-3xl", middle: "blur-2xl", inner: "blur-xl", opacity: [0.20, 0.30, 0.40] };
+        return { outer: "blur-3xl", middle: "blur-2xl", inner: "blur-xl", opacity: [0.30, 0.40, 0.50] };
     }
   }, [glowIntensity]);
 
@@ -96,11 +96,13 @@ export function Icon3D({
         style={{ transformStyle: "preserve-3d" }}
         animate={{
           rotateY: [0, 360],
-          rotateX: [0, 10, 0, -10, 0],
+          rotateX: [0, 5, 0, -5, 0],
+          scale: [1, 1.05, 1],
         }}
         transition={{
-          rotateY: { duration: 8, repeat: Infinity, ease: "linear" },
-          rotateX: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+          rotateY: { duration: 12, repeat: Infinity, ease: "linear" },
+          rotateX: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+          scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
         }}
       >
         <IconComponent

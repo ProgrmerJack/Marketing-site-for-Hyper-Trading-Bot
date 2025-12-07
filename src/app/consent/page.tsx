@@ -7,7 +7,6 @@ import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { DsrForm } from "@/components/forms/dsr-form";
 // UnifiedBackground used globally; per-section AnimatedBackground removed
 import { Cookie, Shield, CheckCircle2, XCircle, Settings, Eye, Lock } from "lucide-react";
-import SectionMini3D from "@/components/mini/SectionMini3D";
 
 const consentOptions = [
   {
@@ -69,14 +68,21 @@ export default function ConsentPage() {
         backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
       >
         <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
+          <SpotlightCard className="w-96 rounded-2xl border border-slate-200/50 bg-white/10 p-6 shadow-xl backdrop-blur-md hover:shadow-2xl dark:border-slate-700/50 dark:bg-slate-900/50">
             <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Privacy controls</div>
-            <div className="mb-3 text-lg font-bold">Opt-in transparency</div>
+            <div className="mb-3 text-lg font-bold text-slate-900 dark:text-white">Opt-in transparency</div>
             <p className="text-xs text-muted-foreground">Easily manage consent and export a signed record of your choices for auditability.</p>
-            <div className="mt-4">
-              <motion.a href="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
+            <div className="mt-4 flex gap-3">
+              <motion.a href="/contact" className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-700 transition-all duration-200 hover:bg-blue-100 hover:border-blue-300 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400 dark:hover:bg-blue-900/50" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
                 Export record
               </motion.a>
+              <motion.button
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-100 hover:border-slate-300 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.18 }}
+              >
+                Download Form
+              </motion.button>
             </div>
           </SpotlightCard>
         </motion.div>
@@ -84,7 +90,6 @@ export default function ConsentPage() {
 
       {/* Preferences Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
-        <SectionMini3D icon={Cookie} color="purple" size={200} position="right" className="hidden xl:block opacity-30" />
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
           {/* Per-section AnimatedBackground removed in favour of UnifiedBackground */}
         </div>
@@ -103,7 +108,7 @@ export default function ConsentPage() {
                 <Cookie className="mr-2 h-4 w-4" />
                 Your preferences
               </span>
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Granular control over your data
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -122,38 +127,40 @@ export default function ConsentPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15 }}
-                    whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="modern-card group relative flex flex-col gap-6 overflow-hidden"
                   >
-                    {/* Gradient overlay */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/8 via-transparent to-pink-500/8 dark:from-purple-500/15 dark:to-pink-500/15" />
+                    <SpotlightCard
+                      className="group relative flex h-full flex-col gap-6 overflow-hidden rounded-3xl border border-slate-200/50 bg-white/40 p-8 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-700/50 dark:bg-slate-900/40"
+                      spotlightColor="rgba(147, 51, 234, 0.15)"
+                    >
+                      {/* Gradient overlay */}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 dark:from-purple-500/10 dark:to-pink-500/10" />
 
-                    {/* Icon with gradient */}
-                    <div className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${option.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                      <Icon className="h-8 w-8 text-white" />
-                    </div>
+                      {/* Icon with gradient */}
+                      <div className={`relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${option.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                        <Icon className="h-8 w-8 text-white" />
+                      </div>
 
-                    <div className="relative flex-1 space-y-4">
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                        {option.label}
-                      </h3>
-                      <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                        {option.description}
-                      </p>
-                    </div>
+                      <div className="relative flex-1 space-y-4">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                          {option.label}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                          {option.description}
+                        </p>
+                      </div>
 
-                    <div className="relative">
-                      <span className={`inline-flex items-center rounded-full border-2 px-5 py-2 text-xs font-bold uppercase tracking-widest ${
-                        option.required
+                      <div className="relative">
+                        <span className={`inline-flex items-center rounded-full border-2 px-5 py-2 text-xs font-bold uppercase tracking-widest ${option.required
                           ? "border-emerald-300 bg-emerald-100 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400"
                           : "border-slate-300 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-400"
-                      }`}>
-                        {option.defaultState}
-                      </span>
-                    </div>
+                          }`}>
+                          {option.defaultState}
+                        </span>
+                      </div>
 
-                    {/* Shimmer effect */}
-                    <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-purple-400/25 to-transparent transition-all duration-1000 group-hover:left-full dark:via-purple-400/20" />
+                      {/* Shimmer effect */}
+                      <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-purple-400/25 to-transparent transition-all duration-1000 group-hover:left-full dark:via-purple-400/20" />
+                    </SpotlightCard>
                   </motion.article>
                 );
               })}
@@ -186,7 +193,7 @@ export default function ConsentPage() {
                 <Shield className="mr-2 h-4 w-4" />
                 Privacy by design
               </span>
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Built with your privacy in mind
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -205,32 +212,35 @@ export default function ConsentPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15 }}
-                    whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                    className="group relative overflow-hidden rounded-3xl border-2 border-emerald-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-emerald-50/40 to-teal-50/30 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-emerald-300/80 hover:shadow-2xl dark:border-emerald-700/70 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30 dark:hover:border-emerald-600/80"
                   >
-                    {/* Gradient overlay */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
+                    <SpotlightCard
+                      className="group relative h-full overflow-hidden rounded-3xl border border-emerald-200/50 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-emerald-50/40 to-teal-50/30 p-8 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-emerald-300/80 hover:shadow-2xl hover:-translate-y-2 dark:border-emerald-700/50 dark:from-slate-900/95 dark:via-emerald-950/40 dark:to-teal-950/30 dark:hover:border-emerald-600/80"
+                      spotlightColor="rgba(16, 185, 129, 0.15)"
+                    >
+                      {/* Gradient overlay */}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
 
-                    <div className="relative space-y-6">
-                      <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.gradient} shadow-lg`}>
-                        <Icon className="h-8 w-8 text-white" />
+                      <div className="relative space-y-6">
+                        <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.gradient} shadow-lg`}>
+                          <Icon className="h-8 w-8 text-white" />
+                        </div>
+
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                          {feature.title}
+                        </h3>
+
+                        <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                          {feature.description}
+                        </p>
                       </div>
 
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                        {feature.title}
-                      </h3>
-
-                      <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                        {feature.description}
-                      </p>
-                    </div>
-
-                    {/* Pulsing glow effect */}
-                    <motion.div
-                      animate={{ opacity: [0.3, 0.6, 0.3] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-400/0 via-emerald-400/10 to-teal-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-emerald-400/0 dark:via-emerald-400/20 dark:to-teal-400/0"
-                    />
+                      {/* Pulsing glow effect */}
+                      <motion.div
+                        animate={{ opacity: [0.3, 0.6, 0.3] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-400/0 via-emerald-400/10 to-teal-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-emerald-400/0 dark:via-emerald-400/20 dark:to-teal-400/0"
+                      />
+                    </SpotlightCard>
                   </motion.div>
                 );
               })}
@@ -246,7 +256,7 @@ export default function ConsentPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
-           <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-slate-950/60 dark:to-slate-950/60" />
         </div>
 
         <Container className="relative z-10">
@@ -262,7 +272,7 @@ export default function ConsentPage() {
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
                 Data rights
               </span>
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Do Not Sell/Share
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">

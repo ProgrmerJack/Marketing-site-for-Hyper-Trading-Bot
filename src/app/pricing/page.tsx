@@ -5,14 +5,16 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { Calculator, TrendingUp, Check, X, DollarSign, Shield, ArrowRight } from "lucide-react";
-import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
+import { ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
 import { MorphingShape } from "@/components/motion/MorphingShape";
 import { MouseFollower } from "@/components/motion/MouseFollower";
-import { CryptoVaultHero } from "@/components/hero/CryptoVaultHero";
-import { Icon3D } from "@/components/3d-icons/Icon3D";
 import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
 import { useMotion } from "@/components/motion/MotionProvider";
+import { Icon3D } from "@/components/3d-icons/Icon3D";
 import SectionMini3D from "@/components/mini/SectionMini3D";
+import { getIconColor } from "@/styles/design-tokens";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import { PremiumBlock } from "@/components/blocks/PremiumBlock";
 import type { Route } from "next";
 
 const pricingHighlights = [
@@ -40,7 +42,6 @@ const pricingHighlights = [
 ];
 
 export default function PricingPage() {
-  // Motion toggles are handled globally; avoid local destructuring when unused
   useMotion();
 
   return (
@@ -48,14 +49,7 @@ export default function PricingPage() {
       {/* Hero Section - Vibrant emerald/cyan theme */}
       <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-cyan-50 to-teal-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-emerald-950/40 dark:to-cyan-950/40 md:py-32">
         <Unified3DBackground variant="pricing" intensity={0.55} />
-        
-        {/* CryptoVaultHero - 3D Vault Visualization */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-40 dark:opacity-25 pointer-events-none hidden xl:block">
-          <div className="w-[500px] h-[500px]">
-            <CryptoVaultHero />
-          </div>
-        </div>
-        
+
         <div className="absolute left-[-6rem] -bottom-12 opacity-80 dark:opacity-40 pointer-events-none">
           <MorphingShape size={280} className="motion-zone" color="rgb(var(--primary))" />
         </div>
@@ -71,14 +65,14 @@ export default function PricingPage() {
               Pricing
             </motion.span>
             <MouseFollower strength={0.7} className="motion-zone">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
-            >
-              Revolutionary profit-share model designed for your success
-            </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
+              >
+                Only Pay When You Profit. No Management Fees. Ever.
+              </motion.h1>
             </MouseFollower>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -86,7 +80,7 @@ export default function PricingPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl"
             >
-              We only succeed when you succeed. Zero management fees, zero monthly charges. Experience true alignment with your trading partner.*
+              Unlike 95% of platforms, we don&apos;t charge fees regardless of performance. Our profit-share model means we only succeed when you do. Zero management fees, zero monthly charges.*
             </motion.p>
 
             {/* Pricing Highlight Cards */}
@@ -98,27 +92,28 @@ export default function PricingPage() {
             >
               {pricingHighlights.map((item, index) => {
                 const Icon = item.icon;
-                // Map gradient to Icon3D color
-                const iconColor = index === 0 ? "cyan" : index === 1 ? "emerald" : "purple";
-                
+                const iconColor = getIconColor(Icon.displayName || Icon.name || '');
                 return (
                   <motion.div
                     key={item.title}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                    className="group"
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="h-full"
                   >
-                    <SpotlightCard
-                      className="modern-card-info motion-zone"
-                      spotlightColor="rgba(59, 130, 246, 0.2)"
+                    <PremiumCard
+                      variant="glass-primary"
+                      accent="emerald"
+                      hover={true}
+                      className="h-full p-8"
                     >
                       <div className="mb-6 flex justify-center">
-                        <Icon3D icon={Icon} color={iconColor} size={48} />
+                        <Icon3D icon={Icon} color={iconColor} size={56} />
                       </div>
-                      <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{item.title}</h3>
-                      <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{item.description}</p>
-                    </SpotlightCard>
+                      <h3 className="mb-2 text-base font-bold text-slate-900 dark:text-white">{item.title}</h3>
+                      <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{item.description}</p>
+                    </PremiumCard>
                   </motion.div>
                 );
               })}
@@ -134,7 +129,7 @@ export default function PricingPage() {
               <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
                 <div className="inline-block">
                   <div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
-                      <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+                    <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
                       <Link
                         href={("/contact" as Route)}
                         className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
@@ -158,63 +153,60 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* Pricing Highlights Section */}
+      {/* Why Profit Sharing Section - Extended Content (removes duplicate cards) */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         <SectionMini3D icon={DollarSign} color="emerald" size={190} position="left" className="hidden xl:block opacity-25" />
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {/* Per-section AnimatedBackground removed to rely on UnifiedBackground */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.06),rgba(59,130,246,0.04),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.04),rgba(96,165,250,0.03),transparent_70%)]" />
           <div className="section-surface" />
         </div>
 
         <Container className="relative z-10">
-          <div className="mx-auto max-w-7xl space-y-16">
+          <div className="mx-auto max-w-7xl space-y-12">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
-                The Fairest Profit-Share Model in Crypto Trading
+              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+                <TrendingUp className="mr-2 h-4 w-4" />
+                Aligned Incentives
+              </span>
+              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
+                Why Profit Sharing Works Better
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-                Transparent, performance-based pricing that puts your interests first. Pay only when you profit.*
+                The fairest pricing model in crypto trading. We succeed only when you succeed.
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-3">
-              {pricingHighlights.map((item, index) => {
-                const Icon = item.icon;
-                const iconColor = index === 0 ? "cyan" : index === 1 ? "emerald" : "purple";
-
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group"
-                  >
-                    <SpotlightCard
-                      className="modern-card relative h-full overflow-hidden p-8 shadow-lg transition-all duration-300 hover:shadow-2xl"
-                      spotlightColor="rgba(59, 130, 246, 0.25)"
-                    >
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
-                      <div className="relative flex h-full flex-col gap-6">
-                        <div className="flex justify-start">
-                          <Icon3D icon={Icon} color={iconColor} size={56} />
-                        </div>
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">{item.title}</h3>
-                        <p className="flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                          {item.description}
-                        </p>
-                      </div>
-                      {/* Shimmer effect */}
-                      <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-all duration-1000 group-hover:left-full dark:via-white/10" />
-                    </SpotlightCard>
-                  </motion.div>
-                );
-              })}
-            </div>
+            {/* Extended Content Block with enhanced styling */}
+            <PremiumBlock accent="emerald" padding="lg" className="glow-multi">
+              <div className="grid gap-8 md:grid-cols-2 items-center">
+                <div>
+                  <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">Traditional Fees vs Our Model</h3>
+                  <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4">
+                    Traditional management fees eat into your capital regardless of performance.
+                    Our model ensures that we are only compensated when we generate real, verified value for you.
+                  </p>
+                  <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
+                    This creates a powerful partnership where our goals are perfectly synchronized with yours. No hidden fees, no monthly retainers, no costs during drawdowns.
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4 rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 dark:border-emerald-800 dark:bg-emerald-950/50">
+                    <Check className="h-6 w-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Zero management fees during any period</span>
+                  </div>
+                  <div className="flex items-center gap-4 rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 dark:border-emerald-800 dark:bg-emerald-950/50">
+                    <Check className="h-6 w-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Fees only after verified net profit</span>
+                  </div>
+                  <div className="flex items-center gap-4 rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 dark:border-emerald-800 dark:bg-emerald-950/50">
+                    <Check className="h-6 w-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Independent third-party audit required</span>
+                  </div>
+                </div>
+              </div>
+            </PremiumBlock>
           </div>
         </Container>
       </section>
@@ -267,20 +259,20 @@ export default function PricingPage() {
               </p>
             </div>
 
-            <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-slate-50/60 to-emerald-50/40 shadow-2xl backdrop-blur-sm dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-850/90 dark:to-emerald-950/40">
+            <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-white/40 shadow-2xl backdrop-blur-md dark:border-white/10 dark:bg-slate-900/40">
               {/* Gradient overlay */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-blue-500/8 dark:from-emerald-500/15 dark:to-blue-500/15" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-blue-500/5 dark:from-emerald-500/10 dark:to-blue-500/10" />
 
               <div className="relative overflow-x-auto">
-                <table className="w-full text-left text-sm">
+                <table className="w-full text-left text-sm border-collapse">
                   <thead>
-                    <tr className="border-b-2 border-slate-300/60 bg-[rgb(var(--card))/0.9] dark:bg-[rgb(var(--card))/0.02] dark:border-slate-600/60">
-                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Feature</th>
-                      <th className="p-4 font-bold text-emerald-700 dark:text-emerald-300">
+                    <tr className="border-b border-white/20 bg-white/50 dark:bg-slate-800/50 dark:border-white/10">
+                      <th className="p-6 font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-xs">Feature</th>
+                      <th className="p-6 font-bold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider text-xs">
                         Hyper Trading Automation
                       </th>
-                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Traditional Hedge Fund</th>
-                      <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Typical Crypto Bot</th>
+                      <th className="p-6 font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-xs">Traditional Hedge Fund</th>
+                      <th className="p-6 font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-xs">Typical Crypto Bot</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -337,7 +329,7 @@ export default function PricingPage() {
                           {typeof row.hyper === "object" ? (
                             <span className={row.hyper.positive ? "font-semibold text-emerald-600 dark:text-emerald-300" : ""}>
                               {row.hyper.icon && (
-                                <row.hyper.icon className="mb-0.5 inline h-5 w-5" />
+                                <row.hyper.icon className="mb-0.5 inline h-5 w-5 text-emerald-600 dark:text-emerald-300" />
                               )}{" "}
                               {row.hyper.text}
                             </span>
@@ -348,7 +340,7 @@ export default function PricingPage() {
                         <td className="p-4 font-medium text-slate-700 dark:text-slate-200">
                           {typeof row.traditional === "object" ? (
                             <span className="text-red-600 dark:text-red-400">
-                              {row.traditional.icon && <row.traditional.icon className="mb-0.5 inline h-5 w-5" />}{" "}
+                              {row.traditional.icon && <row.traditional.icon className="mb-0.5 inline h-5 w-5 text-red-600 dark:text-red-400" />}{" "}
                               {row.traditional.text}
                             </span>
                           ) : (
@@ -358,7 +350,7 @@ export default function PricingPage() {
                         <td className="p-4 font-medium text-slate-700 dark:text-slate-200">
                           {typeof row.crypto === "object" ? (
                             <span className="text-red-600 dark:text-red-400">
-                              {row.crypto.icon && <row.crypto.icon className="mb-0.5 inline h-5 w-5" />}{" "}
+                              {row.crypto.icon && <row.crypto.icon className="mb-0.5 inline h-5 w-5 text-red-600 dark:text-red-400" />}{" "}
                               {row.crypto.text}
                             </span>
                           ) : (
@@ -409,42 +401,41 @@ export default function PricingPage() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                className="group relative h-full overflow-hidden rounded-3xl border-2 border-emerald-300 bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl dark:border-emerald-700/50 dark:from-emerald-950/40 dark:via-slate-900 dark:to-teal-950/40"
+                className="h-full"
               >
-                {/* Gradient overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
-
-                  <div className="relative h-full">
-                    <div className="mb-6 flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-white">
-                        <TrendingUp className="h-6 w-6" />
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                        Profitable Quarter (Hypothetical)
-                      </h3>
+                <PremiumCard
+                  variant="glass-secondary"
+                  accent="emerald"
+                  hover={true}
+                  className="h-full p-8"
+                >
+                  <div className="mb-6 flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-white">
+                      <TrendingUp className="h-6 w-6" />
                     </div>
-                    <div className="space-y-4">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-slate-700 dark:text-slate-300">Starting Balance:</span>
-                        <span className="font-bold text-slate-900 dark:text-white">$100,000</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-slate-700 dark:text-slate-300">Net Profit (after costs):</span>
-                        <span className="font-bold text-emerald-600 dark:text-emerald-400">+$12,000</span>
-                      </div>
-                      <div className="flex justify-between border-t-2 border-emerald-200 pt-4 text-sm dark:border-emerald-900/30">
-                        <span className="text-slate-700 dark:text-slate-300">Profit-Share (20% illustrative):</span>
-                        <span className="font-bold text-slate-900 dark:text-white">$2,400</span>
-                      </div>
-                      <div className="flex justify-between text-base">
-                        <span className="font-bold text-slate-900 dark:text-white">Your Net Gain:</span>
-                        <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">$9,600</span>
-                      </div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                      Profitable Quarter (Hypothetical)
+                    </h3>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-700 dark:text-slate-300">Starting Balance:</span>
+                      <span className="font-bold text-slate-900 dark:text-white">$100,000</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-700 dark:text-slate-300">Net Profit (after costs):</span>
+                      <span className="font-bold text-emerald-600 dark:text-emerald-400">+$12,000</span>
+                    </div>
+                    <div className="flex justify-between border-t-2 border-emerald-200 pt-4 text-sm dark:border-emerald-900/30">
+                      <span className="text-slate-700 dark:text-slate-300">Profit-Share (20% illustrative):</span>
+                      <span className="font-bold text-slate-900 dark:text-white">$2,400</span>
+                    </div>
+                    <div className="flex justify-between text-base">
+                      <span className="font-bold text-slate-900 dark:text-white">Your Net Gain:</span>
+                      <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">$9,600</span>
                     </div>
                   </div>
-
-                {/* Shimmer effect */}
-                <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent transition-all duration-1000 group-hover:left-full dark:via-emerald-400/15" />
+                </PremiumCard>
               </motion.div>
 
               <motion.div
@@ -453,45 +444,44 @@ export default function PricingPage() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                className="group relative h-full overflow-hidden rounded-3xl border-2 border-red-300 bg-gradient-to-br from-red-50 via-white to-orange-50 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl dark:border-red-700/50 dark:from-red-950/40 dark:via-slate-900 dark:to-orange-950/40"
+                className="h-full"
               >
-                {/* Gradient overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-orange-500/5 dark:from-red-500/10 dark:to-orange-500/10" />
-
-                  <div className="relative h-full">
-                    <div className="mb-6 flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-500 text-white">
-                        <TrendingUp className="h-6 w-6 rotate-180" />
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                        Loss Quarter (Hypothetical)
-                      </h3>
+                <PremiumCard
+                  variant="glass-secondary"
+                  accent="purple"
+                  hover={true}
+                  className="h-full p-8 border-red-300 dark:border-red-700/50"
+                >
+                  <div className="mb-6 flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-500 text-white">
+                      <TrendingUp className="h-6 w-6 rotate-180" />
                     </div>
-                    <div className="space-y-4">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-slate-700 dark:text-slate-300">Starting Balance:</span>
-                        <span className="font-bold text-slate-900 dark:text-white">$100,000</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-slate-700 dark:text-slate-300">Net Loss (after costs):</span>
-                        <span className="font-bold text-red-600 dark:text-red-400">-$3,000</span>
-                      </div>
-                      <div className="flex justify-between border-t-2 border-red-200 pt-4 text-sm dark:border-red-900/30">
-                        <span className="text-slate-700 dark:text-slate-300">Profit-Share Fee:</span>
-                        <span className="font-bold text-emerald-600 dark:text-emerald-400">$0</span>
-                      </div>
-                      <div className="flex justify-between text-base">
-                        <span className="font-bold text-slate-900 dark:text-white">Your Net Loss:</span>
-                        <span className="text-2xl font-bold text-red-600 dark:text-red-400">-$3,000</span>
-                      </div>
-                    </div>
-                    <p className="mt-6 text-xs text-slate-600 dark:text-slate-400">
-                      No fees charged in loss periods. We only earn when you earn.
-                    </p>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                      Loss Quarter (Hypothetical)
+                    </h3>
                   </div>
-
-                {/* Shimmer effect */}
-                <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-red-400/20 to-transparent transition-all duration-1000 group-hover:left-full dark:via-red-400/15" />
+                  <div className="space-y-4">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-700 dark:text-slate-300">Starting Balance:</span>
+                      <span className="font-bold text-slate-900 dark:text-white">$100,000</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-700 dark:text-slate-300">Net Loss (after costs):</span>
+                      <span className="font-bold text-red-600 dark:text-red-400">-$3,000</span>
+                    </div>
+                    <div className="flex justify-between border-t-2 border-red-200 pt-4 text-sm dark:border-red-900/30">
+                      <span className="text-slate-700 dark:text-slate-300">Profit-Share Fee:</span>
+                      <span className="font-bold text-emerald-600 dark:text-emerald-400">$0</span>
+                    </div>
+                    <div className="flex justify-between text-base">
+                      <span className="font-bold text-slate-900 dark:text-white">Your Net Loss:</span>
+                      <span className="text-2xl font-bold text-red-600 dark:text-red-400">-$3,000</span>
+                    </div>
+                  </div>
+                  <p className="mt-6 text-xs text-slate-600 dark:text-slate-400">
+                    No fees charged in loss periods. We only earn when you earn.
+                  </p>
+                </PremiumCard>
               </motion.div>
             </div>
           </div>
@@ -531,7 +521,7 @@ function FeeCalculator() {
       <div className="relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-purple-100/60 to-blue-100/50 p-8 shadow-2xl backdrop-blur-md dark:border-slate-700/70 dark:from-slate-900/95 dark:via-purple-900/40 dark:to-blue-900/30 md:p-10">
         {/* Vibrant Gradient overlay */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 dark:from-purple-500/30 dark:to-blue-500/30 mix-blend-overlay" />
-        
+
         {/* Animated Glow Orb behind */}
         <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-500/30 blur-3xl filter dark:bg-purple-500/20" />
         <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-blue-500/30 blur-3xl filter dark:bg-blue-500/20" />
@@ -548,7 +538,7 @@ function FeeCalculator() {
             Hypothetical Net Profit (after trading costs)
           </label>
           <div className="relative h-16">
-             <input
+            <input
               type="range"
               min="-10000"
               max="50000"
@@ -559,7 +549,7 @@ function FeeCalculator() {
             />
             {/* Custom Thumb styling would be ideal here, but standard range input is robust */}
           </div>
-          
+
           <div className="mt-2 text-center">
             <span className="text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
               ${profit.toLocaleString()}
@@ -569,23 +559,23 @@ function FeeCalculator() {
           <div className="space-y-4 modern-card-emerald p-6">
             <h4 className="font-bold text-slate-900 dark:text-slate-100">Hyper Trading Automation</h4>
             <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="font-medium text-slate-700 dark:text-slate-200">Management Fee (Annual):</span>
-                  <span className="font-bold text-emerald-600 dark:text-emerald-300">$0</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-medium text-slate-700 dark:text-slate-200">Profit-Share (20% illustrative):</span>
-                  <span className="font-bold text-slate-900 dark:text-slate-100">
-                    ${profitShare.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between border-t-2 border-emerald-300/60 pt-3 dark:border-emerald-800/60">
-                  <span className="font-bold text-slate-900 dark:text-slate-100">Your Net Gain/Loss:</span>
-                  <span
-                    className={`text-xl font-bold ${yourNet >= 0 ? "text-emerald-600 dark:text-emerald-300" : "text-red-600 dark:text-red-400"}`}
-                  >
-                    ${yourNet.toLocaleString()}
-                  </span>
+              <div className="flex justify-between">
+                <span className="font-medium text-slate-700 dark:text-slate-200">Management Fee (Annual):</span>
+                <span className="font-bold text-emerald-600 dark:text-emerald-300">$0</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium text-slate-700 dark:text-slate-200">Profit-Share (20% illustrative):</span>
+                <span className="font-bold text-slate-900 dark:text-slate-100">
+                  ${profitShare.toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between border-t-2 border-emerald-300/60 pt-3 dark:border-emerald-800/60">
+                <span className="font-bold text-slate-900 dark:text-slate-100">Your Net Gain/Loss:</span>
+                <span
+                  className={`text-xl font-bold ${yourNet >= 0 ? "text-emerald-600 dark:text-emerald-300" : "text-red-600 dark:text-red-400"}`}
+                >
+                  ${yourNet.toLocaleString()}
+                </span>
               </div>
             </div>
           </div>
@@ -593,25 +583,25 @@ function FeeCalculator() {
           <div className="space-y-4 modern-card p-6">
             <h4 className="font-bold text-slate-900 dark:text-slate-100">Traditional Fund (2% + 20%)</h4>
             <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="font-medium text-slate-700 dark:text-slate-200">Management Fee (2% of $100k):</span>
-                  <span className="font-bold text-slate-900 dark:text-slate-100">
-                    ${managementFee.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-medium text-slate-700 dark:text-slate-200">Performance Fee (20%):</span>
-                  <span className="font-bold text-slate-900 dark:text-slate-100">
-                    ${traditionalPerfFee.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between border-t-2 border-orange-300/60 pt-3 dark:border-orange-800/60">
-                  <span className="font-bold text-slate-900 dark:text-slate-100">Your Net Gain/Loss:</span>
-                  <span
-                    className={`text-xl font-bold ${traditionalNet >= 0 ? "text-emerald-600 dark:text-emerald-300" : "text-red-600 dark:text-red-400"}`}
-                  >
-                    ${traditionalNet.toLocaleString()}
-                  </span>
+              <div className="flex justify-between">
+                <span className="font-medium text-slate-700 dark:text-slate-200">Management Fee (2% of $100k):</span>
+                <span className="font-bold text-slate-900 dark:text-slate-100">
+                  ${managementFee.toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium text-slate-700 dark:text-slate-200">Performance Fee (20%):</span>
+                <span className="font-bold text-slate-900 dark:text-slate-100">
+                  ${traditionalPerfFee.toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between border-t-2 border-orange-300/60 pt-3 dark:border-orange-800/60">
+                <span className="font-bold text-slate-900 dark:text-slate-100">Your Net Gain/Loss:</span>
+                <span
+                  className={`text-xl font-bold ${traditionalNet >= 0 ? "text-emerald-600 dark:text-emerald-300" : "text-red-600 dark:text-red-400"}`}
+                >
+                  ${traditionalNet.toLocaleString()}
+                </span>
               </div>
             </div>
           </div>

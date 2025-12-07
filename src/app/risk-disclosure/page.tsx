@@ -8,7 +8,8 @@ import { SpotlightCard } from "@/components/reactbits/dynamic";
 import Link from "next/link";
 import type { Route } from "next";
 import { AlertTriangle, TrendingDown, Cpu, Scale, Shield, CheckCircle2 } from "lucide-react";
-import SectionMini3D from "@/components/mini/SectionMini3D";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { RiskShield3D } from "@/components/hero/RiskShield3D";
 
 const riskSections = [
   {
@@ -112,22 +113,21 @@ export default function RiskDisclosurePage() {
         backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
       >
         <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
+          <SpotlightCard className="w-96 rounded-2xl border border-slate-200/50 bg-white/10 p-6 shadow-xl backdrop-blur-md hover:shadow-2xl dark:border-slate-700/50 dark:bg-slate-900/50">
             <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Risk overview</div>
-            <div className="mb-3 text-lg font-bold">Trade risk highlights</div>
+            <div className="mb-3 text-lg font-bold text-slate-900 dark:text-white">Trade risk highlights</div>
             <p className="text-xs text-muted-foreground">Trading involves losses. Read the full disclosure before interacting with demo data.</p>
-            <div className="mt-4">
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white"
-              >
-                Contact compliance
-              </a>
-            </div>
-            <div className="mt-4">
-              <motion.a href="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
+            <div className="mt-4 flex gap-3">
+              <motion.a href="/contact" className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-700 transition-all duration-200 hover:bg-blue-100 hover:border-blue-300 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400 dark:hover:bg-blue-900/50" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
                 Contact compliance
               </motion.a>
+              <motion.button
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-100 hover:border-slate-300 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.18 }}
+              >
+                Download PDF
+              </motion.button>
             </div>
           </SpotlightCard>
         </motion.div>
@@ -135,7 +135,15 @@ export default function RiskDisclosurePage() {
 
       {/* Main Content Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
-        <SectionMini3D icon={AlertTriangle} color="amber" size={200} position="left" className="hidden xl:block opacity-25" />
+        <Unified3DBackground variant="default" intensity={0.5} />
+
+        {/* RiskShield3D - 3D Risk Shield Visualization */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 opacity-18 dark:opacity-12 pointer-events-none hidden xl:block">
+          <div className="w-[450px] h-[450px]">
+            <RiskShield3D />
+          </div>
+        </div>
+
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-50 dark:opacity-35">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.06),rgba(59,130,246,0.04),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.04),rgba(96,165,250,0.03),transparent_70%)]" />
         </div>
@@ -152,14 +160,20 @@ export default function RiskDisclosurePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="modern-card"
+                  className="group relative overflow-hidden rounded-3xl border border-slate-200/50 bg-white/40 p-8 shadow-lg backdrop-blur-md dark:border-slate-700/50 dark:bg-slate-900/40 md:p-10"
                 >
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
                   <div className="mb-6 flex items-start gap-4">
-                    <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg`}>
-                      <Icon className="h-7 w-7 text-white" />
+                    <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-slate-100 shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 dark:bg-slate-800/50`}>
+                      <Icon className={`h-7 w-7 ${section.id === 'warning' ? 'text-red-600 dark:text-red-400' :
+                          section.id === 'market' ? 'text-amber-600 dark:text-amber-400' :
+                            section.id === 'technology' ? 'text-blue-600 dark:text-blue-400' :
+                              section.id === 'regulatory' ? 'text-purple-600 dark:text-purple-400' :
+                                'text-emerald-600 dark:text-emerald-400'
+                        }`} />
                     </div>
                     <div className="flex-1">
-                      <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                      <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
                         {section.title}
                       </h2>
                       <p className={`text-sm leading-relaxed ${section.id === 'warning' ? 'font-semibold text-red-700 dark:text-red-400' : 'text-slate-700 dark:text-slate-300'}`}>
@@ -197,14 +211,14 @@ export default function RiskDisclosurePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="rounded-3xl border border-red-200 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-red-50/30 to-orange-50/20 p-8 shadow-lg dark:border-red-800/50 dark:from-slate-900 dark:via-red-950/30 dark:to-orange-950/20 md:p-10"
+              className="rounded-3xl border border-red-200/50 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-red-50/30 to-orange-50/20 p-8 shadow-lg backdrop-blur-md dark:border-red-800/50 dark:from-slate-900 dark:via-red-950/30 dark:to-orange-950/20 md:p-10"
             >
               <div className="mb-6 flex items-start gap-4">
                 <div className="flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
                   <AlertTriangle className="h-7 w-7 text-white" />
                 </div>
                 <div className="flex-1">
-                  <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                  <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
                     Your Acknowledgment
                   </h2>
                   <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
@@ -233,9 +247,9 @@ export default function RiskDisclosurePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="rounded-3xl border border-blue-200 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-blue-50/30 to-cyan-50/20 p-8 shadow-lg dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20 md:p-10"
+              className="rounded-3xl border border-blue-200/50 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-blue-50/30 to-cyan-50/20 p-8 shadow-lg backdrop-blur-md dark:border-blue-800/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-cyan-950/20 md:p-10"
             >
-              <h2 className="heading-contrast mb-6 text-2xl font-bold text-slate-900 dark:text-white">Related Documentation</h2>
+              <h2 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">Related Documentation</h2>
               <p className="mb-6 text-sm text-slate-700 dark:text-slate-300">
                 Review these documents for complete information:
               </p>
@@ -244,7 +258,7 @@ export default function RiskDisclosurePage() {
                   <Link
                     key={idx}
                     href={doc.href}
-                    className="group rounded-2xl border border-slate-200 bg-card/80 p-6 transition-all hover:border-blue-400 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800/80 dark:hover:border-blue-500"
+                    className="group rounded-2xl border border-slate-200/60 bg-white/50 p-6 transition-all hover:border-blue-400 hover:shadow-lg dark:border-slate-700/60 dark:bg-slate-800/50 dark:hover:border-blue-500"
                   >
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-blue-600 dark:text-blue-400" />
@@ -264,7 +278,7 @@ export default function RiskDisclosurePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="rounded-3xl border border-slate-200 bg-slate-100 p-8 text-center dark:border-slate-700 dark:bg-slate-800"
+              className="rounded-3xl border border-slate-200/50 bg-slate-100/50 p-8 text-center backdrop-blur-md dark:border-slate-700/50 dark:bg-slate-800/50"
             >
               <p className="text-sm font-semibold text-slate-900 dark:text-white">
                 By using this Site, you acknowledge that you have read, understood, and agree to be bound by this Risk Disclosure.

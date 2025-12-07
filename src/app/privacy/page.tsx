@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
 // AnimatedBackground was intentionally removed from per-page usage; UnifiedBackground provides the global animation.
 import {
   // Shield not used directly
@@ -20,7 +21,8 @@ import {
   Phone,
   FileText,
 } from "lucide-react";
-import SectionMini3D from "@/components/mini/SectionMini3D";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { CryptoVaultHero } from "@/components/hero/CryptoVaultHero";
 
 const sections = [
   {
@@ -118,26 +120,33 @@ export default function PrivacyPage() {
       <PageHeaderAnimated
         eyebrow="Legal"
         title="Privacy Policy"
-        description="UK GDPR, GDPR, and CCPA compliant notice. This page is updated whenever our processing activities change."
+        description="UK GDPR, GDPR, and CCPA compliant notice. This page is updated whenever our processing activities change. We are committed to protecting your personal data and ensuring transparency in how we handle your information."
         backgroundVariant="hyperspeed"
         backgroundOpacity={0.9}
         backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
       >
         <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div className="w-96">
-            <div className="rounded-2xl p-6 shadow-lg bg-gradient-to-br from-[rgb(var(--card))/0.9] to-blue-50">
+            <div className="rounded-2xl border border-slate-200/50 bg-white/10 p-6 shadow-xl backdrop-blur-md dark:border-slate-700/50 dark:bg-slate-900/50">
               <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Privacy</div>
-              <div className="mb-3 text-lg font-bold">We minimise data collection</div>
+              <div className="mb-3 text-lg font-bold text-slate-900 dark:text-white">We minimise data collection</div>
               <p className="text-xs text-muted-foreground">We collect minimal personal data and we never sell your information. Read the full policy for details.</p>
-              <div className="mt-4">
+              <div className="mt-4 flex gap-3">
                 <motion.a
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white"
+                  className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-700 transition-all duration-200 hover:bg-blue-100 hover:border-blue-300 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400 dark:hover:bg-blue-900/50"
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.18 }}
                 >
                   Contact privacy
                 </motion.a>
+                <motion.button
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-100 hover:border-slate-300 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  Download PDF
+                </motion.button>
               </div>
             </div>
           </div>
@@ -146,7 +155,15 @@ export default function PrivacyPage() {
 
       {/* Main Content Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
-        <SectionMini3D icon={FileText} color="cyan" size={200} position="left" className="hidden xl:block opacity-25" />
+        <Unified3DBackground variant="contact" intensity={0.5} />
+
+        {/* CryptoVaultHero - 3D Vault Visualization */}
+        <div className="absolute left-0 top-1/3 -translate-y-1/2 opacity-20 dark:opacity-15 pointer-events-none hidden xl:block">
+          <div className="w-[450px] h-[450px]">
+            <CryptoVaultHero />
+          </div>
+        </div>
+
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 dark:opacity-30">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
         </div>
@@ -163,44 +180,47 @@ export default function PrivacyPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                  className="modern-card group relative overflow-hidden"
                 >
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
-                  <div className="relative mb-6 flex items-start gap-4">
-                    <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                      <Icon className="h-7 w-7 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                        {section.title}
-                      </h2>
-                      <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                        {section.summary}
-                      </p>
-                    </div>
-                  </div>
-
-                  {section.items && (
-                    <ul className="relative space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                      {section.items.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-emerald-600 dark:text-emerald-400" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {section.details && (
-                    <div className="space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                      {section.details.map((detail, idx) => (
-                        <p key={idx}>
-                          <strong className="text-slate-900 dark:text-white">{detail.label}:</strong> {detail.text}
+                  <SpotlightCard
+                    className="group relative overflow-hidden rounded-3xl border-2 border-slate-200/70 bg-gradient-to-br from-white/95 via-slate-50/50 to-gray-50/40 p-8 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-slate-400/80 hover:shadow-2xl hover:-translate-y-2 dark:border-slate-700/70 dark:from-slate-900/95 dark:via-slate-900/50 dark:to-gray-900/40 dark:hover:border-slate-600/80"
+                    spotlightColor="rgba(99, 102, 241, 0.15)"
+                  >
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+                    <div className="relative mb-6 flex items-start gap-4">
+                      <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                        <Icon className="h-7 w-7 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                          {section.title}
+                        </h2>
+                        <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                          {section.summary}
                         </p>
-                      ))}
+                      </div>
                     </div>
-                  )}
+
+                    {section.items && (
+                      <ul className="relative space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                        {section.items.map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-emerald-600 dark:text-emerald-400" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {section.details && (
+                      <div className="space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                        {section.details.map((detail, idx) => (
+                          <p key={idx}>
+                            <strong className="text-slate-900 dark:text-white">{detail.label}:</strong> {detail.text}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                  </SpotlightCard>
                 </motion.div>
               );
             })}
@@ -211,47 +231,51 @@ export default function PrivacyPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="rounded-3xl border border-slate-200 bg-card/90 p-8 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/90 md:p-10"
             >
-              <div className="mb-8 flex items-start gap-4">
-                <div className="flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 shadow-lg">
-                  <Server className="h-7 w-7 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                    Third-party service providers
-                  </h2>
-                  <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                    We use limited third-party services to operate the platform. Each processor is contractually bound to GDPR/CCPA standards.
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                {providers.map((provider, idx) => (
-                  <div
-                    key={idx}
-                    className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800/50"
-                  >
-                    <h3 className="mb-2 font-semibold text-slate-900 dark:text-white">
-                      {provider.name}
-                    </h3>
-                    <p className="mb-3 text-sm text-slate-700 dark:text-slate-300">
-                      <strong>{provider.provider}</strong> ({provider.location}) - {provider.description}
-                    </p>
-                    {provider.link && (
-                      <a
-                        href={provider.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                      >
-                        Privacy policy →
-                      </a>
-                    )}
+              <SpotlightCard
+                className="rounded-3xl border border-slate-200/50 bg-white/40 p-8 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-slate-700/50 dark:bg-slate-900/40 md:p-10"
+                spotlightColor="rgba(99, 102, 241, 0.15)"
+              >
+                <div className="mb-8 flex items-start gap-4">
+                  <div className="flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 shadow-lg">
+                    <Server className="h-7 w-7 text-white" />
                   </div>
-                ))}
-              </div>
+                  <div className="flex-1">
+                    <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                      Third-party service providers
+                    </h2>
+                    <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                      We use limited third-party services to operate the platform. Each processor is contractually bound to GDPR/CCPA standards.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  {providers.map((provider, idx) => (
+                    <div
+                      key={idx}
+                      className="rounded-2xl border border-slate-200/60 bg-slate-50/50 p-6 dark:border-slate-700/60 dark:bg-slate-800/50"
+                    >
+                      <h3 className="mb-2 font-semibold text-slate-900 dark:text-white">
+                        {provider.name}
+                      </h3>
+                      <p className="mb-3 text-sm text-slate-700 dark:text-slate-300">
+                        <strong>{provider.provider}</strong> ({provider.location}) - {provider.description}
+                      </p>
+                      {provider.link && (
+                        <a
+                          href={provider.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                        >
+                          Privacy policy →
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </SpotlightCard>
             </motion.div>
 
             {/* Additional Sections - Simplified Cards */}
@@ -338,26 +362,30 @@ export default function PrivacyPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="rounded-3xl border border-slate-200 bg-card/90 p-8 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/90 md:p-10"
                 >
-                  <div className="mb-6 flex items-start gap-4">
-                    <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg`}>
-                      <Icon className="h-7 w-7 text-white" />
+                  <SpotlightCard
+                    className="rounded-3xl border border-slate-200/50 bg-white/40 p-8 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-slate-700/50 dark:bg-slate-900/40 md:p-10"
+                    spotlightColor="rgba(99, 102, 241, 0.15)"
+                  >
+                    <div className="mb-6 flex items-start gap-4">
+                      <div className={`flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-gradient-to-br ${section.gradient} shadow-lg`}>
+                        <Icon className="h-7 w-7 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                          {section.title}
+                        </h2>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h2 className="heading-contrast mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                        {section.title}
-                      </h2>
-                    </div>
-                  </div>
 
-                  <div className="space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                    {section.content.map((item, idx) => (
-                      <p key={idx}>
-                        <strong className="text-slate-900 dark:text-white">{item.label}:</strong> {item.text}
-                      </p>
-                    ))}
-                  </div>
+                    <div className="space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                      {section.content.map((item, idx) => (
+                        <p key={idx}>
+                          <strong className="text-slate-900 dark:text-white">{item.label}:</strong> {item.text}
+                        </p>
+                      ))}
+                    </div>
+                  </SpotlightCard>
                 </motion.div>
               );
             })}

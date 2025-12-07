@@ -1,8 +1,10 @@
+@import '../styles/modern-cards.css';
+@import '../styles/luxury-glass.css';
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import '../styles/modern-cards.css';
 
 @layer base {
   :root {
@@ -57,6 +59,14 @@
     --radius-sm: 0.5rem;
     --radius-lg: 1rem;
     --radius-xl: 1.5rem;
+
+    /* Neon Luxury Palette */
+    --neon-cyan: 34 211 238;
+    --neon-blue: 99 102 241;
+    --neon-purple: 168 85 247;
+    --neon-pink: 236 72 153;
+    --neon-emerald: 16 185 129;
+    --neon-orange: 251 146 60;
   }
 
   html[data-motion="disabled"],
@@ -130,14 +140,16 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     /* Ensure consistent positioning for fixed backgrounds across browsers */
     position: relative;
     overflow-x: hidden;
   }
 
   /* Cross-browser animation and performance hints */
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -151,7 +163,8 @@
   }
 
   /* Enable smooth-scrolling for iOS and webkit browsers */
-  html, body {
+  html,
+  body {
     -webkit-overflow-scrolling: touch;
   }
 
@@ -184,21 +197,38 @@
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
   }
+
   .backdrop-blur {
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.2;
   }
 
-  h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-  h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
-  h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
-  h4 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  }
 
   p {
     line-height: 1.7;
@@ -226,19 +256,152 @@
   }
 
   /* Grid layout - minimal safe fix */
-  .grid > * {
+  .grid>* {
     min-width: 0;
     min-height: 0;
   }
 }
 
 /* Ensure all headers and titles are always visible */
-h1, h2, h3, h4, h5, h6,
-header h1, header h2, header h3,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header h1,
+header h2,
+header h3,
 [role="heading"],
 .heading-contrast {
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+/* Headers need explicit color - light mode */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(15 23 42); /* slate-900 */
+}
+
+/* Headers need explicit color - dark mode */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: rgb(248 250 252); /* slate-50 */
+}
+
+/* ============================================== */
+/* COMPREHENSIVE ICON VISIBILITY FIXES           */
+/* ============================================== */
+
+/* 
+ * SIMPLE APPROACH: Make all icons BLACK in light mode, WHITE in dark mode
+ * This ensures icons are always visible regardless of their container.
+ * Icons with explicit text-* color classes will override these defaults.
+ */
+
+/* Base SVG styling - use currentColor for inheritance */
+svg {
+  color: inherit;
+}
+
+/* DEFAULT: All SVG icons (lucide and others) get dark color in light mode */
+:root svg:not([class*="text-white"]):not([class*="text-slate-"]):not([class*="text-gray-"]):not([class*="text-blue-"]):not([class*="text-cyan-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-purple-"]):not([class*="text-pink-"]):not([class*="text-orange-"]):not([class*="text-amber-"]):not([class*="text-red-"]):not([class*="text-indigo-"]):not([class*="text-violet-"]):not([class*="text-teal-"]):not([class*="text-rose-"]):not([class*="text-fuchsia-"]):not([class*="text-yellow-"]):not([class*="text-lime-"]):not([class*="text-sky-"]) {
+  color: rgb(15 23 42) !important; /* slate-900 - BLACK for light mode */
+}
+
+/* DARK MODE: All SVG icons get light color */
+.dark svg:not([class*="text-white"]):not([class*="text-slate-"]):not([class*="text-gray-"]):not([class*="text-blue-"]):not([class*="text-cyan-"]):not([class*="text-emerald-"]):not([class*="text-green-"]):not([class*="text-purple-"]):not([class*="text-pink-"]):not([class*="text-orange-"]):not([class*="text-amber-"]):not([class*="text-red-"]):not([class*="text-indigo-"]):not([class*="text-violet-"]):not([class*="text-teal-"]):not([class*="text-rose-"]):not([class*="text-fuchsia-"]):not([class*="text-yellow-"]):not([class*="text-lime-"]):not([class*="text-sky-"]) {
+  color: rgb(241 245 249) !important; /* slate-100 - WHITE for dark mode */
+}
+
+/* EXCEPTION: Icons inside gradient backgrounds ALWAYS WHITE */
+[class*="bg-gradient"] svg,
+[class*="from-"] svg {
+  color: white !important;
+}
+
+/* EXCEPTION: Icons inside colored solid backgrounds (500-900 shades) ALWAYS WHITE */
+[class*="bg-blue-5"] svg, [class*="bg-blue-6"] svg, [class*="bg-blue-7"] svg, [class*="bg-blue-8"] svg, [class*="bg-blue-9"] svg,
+[class*="bg-cyan-5"] svg, [class*="bg-cyan-6"] svg, [class*="bg-cyan-7"] svg, [class*="bg-cyan-8"] svg, [class*="bg-cyan-9"] svg,
+[class*="bg-emerald-5"] svg, [class*="bg-emerald-6"] svg, [class*="bg-emerald-7"] svg, [class*="bg-emerald-8"] svg, [class*="bg-emerald-9"] svg,
+[class*="bg-green-5"] svg, [class*="bg-green-6"] svg, [class*="bg-green-7"] svg, [class*="bg-green-8"] svg, [class*="bg-green-9"] svg,
+[class*="bg-purple-5"] svg, [class*="bg-purple-6"] svg, [class*="bg-purple-7"] svg, [class*="bg-purple-8"] svg, [class*="bg-purple-9"] svg,
+[class*="bg-pink-5"] svg, [class*="bg-pink-6"] svg, [class*="bg-pink-7"] svg, [class*="bg-pink-8"] svg, [class*="bg-pink-9"] svg,
+[class*="bg-orange-5"] svg, [class*="bg-orange-6"] svg, [class*="bg-orange-7"] svg, [class*="bg-orange-8"] svg, [class*="bg-orange-9"] svg,
+[class*="bg-red-5"] svg, [class*="bg-red-6"] svg, [class*="bg-red-7"] svg, [class*="bg-red-8"] svg, [class*="bg-red-9"] svg,
+[class*="bg-indigo-5"] svg, [class*="bg-indigo-6"] svg, [class*="bg-indigo-7"] svg, [class*="bg-indigo-8"] svg, [class*="bg-indigo-9"] svg,
+[class*="bg-teal-5"] svg, [class*="bg-teal-6"] svg, [class*="bg-teal-7"] svg, [class*="bg-teal-8"] svg, [class*="bg-teal-9"] svg,
+[class*="bg-primary"] svg {
+  color: white !important;
+}
+
+/* EXCEPTION: Icons inside light backgrounds (100-200 shades) get DARK color */
+[class*="bg-blue-1"] svg, [class*="bg-blue-2"] svg,
+[class*="bg-cyan-1"] svg, [class*="bg-cyan-2"] svg,
+[class*="bg-emerald-1"] svg, [class*="bg-emerald-2"] svg,
+[class*="bg-green-1"] svg, [class*="bg-green-2"] svg,
+[class*="bg-purple-1"] svg, [class*="bg-purple-2"] svg,
+[class*="bg-pink-1"] svg, [class*="bg-pink-2"] svg,
+[class*="bg-orange-1"] svg, [class*="bg-orange-2"] svg,
+[class*="bg-red-1"] svg, [class*="bg-red-2"] svg,
+[class*="bg-indigo-1"] svg, [class*="bg-indigo-2"] svg,
+[class*="bg-teal-1"] svg, [class*="bg-teal-2"] svg,
+[class*="bg-slate-1"] svg, [class*="bg-slate-2"] svg,
+[class*="bg-gray-1"] svg, [class*="bg-gray-2"] svg {
+  color: rgb(30 41 59) !important; /* slate-800 */
+}
+
+/* Dark mode: light backgrounds become dark, so icons should be light */
+.dark [class*="bg-blue-1"] svg, .dark [class*="bg-blue-2"] svg,
+.dark [class*="bg-cyan-1"] svg, .dark [class*="bg-cyan-2"] svg,
+.dark [class*="bg-emerald-1"] svg, .dark [class*="bg-emerald-2"] svg,
+.dark [class*="bg-orange-1"] svg, .dark [class*="bg-orange-2"] svg,
+.dark [class*="bg-purple-1"] svg, .dark [class*="bg-purple-2"] svg {
+  color: rgb(226 232 240) !important; /* slate-200 */
+}
+
+/* Ensure icons with explicit text color classes are respected */
+svg[class*="text-white"] { color: white !important; }
+svg[class*="text-emerald-500"] { color: rgb(16 185 129) !important; }
+svg[class*="text-emerald-400"] { color: rgb(52 211 153) !important; }
+svg[class*="text-cyan-400"] { color: rgb(34 211 238) !important; }
+svg[class*="text-blue-600"] { color: rgb(37 99 235) !important; }
+svg[class*="text-blue-400"] { color: rgb(96 165 250) !important; }
+svg[class*="text-orange-500"] { color: rgb(249 115 22) !important; }
+svg[class*="text-orange-400"] { color: rgb(251 146 60) !important; }
+svg[class*="text-orange-600"] { color: rgb(234 88 12) !important; }
+svg[class*="text-slate-400"] { color: rgb(148 163 184) !important; }
+svg[class*="text-slate-500"] { color: rgb(100 116 139) !important; }
+
+/* Button visibility - ensure buttons have visible text */
+button:not([class*="text-"]) {
+  color: rgb(15 23 42);
+}
+
+.dark button:not([class*="text-"]) {
+  color: rgb(248 250 252);
+}
+
+/* Ensure text-white in colored bg buttons stays white */
+.bg-blue-600 .text-white,
+.bg-blue-700 .text-white,
+.bg-cyan-600 .text-white,
+.bg-emerald-600 .text-white,
+.bg-primary .text-white,
+button.bg-blue-600,
+button.bg-blue-700,
+button.bg-cyan-600,
+button.bg-emerald-600 {
+  color: rgb(255 255 255) !important;
 }
 
 /* Dark mode - essential text color fixes only */
@@ -278,17 +441,54 @@ header h1, header h2, header h3,
   background-color: rgb(71 85 105);
 }
 
-  /* Map Tailwind "bg-white" opacity tokens to dark-mode card color so white blocks don't show in dark themes */
-  .dark .bg-white { background-color: rgb(var(--card)) !important; }
-  .dark .bg-white\/5 { background-color: rgb(var(--card) / 0.05) !important; }
-  .dark .bg-white\/10 { background-color: rgb(var(--card) / 0.1) !important; }
-  .dark .bg-white\/20 { background-color: rgb(var(--card) / 0.2) !important; }
-  .dark .bg-white\/30 { background-color: rgb(var(--card) / 0.3) !important; }
-  .dark .bg-white\/40 { background-color: rgb(var(--card) / 0.4) !important; }
-  .dark .bg-white\/50 { background-color: rgb(var(--card) / 0.5) !important; }
-  .dark .bg-white\/70 { background-color: rgb(var(--card) / 0.7) !important; }
-  .dark .bg-white\/80 { background-color: rgb(var(--card) / 0.8) !important; }
-  .dark .bg-white\/90 { background-color: rgb(var(--card) / 0.9) !important; }
+/* Map Tailwind "bg-white" opacity tokens to dark-mode card color so white blocks don't show in dark themes */
+.dark .bg-white {
+  background-color: rgb(var(--card)) !important;
+}
+
+.dark .bg-white\/5 {
+  background-color: rgb(var(--card) / 0.05) !important;
+}
+
+.dark .bg-white\/10 {
+  background-color: rgb(var(--card) / 0.1) !important;
+}
+
+.dark .bg-white\/20 {
+  background-color: rgb(var(--card) / 0.2) !important;
+}
+
+.dark .bg-white\/30 {
+  background-color: rgb(var(--card) / 0.3) !important;
+}
+
+.dark .bg-white\/40 {
+  background-color: rgb(var(--card) / 0.4) !important;
+}
+
+.dark .bg-white\/50 {
+  background-color: rgb(var(--card) / 0.5) !important;
+}
+
+.dark .bg-white\/60 {
+  background-color: rgb(var(--card) / 0.6) !important;
+}
+
+.dark .bg-white\/70 {
+  background-color: rgb(var(--card) / 0.7) !important;
+}
+
+.dark .bg-white\/80 {
+  background-color: rgb(var(--card) / 0.8) !important;
+}
+
+.dark .bg-white\/90 {
+  background-color: rgb(var(--card) / 0.9) !important;
+}
+
+.dark .bg-white\/95 {
+  background-color: rgb(var(--card) / 0.95) !important;
+}
 
 /* Dark mode badge colors */
 .dark [class*="bg-blue-100"] {
@@ -362,7 +562,7 @@ header h1, header h2, header h3,
   flex-direction: column;
 }
 
-[class*="glare-hover"] > div {
+[class*="glare-hover"]>div {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -390,9 +590,21 @@ header h1, header h2, header h3,
 
 /* Ensure Spotlight cards in reactbits are theme-aware and don't enforce dark backgrounds in light mode */
 .card-spotlight {
-  background-color: rgb(var(--card)) !important;
-  color: rgb(var(--card-foreground)) !important;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(var(--accent), 0.08) 50%,
+      rgba(255, 255, 255, 0.75) 100%) !important;
+  border-color: rgba(var(--accent), 0.2) !important;
 }
+
+.dark .card-spotlight {
+  background: linear-gradient(135deg,
+      rgba(10, 12, 18, 0.85) 0%,
+      rgba(var(--accent), 0.08) 50%,
+      rgba(5, 8, 15, 0.75) 100%) !important;
+  border-color: rgba(var(--accent), 0.15) !important;
+}
+
 .card-spotlight::before {
   background: transparent !important;
 }
@@ -475,23 +687,19 @@ header h1, header h2, header h3,
 .section-surface {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(var(--color-surface-50), 0.12) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(var(--color-surface-50), 0.12) 50%,
+      transparent 100%);
   pointer-events: none;
   mix-blend-mode: multiply;
 }
 
 .dark .section-surface {
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(var(--color-surface-900), 0.08) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(var(--color-surface-900), 0.08) 50%,
+      transparent 100%);
   mix-blend-mode: darken;
 }
 
@@ -503,148 +711,1015 @@ header h1, header h2, header h3,
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .star-border-container {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  .dark [class*="glare-hover"],
+  .dark [class*="star-border"],
+  .dark [class*="bounce-card"],
+  .dark .star-border-container {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  /* Spotlight cards: allow Tailwind gradients to shine through */
+  /* Ensure reactbits wrappers don't break layouts */
+  [class*="glare-hover"] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  [class*="glare-hover"]>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Star border container animation improvements */
+  .star-border-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .star-border-container canvas {
+    opacity: 0.8 !important;
+    mix-blend-mode: screen;
+  }
+
+  .dark .star-border-container canvas {
+    opacity: 0.6 !important;
+  }
+
+  /* Hide dot-grid visual clutter */
+  .dot-grid__wrap {
+    display: none !important;
+  }
+
+  /* Ensure Spotlight cards in reactbits are theme-aware and don't enforce dark backgrounds in light mode */
+  .card-spotlight {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.85) 0%,
+        rgba(var(--accent), 0.08) 50%,
+        rgba(255, 255, 255, 0.75) 100%) !important;
+    border-color: rgba(var(--accent), 0.2) !important;
+  }
+
+  .dark .card-spotlight {
+    background: linear-gradient(135deg,
+        rgba(10, 12, 18, 0.85) 0%,
+        rgba(var(--accent), 0.08) 50%,
+        rgba(5, 8, 15, 0.75) 100%) !important;
+    border-color: rgba(var(--accent), 0.15) !important;
+  }
+
+  .card-spotlight::before {
+    background: transparent !important;
+  }
+
+  /* Make icons with `text-white` visible on white/near-white backgrounds in light mode, while still being white in dark mode */
+  .bg-white .text-white,
+  .bg-white\/5 .text-white,
+  .bg-white\/10 .text-white,
+  .bg-white\/20 .text-white,
+  .bg-white\/30 .text-white,
+  .bg-white\/40 .text-white,
+  .bg-white\/50 .text-white,
+  .bg-white\/70 .text-white,
+  .bg-white\/80 .text-white,
+  .bg-white\/90 .text-white {
+    color: rgb(var(--foreground)) !important;
+  }
+
+  .dark .bg-white .text-white,
+  .dark .bg-white\/5 .text-white,
+  .dark .bg-white\/10 .text-white,
+  .dark .bg-white\/20 .text-white,
+  .dark .bg-white\/30 .text-white,
+  .dark .bg-white\/40 .text-white,
+  .dark .bg-white\/50 .text-white,
+  .dark .bg-white\/70 .text-white,
+  .dark .bg-white\/80 .text-white,
+  .dark .bg-white\/90 .text-white {
+    color: rgb(255 255 255) !important;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--color-surface-100));
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-surface-400));
+    border-radius: 10px;
+    border: 2px solid rgb(var(--color-surface-100));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-surface-500));
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: rgb(var(--color-surface-50));
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-surface-300));
+    border-color: rgb(var(--color-surface-50));
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-surface-400));
+  }
+
+  /* Selection styling */
+  ::selection {
+    background-color: rgba(var(--primary), 0.25);
+    color: rgb(var(--foreground));
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    outline: 2px solid rgb(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Section surface styling - subtle backdrop layer */
+  .section-surface {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(var(--color-surface-50), 0.12) 50%,
+        transparent 100%);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  .dark .section-surface {
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(var(--color-surface-900), 0.08) 50%,
+        transparent 100%);
+    mix-blend-mode: darken;
+  }
+
+  /* Hyperspeed wrapper - brighter, screen blend for vibrancy */
   .hyperspeed-bg {
-    opacity: 0.7;
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    transition: opacity 0.5s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    /* Hide 3D canvases and show fallback images */
+    [data-3d-scene] canvas {
+      display: none !important;
+    }
+
+    .motion-zone {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Futuristic Neon Effects - Updated for new color system */
+  .neon-glow-cyan {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3), 0 0 60px rgba(34, 211, 238, 0.1);
+  }
+
+  .neon-glow-blue {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), 0 0 40px rgba(99, 102, 241, 0.3), 0 0 60px rgba(99, 102, 241, 0.1);
+  }
+
+  .neon-glow-emerald {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(16, 185, 129, 0.3), 0 0 60px rgba(16, 185, 129, 0.1);
+  }
+
+  .neon-glow-purple {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.3), 0 0 60px rgba(168, 85, 247, 0.1);
+  }
+
+  .neon-glow-orange {
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.5), 0 0 40px rgba(251, 146, 60, 0.3), 0 0 60px rgba(251, 146, 60, 0.1);
+  }
+
+  .neon-text-cyan {
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.8), 0 0 20px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.4);
+  }
+
+  .neon-text-blue {
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.8), 0 0 20px rgba(99, 102, 241, 0.6), 0 0 30px rgba(99, 102, 241, 0.4);
+  }
+
+  /* Glassmorphism effect */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass-panel {
+    background: rgba(12, 17, 29, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+  }
+
+  /* Animated gradient backgrounds */
+  @keyframes gradient-shift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animated-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  /* Icon pulse animation */
+  @keyframes icon-pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  .icon-pulse {
+    animation: icon-pulse 3s ease-in-out infinite;
+  }
+
+  /* Subtle border glow animation */
+  @keyframes border-glow {
+
+    0%,
+    100% {
+      border-color: rgba(34, 211, 238, 0.3);
+      box-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
+    }
+
+    50% {
+      border-color: rgba(34, 211, 238, 0.6);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+    }
+  }
+
+  .border-glow-animate {
+    animation: border-glow 3s ease-in-out infinite;
+  }
+
+  /* Ensure Lucide icons are always visible and properly styled */
+  svg[class*="lucide"],
+  [class*="lucide-icon"] {
+    display: inline-block;
+    vertical-align: middle;
+    stroke-width: 2;
+    stroke: currentColor;
+    fill: none;
+    flex-shrink: 0;
+  }
+
+  /* Default icon color if not specified */
+  .lucide:not([class*="text-"]) {
+    @apply text-slate-700 dark:text-slate-300;
+  }
+
+  /* Icon size utilities */
+  .icon-xs {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .icon-sm {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .icon-md {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .icon-lg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .icon-xl {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .icon-2xl {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  /* Premium Component Styling */
+  /* Glass Primary variant */
+  [data-variant="glass-primary"] {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  [data-variant="glass-primary"][data-accent="cyan"] {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(34, 211, 238, 0.08) 50%, rgba(255, 255, 255, 0.75) 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .dark [data-variant="glass-primary"][data-accent="cyan"] {
+    background: linear-gradient(135deg, rgba(10, 12, 18, 0.55) 0%, rgba(34, 211, 238, 0.12) 50%, rgba(5, 8, 15, 0.45) 100%);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  [data-variant="glass-primary"][data-accent="emerald"] {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(16, 185, 129, 0.08) 50%, rgba(255, 255, 255, 0.75) 100%);
+  }
+
+  .dark [data-variant="glass-primary"][data-accent="emerald"] {
+    background: linear-gradient(135deg, rgba(10, 12, 18, 0.55) 0%, rgba(16, 185, 129, 0.12) 50%, rgba(5, 8, 15, 0.45) 100%);
+  }
+
+  [data-variant="glass-primary"][data-accent="purple"] {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(168, 85, 247, 0.08) 50%, rgba(255, 255, 255, 0.75) 100%);
+  }
+
+  .dark [data-variant="glass-primary"][data-accent="purple"] {
+    background: linear-gradient(135deg, rgba(10, 12, 18, 0.55) 0%, rgba(168, 85, 247, 0.12) 50%, rgba(5, 8, 15, 0.45) 100%);
+  }
+
+  /* Glass Secondary variant (70% intensity) */
+  [data-variant="glass-secondary"] {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  [data-variant="glass-secondary"][data-accent="cyan"] {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(34, 211, 238, 0.05) 50%, rgba(255, 255, 255, 0.6) 100%);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .dark [data-variant="glass-secondary"][data-accent="cyan"] {
+    background: linear-gradient(135deg, rgba(10, 12, 18, 0.38) 0%, rgba(34, 211, 238, 0.08) 50%, rgba(5, 8, 15, 0.3) 100%);
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  /* Flat Textured variant */
+  [data-variant="flat-textured"][data-accent="cyan"] {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(34, 211, 238, 0.03) 50%, rgba(241, 245, 249, 0.9) 100%);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .dark [data-variant="flat-textured"][data-accent="cyan"] {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(34, 211, 238, 0.05) 50%, rgba(30, 41, 59, 0.8) 100%);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  [data-variant="flat-textured"][data-accent="emerald"] {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(16, 185, 129, 0.03) 50%, rgba(241, 245, 249, 0.9) 100%);
+  }
+
+  .dark [data-variant="flat-textured"][data-accent="emerald"] {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(16, 185, 129, 0.05) 50%, rgba(30, 41, 59, 0.8) 100%);
+  }
+
+  /* Premium Block styling */
+  [data-accent="cyan"].rounded-2xl {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(34, 211, 238, 0.03) 50%, rgba(241, 245, 249, 0.9) 100%);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .dark [data-accent="cyan"].rounded-2xl {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(34, 211, 238, 0.05) 50%, rgba(30, 41, 59, 0.8) 100%);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  /* ========================================= */
+  /* LIGHT MODE VISIBILITY FIXES              */
+  /* ========================================= */
+
+  /* Fix bg-gray-50 in dark mode - convert to dark background */
+  .dark .bg-gray-50 {
+    background-color: rgb(30, 41, 59) !important; /* slate-800 */
+  }
+  
+  .dark .bg-gray-100 {
+    background-color: rgb(30, 41, 59) !important;
+  }
+
+  .dark .hover\:bg-gray-50:hover {
+    background-color: rgb(51, 65, 85) !important; /* slate-700 */
+  }
+
+  /* Fix icons that use white color in light mode contexts */
+  /* Ensure icons are visible on light backgrounds */
+  .bg-white svg[stroke="currentColor"],
+  .bg-slate-50 svg[stroke="currentColor"],
+  .bg-gray-50 svg[stroke="currentColor"],
+  [class*="bg-white\/"] svg[stroke="currentColor"] {
+    stroke: rgb(51, 65, 85) !important; /* slate-700 in light mode */
+  }
+  
+  .dark .bg-white svg[stroke="currentColor"],
+  .dark .bg-slate-50 svg[stroke="currentColor"],
+  .dark .bg-gray-50 svg[stroke="currentColor"],
+  .dark [class*="bg-white\/"] svg[stroke="currentColor"] {
+    stroke: currentColor !important; /* Restore in dark mode */
+  }
+
+  /* Fix white text on white/light backgrounds */
+  .bg-white .text-white,
+  .bg-slate-50 .text-white,
+  .bg-gray-50 .text-white {
+    color: rgb(15, 23, 42) !important; /* slate-900 */
+  }
+
+  .dark .bg-white .text-white,
+  .dark .bg-slate-50 .text-white,
+  .dark .bg-gray-50 .text-white {
+    color: rgb(255, 255, 255) !important;
+  }
+
+  /* ========================================= */
+  /* GLOW EFFECTS FOR DARK MODE               */
+  /* ========================================= */
+
+  /* Card glow effect in dark mode */
+  .dark .glow-card,
+  .dark [class*="glass-"],
+  .dark .modern-card,
+  .dark [data-variant*="glass"] {
+    box-shadow: 
+      0 0 20px rgba(34, 211, 238, 0.1),
+      0 4px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .dark .glow-card:hover,
+  .dark [class*="glass-"]:hover,
+  .dark .modern-card:hover,
+  .dark [data-variant*="glass"]:hover {
+    box-shadow: 
+      0 0 40px rgba(34, 211, 238, 0.2),
+      0 8px 48px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* Block glow utilities */
+  .dark .glow-cyan {
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .dark .glow-emerald {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .dark .glow-purple {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .dark .glow-orange {
+    box-shadow: 0 0 30px rgba(251, 146, 60, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .dark .glow-blue {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Border glow for cards */
+  .dark .border-glow {
+    border-color: rgba(34, 211, 238, 0.3) !important;
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.15);
+  }
+
+  /* ========================================= */
+  /* IMPROVED BLOCK BACKGROUNDS               */
+  /* ========================================= */
+
+  /* Glass block styling */
+  .glass-block {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.9) 0%, 
+      rgba(255, 255, 255, 0.7) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .dark .glass-block {
+    background: linear-gradient(135deg, 
+      rgba(15, 23, 42, 0.8) 0%, 
+      rgba(30, 41, 59, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 25px rgba(34, 211, 238, 0.1);
+  }
+
+  /* Fix from-white gradient classes in dark mode */
+  .dark [class*="from-white"],
+  .dark [class*="from-white\/"] {
+    --tw-gradient-from: rgb(15, 23, 42) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+
+  /* ========================================= */
+  /* BUTTON VISIBILITY FIXES                  */
+  /* ========================================= */
+
+  /* Ensure buttons are visible in light mode */
+  .btn-primary,
+  [class*="bg-gradient-to-r"][class*="from-cyan"],
+  [class*="bg-gradient-to-r"][class*="from-emerald"],
+  [class*="bg-gradient-to-r"][class*="from-orange"] {
+    color: white !important;
+  }
+
+  /* Ghost/outline buttons in light mode */
+  .btn-ghost,
+  .btn-outline {
+    color: rgb(15, 23, 42);
+    border-color: rgb(203, 213, 225);
+  }
+
+  .dark .btn-ghost,
+  .dark .btn-outline {
+    color: rgb(226, 232, 240);
+    border-color: rgb(71, 85, 105);
+  }
+
+  /* Read paper / action button fixes */
+  a[href*="paper"],
+  a[href*="arxiv"],
+  button[class*="paper"] {
+    color: rgb(37, 99, 235) !important; /* blue-600 */
+    text-decoration: underline;
+  }
+
+  a[href*="paper"]:hover,
+  a[href*="arxiv"]:hover,
+  button[class*="paper"]:hover {
+    color: rgb(29, 78, 216) !important; /* blue-700 */
+  }
+
+  .dark a[href*="paper"],
+  .dark a[href*="arxiv"],
+  .dark button[class*="paper"] {
+    color: rgb(96, 165, 250) !important; /* blue-400 */
+  }
+
+  .dark a[href*="paper"]:hover,
+  .dark a[href*="arxiv"]:hover,
+  .dark button[class*="paper"]:hover {
+    color: rgb(147, 197, 253) !important; /* blue-300 */
+  }
+
+  /* ========================================= */
+  /* SPOTLIGHTCARD DARK MODE FIXES            */
+  /* ========================================= */
+
+  /* Fix SpotlightCard white/light backgrounds in dark mode */
+  .dark [class*="bg-white/40"],
+  .dark [class*="bg-white/50"],
+  .dark [class*="bg-white/60"],
+  .dark [class*="bg-white/70"],
+  .dark [class*="bg-white/80"],
+  .dark [class*="bg-white/90"],
+  .dark [class*="bg-white/95"] {
+    background-color: rgba(15, 23, 42, 0.8) !important;
+  }
+
+  /* Fix via colors in dark mode */
+  .dark [class*="via-purple-50"],
+  .dark [class*="via-blue-50"],
+  .dark [class*="via-cyan-50"],
+  .dark [class*="via-emerald-50"],
+  .dark [class*="via-orange-50"],
+  .dark [class*="via-pink-50"],
+  .dark [class*="via-amber-50"],
+  .dark [class*="via-slate-50"] {
+    --tw-gradient-via: rgba(30, 41, 59, 0.5) !important;
+    --tw-gradient-to: rgba(15, 23, 42, 0.4) !important;
+  }
+
+  /* Fix to colors in dark mode */
+  .dark [class*="to-purple-50"],
+  .dark [class*="to-blue-50"],
+  .dark [class*="to-cyan-50"],
+  .dark [class*="to-emerald-50"],
+  .dark [class*="to-orange-50"],
+  .dark [class*="to-pink-50"],
+  .dark [class*="to-amber-50"],
+  .dark [class*="to-slate-50"] {
+    --tw-gradient-to: rgba(15, 23, 42, 0.6) !important;
+  }
+
+  /* ========================================= */
+  /* ICON VISIBILITY FIXES                    */
+  /* ========================================= */
+
+  /* Fix white icons on light backgrounds */
+  .text-white svg,
+  [class*="text-white"] svg {
+    --icon-color: inherit;
+  }
+
+  /* Icons inside gradient boxes need proper colors in light mode */
+  [class*="bg-gradient-to-br"][class*="from-"] .text-white,
+  [class*="bg-gradient-to-r"][class*="from-"] .text-white {
+    color: white !important;
+  }
+
+  /* Fix icons that become invisible on light gray backgrounds */
+  .bg-slate-100 svg,
+  .bg-gray-100 svg,
+  .bg-slate-50 svg,
+  .bg-gray-50 svg {
+    stroke: rgb(51, 65, 85) !important;
+    color: rgb(51, 65, 85) !important;
+  }
+
+  .dark .bg-slate-100 svg,
+  .dark .bg-gray-100 svg,
+  .dark .bg-slate-50 svg,
+  .dark .bg-gray-50 svg {
+    stroke: rgb(148, 163, 184) !important;
+    color: rgb(148, 163, 184) !important;
+  }
+
+  /* ========================================= */
+  /* HEADER VISIBILITY FIXES                  */
+  /* ========================================= */
+
+  /* Ensure all h1/h2/h3 headers are always visible */
+  h1, h2, h3, h4, h5, h6 {
+    color: rgb(15, 23, 42); /* slate-900 in light mode */
+  }
+
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: rgb(255, 255, 255); /* white in dark mode */
+  }
+
+  /* Override for headers with explicit white text on light backgrounds */
+  section h1, section h2, section h3 {
+    color: inherit;
+  }
+
+  /* Ensure text-slate classes are visible */
+  .text-slate-900 {
+    color: rgb(15, 23, 42) !important;
+  }
+
+  .dark .text-slate-900 {
+    color: rgb(255, 255, 255) !important;
+  }
+
+  /* ========================================= */
+  /* ENHANCED COLORFUL ANIMATIONS - LIGHT MODE */
+  /* ========================================= */
+
+  /* Light mode colorful card borders */
+  .colorful-border {
+    background: linear-gradient(135deg,
+      rgba(59, 130, 246, 0.3) 0%,
+      rgba(168, 85, 247, 0.3) 25%,
+      rgba(236, 72, 153, 0.3) 50%,
+      rgba(34, 211, 238, 0.3) 75%,
+      rgba(16, 185, 129, 0.3) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Light mode enhanced shadows with color */
+  .shadow-colorful {
+    box-shadow:
+      0 4px 20px rgba(59, 130, 246, 0.1),
+      0 2px 10px rgba(168, 85, 247, 0.08),
+      0 1px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .shadow-colorful:hover {
+    box-shadow:
+      0 8px 30px rgba(59, 130, 246, 0.15),
+      0 4px 20px rgba(168, 85, 247, 0.12),
+      0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Animated gradient text utility */
+  .text-gradient-animated {
+    background: linear-gradient(90deg,
+      rgb(59, 130, 246),
+      rgb(168, 85, 247),
+      rgb(236, 72, 153),
+      rgb(59, 130, 246)
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 5s ease infinite;
+  }
+
+  @keyframes gradient-text {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ========================================= */
+  /* ENHANCED GLOW EFFECTS - DARK MODE        */
+  /* ========================================= */
+
+  /* Multi-color glow for premium cards */
+  .dark .glow-multi {
+    box-shadow:
+      0 0 20px rgba(34, 211, 238, 0.15),
+      0 0 40px rgba(168, 85, 247, 0.1),
+      0 0 60px rgba(16, 185, 129, 0.05),
+      0 4px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .dark .glow-multi:hover {
+    box-shadow:
+      0 0 30px rgba(34, 211, 238, 0.25),
+      0 0 60px rgba(168, 85, 247, 0.15),
+      0 0 80px rgba(16, 185, 129, 0.1),
+      0 8px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  /* ========================================= */
+  /* COLORFUL STYLING - LIGHT MODE            */
+  /* ========================================= */
+
+  /* Light mode - colorful gradient borders for blocks */
+  .glow-multi {
+    position: relative;
+    border: 2px solid transparent;
+    background:
+      linear-gradient(white, white) padding-box,
+      linear-gradient(135deg, #06b6d4, #8b5cf6, #10b981, #f59e0b) border-box;
+    box-shadow:
+      0 4px 20px rgba(6, 182, 212, 0.1),
+      0 2px 10px rgba(139, 92, 246, 0.08);
+  }
+
+  .glow-multi:hover {
+    box-shadow:
+      0 8px 30px rgba(6, 182, 212, 0.15),
+      0 4px 16px rgba(139, 92, 246, 0.12),
+      0 6px 24px rgba(16, 185, 129, 0.08);
+  }
+
+  /* Override for dark mode to use the glow instead */
+  .dark .glow-multi {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+    border-color: rgba(34, 211, 238, 0.2);
+  }
+
+  /* Colorful accent shimmer in light mode */
+  .colorful-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .colorful-shimmer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(6, 182, 212, 0.08),
+      rgba(139, 92, 246, 0.08),
+      rgba(16, 185, 129, 0.08),
+      transparent
+    );
+    animation: shimmer-colors 4s ease-in-out infinite;
+  }
+
+  @keyframes shimmer-colors {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+  }
+
+  /* Light mode colorful card accents */
+  [data-accent="cyan"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #06b6d4, #0ea5e9);
+    border-radius: 999px 999px 0 0;
+  }
+
+  [data-accent="emerald"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #10b981, #14b8a6);
+    border-radius: 999px 999px 0 0;
+  }
+
+  [data-accent="purple"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #8b5cf6, #a855f7);
+    border-radius: 999px 999px 0 0;
+  }
+
+  [data-accent="orange"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f97316, #fb923c);
+    border-radius: 999px 999px 0 0;
+  }
+
+  [data-accent="blue"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    border-radius: 999px 999px 0 0;
+  }
+
+  /* Pulsing glow animation for dark mode */
+  .dark .glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(34, 211, 238, 0.3), 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  /* Enhanced SpotlightCard styling for dark mode */
+  .dark [class*="SpotlightCard"],
+  .dark [class*="spotlight"] {
+    background: linear-gradient(135deg,
+      rgba(15, 23, 42, 0.9) 0%,
+      rgba(30, 41, 59, 0.7) 50%,
+      rgba(15, 23, 42, 0.9) 100%
+    ) !important;
+    border-color: rgba(34, 211, 238, 0.2) !important;
+    box-shadow:
+      0 0 20px rgba(34, 211, 238, 0.1),
+      0 4px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  }
+
+  /* ========================================= */
+  /* PAGE-SPECIFIC ENHANCEMENTS               */
+  /* ========================================= */
+
+  /* Safety page - improved first section */
+  .safety-metric-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .safety-metric-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      rgba(16, 185, 129, 0.05) 0%,
+      transparent 50%,
+      rgba(34, 211, 238, 0.05) 100%
+    );
+    pointer-events: none;
+  }
+
+  .dark .safety-metric-card::before {
+    background: linear-gradient(135deg,
+      rgba(16, 185, 129, 0.1) 0%,
+      transparent 50%,
+      rgba(34, 211, 238, 0.1) 100%
+    );
+  }
+
+  /* Status page icon fix */
+  .status-icon-container {
+    background: linear-gradient(135deg, var(--icon-gradient-from), var(--icon-gradient-to));
+  }
+
+  .status-icon-container svg {
+    color: white !important;
+    stroke: white !important;
+  }
+
+  /* Contact page improvements */
+  .contact-card {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .dark .contact-card {
+    background: linear-gradient(135deg,
+      rgba(15, 23, 42, 0.8) 0%,
+      rgba(30, 41, 59, 0.6) 100%
+    ) !important;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.1);
+  }
+
+  /* Live-demo page bg-gray-50 fix */
+  .demo-panel {
+    background-color: rgb(248, 250, 252); /* slate-50 */
+    border-radius: 1rem;
+  }
+
+  .dark .demo-panel {
+    background-color: rgb(30, 41, 59) !important; /* slate-800 */
+    border-color: rgba(71, 85, 105, 0.5);
+  }
+
+  /* ========================================= */
+  /* FLOATING ANIMATION FOR VISUAL INTEREST   */
+  /* ========================================= */
+
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Subtle rotation animation */
+  .rotate-subtle {
+    animation: rotate-subtle 20s linear infinite;
+  }
+
+  @keyframes rotate-subtle {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Scale pulse animation */
+  .pulse-scale {
+    animation: pulse-scale 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-scale {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
   }
 }
-
-/* Override inner-content class styling - remove background and animations */
-.inner-content {
-  background: transparent !important;
-  animation: none !important;
-  border: 1px solid #222 !important;
-  color: #000 !important;
-}
-
-.dark .inner-content {
-  background: transparent !important;
-  animation: none !important;
-  border: 1px solid #b8b8b8 !important;
-  color: #fff !important;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Futuristic Neon Effects - Updated for new color system */
-.neon-glow-cyan {
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3), 0 0 60px rgba(34, 211, 238, 0.1);
-}
-
-.neon-glow-blue {
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), 0 0 40px rgba(99, 102, 241, 0.3), 0 0 60px rgba(99, 102, 241, 0.1);
-}
-
-.neon-glow-emerald {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(16, 185, 129, 0.3), 0 0 60px rgba(16, 185, 129, 0.1);
-}
-
-.neon-glow-purple {
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.3), 0 0 60px rgba(168, 85, 247, 0.1);
-}
-
-.neon-glow-orange {
-  box-shadow: 0 0 20px rgba(251, 146, 60, 0.5), 0 0 40px rgba(251, 146, 60, 0.3), 0 0 60px rgba(251, 146, 60, 0.1);
-}
-
-.neon-text-cyan {
-  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8), 0 0 20px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.4);
-}
-
-.neon-text-blue {
-  text-shadow: 0 0 10px rgba(99, 102, 241, 0.8), 0 0 20px rgba(99, 102, 241, 0.6), 0 0 30px rgba(99, 102, 241, 0.4);
-}
-
-/* Glassmorphism effect */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dark .glass-panel {
-  background: rgba(12, 17, 29, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(34, 211, 238, 0.2);
-}
-
-/* Animated gradient backgrounds */
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animated-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
-}
-
-/* Icon pulse animation */
-@keyframes icon-pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
-.icon-pulse {
-  animation: icon-pulse 3s ease-in-out infinite;
-}
-
-/* Subtle border glow animation */
-@keyframes border-glow {
-  0%, 100% {
-    border-color: rgba(34, 211, 238, 0.3);
-    box-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
-  }
-  50% {
-    border-color: rgba(34, 211, 238, 0.6);
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
-  }
-}
-
-.border-glow-animate {
-  animation: border-glow 3s ease-in-out infinite;
-}
-
-/* Ensure Lucide icons are always visible and properly styled */
-svg[class*="lucide"],
-[class*="lucide-icon"] {
-  display: inline-block;
-  vertical-align: middle;
-  stroke-width: 2;
-  stroke: currentColor;
-  fill: none;
-  flex-shrink: 0;
-}
-
-/* Default icon color if not specified */
-.lucide:not([class*="text-"]) {
-  @apply text-slate-700 dark:text-slate-300;
-}
-
-/* Icon size utilities */
-.icon-xs { width: 1rem; height: 1rem; }
-.icon-sm { width: 1.25rem; height: 1.25rem; }
-.icon-md { width: 1.5rem; height: 1.5rem; }
-.icon-lg { width: 2rem; height: 2rem; }
-.icon-xl { width: 2.5rem; height: 2.5rem; }
-.icon-2xl { width: 3rem; height: 3rem; }
-

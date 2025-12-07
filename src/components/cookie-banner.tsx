@@ -65,22 +65,22 @@ export function CookieBanner() {
 
   return (
     // Raise z-index above cinematic overlays so banner receives clicks reliably
-    <div className="fixed inset-x-4 bottom-6 z-50 mx-auto max-w-3xl rounded-3xl border border-orange-200 bg-[rgb(var(--card))] p-6 shadow-2xl backdrop-blur dark:border-orange-800 dark:bg-slate-900 pointer-events-auto">
-      <div className="space-y-4 text-sm text-slate-700 dark:text-slate-300" data-testid="cookie-banner">
-        <p className="font-semibold text-slate-900 dark:text-white">
-          Cookies & consent
+    <div className="fixed inset-x-4 bottom-6 z-50 mx-auto max-w-3xl rounded-3xl border-2 border-orange-300/60 bg-white/95 p-6 shadow-2xl backdrop-blur-xl dark:border-orange-800/50 dark:bg-slate-900/95 pointer-events-auto">
+      <div className="space-y-4 text-sm text-slate-800 dark:text-slate-200" data-testid="cookie-banner">
+        <p className="font-bold text-lg text-slate-900 dark:text-white">
+          🍪 Cookies & consent
         </p>
-        <p>
+        <p className="text-slate-700 dark:text-slate-300">
           We use essential cookies for security. Analytics cookies are optional and used solely for
           Core Web Vitals monitoring. You can change your mind anytime on the{" "}
-          <Link href="/consent" className="font-semibold text-orange-600 underline dark:text-orange-400">
+          <Link href="/consent" className="font-bold text-orange-600 underline hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300">
             consent page
           </Link>
           . Postal address: {CONTACT_POSTAL_ADDRESS}.
         </p>
         {gpcApplied ? (
-          <p className="text-xs text-amber-600 dark:text-amber-400">
-            Global Privacy Control detected -- non-essential cookies already disabled.
+          <p className="text-sm font-medium text-amber-700 dark:text-amber-400">
+            ⚠️ Global Privacy Control detected -- non-essential cookies already disabled.
           </p>
         ) : null}
         <div className="flex flex-wrap gap-3">

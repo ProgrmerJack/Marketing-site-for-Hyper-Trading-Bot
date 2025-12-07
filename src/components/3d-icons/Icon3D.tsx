@@ -27,6 +27,7 @@ export function Icon3D({ icon: Icon, color = "blue", size = 48, className = "", 
       orange: { from: "#f97316", to: "#fb923c", shadow: "rgba(249, 115, 22, 0.5)" },
       red: { from: "#ef4444", to: "#f87171", shadow: "rgba(239, 68, 68, 0.5)" },
       cyan: { from: "#06b6d4", to: "#22d3ee", shadow: "rgba(6, 182, 212, 0.5)" },
+      teal: { from: "#14b8a6", to: "#2dd4bf", shadow: "rgba(20, 184, 166, 0.5)" },
     };
     return colors[c] || colors.blue;
   };
@@ -43,7 +44,7 @@ export function Icon3D({ icon: Icon, color = "blue", size = 48, className = "", 
   }
 
   return (
-    <div 
+    <div
       className={`relative flex items-center justify-center perspective-[1000px] ${className}`}
       style={{ width: size * 2, height: size * 2 }}
       onMouseEnter={() => setIsHovered(true)}
@@ -64,18 +65,18 @@ export function Icon3D({ icon: Icon, color = "blue", size = 48, className = "", 
         }}
       >
         {/* Back Glow */}
-        <div 
+        <div
           className="absolute inset-4 rounded-full blur-xl opacity-40"
-          style={{ 
+          style={{
             background: theme.from,
-            transform: "translateZ(-20px)" 
-          }} 
+            transform: "translateZ(-20px)"
+          }}
         />
 
         {/* Glass Container */}
-        <div 
+        <div
           className="absolute inset-0 rounded-2xl border border-white/20 bg-[rgb(var(--card))/0.05] backdrop-blur-sm shadow-xl"
-          style={{ 
+          style={{
             transform: "translateZ(0px)",
             boxShadow: `0 10px 30px -10px ${theme.shadow}`
           }}
@@ -86,24 +87,23 @@ export function Icon3D({ icon: Icon, color = "blue", size = 48, className = "", 
           <div
             key={i}
             className="absolute inset-0 flex items-center justify-center"
-            style={{ 
+            style={{
               transform: `translateZ(${i * 8}px)`,
               opacity: i === 3 ? 1 : 0.3
             }}
           >
-            <Icon 
+            <Icon
               size={size}
-              className={i === 3 ? "text-foreground dark:text-white" : undefined}
               style={{
-                color: i === 3 ? undefined : theme.to,
+                color: i === 3 ? theme.from : theme.to,
                 filter: i === 3 ? "drop-shadow(0 4px 6px rgba(0,0,0,0.2))" : "none"
               }}
             />
           </div>
         ))}
-        
+
         {/* Shine effect */}
-        <div 
+        <div
           className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[rgb(var(--card))/0.12] to-transparent pointer-events-none"
           style={{ transform: "translateZ(25px)" }}
         />

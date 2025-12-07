@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "baseUrl": ".",
     "plugins": [
@@ -20,11 +24,21 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@hyper/ui": ["./packages/ui/src/index"],
-      "@hyper/ui/*": ["./packages/ui/src/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"],
-      "@sentry/*": ["./node_modules/@sentry/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@hyper/ui": [
+        "./packages/ui/src/index"
+      ],
+      "@hyper/ui/*": [
+        "./packages/ui/src/*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ],
+      "@sentry/*": [
+        "./node_modules/@sentry/*"
+      ]
     }
   },
   "include": [
@@ -32,7 +46,10 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".contentlayer/generated"
+    ".contentlayer/generated",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

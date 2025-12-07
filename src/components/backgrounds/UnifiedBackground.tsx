@@ -3,8 +3,10 @@
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
 import AuroraBackground from "@/components/backgrounds/bg/aurora";
 import { GlowingOrbs } from "@/components/backgrounds/GlowingOrbs";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 /**
  * UnifiedBackground provides a consistent hyperspeed animation across the entire site.
@@ -17,10 +19,22 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
  */
 export function UnifiedBackground() {
   const { backgroundsEnabled, hydrated, intensity } = useMotion();
+  const pathname = usePathname();
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
   const pointerXSpring = useSpring(pointerX, { stiffness: 80, damping: 20 });
   const pointerYSpring = useSpring(pointerY, { stiffness: 80, damping: 20 });
+
+  // Determine variant based on path
+  const isHome = pathname === "/";
+  let variant: "home" | "about" | "pricing" | "how-it-works" | "contact" | "blog" | "research" | "default" = "default";
+
+  if (pathname?.includes("/about") || pathname?.includes("/safety")) variant = "about";
+  else if (pathname?.includes("/pricing")) variant = "pricing";
+  else if (pathname?.includes("/how-it-works")) variant = "how-it-works";
+  else if (pathname?.includes("/contact")) variant = "contact";
+  else if (pathname?.includes("/blog")) variant = "blog";
+  else if (pathname?.includes("/research") || pathname?.includes("/status")) variant = "research";
 
   if (!backgroundsEnabled || !hydrated) {
     // Static gradient fallback for non-animated mode or SSR - updated with neon colors
@@ -58,14 +72,14 @@ export function UnifiedBackground() {
             width: '100%',
             height: '100%',
           }}
-            onMouseMove={(e) => {
-              const w = window.innerWidth || 1;
-              const h = window.innerHeight || 1;
-              const nx = (e.clientX / w - 0.5) * 26; // small range
-              const ny = (e.clientY / h - 0.5) * 16;
-              pointerX.set(nx);
-              pointerY.set(ny);
-            }}
+          onMouseMove={(e) => {
+            const w = window.innerWidth || 1;
+            const h = window.innerHeight || 1;
+            const nx = (e.clientX / w - 0.5) * 26; // small range
+            const ny = (e.clientY / h - 0.5) * 16;
+            pointerX.set(nx);
+            pointerY.set(ny);
+          }}
         >
           <AnimatedBackground
             variant="hyperspeed"
@@ -99,11 +113,16 @@ export function UnifiedBackground() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-white/60 dark:from-transparent dark:via-[rgb(10,10,15)]/30 dark:to-[rgb(10,10,15)]/80" />
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.05),transparent_40%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.65),transparent_35%)]" />
       </div>
-      
+
       {/* Glowing orbs - floating spheres throughout the site - MOVED OUTSIDE opacity container for visibility */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <GlowingOrbs count={12} />
       </div>
+
+      {/* Global 3D Background - Excludes Home (handled by page.tsx) */}
+      {!isHome && (
+        <Unified3DBackground variant={variant} intensity={1} />
+      )}
     </>
   );
 }

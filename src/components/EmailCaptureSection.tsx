@@ -150,13 +150,13 @@ export function EmailCaptureSection() {
                       </>
                     ) : status === "success" ? (
                       <>
-                        <CheckCircle2 className="h-5 w-5" />
+                        <CheckCircle2 className="h-5 w-5 text-slate-900" />
                         <span>Subscribed!</span>
                       </>
                     ) : (
                       <>
                         <span>Join Waitlist</span>
-                        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="h-5 w-5 text-slate-900 transition-transform group-hover:translate-x-1" />
                       </>
                     )}
                   </button>

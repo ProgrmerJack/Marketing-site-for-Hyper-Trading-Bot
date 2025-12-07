@@ -3,11 +3,14 @@
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
-import { SpotlightCard } from "@/components/reactbits/dynamic";
+
 import { CheckCircle2, AlertCircle, Activity, Zap, Shield } from "lucide-react";
-import SectionMini3D from "@/components/mini/SectionMini3D";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
-// UnifiedBackground provides site-wide background animation; removed local AnimatedBackground
+import { NetworkNodeHero } from "@/components/hero/NetworkNodeHero";
+import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import { PageAccent } from "@/styles/design-tokens";
 
 const statusItems = [
   {
@@ -16,7 +19,8 @@ const statusItems = [
     uptime: "99.98%",
     note: "Heartbeat healthy · auto reconnect active",
     icon: Zap,
-    gradient: "from-emerald-500 to-teal-500",
+    gradient: "from-blue-500 to-cyan-500",
+    accent: "cyan",
   },
   {
     service: "Chart rendering",
@@ -24,7 +28,8 @@ const statusItems = [
     uptime: "100%",
     note: "No incidents reported",
     icon: Activity,
-    gradient: "from-blue-500 to-cyan-500",
+    gradient: "from-cyan-500 to-sky-500",
+    accent: "blue",
   },
   {
     service: "Consent & privacy services",
@@ -32,7 +37,35 @@ const statusItems = [
     uptime: "100%",
     note: "Last audit Oct 12 2025",
     icon: Shield,
-    gradient: "from-purple-500 to-pink-500",
+    gradient: "from-indigo-500 to-blue-500",
+    accent: "blue",
+  },
+  {
+    service: "Order Execution Engine",
+    status: "Operational",
+    uptime: "99.99%",
+    note: "Latency < 5ms",
+    icon: Zap,
+    gradient: "from-emerald-500 to-green-500",
+    accent: "emerald",
+  },
+  {
+    service: "Risk Management System",
+    status: "Operational",
+    uptime: "100%",
+    note: "All checks passing",
+    icon: Shield,
+    gradient: "from-red-500 to-orange-500",
+    accent: "orange",
+  },
+  {
+    service: "Market Data Feed",
+    status: "Operational",
+    uptime: "99.95%",
+    note: "Connected to 12 venues",
+    icon: Activity,
+    gradient: "from-blue-500 to-indigo-500",
+    accent: "blue",
   },
 ];
 
@@ -49,6 +82,9 @@ const incidents = [
 export default function StatusPage() {
   return (
     <div className="relative space-y-0">
+      {/* Global Aurora Background */}
+      <AuroraBackground variant="status" intensity={0.5} />
+
       <PageHeaderAnimated
         eyebrow="Status"
         title="Realtime transparency: uptime, latency, and incident history"
@@ -58,26 +94,159 @@ export default function StatusPage() {
         backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
       >
         <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <SpotlightCard className="w-96 rounded-2xl p-6 shadow-lg hover:shadow-2xl">
-            <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Service status</div>
-            <div className="mb-3 text-lg font-bold">API / SSE Stream Operational</div>
-            <p className="text-xs text-muted-foreground">Our demo stream is online and updates in real-time. See recent incident details below.</p>
+          <PremiumCard variant="glass-primary" accent="blue" className="w-96 p-6">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Service status</div>
+            <div className="mb-3 text-lg font-bold text-slate-900 dark:text-white">API / SSE Stream Operational</div>
+            <p className="text-xs text-slate-600 dark:text-slate-300">Our demo stream is online and updates in real-time. See recent incident details below.</p>
             <div className="mt-4">
-              <motion.a href="/status" className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-background px-4 py-2 text-xs font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:text-white" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
+              <motion.a href="/status" className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-700 transition-all duration-200 hover:bg-blue-100 hover:border-blue-300 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400 dark:hover:bg-blue-900/50" whileHover={{ scale: 1.03 }} transition={{ duration: 0.18 }}>
                 Subscribe for updates
               </motion.a>
             </div>
-          </SpotlightCard>
+          </PremiumCard>
         </motion.div>
       </PageHeaderAnimated>
 
+      {/* What We Monitor Section - Extended Content */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32 border-b border-blue-200/50 dark:border-blue-900/50">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.06),transparent_70%)]" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-3xl space-y-6 text-center"
+            >
+              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+                <Activity className="mr-2 h-4 w-4" />
+                Monitoring infrastructure
+              </span>
+              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
+                What we monitor 24/7
+              </h2>
+              <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                Over 200 health checks running continuously to detect degradation before it impacts you.
+              </p>
+            </motion.div>
+
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  icon: Zap,
+                  title: "API latency",
+                  description: "P50, P95, P99 latencies tracked per endpoint. Alerts fire if any percentile exceeds SLO thresholds.",
+                  gradient: "from-yellow-500 to-orange-500",
+                  metric: "< 150ms P95",
+                  accent: "orange",
+                },
+                {
+                  icon: Activity,
+                  title: "Error rates",
+                  description: "5xx, 4xx, and client-side error rates monitored with automatic spike detection and correlation analysis.",
+                  gradient: "from-red-500 to-pink-500",
+                  metric: "< 0.1% errors",
+                  accent: "rose",
+                },
+                {
+                  icon: Shield,
+                  title: "Security events",
+                  description: "Rate limiting violations, authentication failures, and CSP violations logged with IP-level analysis.",
+                  gradient: "from-indigo-500 to-purple-500",
+                  metric: "Real-time alerts",
+                  accent: "purple",
+                },
+                {
+                  icon: CheckCircle2,
+                  title: "Uptime checks",
+                  description: "Multi-region synthetic monitoring with automatic failover and degradation notifications.",
+                  gradient: "from-emerald-500 to-teal-500",
+                  metric: "99.98% uptime",
+                  accent: "emerald",
+                },
+                {
+                  icon: Activity, // Reusing Activity for Database
+                  title: "Database health",
+                  description: "Replication lag, connection pool status, and query performance metrics tracked continuously.",
+                  gradient: "from-cyan-500 to-blue-500",
+                  metric: "< 10ms lag",
+                  accent: "cyan",
+                },
+                {
+                  icon: Zap, // Reusing Zap for Cache
+                  title: "Cache efficiency",
+                  description: "Redis cluster hit rates and eviction metrics monitored to ensure sub-millisecond data access.",
+                  gradient: "from-violet-500 to-fuchsia-500",
+                  metric: "> 95% hit rate",
+                  accent: "purple",
+                },
+              ].map((item, index) => {
+                const Icon = item.icon;
+                // Map accent string to PageAccent type safely
+                const accentColor = (item.accent === "rose" ? "purple" : item.accent) as PageAccent;
+
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <PremiumCard
+                      variant="glass-secondary"
+                      accent={accentColor}
+                      hover={true}
+                      className="h-full p-8"
+                    >
+                      <div className="relative space-y-4">
+                        <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                          <Icon className="h-7 w-7 text-white" />
+                        </div>
+
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white drop-shadow-sm">
+                          {item.title}
+                        </h3>
+
+                        <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                          {item.description}
+                        </p>
+
+                        <div className="rounded-xl border border-emerald-200/70 bg-emerald-50/50 px-4 py-2 dark:border-emerald-700/70 dark:bg-emerald-900/30">
+                          <p className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                            {item.metric}
+                          </p>
+                        </div>
+                      </div>
+                    </PremiumCard>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Services Overview Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
-        <SectionMini3D icon={Zap} color="emerald" size={180} position="left" className="hidden xl:block opacity-35" />
-        {/* Local AnimatedBackground removed in favor of UnifiedBackground */}
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
+        <Unified3DBackground variant="default" intensity={0.5} />
+
+        {/* NetworkNodeHero - 3D Network Visualization */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-20 dark:opacity-15 pointer-events-none hidden xl:block">
+          <div className="w-[500px] h-[500px]">
+            <NetworkNodeHero />
           </div>
+        </div>
+
+        {/* Local AnimatedBackground removed in favor of UnifiedBackground */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 dark:opacity-50">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)]" />
+        </div>
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="section-surface" />
         </div>
@@ -92,11 +261,11 @@ export default function StatusPage() {
           >
             {/* Section Header */}
             <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">
-              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
                 <CheckCircle2 className="mr-2 h-4 w-4" />
                 Services overview
               </span>
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
                 Current snapshot
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -108,6 +277,8 @@ export default function StatusPage() {
             <div className="grid gap-8 md:gap-10">
               {statusItems.map((item, index) => {
                 const Icon = item.icon;
+                const accentColor = (item.accent === "rose" ? "purple" : item.accent) as PageAccent;
+
                 return (
                   <motion.article
                     key={item.service}
@@ -116,45 +287,72 @@ export default function StatusPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-                    whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                    className="modern-card-emerald group relative overflow-hidden md:p-10"
                   >
-                    {/* Gradient overlay */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 dark:from-emerald-500/15 dark:to-teal-500/15" />
-
-                    <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                      <div className="flex-1 space-y-4">
-                        <div className="flex items-center gap-4">
-                          <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                            <Icon className="h-8 w-8 text-white" />
+                    <PremiumCard
+                      variant="glass-primary"
+                      accent={accentColor}
+                      hover={true}
+                      className="md:p-10 p-6"
+                    >
+                      <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                        <div className="flex-1 space-y-4">
+                          <div className="flex items-center gap-4">
+                            <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                              <Icon className="h-8 w-8 text-white" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                              {item.service}
+                            </h3>
                           </div>
-                          <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                            {item.service}
-                          </h3>
+                          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 md:pl-20">
+                            {item.note}
+                          </p>
                         </div>
-                        <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 md:pl-20">
-                          {item.note}
-                        </p>
+                        <div className="flex flex-col gap-3 md:items-end md:pl-4">
+                          <span className="inline-flex w-fit items-center rounded-full border border-blue-200 bg-blue-50 px-6 py-2.5 text-sm font-bold text-blue-700 shadow-sm transition-all duration-300 group-hover:scale-105 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400">
+                            {item.status}
+                          </span>
+                          <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+                            Uptime: {item.uptime}
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex flex-col gap-3 md:items-end md:pl-4">
-                        <span className="inline-flex w-fit items-center rounded-full border-2 border-emerald-300 bg-emerald-100 px-6 py-2.5 text-sm font-bold text-emerald-700 shadow-sm transition-all duration-300 group-hover:scale-105 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400">
-                          {item.status}
-                        </span>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
-                          Uptime: {item.uptime}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Animated gradient overlay */}
-                    <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${item.gradient} opacity-5`} />
-                    </div>
+                    </PremiumCard>
                   </motion.article>
                 );
               })}
             </div>
           </motion.div>
+        </Container>
+      </section>
+
+      {/* NEW SECTION: System Metrics */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32 border-t border-slate-200 dark:border-slate-800">
+        <Container>
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="mx-auto max-w-3xl space-y-6 text-center">
+              <h2 className="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl drop-shadow-sm">
+                System Metrics
+              </h2>
+              <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                Real-time performance indicators across our global infrastructure.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                { label: "Global Latency", value: "45ms", trend: "-2ms", color: "text-emerald-600 dark:text-emerald-400" },
+                { label: "API Success Rate", value: "99.99%", trend: "+0.01%", color: "text-blue-600 dark:text-blue-400" },
+                { label: "Active Connections", value: "12,450", trend: "+150", color: "text-purple-600 dark:text-purple-400" },
+              ].map((metric, i) => (
+                <div key={i} className="rounded-2xl border border-slate-200/60 bg-white/50 p-8 text-center shadow-sm backdrop-blur-sm dark:border-slate-700/60 dark:bg-slate-900/50">
+                  <div className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">{metric.label}</div>
+                  <div className={`text-4xl font-bold ${metric.color} mb-2`}>{metric.value}</div>
+                  <div className="text-xs font-medium text-slate-400 dark:text-slate-500">Last 24h: <span className="text-emerald-600 dark:text-emerald-400">{metric.trend}</span></div>
+                </div>
+              ))}
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -182,7 +380,7 @@ export default function StatusPage() {
                 <AlertCircle className="mr-2 h-4 w-4" />
                 Incident history
               </span>
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
                 No cover-up – root cause or bust
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -200,38 +398,37 @@ export default function StatusPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-                  whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                  className="group relative overflow-hidden rounded-3xl border-2 border-amber-200/70 bg-gradient-to-br from-[rgb(var(--card))/0.85] via-amber-50/40 to-orange-50/30 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-amber-300/80 hover:shadow-2xl dark:border-amber-700/70 dark:from-slate-900/95 dark:via-amber-950/40 dark:to-orange-950/30 md:p-10"
                 >
-                  {/* Gradient overlay */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/8 via-transparent to-orange-500/8 dark:from-amber-500/15 dark:to-orange-500/15" />
-
-                  <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-                    <div className="flex-1 space-y-5">
-                      <div className="flex items-start gap-4">
-                        <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg">
-                          <AlertCircle className="h-7 w-7 text-white" />
+                  <PremiumCard
+                    variant="glass-primary"
+                    accent="orange"
+                    hover={true}
+                    className="md:p-10 p-8"
+                  >
+                    <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                      <div className="flex-1 space-y-5">
+                        <div className="flex items-start gap-4">
+                          <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg">
+                            <AlertCircle className="h-7 w-7 text-white" />
+                          </div>
+                          <div className="flex-1 space-y-2">
+                            <time className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+                              {incident.date}
+                            </time>
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                              {incident.title}
+                            </h3>
+                          </div>
                         </div>
-                        <div className="flex-1 space-y-2">
-                          <time className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
-                            {incident.date}
-                          </time>
-                          <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                            {incident.title}
-                          </h3>
-                        </div>
+                        <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 md:pl-18">
+                          {incident.summary}
+                        </p>
                       </div>
-                      <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 md:pl-18">
-                        {incident.summary}
-                      </p>
+                      <span className="inline-flex w-fit items-center rounded-full border border-emerald-200 bg-emerald-50 px-5 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400 md:ml-4">
+                        {incident.status}
+                      </span>
                     </div>
-                    <span className="inline-flex w-fit items-center rounded-full border-2 border-emerald-300 bg-emerald-100 px-5 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400 md:ml-4">
-                      {incident.status}
-                    </span>
-                  </div>
-
-                  {/* Shimmer effect */}
-                  <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-all duration-1000 group-hover:left-full dark:via-white/10" />
+                  </PremiumCard>
                 </motion.article>
               ))}
             </div>

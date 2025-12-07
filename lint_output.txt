@@ -1,0 +1,72 @@
+
+> marketing-site@0.1.0 lint
+> eslint . --ext .ts,.tsx
+
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\blog\page.tsx
+  13:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+  14:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\consent\page.tsx
+  10:10  warning  'PremiumCard' is defined but never used   @typescript-eslint/no-unused-vars
+  11:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+  12:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\contact\page.tsx
+   14:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+   15:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+  162:46  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\how-it-works\page.tsx
+  17:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+  18:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\live-demo\page.tsx
+  13:10  warning  'PremiumCard' is defined but never used   @typescript-eslint/no-unused-vars
+  14:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+  15:10  warning  'PremiumTable' is defined but never used  @typescript-eslint/no-unused-vars
+  16:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\page.tsx
+  17:3   warning  'SpotlightCard' is defined but never used  @typescript-eslint/no-unused-vars
+  29:10  warning  'PremiumBlock' is defined but never used   @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\pricing\page.tsx
+   8:10  warning  'SpotlightCard' is defined but never used  @typescript-eslint/no-unused-vars
+  18:10  warning  'PremiumTable' is defined but never used   @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\privacy\page.tsx
+  26:10  warning  'PremiumCard' is defined but never used   @typescript-eslint/no-unused-vars
+  27:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+  28:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\research\page.tsx
+  14:10  warning  'PremiumCard' is defined but never used   @typescript-eslint/no-unused-vars
+  15:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+  16:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\risk-disclosure\page.tsx
+  13:10  warning  'PremiumCard' is defined but never used   @typescript-eslint/no-unused-vars
+  14:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+  15:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\status\page.tsx
+  11:10  warning  'PremiumCard' is defined but never used   @typescript-eslint/no-unused-vars
+  12:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+  13:10  warning  'PremiumTable' is defined but never used  @typescript-eslint/no-unused-vars
+  14:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\app\terms\page.tsx
+  23:10  warning  'PremiumCard' is defined but never used   @typescript-eslint/no-unused-vars
+  24:10  warning  'PremiumBlock' is defined but never used  @typescript-eslint/no-unused-vars
+  25:10  warning  'getIconColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\components\blocks\PremiumBlock.tsx
+  19:10  warning  'gradients' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Mark\OneDrive\Documents\GitHub\Marketing-site-for-Hyper-Trading-Bot\src\components\cards\PremiumCard.tsx
+  28:10  warning  'gradients' is defined but never used  @typescript-eslint/no-unused-vars
+  28:21  warning  'glass' is defined but never used      @typescript-eslint/no-unused-vars
+
+Γ£û 37 problems (1 error, 36 warnings)
+

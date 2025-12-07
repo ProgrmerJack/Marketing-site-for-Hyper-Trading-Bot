@@ -39,13 +39,11 @@ const nextConfig: NextConfig = {
   typedRoutes: true,
   compress: true,
   outputFileTracingRoot: path.resolve(__dirname, "../.."),
+  turbopack: {},
   experimental: {
     optimizePackageImports: ["lucide-react", "zustand", "d3", "@hyper/ui"],
   },
   transpilePackages: ["@hyper/ui", "framer-motion"],
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
   typescript: {
     ignoreBuildErrors: false,
   },

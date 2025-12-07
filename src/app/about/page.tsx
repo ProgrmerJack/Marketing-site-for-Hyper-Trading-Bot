@@ -5,7 +5,6 @@ import Link from "next/link";
 import type { Route } from "next";
 import { Container } from "@hyper/ui";
 import { Shield, Zap, Scale, Eye, ArrowRight } from "lucide-react";
-import SectionMini3D from "@/components/mini/SectionMini3D";
 import { ClickSpark, StarBorder, SpotlightCard } from "@/components/reactbits/dynamic";
 import { MorphingShape } from "@/components/motion/MorphingShape";
 import { MouseFollower } from "@/components/motion/MouseFollower";
@@ -128,7 +127,6 @@ export default function AboutPage() {
       {/* Hero Section - Vibrant cyan/blue theme */}
             {/* Hero Section - Vibrant emerald/teal theme */}
       <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-emerald-950/40 dark:to-teal-950/40 md:py-32">
-        <SectionMini3D icon={Shield} color="cyan" size={220} position="right" className="hidden xl:block opacity-25" />
         <Unified3DBackground variant="about" intensity={0.6} />
         
         {/* DNAHelixHero - 3D DNA Helix Visualization */}
@@ -285,7 +283,7 @@ export default function AboutPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
                 Meet Our Visionary Founder
               </h2>
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
@@ -348,7 +346,7 @@ export default function AboutPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                 Our Uncompromising Standards
               </h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
@@ -409,7 +407,7 @@ export default function AboutPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                 World-Class Leadership Team
               </h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
@@ -465,7 +463,7 @@ export default function AboutPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                 Exciting Developments Ahead
               </h2>
               <p className="text-lg leading-relaxed text-muted-foreground">

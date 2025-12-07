@@ -140,11 +140,11 @@ export function ConsentManager() {
           data-testid="cookie-banner"
           className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
         >
-          <div className="max-w-6xl mx-auto bg-[rgb(var(--card))] dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden">
+          <div className="max-w-6xl mx-auto bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden">
             <div className="p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold mb-2">
+                  <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
                     Cookies & consent
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
@@ -199,7 +199,7 @@ export function ConsentManager() {
                   ) : (
                     <div className="space-y-4">
                       {/* Essential - Always enabled */}
-                      <div className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <div className="flex items-start gap-3 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
                         <input
                           type="checkbox"
                           checked={true}
@@ -207,7 +207,7 @@ export function ConsentManager() {
                           className="mt-1 w-5 h-5"
                         />
                         <div className="flex-1">
-                          <label className="font-medium text-sm">
+                          <label className="font-medium text-sm text-gray-900 dark:text-white">
                             Essential Cookies (Required)
                           </label>
                           <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
@@ -217,7 +217,7 @@ export function ConsentManager() {
                       </div>
 
                       {/* Marketing - User choice */}
-                      <div className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <div className="flex items-start gap-3 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
                         <input
                           type="checkbox"
                           checked={marketingConsent}
@@ -226,7 +226,7 @@ export function ConsentManager() {
                           id="marketing-consent"
                         />
                         <div className="flex-1">
-                          <label htmlFor="marketing-consent" className="font-medium text-sm cursor-pointer">
+                          <label htmlFor="marketing-consent" className="font-medium text-sm cursor-pointer text-gray-900 dark:text-white">
                             Marketing & Communication
                           </label>
                           <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
@@ -236,7 +236,7 @@ export function ConsentManager() {
                       </div>
 
                       {/* Analytics - User choice */}
-                      <div className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <div className="flex items-start gap-3 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
                         <input
                           type="checkbox"
                           checked={analyticsConsent}
@@ -245,7 +245,7 @@ export function ConsentManager() {
                           id="analytics-consent"
                         />
                         <div className="flex-1">
-                          <label htmlFor="analytics-consent" className="font-medium text-sm cursor-pointer">
+                          <label htmlFor="analytics-consent" className="font-medium text-sm cursor-pointer text-gray-900 dark:text-white">
                             Analytics & Performance
                           </label>
                           <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">

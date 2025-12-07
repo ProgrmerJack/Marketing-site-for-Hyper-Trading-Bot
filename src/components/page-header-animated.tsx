@@ -71,8 +71,8 @@ export function PageHeaderAnimated({
           variants={revealUp}
           initial="initial"
           animate="animate"
-          className="relative z-20 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 opacity-100 dark:text-white md:text-5xl lg:text-6xl"
-          style={{ opacity: 1 }}
+          className="relative z-20 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white md:text-5xl lg:text-6xl drop-shadow-sm"
+          style={{ opacity: 1, visibility: 'visible' }}
         >
           {title}
         </motion.h1>
