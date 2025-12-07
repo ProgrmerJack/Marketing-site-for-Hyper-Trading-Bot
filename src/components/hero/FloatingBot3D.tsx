@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Floating 3D Bot visualization for the hero section
- * PERFORMANCE OPTIMIZED: Reduced from 30+ animation loops to 3 primary animations
+ * PERFORMANCE OPTIMIZED: Uses CSS animations where possible, limits motion.div count
  */
 export function FloatingBot3D() {
   const { shouldReduceMotion } = useMotion();
@@ -21,7 +21,7 @@ export function FloatingBot3D() {
       const rect = containerRef.current.getBoundingClientRect();
       const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
       const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-      setMousePosition({ x: x * 10, y: y * 10 }); // Reduced intensity
+      setMousePosition({ x: x * 10, y: y * 10 });
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
@@ -44,6 +44,7 @@ export function FloatingBot3D() {
 
   return (
     <div ref={containerRef} className="relative h-[400px] w-full flex items-center justify-center perspective-[1000px]">
+      {/* Main floating container */}
       <motion.div
         className="relative w-64 h-64"
         animate={{
@@ -60,15 +61,26 @@ export function FloatingBot3D() {
           transformStyle: "preserve-3d",
         }}
       >
-        {/* Holographic glow - CSS only, no animation */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[rgb(79,244,207)] to-[rgb(0,179,255)] opacity-25 blur-3xl" />
+        {/* Holographic glow - animated */}
+        <motion.div 
+          className="absolute inset-0 rounded-full bg-gradient-to-br from-[rgb(79,244,207)] to-[rgb(0,179,255)] blur-3xl"
+          animate={{
+            opacity: [0.2, 0.35, 0.2],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
         {/* Central core */}
         <div
           className="absolute inset-0 flex items-center justify-center"
           style={{ transformStyle: "preserve-3d" }}
         >
-          {/* Main bot body - single box-shadow animation */}
+          {/* Main bot body */}
           <motion.div
             className="relative w-32 h-32 rounded-2xl bg-gradient-to-br from-[rgb(79,244,207)] to-[rgb(0,179,255)] shadow-2xl"
             style={{
@@ -78,7 +90,7 @@ export function FloatingBot3D() {
             animate={{
               boxShadow: [
                 "0 0 30px rgba(79,244,207,0.4)",
-                "0 0 50px rgba(0,179,255,0.6)",
+                "0 0 60px rgba(0,179,255,0.6)",
                 "0 0 30px rgba(79,244,207,0.4)",
               ],
             }}
@@ -88,11 +100,11 @@ export function FloatingBot3D() {
               ease: "easeInOut",
             }}
           >
-            {/* Inner hologram lines - static CSS */}
+            {/* Inner hologram lines */}
             <div className="absolute inset-2 border-2 border-white/30 rounded-xl" />
             <div className="absolute inset-4 border border-white/20 rounded-lg" />
             
-            {/* Single animated scanner line */}
+            {/* Animated scanner line */}
             <motion.div
               className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white to-transparent"
               animate={{
@@ -106,26 +118,85 @@ export function FloatingBot3D() {
             />
           </motion.div>
 
-          {/* Background ring - CSS animation instead of JS */}
+          {/* Orbiting ring - CSS animation for better performance */}
           <div
-            className="absolute w-48 h-48 rounded-full border-2 border-[rgb(0,179,255)]/25 animate-[spin_25s_linear_infinite]"
+            className="absolute w-48 h-48 rounded-full border-2 border-[rgb(0,179,255)]/30 animate-[spin_20s_linear_infinite]"
             style={{
               transformStyle: "preserve-3d",
               transform: "translateZ(-20px)",
             }}
           />
+          
+          {/* Second orbiting ring - opposite direction */}
+          <div
+            className="absolute w-52 h-52 rounded-full border border-[rgb(79,244,207)]/20 animate-[spin_25s_linear_infinite_reverse]"
+            style={{
+              transformStyle: "preserve-3d",
+              transform: "translateZ(-30px) rotateX(60deg)",
+            }}
+          />
         </div>
+
+        {/* Orbiting particles - limited to 3 for performance */}
+        {[0, 1, 2].map((i) => (
+          <motion.div
+            key={`orbit-${i}`}
+            className="absolute w-2 h-2 rounded-full bg-[rgb(79,244,207)]"
+            style={{
+              left: "50%",
+              top: "50%",
+              marginLeft: "-4px",
+              marginTop: "-4px",
+            }}
+            animate={{
+              x: [
+                Math.cos((i * 2 * Math.PI) / 3) * 80,
+                Math.cos((i * 2 * Math.PI) / 3 + Math.PI) * 80,
+                Math.cos((i * 2 * Math.PI) / 3) * 80,
+              ],
+              y: [
+                Math.sin((i * 2 * Math.PI) / 3) * 80,
+                Math.sin((i * 2 * Math.PI) / 3 + Math.PI) * 80,
+                Math.sin((i * 2 * Math.PI) / 3) * 80,
+              ],
+              opacity: [0.6, 1, 0.6],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "linear",
+              delay: i * 0.5,
+            }}
+          />
+        ))}
       </motion.div>
 
-      {/* Static scan lines - CSS only with opacity animation */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-        {[0, 1, 2, 3, 4].map((i) => (
+      {/* Floating data points - CSS animations */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[0, 1, 2, 3].map((i) => (
+          <div
+            key={`data-${i}`}
+            className="absolute w-1.5 h-1.5 rounded-full bg-[rgb(52,211,153)] animate-bounce"
+            style={{
+              left: `${25 + i * 15}%`,
+              top: `${30 + (i % 2) * 40}%`,
+              animationDuration: `${2 + i * 0.5}s`,
+              animationDelay: `${i * 0.3}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Scan lines - CSS only */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-15">
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
           <div
             key={`line-${i}`}
-            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgb(79,244,207)]/40 to-transparent animate-pulse"
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgb(79,244,207)]/50 to-transparent animate-pulse"
             style={{
-              top: `${(i / 5) * 100 + 10}%`,
-              animationDelay: `${i * 0.3}s`,
+              top: `${(i / 8) * 100 + 6}%`,
+              animationDuration: "2s",
+              animationDelay: `${i * 0.15}s`,
             }}
           />
         ))}
