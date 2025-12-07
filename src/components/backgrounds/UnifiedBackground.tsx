@@ -2,7 +2,7 @@
 
 import { AnimatedBackground } from "@/components/backgrounds/AnimatedBackground";
 import AuroraBackground from "@/components/backgrounds/bg/aurora";
-import { GlowingOrbs } from "@/components/backgrounds/GlowingOrbs";
+// GlowingOrbs removed for performance - 12 motion elements with blur(60px) filter
 import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
 import { useMotion } from "@/components/motion/MotionProvider";
 import { motion, useMotionValue, useSpring } from "framer-motion";
@@ -35,6 +35,12 @@ export function UnifiedBackground() {
   else if (pathname?.includes("/contact")) variant = "contact";
   else if (pathname?.includes("/blog")) variant = "blog";
   else if (pathname?.includes("/research") || pathname?.includes("/status")) variant = "research";
+
+  // PERFORMANCE: Skip all animations on homepage - Unified2DBackground handles it there
+  // This prevents running 3 canvas RAF loops + 12 motion orbs simultaneously
+  if (isHome) {
+    return null;
+  }
 
   if (!backgroundsEnabled || !hydrated) {
     // Static gradient fallback for non-animated mode or SSR - updated with neon colors
@@ -114,15 +120,11 @@ export function UnifiedBackground() {
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.05),transparent_40%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.65),transparent_35%)]" />
       </div>
 
-      {/* Glowing orbs - floating spheres throughout the site - MOVED OUTSIDE opacity container for visibility */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <GlowingOrbs count={12} />
-      </div>
+      {/* REMOVED: GlowingOrbs - 12 separate Framer Motion elements with infinite animations + blur(60px) filter */}
+      {/* This was a major performance drain, especially combined with other canvas animations */}
 
       {/* Global 3D Background - Excludes Home (handled by page.tsx) */}
-      {!isHome && (
-        <Unified3DBackground variant={variant} intensity={1} />
-      )}
+      <Unified3DBackground variant={variant} intensity={1} />
     </>
   );
 }
