@@ -14,8 +14,9 @@ export function ComplianceBanner() {
           initial={{ opacity: 0, x: -8 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg"
         >
-          <ShieldAlert className="h-5 w-5 text-[color:var(--color-accent-primary)]" />
+          <ShieldAlert className="h-5 w-5 text-white drop-shadow-md" />
         </motion.span>
         <div className="space-y-1">
           <p className="font-semibold">{COMPLIANCE_BANNER.headline}</p>

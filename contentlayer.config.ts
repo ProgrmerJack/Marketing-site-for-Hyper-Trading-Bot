@@ -3,7 +3,7 @@ import { defineDocumentType, makeSource, ComputedFields } from "contentlayer/sou
 const computedFields: ComputedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => doc._raw.flattenedPath,
+    resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ""),
   },
 };
 

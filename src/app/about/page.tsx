@@ -10,8 +10,7 @@ import { MorphingShape } from "@/components/motion/MorphingShape";
 import { MouseFollower } from "@/components/motion/MouseFollower";
 import { ParallaxSection } from "@/components/motion/ParallaxSection";
 import { DNAHelixHero } from "@/components/hero/DNAHelixHero";
-import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
-import { Icon3D } from "@/components/3d-icons/Icon3D";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
 import { FloatingParticles, Rotating3DRing } from "@/components/3d-decorations";
 // Using UnifiedBackground globally; local AnimatedBackground per-section removed
 import { useMotion } from "@/components/motion/MotionProvider";
@@ -127,7 +126,7 @@ export default function AboutPage() {
       {/* Hero Section - Vibrant cyan/blue theme */}
             {/* Hero Section - Vibrant emerald/teal theme */}
       <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-emerald-950/40 dark:to-teal-950/40 md:py-32">
-        <Unified3DBackground variant="about" intensity={0.6} />
+        <Unified2DBackground variant="about" intensity={0.6} />
         
         {/* DNAHelixHero - 3D DNA Helix Visualization */}
         <div className="absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none">
@@ -215,18 +214,8 @@ export default function AboutPage() {
                       className="relative h-full overflow-hidden rounded-2xl border-2 border-cyan-200/60 bg-[rgb(var(--card))/0.9] p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:neon-glow-cyan dark:border-cyan-500/40 dark:bg-slate-900/90 motion-zone"
                       spotlightColor={"rgba(34, 211, 238, 0.2)" as `rgba(${number}, ${number}, ${number}, ${number})`}
                     >
-                      <div className="mb-6">
-                        <Icon3D 
-                          icon={Icon} 
-                          color={
-                            index === 0 ? "red" :
-                            index === 1 ? "cyan" :
-                            index === 2 ? "emerald" :
-                            "purple"
-                          }
-                          size={28}
-                          className="flex-none"
-                        />
+                      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-500">
+                        <Icon className="h-7 w-7 text-white drop-shadow-md" />
                       </div>
                       <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{principle.title}</h3>
                       <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">{principle.description}</p>
@@ -356,6 +345,7 @@ export default function AboutPage() {
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {founderStory.principles.map((principle, index) => {
+                const Icon = principle.icon;
                 return (
                   <motion.div
                     key={principle.title}
@@ -378,12 +368,11 @@ export default function AboutPage() {
                       spotlightColor="rgba(59, 130, 246, 0.2)"
                     >
                       <div className="mb-6 flex h-16 w-16 items-center justify-center">
-                        <Icon3D 
-                          icon={principle.icon} 
-                          size={48} 
-                          color={index % 2 === 0 ? "rgb(59, 130, 246)" : "rgb(16, 185, 129)"}
-                          glowIntensity="medium"
-                        />
+                        <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${
+                          index % 2 === 0 ? 'from-blue-500 to-cyan-500' : 'from-emerald-500 to-teal-500'
+                        } shadow-lg`}>
+                          <Icon className="h-8 w-8 text-white drop-shadow-md" />
+                        </div>
                       </div>
                       <h4 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">{principle.title}</h4>
                       <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">

@@ -1,6 +1,9 @@
 import { z } from "zod";
 
-const serverSchema = z.object({
+const EnvSchema = z.object({
+  NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(10),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().min(10), // server-only secret
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   NEXT_PUBLIC_BASE_URL: z
     .string()
@@ -10,27 +13,13 @@ const serverSchema = z.object({
   DEMO_STREAM_SECRET: z.string().optional(),
 });
 
-declare global {
-  var __validatedEnv: z.infer<typeof serverSchema> | undefined;
-}
+export const env = EnvSchema.parse({
+  NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || "https://example.supabase.co",
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "dummy-key-for-build-process-at-least-10-chars",
+  SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY || "dummy-key-for-build-process-at-least-10-chars",
+  NODE_ENV: process.env.NODE_ENV,
+  NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+  DEMO_STREAM_SECRET: process.env.DEMO_STREAM_SECRET,
+});
 
-function validateEnv() {
-  if (typeof globalThis.__validatedEnv !== "undefined") {
-    return globalThis.__validatedEnv;
-  }
 
-  const parsed = serverSchema.safeParse({
-    NODE_ENV: process.env.NODE_ENV,
-    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
-  });
-
-  if (!parsed.success) {
-    console.error("❌ Invalid environment variables", parsed.error.flatten().fieldErrors);
-    throw new Error("Invalid environment variables");
-  }
-
-  globalThis.__validatedEnv = parsed.data;
-  return parsed.data;
-}
-
-export const env = validateEnv();

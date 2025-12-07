@@ -15,7 +15,7 @@ export function SiteHeader() {
 
   return (
     <motion.header
-      initial={{ y: -100 }}
+      initial={false}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       className="glass sticky top-0 z-50 border-b border-border backdrop-blur-xl shadow-md"
@@ -163,7 +163,7 @@ function CallToActionLink({ href, children }: { href: string; children: ReactNod
     >
       <Link
         href={href as Route}
-        className="inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-r from-primary to-blue-600 px-9 text-sm font-bold text-white shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/40 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-r from-primary to-blue-600 px-9 text-sm font-bold btn-gradient-text shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/40 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         {children}
       </Link>

@@ -145,7 +145,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className="flex items-center gap-1 mt-2 text-sm text-red-600 dark:text-red-400"
             role="alert"
           >
-            <AlertCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+            <span className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-rose-500 shadow-sm flex-shrink-0">
+              <AlertCircle className="w-3 h-3 text-white" aria-hidden="true" />
+            </span>
             <span>{error}</span>
           </div>
         )}
@@ -258,7 +260,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             className="flex items-center gap-1 mt-2 text-sm text-red-600 dark:text-red-400"
             role="alert"
           >
-            <AlertCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+            <span className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-rose-500 shadow-sm flex-shrink-0">
+              <AlertCircle className="w-3 h-3 text-white" aria-hidden="true" />
+            </span>
             <span>{error}</span>
           </div>
         )}

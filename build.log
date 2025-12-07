@@ -1,0 +1,33 @@
+
+> marketing-site@0.1.0 build
+> node scripts/next-with-wasm.mjs build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Γû▓ Next.js 16.1.0-canary.0 (Turbopack)
+- Experiments (use with caution):
+  ┬╖ optimizePackageImports
+
+  Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./GitHub/Marketing-site-for-Hyper-Trading-Bot/src/app/globals.css:4418:8
+Parsing CSS source code failed
+  4416 |   }
+  4417 |
+> 4418 | @import '../styles/modern-cards.css';
+       |        ^
+  4419 |
+  4420 | /* Ensure all headers and titles are always visible */
+  4421 | h1,
+
+@import rules must precede all rules aside from @charset and @layer statements
+
+Import trace:
+  Client Component Browser:
+    ./GitHub/Marketing-site-for-Hyper-Trading-Bot/src/app/globals.css [Client Component Browser]
+    ./GitHub/Marketing-site-for-Hyper-Trading-Bot/src/app/layout.tsx [Server Component]
+
+
+    at <unknown> (./GitHub/Marketing-site-for-Hyper-Trading-Bot/src/app/globals.css:4418:8)

@@ -63,8 +63,10 @@ export const SplashCursor = withNoSSR(async () => ({
   default: (await import("@appletosolutions/reactbits")).SplashCursor,
 }));
 
+// Use custom StarBorder to fix inner-content class dark background issue
+// Original reactbits StarBorder has hard-coded: .inner-content { background: #000; }
 export const StarBorder = withNoSSR(async () => ({
-  default: (await import("@appletosolutions/reactbits")).StarBorder,
+  default: (await import("@/components/reactbits/stubs/StarBorder")).default,
 }));
 
 export const ClickSpark = withNoSSR(async () => ({
@@ -98,8 +100,10 @@ export const ScrollReveal = withNoSSR(async () => ({
   default: (await import("@appletosolutions/reactbits")).ScrollReveal,
 }));
 
+// Use custom SpotlightCard to fix inner-content class dark background issue
+// Original reactbits SpotlightCard has hard-coded: .inner-content { background: #000; }
 export const SpotlightCard = withNoSSR(async () => ({
-  default: (await import("@appletosolutions/reactbits")).SpotlightCard,
+  default: (await import("@/components/reactbits/stubs/SpotlightCard")).default,
 }));
 
 export const GlareHover = withNoSSR(async () => ({

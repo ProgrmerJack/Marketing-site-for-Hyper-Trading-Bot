@@ -8,12 +8,11 @@ import { Calculator, TrendingUp, Check, X, DollarSign, Shield, ArrowRight } from
 import { ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
 import { MorphingShape } from "@/components/motion/MorphingShape";
 import { MouseFollower } from "@/components/motion/MouseFollower";
-import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
 import { useMotion } from "@/components/motion/MotionProvider";
-import { Icon3D } from "@/components/3d-icons/Icon3D";
-import SectionMini3D from "@/components/mini/SectionMini3D";
-import { getIconColor } from "@/styles/design-tokens";
 import { PremiumCard } from "@/components/cards/PremiumCard";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
 import { PremiumBlock } from "@/components/blocks/PremiumBlock";
 import type { Route } from "next";
 
@@ -33,9 +32,9 @@ const pricingHighlights = [
     gradient: "from-emerald-500 to-teal-500",
   },
   {
-    title: "Independent verification",
+    title: "Transparent structure",
     description:
-      "We will not activate fees until third-party audit and operational due diligence are complete. Until then, everything remains in demo mode.",
+      "Clear pricing structure with real-time data and signed records. We're working towards third-party verification and operational compliance. Everything remains in demo/analysis mode.",
     icon: Shield,
     gradient: "from-purple-500 to-pink-500",
   },
@@ -48,17 +47,18 @@ export default function PricingPage() {
     <div className="relative">
       {/* Hero Section - Vibrant emerald/cyan theme */}
       <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-cyan-50 to-teal-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-emerald-950/40 dark:to-cyan-950/40 md:py-32">
-        <Unified3DBackground variant="pricing" intensity={0.55} />
+        <Unified2DBackground variant="pricing" intensity={0.55} />
 
-        <div className="absolute left-[-6rem] -bottom-12 opacity-80 dark:opacity-40 pointer-events-none">
+        <div className="absolute left-[-6rem] -bottom-12 opacity-90 dark:opacity-60 pointer-events-none">
           <MorphingShape size={280} className="motion-zone" color="rgb(var(--primary))" />
         </div>
 
         <Container className="relative z-10">
           <div className="mx-auto max-w-4xl space-y-8 text-center">
             <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6 }}
               className="inline-flex w-fit items-center rounded-full border-2 border-cyan-300 bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/60 dark:text-cyan-300"
             >
@@ -66,8 +66,9 @@ export default function PricingPage() {
             </motion.span>
             <MouseFollower strength={0.7} className="motion-zone">
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={false}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
               >
@@ -75,8 +76,9 @@ export default function PricingPage() {
               </motion.h1>
             </MouseFollower>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl"
             >
@@ -85,14 +87,16 @@ export default function PricingPage() {
 
             {/* Pricing Highlight Cards */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="grid gap-4 pt-8 sm:grid-cols-3"
             >
               {pricingHighlights.map((item, index) => {
                 const Icon = item.icon;
-                const iconColor = getIconColor(Icon.displayName || Icon.name || '');
+                const gradientClass = index === 0 ? "from-blue-500 to-cyan-500" :
+                  index === 1 ? "from-emerald-500 to-teal-500" : "from-purple-500 to-pink-500";
                 return (
                   <motion.div
                     key={item.title}
@@ -105,11 +109,12 @@ export default function PricingPage() {
                     <PremiumCard
                       variant="glass-primary"
                       accent="emerald"
+                      shadowColor={accentToShadowColor(index === 0 ? 'blue' : index === 1 ? 'emerald' : 'purple')}
                       hover={true}
                       className="h-full p-8"
                     >
                       <div className="mb-6 flex justify-center">
-                        <Icon3D icon={Icon} color={iconColor} size={56} />
+                        <ColorIcon Icon={Icon} gradient={gradientClass} size="h-14 w-14" shadowColor={accentToShadowColor(index === 0 ? 'blue' : index === 1 ? 'emerald' : 'purple')} />
                       </div>
                       <h3 className="mb-2 text-base font-bold text-slate-900 dark:text-white">{item.title}</h3>
                       <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{item.description}</p>
@@ -121,8 +126,9 @@ export default function PricingPage() {
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-wrap items-center justify-center gap-4 pt-4"
             >
@@ -155,7 +161,6 @@ export default function PricingPage() {
 
       {/* Why Profit Sharing Section - Extended Content (removes duplicate cards) */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
-        <SectionMini3D icon={DollarSign} color="emerald" size={190} position="left" className="hidden xl:block opacity-25" />
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
@@ -166,8 +171,10 @@ export default function PricingPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-12">
             <div className="mx-auto max-w-3xl space-y-6 text-center">
-              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
-                <TrendingUp className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500">
+                  <TrendingUp className="h-3 w-3 text-white" />
+                </div>
                 Aligned Incentives
               </span>
               <h2 className="heading-contrast font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -193,15 +200,21 @@ export default function PricingPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 dark:border-emerald-800 dark:bg-emerald-950/50">
-                    <Check className="h-6 w-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500">
+                      <Check className="h-3.5 w-3.5 text-white" />
+                    </div>
                     <span className="text-slate-700 dark:text-slate-300">Zero management fees during any period</span>
                   </div>
                   <div className="flex items-center gap-4 rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 dark:border-emerald-800 dark:bg-emerald-950/50">
-                    <Check className="h-6 w-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500">
+                      <Check className="h-3.5 w-3.5 text-white" />
+                    </div>
                     <span className="text-slate-700 dark:text-slate-300">Fees only after verified net profit</span>
                   </div>
                   <div className="flex items-center gap-4 rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 dark:border-emerald-800 dark:bg-emerald-950/50">
-                    <Check className="h-6 w-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500">
+                      <Check className="h-3.5 w-3.5 text-white" />
+                    </div>
                     <span className="text-slate-700 dark:text-slate-300">Independent third-party audit required</span>
                   </div>
                 </div>
@@ -285,7 +298,7 @@ export default function PricingPage() {
                       },
                       {
                         feature: "Performance Fee",
-                        hyper: { text: "Profit-share (after audit)", positive: true },
+                        hyper: { text: "Profit-share (pending verification)", positive: true },
                         traditional: "20% of profits",
                         crypto: "10–30% of profits",
                       },
@@ -296,8 +309,8 @@ export default function PricingPage() {
                         crypto: "Varies widely",
                       },
                       {
-                        feature: "Independent Audit",
-                        hyper: { text: "In progress (Q1 2026)", icon: Check, positive: true },
+                        feature: "Third-party Verification",
+                        hyper: { text: "Planned (post-launch)", icon: Check, positive: true },
                         traditional: "Annual financial audit",
                         crypto: { text: "Rare", icon: X, negative: true },
                       },
@@ -309,7 +322,7 @@ export default function PricingPage() {
                       },
                       {
                         feature: "Minimum Investment",
-                        hyper: { text: "TBD (post-audit)", positive: true },
+                        hyper: { text: "TBD (post-launch)", positive: true },
                         traditional: "$500k–$5M+",
                         crypto: "$100–$10k",
                       },
@@ -329,8 +342,10 @@ export default function PricingPage() {
                           {typeof row.hyper === "object" ? (
                             <span className={row.hyper.positive ? "font-semibold text-emerald-600 dark:text-emerald-300" : ""}>
                               {row.hyper.icon && (
-                                <row.hyper.icon className="mb-0.5 inline h-5 w-5 text-emerald-600 dark:text-emerald-300" />
-                              )}{" "}
+                                <span className="mb-0.5 mr-1.5 inline-flex h-5 w-5 items-center justify-center rounded-md bg-gradient-to-br from-emerald-500 to-teal-500">
+                                  <row.hyper.icon className="h-3 w-3 text-white" />
+                                </span>
+                              )}
                               {row.hyper.text}
                             </span>
                           ) : (
@@ -340,7 +355,11 @@ export default function PricingPage() {
                         <td className="p-4 font-medium text-slate-700 dark:text-slate-200">
                           {typeof row.traditional === "object" ? (
                             <span className="text-red-600 dark:text-red-400">
-                              {row.traditional.icon && <row.traditional.icon className="mb-0.5 inline h-5 w-5 text-red-600 dark:text-red-400" />}{" "}
+                              {row.traditional.icon && (
+                                <span className="mb-0.5 mr-1.5 inline-flex h-5 w-5 items-center justify-center rounded-md bg-gradient-to-br from-red-500 to-rose-500">
+                                  <row.traditional.icon className="h-3 w-3 text-white" />
+                                </span>
+                              )}
                               {row.traditional.text}
                             </span>
                           ) : (
@@ -350,7 +369,11 @@ export default function PricingPage() {
                         <td className="p-4 font-medium text-slate-700 dark:text-slate-200">
                           {typeof row.crypto === "object" ? (
                             <span className="text-red-600 dark:text-red-400">
-                              {row.crypto.icon && <row.crypto.icon className="mb-0.5 inline h-5 w-5 text-red-600 dark:text-red-400" />}{" "}
+                              {row.crypto.icon && (
+                                <span className="mb-0.5 mr-1.5 inline-flex h-5 w-5 items-center justify-center rounded-md bg-gradient-to-br from-red-500 to-rose-500">
+                                  <row.crypto.icon className="h-3 w-3 text-white" />
+                                </span>
+                              )}
                               {row.crypto.text}
                             </span>
                           ) : (
@@ -410,9 +433,7 @@ export default function PricingPage() {
                   className="h-full p-8"
                 >
                   <div className="mb-6 flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-white">
-                      <TrendingUp className="h-6 w-6" />
-                    </div>
+                    <ColorIcon Icon={TrendingUp} gradient="from-emerald-500 to-teal-500" size="h-12 w-12" iconClass="h-6 w-6" shadowColor={accentToShadowColor('emerald')} />
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                       Profitable Quarter (Hypothetical)
                     </h3>
@@ -453,9 +474,7 @@ export default function PricingPage() {
                   className="h-full p-8 border-red-300 dark:border-red-700/50"
                 >
                   <div className="mb-6 flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-500 text-white">
-                      <TrendingUp className="h-6 w-6 rotate-180" />
-                    </div>
+                    <ColorIcon Icon={TrendingUp} gradient="from-red-500 to-pink-600" size="h-12 w-12" iconClass="h-6 w-6 rotate-180" shadowColor="rgba(239, 68, 68, 0.4)" />
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                       Loss Quarter (Hypothetical)
                     </h3>
@@ -527,9 +546,7 @@ function FeeCalculator() {
         <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-blue-500/30 blur-3xl filter dark:bg-blue-500/20" />
 
         <div className="relative mb-8 flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-purple-500/20 ring-4 ring-white/20 dark:ring-white/10">
-            <Calculator className="h-8 w-8 text-white" />
-          </div>
+          <ColorIcon Icon={Calculator} gradient="from-blue-600 to-purple-600" size="h-16 w-16" shadowColor={accentToShadowColor('purple')} />
           <h3 className="text-3xl font-bold text-slate-900 dark:text-white drop-shadow-sm">Profit-Share Estimator</h3>
         </div>
 

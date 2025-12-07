@@ -7,6 +7,7 @@ type ComplianceBadge = {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   description: string;
+  gradient: string;
 };
 
 const badges: ComplianceBadge[] = [
@@ -14,21 +15,25 @@ const badges: ComplianceBadge[] = [
     icon: Shield,
     label: "Enterprise Security",
     description: "Bank-grade encryption and security protocols",
+    gradient: "from-blue-500 to-cyan-500",
   },
   {
     icon: Lock,
     label: "Data Privacy",
     description: "Your data is never shared or sold",
+    gradient: "from-purple-500 to-pink-500",
   },
   {
     icon: CheckCircle2,
     label: "Compliance Ready",
-    description: "SOC 2 Type II compliant infrastructure",
+    description: "Independent security review in progress; infrastructure follows industry best practices",
+    gradient: "from-emerald-500 to-teal-500",
   },
   {
     icon: Award,
     label: "Industry Leading",
     description: "Trusted by professional traders worldwide",
+    gradient: "from-amber-500 to-orange-500",
   },
 ];
 
@@ -73,8 +78,8 @@ export function TrustCompliance() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 <div className="relative">
-                  <div className="mb-4 inline-flex rounded-xl bg-primary/10 p-3 text-primary">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div className={`mb-4 inline-flex rounded-xl bg-gradient-to-br ${badge.gradient} p-3 shadow-lg`}>
+                    <Icon className="h-6 w-6 text-white drop-shadow-sm" />
                   </div>
                   <h3 className="mb-2 text-lg font-semibold text-foreground">
                     {badge.label}

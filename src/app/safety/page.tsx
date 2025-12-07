@@ -5,6 +5,8 @@ import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { PremiumCard } from "@/components/cards/PremiumCard";
 import { PremiumBlock } from "@/components/blocks/PremiumBlock";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
 
 import { RISK_STATEMENTS } from "@/lib/compliance";
 import {
@@ -25,7 +27,7 @@ import {
   Bell,
 } from "lucide-react";
 import { useMotion } from "@/components/motion/MotionProvider";
-import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
 import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
 import { DefenseDome3D } from "@/components/hero/DefenseDome3D";
 // Icon3D removed - using inline icons with gradient containers instead
@@ -120,7 +122,7 @@ export default function SafetyPage() {
         backgroundOpacity={0.9}
         backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
       >
-        <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <motion.div className="hidden lg:block" initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <PremiumCard variant="glass-primary" accent="emerald" className="w-96 p-6">
             <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Safety & compliance</div>
             <div className="mb-3 text-lg font-bold text-slate-900 dark:text-white">Key controls</div>
@@ -145,24 +147,26 @@ export default function SafetyPage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-14">
             <motion.span
-              initial={{ opacity: 0, y: 10 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="inline-flex items-center rounded-full bg-emerald-100 border border-emerald-200 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 mb-6"
             >
-              <Shield className="mr-2 h-4 w-4" />
+              <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 mr-2">
+                <Shield className="h-3 w-3 text-white" />
+              </div>
               Always Monitoring
             </motion.span>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
+            <motion.h2
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl drop-shadow-sm"
             >
               Real-time Health & Safety
             </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
+            <motion.p
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
@@ -176,7 +180,7 @@ export default function SafetyPage() {
               return (
                 <motion.div
                   key={metric.title}
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  initial={false}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15, duration: 0.5 }}
@@ -185,9 +189,7 @@ export default function SafetyPage() {
                   <PremiumCard variant="glass-primary" accent="emerald" hover={true} className="p-8 h-full glow-multi">
                     <div className="flex flex-col gap-5">
                       <div className="flex items-center gap-4">
-                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg float-animation">
-                          <metric.icon className="h-8 w-8 text-white" />
-                        </div>
+                        <ColorIcon Icon={metric.icon} gradient="from-emerald-500 to-teal-500" size="h-16 w-16" shadowColor={accentToShadowColor('emerald')} />
                         <div className="flex-1">
                           <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{metric.title}</h3>
                         </div>
@@ -206,8 +208,8 @@ export default function SafetyPage() {
           </div>
 
           {/* Additional stats bar */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
@@ -237,14 +239,16 @@ export default function SafetyPage() {
         <Container className="relative z-10">
           <motion.div
             variants={staggerContainer}
-            initial="initial"
+            initial={false}
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             className="mx-auto max-w-7xl space-y-16"
           >
-            <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">
+            <motion.div variants={revealUp} initial={false} whileInView="animate" viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-3xl space-y-6 text-center">
               <span className="inline-flex items-center rounded-full bg-red-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-red-700 dark:bg-red-950/50 dark:text-red-400">
-                <AlertTriangle className="mr-2 h-4 w-4" />
+                <span className="mr-2 flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-orange-500 shadow-sm">
+                  <AlertTriangle className="h-3 w-3 text-white" />
+                </span>
                 Key risks
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -272,8 +276,8 @@ export default function SafetyPage() {
                 <motion.div key={item} custom={index} variants={cardEntrance}>
                   <PremiumCard variant="glass-secondary" accent="emerald" hover={true} className="p-8 h-full">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-red-100 text-red-600 shadow-sm dark:bg-red-900/30 dark:text-red-400">
-                        <AlertTriangle className="h-6 w-6" />
+                      <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-orange-600 shadow-lg shadow-red-500/25">
+                        <AlertTriangle className="h-6 w-6 text-white" />
                       </div>
                       <p className="flex-1 text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">{item}</p>
                     </div>
@@ -291,10 +295,12 @@ export default function SafetyPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
         </div>
         <Container className="relative z-10">
-          <motion.div variants={staggerContainer} initial="initial" whileInView="animate" viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-7xl space-y-16">
+          <motion.div variants={staggerContainer} initial={false} whileInView="animate" viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-7xl space-y-16">
             <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">
               <span className="inline-flex items-center rounded-full bg-amber-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-amber-700 dark:bg-amber-950/50 dark:text-amber-400">
-                <AlertTriangle className="mr-2 h-4 w-4" />
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 mr-2">
+                  <AlertTriangle className="h-3 w-3 text-white" />
+                </div>
                 Fraud red flags
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -312,15 +318,15 @@ export default function SafetyPage() {
                   <motion.div
                     key={signal.text}
                     custom={index}
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                    initial={false}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <PremiumCard variant="glass-secondary" accent="orange" hover={true} className="p-8 h-full">
                       <div className="flex items-start gap-4">
-                        <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-orange-100 text-orange-600 shadow-sm dark:bg-orange-900/30 dark:text-orange-400">
-                          <Icon className="h-7 w-7 text-orange-600 dark:text-orange-400" />
+                        <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-lg shadow-orange-500/30">
+                          <Icon className="h-7 w-7 text-white" />
                         </div>
                         <p className="flex-1 pt-2 text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">{signal.text}</p>
                       </div>
@@ -342,10 +348,12 @@ export default function SafetyPage() {
         </div>
 
         <Container className="relative z-10">
-          <motion.div variants={staggerContainer} initial="initial" whileInView="animate" viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-7xl space-y-16">
+          <motion.div variants={staggerContainer} initial={false} whileInView="animate" viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-7xl space-y-16">
             <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">
               <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
-                <Shield className="mr-2 h-4 w-4" />
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 mr-2">
+                  <Shield className="h-3 w-3 text-white" />
+                </div>
                 Compliance controls
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
@@ -363,20 +371,20 @@ export default function SafetyPage() {
                   <motion.article
                     key={control.name}
                     custom={index}
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <PremiumCard variant="glass-primary" accent="emerald" hover={true} className="p-8 h-full flex flex-col gap-6">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 shadow-sm dark:bg-emerald-900/30 dark:text-emerald-400">
-                        <Icon className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
-                      </div>
+                      <ColorIcon Icon={Icon} gradient={control.gradient} size="h-16 w-16" shadowColor={accentToShadowColor('emerald')} />
                       <h3 className="text-xl font-bold text-slate-900 dark:text-white">{control.name}</h3>
                       <ul className="flex-1 space-y-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                         {control.items.map((item) => (
                           <li key={item} className="flex items-start gap-3">
-                            <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-emerald-600 dark:text-emerald-400" />
+                            <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 shadow-sm">
+                              <CheckCircle2 className="h-3 w-3 text-white" />
+                            </span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -398,7 +406,9 @@ export default function SafetyPage() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
-                    <Activity className="mr-2 h-4 w-4" />
+                    <span className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 mr-2">
+                      <Activity className="h-3 w-3 text-white" />
+                    </span>
                     Live Oversight
                   </span>
                   <h2 className="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">
@@ -415,11 +425,11 @@ export default function SafetyPage() {
                     { title: "Liquidity Scouting", desc: "Orders are routed only to venues with confirmed depth to prevent slippage." },
                     { title: "Drift Monitoring", desc: "AI models are constantly evaluated against baseline performance to detect degradation." }
                   ].map((feature, i) => (
-                    <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+                    <motion.div key={i} initial={false} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                       <PremiumBlock accent="cyan" padding="md">
                         <div className="flex gap-4">
-                          <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                            <Activity className="h-5 w-5" />
+                          <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg shadow-blue-500/25">
+                            <Activity className="h-5 w-5 text-white" />
                           </div>
                           <div>
                             <h3 className="font-bold text-slate-900 dark:text-white">{feature.title}</h3>
@@ -443,7 +453,7 @@ export default function SafetyPage() {
                     </div>
                   </div>
                 </div>
-                <Unified3DBackground variant="research" intensity={0.5} className="opacity-50" />
+                <Unified2DBackground variant="safety" intensity={0.5} className="opacity-50" />
               </div>
             </div>
           </div>

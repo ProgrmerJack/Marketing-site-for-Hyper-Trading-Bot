@@ -1,0 +1,1886 @@
+"use client";
+
+import { Container } from "@hyper/ui";
+import { motion } from "framer-motion";
+import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import { ColorIcon } from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
+import { Zap, Activity, Shield } from "lucide-react";
+
+const pipeline = [
+  { title: "Data acquisition", details: ["Multi-venue market data normalised under 120 ms."], slo: "SLO: Fresh tick <= 150 ms", icon: Activity, gradient: "from-cyan-500 to-blue-500" },
+  { title: "Signal engine", details: ["Model ensembles with guard-railed feature store."], slo: "SLO: Signal latency <= 60 ms", icon: Zap, gradient: "from-purple-500 to-pink-500" },
+  { title: "Risk controller", details: ["Position sizing, leverage caps, correlation checks"], slo: "SLO: Decision log write < 15 ms", icon: Shield, gradient: "from-emerald-500 to-teal-500" },
+  { title: "Execution layer", details: ["Smart order routing with exchange health weighting."], slo: "SLO: Venue submit < 120 ms", icon: Activity, gradient: "from-orange-500 to-red-500" },
+];
+
+const safetyRails = [
+  "No custodial control: the system never takes possession of user funds.",
+  "No discretionary overrides: manual trades cannot bypass risk controller.",
+];
+
+export default function HowItWorksPage() {
+  return (
+    <div className="relative space-y-0">
+      <PageHeaderAnimated
+        eyebrow="System architecture"
+        title="Infrastructure-Based Deployment: 486 Models + 380 Strategies"
+        description="Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates."
+      />
+
+      <section className="relative isolate overflow-hidden py-20 md:py-28">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <motion.p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+              Our Model Factory and Strategy Expander automatically generate configurations; continuous adaptation through performance-based selection.
+            </motion.p>
+
+            <ParallaxSection speed={0.2} className="relative">
+              <div className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4">
+                {pipeline.slice(0, 4).map((stage, index) => {
+                  const Icon = stage.icon;
+                  const gradientClass = stage.gradient;
+                  return (
+                    <div key={stage.title} className="group">
+                      <SpotlightCard className="card-spotlight relative h-full overflow-hidden rounded-2xl p-6">
+                        <div className="mb-6">
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-12 w-12" wrapperClass="" shadowColor={accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : 'purple')} />
+                        </div>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400" aria-hidden>{stage.details[0]}</p>
+                      </SpotlightCard>
+                    </div>
+                  );
+                })}
+              </div>
+            </ParallaxSection>
+          </div>
+        </Container>
+      </section>
+
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="grid gap-6 md:grid-cols-2">
+              {safetyRails.map((rail, index) => (
+                <motion.div key={rail}>
+                  <PremiumCard variant="glass-secondary" accent="emerald" hover={true} className="h-full p-8">
+                    <div className="text-sm">
+                      {rail}
+                    </div>
+                  </PremiumCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
+  );
+}
+"use client";
+
+import { Container } from "@hyper/ui";
+import Link from "next/link";
+import type { Route } from "next";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
+import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { Zap, Shield, Activity, Check } from "lucide-react";
+
+const pipeline = [
+  { title: "Data acquisition", details: ["Multi-venue market data normalized under 120 ms."], slo: "SLO: Fresh tick <= 150 ms", icon: Activity, gradient: "from-cyan-500 to-blue-500" },
+  { title: "Signal engine", details: ["Model ensembles with guard-railed feature store."], slo: "SLO: Signal latency <= 60 ms", icon: Zap, gradient: "from-purple-500 to-pink-500" },
+  { title: "Risk controller", details: ["Position sizing, leverage caps, correlation checks"], slo: "SLO: Decision log write < 15 ms", icon: Shield, gradient: "from-emerald-500 to-teal-500" },
+  { title: "Execution layer", details: ["Smart order routing with exchange health weighting."], slo: "SLO: Venue submit < 120 ms", icon: Activity, gradient: "from-orange-500 to-red-500" },
+];
+
+const safetyRails = [
+  "No custodial control: the system never takes possession of user funds.",
+  "No discretionary overrides: manual trades cannot bypass risk controller.",
+];
+
+export default function HowItWorksPage() {
+  return (
+    <div className="relative">
+      <AuroraBackground variant="trading" intensity={0.5} />
+      <Unified2DBackground variant="how-it-works" intensity={0.6} />
+      <Container className="relative z-10 py-24">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="font-display text-5xl font-bold">Infrastructure-Based Deployment</h1>
+          <p className="mt-4 text-lg text-muted-foreground">Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates.</p>
+
+          <div className="grid gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-4">
+            {pipeline.slice(0, 4).map((stage) => (
+              <SpotlightCard key={stage.title} className="rounded-2xl p-6">
+                <div className="mb-4">
+                  <ColorIcon Icon={stage.icon} gradient={stage.gradient} size="h-12 w-12" shadowColor={accentToShadowColor(stage.gradient.includes('blue') ? 'cyan' : stage.gradient.includes('purple') ? 'purple' : 'emerald')} />
+                </div>
+                <h3 className="text-sm font-bold">{stage.title}</h3>
+                <p className="text-xs text-muted-foreground">{stage.details[0]}</p>
+              </SpotlightCard>
+            ))}
+          </div>
+
+          <div className="mt-12">
+            <div className="grid gap-8 md:grid-cols-2">
+              {pipeline.map((step, index) => (
+                <div key={step.title}>
+                  <PremiumCard variant="glass-secondary" accent={index === 0 ? 'cyan' : index === 1 ? 'purple' : index === 2 ? 'emerald' : 'orange'} className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <ColorIcon Icon={step.icon} gradient={step.gradient} size="h-14 w-14" shadowColor={accentToShadowColor(step.gradient.includes('blue') ? 'cyan' : step.gradient.includes('purple') ? 'purple' : 'emerald')} />
+                      <h3 className="text-2xl font-bold">{step.title}</h3>
+                    </div>
+                    <ul className="text-sm text-muted-foreground">
+                      {step.details.map((d) => (
+                        <li key={d} className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-500" />{d}</li>
+                      ))}
+                    </ul>
+                    <div className="mt-4 text-xs font-bold text-blue-700">{step.slo}</div>
+                  </PremiumCard>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {safetyRails.map((rail) => (
+              <PremiumCard key={rail} variant="glass-secondary" accent="emerald" className="p-6">
+                {rail}
+              </PremiumCard>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </div>
+  );
+}
+"use client";
+
+import { Container } from "@hyper/ui";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import type { Route } from "next";
+import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
+import { MouseFollower } from "@/components/motion/MouseFollower";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
+import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { useMotion } from "@/components/motion/MotionProvider";
+import { Zap, Shield, Activity, Check, ArrowRight } from "lucide-react";
+
+const pipeline = [
+  { title: "Data acquisition", details: ["Multi-venue market data normalised under 120 ms."], slo: "SLO: Fresh tick <= 150 ms", icon: Activity, gradient: "from-cyan-500 to-blue-500" },
+  { title: "Signal engine", details: ["Model ensembles with guard-railed feature store."], slo: "SLO: Signal latency <= 60 ms", icon: Zap, gradient: "from-purple-500 to-pink-500" },
+  { title: "Risk controller", details: ["Position sizing, leverage caps, correlation checks"], slo: "SLO: Decision log write < 15 ms", icon: Shield, gradient: "from-emerald-500 to-teal-500" },
+  { title: "Execution layer", details: ["Smart order routing with exchange health weighting."], slo: "SLO: Venue submit < 120 ms", icon: Activity, gradient: "from-orange-500 to-red-500" },
+];
+
+const safetyRails = [
+  "No custodial control: the system never takes possession of user funds.",
+  "No discretionary overrides: manual trades cannot bypass risk controller.",
+  "Real-time health monitor: 200+ checks on latency, balances, API health, and error spikes.",
+  "Fail closed: if any critical dependency degrades, the engine pauses and surfaces the incident publicly.",
+];
+
+export default function HowItWorksPage() {
+  useMotion();
+
+  return (
+    <div className="relative">
+      <AuroraBackground variant="trading" intensity={0.5} />
+      <section className="relative isolate overflow-hidden py-20 md:py-28">
+        <Unified2DBackground variant="how-it-works" intensity={0.6} />
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <MouseFollower strength={0.7} className="motion-zone">
+              <motion.h1 initial={false} whileInView={{ opacity: 1, y: 0 }} className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl">
+                Infrastructure-Based Deployment: 486 Models + 380 Strategies
+              </motion.h1>
+            </MouseFollower>
+
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl">
+              Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates.
+            </p>
+
+            <div className="relative">
+              <div className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4">
+                {pipeline.slice(0, 4).map((stage, index) => {
+                  const Icon = stage.icon;
+                  const gradientClass = stage.gradient;
+                  const shadow = accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange');
+                  return (
+                    <div key={stage.title} className="group">
+                      <SpotlightCard className="card-spotlight relative h-full overflow-hidden rounded-2xl p-6">
+                        <div className="mb-6">
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-12 w-12" shadowColor={shadow} />
+                        </div>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">{stage.details[0]}</p>
+                      </SpotlightCard>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="mx-auto max-w-3xl space-y-6 text-center">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">The Four-Stage Power Pipeline</h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">Unmatched speed, precision, and intelligent automation working together.</p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              {pipeline.map((step, index) => {
+                const Icon = step.icon;
+                const gradientClass = step.gradient;
+                const accentColor = index === 0 ? "cyan" : index === 1 ? "purple" : index === 2 ? "emerald" : "orange";
+                return (
+                  <div key={step.title} className="h-full">
+                    <PremiumCard variant="glass-secondary" accent={accentColor} hover className="h-full p-8">
+                      <div className="flex items-center gap-4 mb-6">
+                        <ColorIcon Icon={Icon} gradient={gradientClass} size="h-14 w-14" shadowColor={accentToShadowColor(accentColor)} />
+                        <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">{step.title}</h3>
+                      </div>
+                      <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 mb-6">
+                        {step.details.map((detail) => (
+                          <li key={detail} className="flex items-start gap-2"><Check className="mt-0.5 h-4 w-4 flex-none text-emerald-500" /><span>{detail}</span></li>
+                        ))}
+                      </ul>
+                      <div className="rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 shadow-inner dark:from-blue-950/40 dark:to-purple-950/40">
+                        <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">{step.slo}</span>
+                      </div>
+                    </PremiumCard>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="mx-auto max-w-3xl space-y-6 text-center">
+              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">Safety rails</span>
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">Your Capital Protected by Advanced Safety Systems</h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">Multi-layered protection mechanisms ensuring your funds are always secure and trading stays transparent.</p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {safetyRails.map((rail, index) => (
+                <div key={rail} className="h-full">
+                  <PremiumCard variant="glass-secondary" accent="emerald" hover className="flex h-full items-start gap-4 p-8">
+                    <div className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20"><Check className="h-5 w-5 text-white" /></div>
+                    <div className="text-sm">{rail}</div>
+                  </PremiumCard>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
+  );
+}
+"use client";
+
+import { Container } from "@hyper/ui";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import type { Route } from "next";
+import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
+import { MorphingShape } from "@/components/motion/MorphingShape";
+import { MouseFollower } from "@/components/motion/MouseFollower";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
+import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { useMotion } from "@/components/motion/MotionProvider";
+import { Zap, Shield, Activity, Check, ArrowRight } from "lucide-react";
+
+const pipeline = [
+  {
+    title: "Data acquisition",
+    details: [
+      "Multi-venue market data normalised under 120 ms.",
+      "On-chain telemetry, funding, sentiment, and risk-factor feeds.",
+      "Automatic schema validation, replay-on-fail, and backfill checks.",
+    ],
+    slo: "SLO: Fresh tick <= 150 ms, missing feed alert <= 3s.",
+    icon: Activity,
+    gradient: "from-blue-500 to-cyan-500",
+  },
+  {
+    title: "Signal engine",
+    details: [
+      "Model ensembles with guard-railed feature store and drift monitoring.",
+      "Policy-based evaluation: no signal bypasses risk gating.",
+      "Continuous evaluation uses net performance metrics, never gross headline numbers.",
+    ],
+    slo: "SLO: Signal latency <= 60 ms, drift detection < 3 mins.",
+    icon: Zap,
+    gradient: "from-purple-500 to-pink-500",
+  },
+  {
+    title: "Risk controller",
+    details: [
+      "Position sizing, leverage caps, correlation checks, and drawdown envelope.",
+      "Kill-switch monitors venue stability, balance anomalies, and circuit breakers.",
+      "Signed decision log emitted for every accept/deny event.",
+    ],
+    slo: "SLO: Decision log write < 15 ms, fail-closed default.",
+    icon: Shield,
+    gradient: "from-emerald-500 to-teal-500",
+  },
+  {
+    title: "Execution layer",
+    details: [
+      "Smart order routing with exchange health weighting and throttle limits.",
+      "Slippage monitor compares expected vs realised; breaches halt strategy.",
+      "Post-trade reconciliation with venue receipts and simulated testing ledger.",
+    ],
+    slo: "SLO: Venue submit < 120 ms, fill confirmation < 1.5 s.",
+    icon: Activity,
+    gradient: "from-orange-500 to-red-500",
+  },
+];
+
+const safetyRails = [
+  "No custodial control: the system never takes possession of user funds.",
+  "No discretionary overrides: manual trades cannot bypass risk controller.",
+  "Real-time health monitor: 200+ checks on latency, balances, API health, and error spikes.",
+  "Fail closed: if any critical dependency degrades, the engine pauses and surfaces the incident publicly.",
+];
+
+export default function HowItWorksPage() {
+  useMotion();
+
+  return (
+    <div className="relative">
+      <AuroraBackground variant="trading" intensity={0.5} />
+
+      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-purple-950/40 dark:to-indigo-950/40 md:py-32">
+        <Unified2DBackground variant="how-it-works" intensity={0.6} />
+
+        <div className="absolute -left-24 -top-12 opacity-80 dark:opacity-40 pointer-events-none">
+          <MorphingShape size={320} className="motion-zone" color="rgb(var(--accent))" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <motion.span
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex w-fit items-center rounded-full border-2 border-cyan-300 bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/60 dark:text-cyan-300"
+            >
+              System architecture
+            </motion.span>
+
+            <MouseFollower strength={0.7} className="motion-zone">
+              <motion.h1
+                initial={false}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
+              >
+                Infrastructure-Based Deployment: 486 Models + 380 Strategies
+              </motion.h1>
+            </MouseFollower>
+
+            <motion.p
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl"
+            >
+              Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates. Zero manual variant coding. Continuous adaptation through performance-based selection.
+            </motion.p>
+
+            <div className="relative">
+              <div className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4">
+                {pipeline.slice(0, 4).map((stage, index) => {
+                  const Icon = stage.icon;
+                  const gradientClass = index === 0 ? "from-cyan-500 to-blue-500" :
+                    index === 1 ? "from-purple-500 to-pink-500" :
+                      index === 2 ? "from-emerald-500 to-teal-500" :
+                        "from-orange-500 to-red-500";
+                  const shadow = accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange');
+                  return (
+                    <div key={stage.title} className="group">
+                      <SpotlightCard className="card-spotlight relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/50 p-6 backdrop-blur-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/60 motion-zone" spotlightColor="rgba(59, 130, 246, 0.2)">
+                        <div className="mb-6">
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-12 w-12" wrapperClass="" shadowColor={shadow} />
+                        </div>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{stage.details[0]}</p>
+                      </SpotlightCard>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <motion.div
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap items-center justify-center gap-4 pt-4"
+            >
+              <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
+                <div className="inline-block">
+                  <div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
+                    <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+                      <Link
+                        href={"/live-demo" as Route}
+                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
+                      >
+                        <span className="relative z-10">Try live demo</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
+                      </Link>
+                    </StarBorder>
+                  </div>
+                </div>
+              </ClickSpark>
+              <Link
+                href={"/contact" as Route}
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20"
+              >
+                Get started
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Pipeline Section */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.1),transparent_70%)]" />
+          <div className="section-surface" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="mx-auto max-w-3xl space-y-6 text-center">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+                The Four-Stage Power Pipeline
+              </h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Unmatched speed, precision, and intelligent automation working together to deliver superior trading results.
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              {pipeline.map((step, index) => {
+                const Icon = step.icon;
+                const accentColor = index === 0 ? "cyan" : index === 1 ? "purple" : index === 2 ? "emerald" : "orange";
+                const gradientClass = index === 0 ? "from-cyan-500 to-blue-500" : index === 1 ? "from-purple-500 to-pink-500" : index === 2 ? "from-emerald-500 to-teal-500" : "from-orange-500 to-red-500";
+                return (
+                  <motion.div
+                    key={step.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <PremiumCard
+                      variant="glass-secondary"
+                      accent={accentColor}
+                      hover={true}
+                      className="h-full p-8"
+                    >
+                      <div className="flex items-center gap-4 mb-6">
+                        <motion.div
+                          initial={{ scale: 0, rotate: -180 }}
+                          whileInView={{ scale: 1, rotate: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
+                        >
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-14 w-14" wrapperClass="" shadowColor={accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange')} />
+                        </motion.div>
+                        <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
+                          {step.title}
+                        </h3>
+                      </div>
+
+                      <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 mb-6">
+                        {step.details.map((detail, idx) => (
+                          <motion.li
+                            key={detail}
+                            initial={false}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: index * 0.15 + idx * 0.1 }}
+                            className="flex items-start gap-2"
+                          >
+                            <Check className="mt-0.5 h-4 w-4 flex-none text-emerald-500" />
+                            <span>{detail}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+
+                      <div className="rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 shadow-inner dark:from-blue-950/40 dark:to-purple-950/40">
+                        <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">
+                          {step.slo}
+                        </span>
+                      </div>
+                    </PremiumCard>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Safety Rails Section */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
+          <div className="section-surface" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="mx-auto max-w-3xl space-y-6 text-center">
+              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+                Safety rails
+              </span>
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+                Your Capital Protected by Advanced Safety Systems
+              </h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Multi-layered protection mechanisms ensuring your funds are always secure and trading stays transparent.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {safetyRails.map((rail, index) => (
+                <motion.div
+                  key={rail}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="h-full"
+                >
+                  <PremiumCard
+                    variant="glass-secondary"
+                    accent="emerald"
+                    hover={true}
+                    className="flex h-full items-start gap-4 p-8"
+                  >
+                    <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
+
+                    <motion.div
+                      animate={{ opacity: [0.3, 0.7, 0.3] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-400/0 via-emerald-400/10 to-teal-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-emerald-400/0 dark:via-emerald-400/20 dark:to-teal-400/0"
+                    />
+
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.2, type: "spring" }}
+                      className="relative flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20"
+                    >
+                      <Check className="h-5 w-5 text-white" />
+                    </motion.div>
+
+                    <div className="text-sm">
+                      {rail}
+                    </div>
+                  </PremiumCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
+  );
+}
+"use client";
+
+import { Container } from "@hyper/ui";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import type { Route } from "next";
+import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
+import { MorphingShape } from "@/components/motion/MorphingShape";
+import { MouseFollower } from "@/components/motion/MouseFollower";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
+import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { useMotion } from "@/components/motion/MotionProvider";
+import { Zap, Shield, Activity, Check, ArrowRight } from "lucide-react";
+
+const pipeline = [
+  {
+    title: "Data acquisition",
+    details: [
+      "Multi-venue market data normalised under 120 ms.",
+      "On-chain telemetry, funding, sentiment, and risk-factor feeds.",
+      "Automatic schema validation, replay-on-fail, and backfill checks.",
+    ],
+    slo: "SLO: Fresh tick <= 150 ms, missing feed alert <= 3s.",
+    icon: Activity,
+    gradient: "from-blue-500 to-cyan-500",
+  },
+  {
+    title: "Signal engine",
+    details: [
+      "Model ensembles with guard-railed feature store and drift monitoring.",
+      "Policy-based evaluation: no signal bypasses risk gating.",
+      "Continuous evaluation uses net performance metrics, never gross headline numbers.",
+    ],
+    slo: "SLO: Signal latency <= 60 ms, drift detection < 3 mins.",
+    icon: Zap,
+    gradient: "from-purple-500 to-pink-500",
+  },
+  {
+    title: "Risk controller",
+    details: [
+      "Position sizing, leverage caps, correlation checks, and drawdown envelope.",
+      "Kill-switch monitors venue stability, balance anomalies, and circuit breakers.",
+      "Signed decision log emitted for every accept/deny event.",
+    ],
+    slo: "SLO: Decision log write < 15 ms, fail-closed default.",
+    icon: Shield,
+    gradient: "from-emerald-500 to-teal-500",
+  },
+  {
+    title: "Execution layer",
+    details: [
+      "Smart order routing with exchange health weighting and throttle limits.",
+      "Slippage monitor compares expected vs realised; breaches halt strategy.",
+      "Post-trade reconciliation with venue receipts and simulated testing ledger.",
+    ],
+    slo: "SLO: Venue submit < 120 ms, fill confirmation < 1.5 s.",
+    icon: Activity,
+    gradient: "from-orange-500 to-red-500",
+  },
+];
+
+const safetyRails = [
+  "No custodial control: the system never takes possession of user funds.",
+  "No discretionary overrides: manual trades cannot bypass risk controller.",
+  "Real-time health monitor: 200+ checks on latency, balances, API health, and error spikes.",
+  "Fail closed: if any critical dependency degrades, the engine pauses and surfaces the incident publicly.",
+];
+
+export default function HowItWorksPage() {
+  useMotion();
+
+  return (
+    <div className="relative">
+      <AuroraBackground variant="trading" intensity={0.5} />
+
+      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-purple-950/40 dark:to-indigo-950/40 md:py-32">
+        <Unified2DBackground variant="how-it-works" intensity={0.6} />
+
+        <div className="absolute -left-24 -top-12 opacity-80 dark:opacity-40 pointer-events-none">
+          <MorphingShape size={320} className="motion-zone" color="rgb(var(--accent))" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <motion.span
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex w-fit items-center rounded-full border-2 border-cyan-300 bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/60 dark:text-cyan-300"
+            >
+              System architecture
+            </motion.span>
+
+            <MouseFollower strength={0.7} className="motion-zone">
+              <motion.h1
+                initial={false}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
+              >
+                Infrastructure-Based Deployment: 486 Models + 380 Strategies
+              </motion.h1>
+            </MouseFollower>
+
+            <motion.p
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl"
+            >
+              Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates. Zero manual variant coding. Continuous adaptation through performance-based selection.
+            </motion.p>
+
+            <div className="relative">
+              <div className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4">
+                {pipeline.slice(0, 4).map((stage, index) => {
+                  const Icon = stage.icon;
+                  const gradientClass = index === 0 ? "from-cyan-500 to-blue-500" :
+                    index === 1 ? "from-purple-500 to-pink-500" :
+                      index === 2 ? "from-emerald-500 to-teal-500" :
+                        "from-orange-500 to-red-500";
+                  const shadow = accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange');
+                  return (
+                    <div key={stage.title} className="group">
+                      <SpotlightCard className="card-spotlight relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/50 p-6 backdrop-blur-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/60 motion-zone" spotlightColor="rgba(59, 130, 246, 0.2)">
+                        <div className="mb-6">
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-12 w-12" wrapperClass="" shadowColor={shadow} />
+                        </div>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{stage.details[0]}</p>
+                      </SpotlightCard>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <motion.div
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap items-center justify-center gap-4 pt-4"
+            >
+              <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
+                <div className="inline-block">
+                  <div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
+                    <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+                      <Link
+                        href={"/live-demo" as Route}
+                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
+                      >
+                        <span className="relative z-10">Try live demo</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
+                      </Link>
+                    </StarBorder>
+                  </div>
+                </div>
+              </ClickSpark>
+              <Link
+                href={"/contact" as Route}
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20"
+              >
+                Get started
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Pipeline Section */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.1),transparent_70%)]" />
+          <div className="section-surface" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="mx-auto max-w-3xl space-y-6 text-center">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+                The Four-Stage Power Pipeline
+              </h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Unmatched speed, precision, and intelligent automation working together to deliver superior trading results.
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              {pipeline.map((step, index) => {
+                const Icon = step.icon;
+                const accentColor = index === 0 ? "cyan" : index === 1 ? "purple" : index === 2 ? "emerald" : "orange";
+                const gradientClass = index === 0 ? "from-cyan-500 to-blue-500" : index === 1 ? "from-purple-500 to-pink-500" : index === 2 ? "from-emerald-500 to-teal-500" : "from-orange-500 to-red-500";
+                return (
+                  <motion.div
+                    key={step.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <PremiumCard
+                      variant="glass-secondary"
+                      accent={accentColor}
+                      hover={true}
+                      className="h-full p-8"
+                    >
+                      <div className="flex items-center gap-4 mb-6">
+                        <motion.div
+                          initial={{ scale: 0, rotate: -180 }}
+                          whileInView={{ scale: 1, rotate: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
+                        >
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-14 w-14" wrapperClass="" shadowColor={accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange')} />
+                        </motion.div>
+                        <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
+                          {step.title}
+                        </h3>
+                      </div>
+
+                      <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 mb-6">
+                        {step.details.map((detail, idx) => (
+                          <motion.li
+                            key={detail}
+                            initial={false}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: index * 0.15 + idx * 0.1 }}
+                            className="flex items-start gap-2"
+                          >
+                            <Check className="mt-0.5 h-4 w-4 flex-none text-emerald-500" />
+                            <span>{detail}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+
+                      <div className="rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 shadow-inner dark:from-blue-950/40 dark:to-purple-950/40">
+                        <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">
+                          {step.slo}
+                        </span>
+                      </div>
+                    </PremiumCard>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Safety Rails Section */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
+          <div className="section-surface" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="mx-auto max-w-3xl space-y-6 text-center">
+              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+                Safety rails
+              </span>
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+                Your Capital Protected by Advanced Safety Systems
+              </h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Multi-layered protection mechanisms ensuring your funds are always secure and trading stays transparent.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {safetyRails.map((rail, index) => (
+                <motion.div
+                  key={rail}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="h-full"
+                >
+                  <PremiumCard
+                    variant="glass-secondary"
+                    accent="emerald"
+                    hover={true}
+                    className="flex h-full items-start gap-4 p-8"
+                  >
+                    <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
+
+                    <motion.div
+                      animate={{ opacity: [0.3, 0.7, 0.3] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-400/0 via-emerald-400/10 to-teal-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-emerald-400/0 dark:via-emerald-400/20 dark:to-teal-400/0"
+                    />
+
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.2, type: "spring" }}
+                      className="relative flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20"
+                    >
+                      <Check className="h-5 w-5 text-white" />
+                    </motion.div>
+
+                    <div className="text-sm">
+                      {rail}
+                    </div>
+                  </PremiumCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
+  );
+}
+"use client";
+
+import { Container } from "@hyper/ui";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import type { Route } from "next";
+import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
+import { MorphingShape } from "@/components/motion/MorphingShape";
+import { MouseFollower } from "@/components/motion/MouseFollower";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
+import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { useMotion } from "@/components/motion/MotionProvider";
+import { Zap, Shield, Activity, Check, ArrowRight } from "lucide-react";
+
+const pipeline = [
+  {
+    title: "Data acquisition",
+    details: [
+      "Multi-venue market data normalised under 120 ms.",
+      "On-chain telemetry, funding, sentiment, and risk-factor feeds.",
+      "Automatic schema validation, replay-on-fail, and backfill checks.",
+    ],
+    slo: "SLO: Fresh tick <= 150 ms, missing feed alert <= 3s.",
+    icon: Activity,
+    gradient: "from-blue-500 to-cyan-500",
+  },
+  {
+    title: "Signal engine",
+    details: [
+      "Model ensembles with guard-railed feature store and drift monitoring.",
+      "Policy-based evaluation: no signal bypasses risk gating.",
+      "Continuous evaluation uses net performance metrics, never gross headline numbers.",
+    ],
+    slo: "SLO: Signal latency <= 60 ms, drift detection < 3 mins.",
+    icon: Zap,
+    gradient: "from-purple-500 to-pink-500",
+  },
+  {
+    title: "Risk controller",
+    details: [
+      "Position sizing, leverage caps, correlation checks, and drawdown envelope.",
+      "Kill-switch monitors venue stability, balance anomalies, and circuit breakers.",
+      "Signed decision log emitted for every accept/deny event.",
+    ],
+    slo: "SLO: Decision log write < 15 ms, fail-closed default.",
+    icon: Shield,
+    gradient: "from-emerald-500 to-teal-500",
+  },
+  {
+    title: "Execution layer",
+    details: [
+      "Smart order routing with exchange health weighting and throttle limits.",
+      "Slippage monitor compares expected vs realised; breaches halt strategy.",
+      "Post-trade reconciliation with venue receipts and simulated testing ledger.",
+    ],
+    slo: "SLO: Venue submit < 120 ms, fill confirmation < 1.5 s.",
+    icon: Activity,
+    gradient: "from-orange-500 to-red-500",
+  },
+];
+
+const safetyRails = [
+  "No custodial control: the system never takes possession of user funds.",
+  "No discretionary overrides: manual trades cannot bypass risk controller.",
+  "Real-time health monitor: 200+ checks on latency, balances, API health, and error spikes.",
+  "Fail closed: if any critical dependency degrades, the engine pauses and surfaces the incident publicly.",
+];
+
+export default function HowItWorksPage() {
+  useMotion();
+
+  return (
+    <div className="relative">
+      <AuroraBackground variant="trading" intensity={0.5} />
+
+      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-purple-950/40 dark:to-indigo-950/40 md:py-32">
+        <Unified2DBackground variant="how-it-works" intensity={0.6} />
+
+        <div className="absolute -left-24 -top-12 opacity-80 dark:opacity-40 pointer-events-none">
+          <MorphingShape size={320} className="motion-zone" color="rgb(var(--accent))" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <motion.span
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex w-fit items-center rounded-full border-2 border-cyan-300 bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/60 dark:text-cyan-300"
+            >
+              System architecture
+            </motion.span>
+
+            <MouseFollower strength={0.7} className="motion-zone">
+              <motion.h1
+                initial={false}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
+              >
+                Infrastructure-Based Deployment: 486 Models + 380 Strategies
+              </motion.h1>
+            </MouseFollower>
+
+            <motion.p
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl"
+            >
+              Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates. Zero manual variant coding. Continuous adaptation through performance-based selection.
+            </motion.p>
+
+            <div className="relative">
+              <div className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4">
+                {pipeline.slice(0, 4).map((stage, index) => {
+                  const Icon = stage.icon;
+                  const gradientClass = index === 0 ? "from-cyan-500 to-blue-500" :
+                    index === 1 ? "from-purple-500 to-pink-500" :
+                      index === 2 ? "from-emerald-500 to-teal-500" :
+                        "from-orange-500 to-red-500";
+                  const shadow = accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange');
+                  return (
+                    <div key={stage.title} className="group">
+                      <SpotlightCard className="card-spotlight relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/50 p-6 backdrop-blur-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/60 motion-zone" spotlightColor="rgba(59, 130, 246, 0.2)">
+                        <div className="mb-6">
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-12 w-12" wrapperClass="" shadowColor={shadow} />
+                        </div>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{stage.details[0]}</p>
+                      </SpotlightCard>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <motion.div
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap items-center justify-center gap-4 pt-4"
+            >
+              <ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
+                <div className="inline-block">
+                  <div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
+                    <StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+                      <Link
+                        href={"/live-demo" as Route}
+                        className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
+                      >
+                        <span className="relative z-10">Try live demo</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
+                      </Link>
+                    </StarBorder>
+                  </div>
+                </div>
+              </ClickSpark>
+              <Link
+                href={"/contact" as Route}
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20"
+              >
+                Get started
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+                    </motion.div>
+              </div>
+        </Container>
+      </section>
+
+      {/* Pipeline Section */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.1),transparent_70%)]" />
+          <div className="section-surface" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="mx-auto max-w-3xl space-y-6 text-center">
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+                The Four-Stage Power Pipeline
+              </h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Unmatched speed, precision, and intelligent automation working together to deliver superior trading results.
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              {pipeline.map((step, index) => {
+                const Icon = step.icon;
+                const accentColor = index === 0 ? "cyan" : index === 1 ? "purple" : index === 2 ? "emerald" : "orange";
+                const gradientClass = index === 0 ? "from-cyan-500 to-blue-500" : index === 1 ? "from-purple-500 to-pink-500" : index === 2 ? "from-emerald-500 to-teal-500" : "from-orange-500 to-red-500";
+                return (
+                  <motion.div
+                    key={step.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <PremiumCard
+                      variant="glass-secondary"
+                      accent={accentColor}
+                      hover={true}
+                      className="h-full p-8"
+                    >
+                      <div className="flex items-center gap-4 mb-6">
+                        <motion.div
+                          initial={{ scale: 0, rotate: -180 }}
+                          whileInView={{ scale: 1, rotate: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
+                        >
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-14 w-14" wrapperClass="" shadowColor={accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange')} />
+                        </motion.div>
+                        <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
+                          {step.title}
+                        </h3>
+                      </div>
+
+                      <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 mb-6">
+                        {step.details.map((detail, idx) => (
+                          <motion.li
+                            key={detail}
+                            initial={false}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: index * 0.15 + idx * 0.1 }}
+                            className="flex items-start gap-2"
+                          >
+                            <Check className="mt-0.5 h-4 w-4 flex-none text-emerald-500" />
+                            <span>{detail}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+
+                      <div className="rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 shadow-inner dark:from-blue-950/40 dark:to-purple-950/40">
+                        <span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">
+                          {step.slo}
+                        </span>
+                      </div>
+                    </PremiumCard>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Safety Rails Section */}
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
+          <div className="section-surface" />
+        </div>
+
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="mx-auto max-w-3xl space-y-6 text-center">
+              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+                Safety rails
+              </span>
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+                Your Capital Protected by Advanced Safety Systems
+              </h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Multi-layered protection mechanisms ensuring your funds are always secure and trading stays transparent.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {safetyRails.map((rail, index) => (
+                <motion.div
+                  key={rail}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="h-full"
+                >
+                  <PremiumCard
+                    variant="glass-secondary"
+                    accent="emerald"
+                    hover={true}
+                    className="flex h-full items-start gap-4 p-8"
+                  >
+                    <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
+
+                    <motion.div
+                      animate={{ opacity: [0.3, 0.7, 0.3] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-400/0 via-emerald-400/10 to-teal-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-emerald-400/0 dark:via-emerald-400/20 dark:to-teal-400/0"
+                    />
+
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.2, type: "spring" }}
+                      className="relative flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20"
+                    >
+                      <Check className="h-5 w-5 text-white" />
+                    </motion.div>
+
+                    <div className="text-sm">
+                      {rail}
+                    </div>
+                  </PremiumCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
+  );
+}
+"use client";
+
+import { Container } from "@hyper/ui";
+import { motion } from "framer-motion";
+import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
+import { Zap, Activity, Shield } from "lucide-react";
+
+const pipeline = [
+  { title: "Data acquisition", details: ["Multi-venue market data normalized under 120 ms."], slo: "SLO: Fresh tick <= 150 ms", icon: Activity, gradient: "from-cyan-500 to-blue-500" },
+  { title: "Signal engine", details: ["Model ensembles with guard-railed feature store."], slo: "SLO: Signal latency <= 60 ms", icon: Zap, gradient: "from-purple-500 to-pink-500" },
+  { title: "Risk controller", details: ["Position sizing, leverage caps, correlation checks"], slo: "SLO: Decision log write < 15 ms", icon: Shield, gradient: "from-emerald-500 to-teal-500" },
+  { title: "Execution layer", details: ["Smart order routing with exchange health weighting."], slo: "SLO: Venue submit < 120 ms", icon: Activity, gradient: "from-orange-500 to-red-500" },
+];
+
+const safetyRails = [
+  "No custodial control: the system never takes possession of user funds.",
+  "No discretionary overrides: manual trades cannot bypass risk controller.",
+];
+
+export default function HowItWorksPage() {
+  return (
+    <div className="relative space-y-0">
+      <PageHeaderAnimated
+        eyebrow="System architecture"
+        title="Infrastructure-Based Deployment: 486 Models + 380 Strategies"
+        description="Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates."
+      />
+
+      <section className="relative isolate overflow-hidden py-20 md:py-28">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <motion.p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+              Our Model Factory and Strategy Expander automatically generate configurations; continuous adaptation through performance-based selection.
+            </motion.p>
+
+            <div className="relative">
+              <div className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4">
+                {pipeline.slice(0, 4).map((stage, index) => {
+                  const Icon = stage.icon;
+                  const gradientClass = stage.gradient;
+                  const shadow = accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange');
+                  return (
+                    <div key={stage.title} className="group">
+                      <SpotlightCard className="card-spotlight relative h-full overflow-hidden rounded-2xl p-6">
+                        <div className="mb-6">
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-12 w-12" wrapperClass="" shadowColor={shadow} />
+                        </div>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400" aria-hidden>{stage.details[0]}</p>
+                      </SpotlightCard>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="grid gap-6 md:grid-cols-2">
+              {safetyRails.map((rail) => (
+                <motion.div key={rail}>
+                  <PremiumCard variant="glass-secondary" accent="emerald" hover={true} className="h-full p-8">
+                    <div className="text-sm">{rail}</div>
+                  </PremiumCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
+  );
+}
+"use client";
+
+import { Container } from "@hyper/ui";
+import { motion } from "framer-motion";
+import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import { ColorIcon } from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
+import { Zap, Activity, Shield } from "lucide-react";
+
+const pipeline = [
+  { title: "Data acquisition", details: ["Multi-venue market data normalised under 120 ms."], slo: "SLO: Fresh tick <= 150 ms", icon: Activity, gradient: "from-cyan-500 to-blue-500" },
+  { title: "Signal engine", details: ["Model ensembles with guard-railed feature store."], slo: "SLO: Signal latency <= 60 ms", icon: Zap, gradient: "from-purple-500 to-pink-500" },
+  { title: "Risk controller", details: ["Position sizing, leverage caps, correlation checks"], slo: "SLO: Decision log write < 15 ms", icon: Shield, gradient: "from-emerald-500 to-teal-500" },
+  { title: "Execution layer", details: ["Smart order routing with exchange health weighting."], slo: "SLO: Venue submit < 120 ms", icon: Activity, gradient: "from-orange-500 to-red-500" },
+];
+
+const safetyRails = [
+  "No custodial control: the system never takes possession of user funds.",
+  "No discretionary overrides: manual trades cannot bypass risk controller.",
+];
+
+export default function HowItWorksPage() {
+  return (
+    <div className="relative space-y-0">
+      <PageHeaderAnimated
+        eyebrow="System architecture"
+        title="Infrastructure-Based Deployment: 486 Models + 380 Strategies"
+        description="Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates."
+      />
+
+      <section className="relative isolate overflow-hidden py-20 md:py-28">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <motion.p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+              Our Model Factory and Strategy Expander automatically generate configurations; continuous adaptation through performance-based selection.
+            </motion.p>
+
+            <ParallaxSection speed={0.2} className="relative">
+              <div className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4">
+                {pipeline.slice(0, 4).map((stage, index) => {
+                  const Icon = stage.icon;
+                  const gradientClass = stage.gradient;
+                  return (
+                    <div key={stage.title} className="group">
+                      <SpotlightCard className="card-spotlight relative h-full overflow-hidden rounded-2xl p-6">
+                        <div className="mb-6">
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-12 w-12" wrapperClass="" shadowColor={accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : 'purple')} />
+                        </div>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400" aria-hidden>{stage.details[0]}</p>
+                      </SpotlightCard>
+                    </div>
+                  );
+                })}
+              </div>
+            </ParallaxSection>
+          </div>
+        </Container>
+      </section>
+
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="grid gap-6 md:grid-cols-2">
+              {safetyRails.map((rail, index) => (
+                <motion.div key={rail}>
+                  <PremiumCard variant="glass-secondary" accent="emerald" hover={true} className="h-full p-8">
+                    <div className="text-sm">
+                      {rail}
+                    </div>
+                  </PremiumCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
+  );
+}
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import type { Route } from "next";
+import { Container } from "@hyper/ui";
+import { SpotlightCard, ClickSpark, StarBorder } from "@/components/reactbits/dynamic";
+import { MorphingShape } from "@/components/motion/MorphingShape";
+import { MouseFollower } from "@/components/motion/MouseFollower";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
+
+// No long-3D icons - using 2D gradient icons for better accessibility
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
+import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { useMotion } from "@/components/motion/MotionProvider";
+import { Zap, Shield, Activity, Check, ArrowRight } from "lucide-react";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+
+const pipeline = [
+	{
+		title: "Data acquisition",
+		details: [
+			"Multi-venue market data normalised under 120 ms.",
+			"On-chain telemetry, funding, sentiment, and risk-factor feeds.",
+			"Automatic schema validation, replay-on-fail, and backfill checks.",
+		],
+		slo: "SLO: Fresh tick <= 150 ms, missing feed alert <= 3s.",
+		icon: Activity,
+		gradient: "from-blue-500 to-cyan-500",
+	},
+	{
+		title: "Signal engine",
+		details: [
+			"Model ensembles with guard-railed feature store and drift monitoring.",
+			"Policy-based evaluation: no signal bypasses risk gating.",
+			"Continuous evaluation uses net performance metrics, never gross headline numbers.",
+		],
+		slo: "SLO: Signal latency <= 60 ms, drift detection < 3 mins.",
+		icon: Zap,
+		gradient: "from-purple-500 to-pink-500",
+	},
+	{
+		title: "Risk controller",
+		details: [
+			"Position sizing, leverage caps, correlation checks, and drawdown envelope.",
+			"Kill-switch monitors venue stability, balance anomalies, and circuit breakers.",
+			"Signed decision log emitted for every accept/deny event.",
+		],
+		slo: "SLO: Decision log write < 15 ms, fail-closed default.",
+		icon: Shield,
+		gradient: "from-emerald-500 to-teal-500",
+	},
+	{
+		title: "Execution layer",
+		details: [
+			"Smart order routing with exchange health weighting and throttle limits.",
+			"Slippage monitor compares expected vs realised; breaches halt strategy.",
+			"Post-trade reconciliation with venue receipts and simulated testing ledger.",
+		],
+		slo: "SLO: Venue submit < 120 ms, fill confirmation < 1.5 s.",
+		icon: Activity,
+		gradient: "from-orange-500 to-red-500",
+	},
+];
+
+const safetyRails = [
+	"No custodial control: the system never takes possession of user funds.",
+	"No discretionary overrides: manual trades cannot bypass risk controller.",
+	"Real-time health monitor: 200+ checks on latency, balances, API health, and error spikes.",
+	"Fail closed: if any critical dependency degrades, the engine pauses and surfaces the incident publicly.",
+];
+
+export default function HowItWorksPage() {
+	// Motion toggles are handled globally; avoid local destructuring when unused
+	useMotion();
+
+	return (
+		<div className="relative">
+			{/* Global Aurora Background */}
+			<AuroraBackground variant="trading" intensity={0.5} />
+
+			{/* Hero Section - Vibrant purple/indigo theme */}
+			<section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-purple-950/40 dark:to-indigo-950/40 md:py-32">
+				<Unified2DBackground variant="how-it-works" intensity={0.6} />
+
+				<div className="absolute -left-24 -top-12 opacity-80 dark:opacity-40 pointer-events-none">
+					<MorphingShape size={320} className="motion-zone" color="rgb(var(--accent))" />
+				</div>
+
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-4xl space-y-8 text-center">
+						<motion.span
+							initial={false}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, amount: 0.3 }}
+							transition={{ duration: 0.6 }}
+							className="inline-flex w-fit items-center rounded-full border-2 border-cyan-300 bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/60 dark:text-cyan-300"
+						>
+							System architecture
+						</motion.span>
+						<MouseFollower strength={0.7} className="motion-zone">
+							<motion.h1
+								initial={false}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, amount: 0.3 }}
+								transition={{ duration: 0.6, delay: 0.1 }}
+								className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
+							>
+								Infrastructure-Based Deployment: 486 Models + 380 Strategies
+							</motion.h1>
+						</MouseFollower>
+						<motion.p
+							initial={false}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, amount: 0.3 }}
+							transition={{ duration: 0.6, delay: 0.2 }}
+							className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl"
+						>
+							Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates. Zero manual variant coding. Continuous adaptation through performance-based selection.*
+						</motion.p>
+
+						{/* Pipeline Preview Cards - Using 2D icons with gradient backgrounds */}
+						<div className="relative">
+							<div className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4">
+								{pipeline.slice(0, 4).map((stage, index) => {
+									const Icon = stage.icon;
+									const gradientClass = index === 0 ? "from-cyan-500 to-blue-500" :
+										index === 1 ? "from-purple-500 to-pink-500" :
+											index === 2 ? "from-emerald-500 to-teal-500" :
+												"from-orange-500 to-red-500";
+									const shadow = accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange');
+									return (
+										<div key={stage.title} className="group">
+											<SpotlightCard className="card-spotlight relative h-full overflow-hidden rounded-2xl border border-slate-200/60 bg-white/50 p-6 backdrop-blur-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:border-slate-700/50 dark:bg-slate-900/60 motion-zone" spotlightColor="rgba(59, 130, 246, 0.2)">
+												<div className="mb-6">
+													<ColorIcon Icon={Icon} gradient={gradientClass} size="h-12 w-12" wrapperClass="" shadowColor={shadow} />
+												</div>
+												<h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+												<p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{stage.details[0]}</p>
+											</SpotlightCard>
+										</div>
+									);
+								})}
+							</div>
+						</div>
+
+						{/* CTA Buttons */}
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.6, delay: 0.5 }}
+							className="flex flex-wrap items-center justify-center gap-4 pt-4"
+						>
+							<ClickSpark sparkColor="rgba(59, 130, 246, 0.6)" sparkCount={12} sparkRadius={32} sparkSize={10}>
+								<div className="inline-block">
+									<div className="rounded-full [&>div]:!bg-transparent [&>div]:!shadow-none [&>div]:dark:!bg-transparent">
+										<StarBorder as="div" color="rgb(59, 130, 246)" className="rounded-full !bg-transparent !shadow-none dark:!bg-transparent" speed="3s">
+											<Link
+												href={("/live-demo" as Route)}
+												className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 motion-zone"
+											>
+												<span className="relative z-10">Try live demo</span>
+												<div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-0 transition-opacity group-hover:opacity-100" />
+											</Link>
+										</StarBorder>
+									</div>
+								</div>
+							</ClickSpark>
+							<Link
+								href={("/contact" as Route)}
+								className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-7 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent hover:border-accent-foreground/20"
+							>
+								Get started
+								<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+							</Link>
+						</motion.div>
+					</div>
+				</Container>
+			</section>
+
+			{/* Pipeline Section */}
+			<section className="relative isolate overflow-hidden py-24 md:py-32">
+				{/* Background */}
+				<div className="pointer-events-none absolute inset-0 -z-10">
+					{/* Per-section AnimatedBackground removed; using UnifiedBackground instead */}
+					<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.1),transparent_70%)]" />
+					<div className="section-surface" />
+				</div>
+
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-7xl space-y-16">
+						<div className="mx-auto max-w-3xl space-y-6 text-center">
+							<h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+								The Four-Stage Power Pipeline
+							</h2>
+							<p className="text-lg leading-relaxed text-muted-foreground">
+								Unmatched speed, precision, and intelligent automation working together to deliver superior trading results.
+							</p>
+						</div>
+
+						<div className="grid gap-8 md:grid-cols-2">
+							{pipeline.map((step, index) => {
+								const Icon = step.icon;
+								const accentColor =
+									index === 0 ? "cyan" :
+										index === 1 ? "purple" :
+											index === 2 ? "emerald" : "orange";
+								const gradientClass = index === 0 ? "from-cyan-500 to-blue-500" :
+									index === 1 ? "from-purple-500 to-pink-500" :
+										index === 2 ? "from-emerald-500 to-teal-500" :
+											"from-orange-500 to-red-500";
+								return (
+									<motion.div
+										key={step.title}
+										initial={{ opacity: 0, y: 20 }}
+										whileInView={{ opacity: 1, y: 0 }}
+										viewport={{ once: true }}
+										transition={{ delay: index * 0.1 }}
+										className="h-full"
+									>
+										<PremiumCard
+											variant="glass-secondary"
+											accent={accentColor}
+											hover={true}
+											className="h-full p-8"
+										>
+											<div className="flex items-center gap-4 mb-6">
+												<motion.div
+													initial={{ scale: 0, rotate: -180 }}
+													whileInView={{ scale: 1, rotate: 0 }}
+													viewport={{ once: true }}
+													transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
+												>
+													<ColorIcon Icon={Icon} gradient={gradientClass} size="h-14 w-14" wrapperClass="" shadowColor={accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : gradientClass.includes('purple') ? 'purple' : gradientClass.includes('emerald') ? 'emerald' : 'orange')} />
+												</motion.div>
+												<h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
+													{step.title}
+												</h3>
+											</div>
+
+											<ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 mb-6">
+												{step.details.map((detail, idx) => (
+													<motion.li
+														initial={false}
+														whileInView={{ opacity: 1, y: 0 }}
+														viewport={{ once: true, amount: 0.3 }}
+														whileInView={{ opacity: 1, x: 0 }}
+														viewport={{ once: true }}
+														transition={{ duration: 0.4, delay: index * 0.15 + idx * 0.1 }}
+														className="flex items-start gap-2"
+													>
+														<Check className="mt-0.5 h-4 w-4 flex-none text-emerald-500" />
+														<span>{detail}</span>
+													</motion.li>
+												))}
+											</ul>
+
+											<div className="rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 shadow-inner dark:from-blue-950/40 dark:to-purple-950/40">
+												<span className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-300">
+													{step.slo}
+												</span>
+											</div>
+										</PremiumCard>
+									</motion.div>
+						</div>
+					</div>
+				</Container>
+			</section>
+
+			{/* Safety Rails Section */}
+			<section className="relative isolate overflow-hidden py-24 md:py-32">
+				{/* Background */}
+				<div className="pointer-events-none absolute inset-0 -z-10">
+					{/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
+					<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.1),transparent_70%)]" />
+					<div className="section-surface" />
+				</div>
+
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-7xl space-y-16">
+						<div className="mx-auto max-w-3xl space-y-6 text-center">
+							<span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+								Safety rails
+							</span>
+							<h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+								Your Capital Protected by Advanced Safety Systems
+							</h2>
+							<p className="text-lg leading-relaxed text-muted-foreground">
+								Multi-layered protection mechanisms ensuring your funds are always secure and trading stays transparent.
+							</p>
+						</div>
+
+						<div className="grid gap-6 md:grid-cols-2">
+							{safetyRails.map((rail, index) => (
+								<motion.div
+									key={rail}
+									initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+									whileInView={{ opacity: 1, x: 0 }}
+									viewport={{ once: true, amount: 0.3 }}
+									transition={{ duration: 0.6, delay: index * 0.1 }}
+									className="h-full"
+								>
+									<PremiumCard
+										variant="glass-secondary"
+										accent="emerald"
+										hover={true}
+										className="flex h-full items-start gap-4 p-8"
+									>
+										<div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
+
+										{/* Pulsing glow effect */}
+										<motion.div
+											animate={{ opacity: [0.3, 0.7, 0.3] }}
+											transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+											className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-400/0 via-emerald-400/10 to-teal-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-emerald-400/0 dark:via-emerald-400/20 dark:to-teal-400/0"
+										/>
+
+										<motion.div
+											initial={{ scale: 0 }}
+											whileInView={{ scale: 1 }}
+											viewport={{ once: true }}
+											transition={{ duration: 0.5, delay: index * 0.1 + 0.2, type: "spring" }}
+											className="relative flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20"
+										>
+											<Check className="h-5 w-5 text-white" />
+										</motion.div>
+										</PremiumCard>
+									</motion.div>
+							))}
+						</div>
+					</div>
+				</Container>
+			</section>
+
+			{/* Performance Metrics Section */}
+			<section className="relative isolate overflow-hidden py-24 md:py-32">
+				{/* Background */}
+				<div className="pointer-events-none absolute inset-0 -z-10">
+					{/* Per-section AnimatedBackground removed in favor of UnifiedBackground */}
+					<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.1),transparent_70%)]" />
+					<div className="section-surface" />
+				</div>
+
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-7xl space-y-16">
+						<div className="mx-auto max-w-3xl space-y-6 text-center">
+							<h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+								Industry-Leading Performance Metrics
+							</h2>
+							<p className="text-lg leading-relaxed text-muted-foreground">
+								Exceptional speed and reliability metrics that set new standards in automated crypto trading.*
+							</p>
+						</div>
+
+						<motion.div
+							initial={{ opacity: 0, y: 40 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.8 }}
+						>
+							<SpotlightCard
+								className="group relative overflow-hidden rounded-3xl border border-white/20 bg-white/40 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:shadow-3xl hover:border-purple-400/40 dark:border-white/10 dark:bg-slate-900/40 dark:hover:border-purple-400/30"
+								spotlightColor="rgba(139, 92, 246, 0.2)"
+							>
+								{/* Vibrant Gradient overlay */}
+								<div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-indigo-500/5 dark:from-purple-500/10 dark:to-indigo-500/10" />
+
+								{/* Animated glow effect */}
+								<div className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-br from-purple-400/0 via-purple-400/10 to-indigo-400/0 opacity-0 blur-xl transition-opacity group-hover:opacity-100 dark:from-purple-400/0 dark:via-purple-400/15 dark:to-indigo-400/0" />
+
+								{/* Animated gradient overlay on hover */}
+								<motion.div
+									initial={{ opacity: 0 }}
+									whileHover={{ opacity: 1 }}
+									transition={{ duration: 0.3 }}
+									className="pointer-events-none absolute inset-0 bg-gradient-to-r from-purple-500/0 via-indigo-500/5 to-purple-500/0 dark:via-indigo-500/10"
+								/>
+
+								<div className="relative overflow-x-auto">
+									<table className="w-full text-left text-sm border-collapse">
+										<thead>
+											<tr className="border-b border-white/20 bg-white/50 shadow-sm dark:bg-slate-800/50 dark:border-white/10">
+												<th className="p-6 font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-xs">Metric</th>
+												<th className="p-6 font-bold text-purple-700 dark:text-purple-300 uppercase tracking-wider text-xs">Target (SLO)</th>
+												<th className="p-6 font-bold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider text-xs">Current (Demo)</th>
+												<th className="p-6 font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-xs">Monitoring</th>
+											</tr>
+										</thead>
+										<tbody>
+											{[
+												["Data Ingestion Latency (p95)", "<150 ms", "126 ms", "Real-time histogram"],
+												["Signal Processing (p95)", "<60 ms", "43 ms", "Per-model tracking"],
+												["Risk Decision (p95)", "<15 ms", "11 ms", "Signed log every decision"],
+												["Order Placement (p95)", "<120 ms", "98 ms", "Venue-specific breakdowns"],
+												["End-to-End Pipeline", "<350 ms", "278 ms", "Full trace available"],
+												["Uptime", ">99.5%", "99.7%", "Public status page"],
+												["Data Integrity", "100%", "100%", "Signature verification"],
+												["Mean Time to Detect (MTTD)", "<3 min", "1.2 min", "Anomaly detection"],
+											].map((row, rowIndex) => (
+												<motion.tr
+													key={row[0]}
+													initial={{ opacity: 0, x: -20 }}
+													whileInView={{ opacity: 1, x: 0 }}
+													viewport={{ once: true }}
+													transition={{ duration: 0.5, delay: rowIndex * 0.05 }}
+													whileHover={{ scale: 1.005, backgroundColor: "rgba(var(--primary), 0.03)" }}
+													className="group/row border-b border-slate-100/50 transition-all duration-300 hover:bg-white/40 dark:border-slate-800/50 dark:hover:bg-slate-800/40"
+												>
+													<td className="p-6 font-semibold text-slate-800 dark:text-slate-200 group-hover/row:text-slate-900 dark:group-hover/row:text-white transition-colors">{row[0]}</td>
+													<td className="p-6 font-medium text-slate-600 dark:text-slate-400">{row[1]}</td>
+													<td className="p-6 font-bold text-emerald-600 dark:text-emerald-400">{row[2]}</td>
+													<td className="p-6 text-slate-500 dark:text-slate-400 font-mono text-xs">{row[3]}</td>
+												</motion.tr>
+											))}
+										</tbody>
+									</table>
+								</div>
+								<div className="border-t-2 border-purple-300/70 bg-gradient-to-r from-purple-100/80 via-indigo-50/70 to-blue-50/60 p-6 shadow-inner backdrop-blur-sm dark:from-purple-900/40 dark:via-indigo-900/35 dark:to-blue-900/30 dark:border-purple-600/70">
+									<p className="text-xs text-slate-600 dark:text-slate-300 font-medium">
+										* Metrics shown are from demo/sandbox environment. Live production performance may vary based on market conditions.
+									</p>
+								</div>
+							</SpotlightCard>
+						</motion.div>
+					</div>
+				</Container>
+			</section>
+
+			{/* Footnotes Section */}
+			<section className="border-t border-border bg-muted/30 py-12 dark:bg-slate-900/30">
+				<Container>
+					<div className="mx-auto max-w-4xl space-y-4 text-xs text-muted-foreground">
+						<p>
+							* Performance metrics and execution speeds shown are from demo/sandbox environments and are illustrative. Actual production performance may vary based on market conditions, network latency, and exchange performance. Cryptocurrency trading involves substantial risk of loss. All technical specifications are subject to change.
+						</p>
+					</div>
+				</Container>
+			</section>
+		</div>
+	);
+}

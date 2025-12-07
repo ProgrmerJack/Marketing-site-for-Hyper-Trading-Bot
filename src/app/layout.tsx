@@ -20,6 +20,8 @@ import {
   baseMetadata,
   buildOrganizationSchema,
   buildWebsiteSchema,
+  buildFAQSchema,
+  buildProductSchema,
   viewport as defaultViewport,
 } from "@/lib/metadata";
 
@@ -75,15 +77,15 @@ export default function RootLayout({
               {/* Unified background for entire site */}
               <UnifiedBackground />
               {/* PageTransition removed to disable cinematic overlays */}
-                <SkipToContent />
-                <ComplianceBanner />
-                <SiteHeader />
-                <main id="main-content" className="min-h-[60vh] scroll-mt-20">
-                  {children}
-                </main>
-                <SiteFooter />
-                {/* CookieBanner removed in favor of ConsentManager to centralize consent UI */}
-                <ConsentManager />
+              <SkipToContent />
+              <ComplianceBanner />
+              <SiteHeader />
+              <main id="main-content" className="min-h-[60vh] scroll-mt-20">
+                {children}
+              </main>
+              <SiteFooter />
+              {/* CookieBanner removed in favor of ConsentManager to centralize consent UI */}
+              <ConsentManager />
             </MotionProvider>
           </ThemeProvider>
           <PerformanceMonitor />
@@ -100,6 +102,20 @@ export default function RootLayout({
           data-schema="website"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(buildWebsiteSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          data-schema="faq"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildFAQSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          data-schema="product"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildProductSchema()),
           }}
         />
       </body>

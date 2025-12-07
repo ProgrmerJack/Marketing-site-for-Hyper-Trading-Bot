@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { GridPattern } from "@/components/ui/grid-pattern";
 import { AuroraBlob } from "@/components/aurora-blob";
 import { SpotlightCard } from "@/components/reactbits/dynamic";
 import { Container } from "@hyper/ui";
@@ -41,6 +42,13 @@ export function PageHeaderAnimated({
           Keep a radial gradient overlay for readability. */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(93,100,255,0.08),transparent_70%)] dark:bg-[radial-gradient(circle_at_top,rgba(96,165,250,0.05),transparent_70%)]" />
+        <GridPattern
+          width={40}
+          height={40}
+          x={-1}
+          y={-1}
+          className="absolute inset-0 h-full w-full fill-slate-500/5 stroke-slate-500/5 [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] dark:fill-slate-400/5 dark:stroke-slate-400/5"
+        />
       </div>
 
       {/* Decorative animated aurora blob: subtle, site-wide micro-animation that harmonises with UnifiedBackground */}
@@ -50,8 +58,9 @@ export function PageHeaderAnimated({
         {eyebrow ? (
           <motion.span
             variants={fadeIn}
-            initial="initial"
-            animate="animate"
+            initial={false}
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.5 }}
             className="inline-flex w-fit items-center rounded-full border border-blue-300 bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400"
           >
             {eyebrow}
@@ -60,8 +69,9 @@ export function PageHeaderAnimated({
         {kicker ? (
           <motion.p
             variants={fadeIn}
-            initial="initial"
-            animate="animate"
+            initial={false}
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.5 }}
             className="text-sm uppercase tracking-[0.3em] text-slate-600 dark:text-slate-400"
           >
             {kicker}
@@ -69,8 +79,9 @@ export function PageHeaderAnimated({
         ) : null}
         <motion.h1
           variants={revealUp}
-          initial="initial"
-          animate="animate"
+          initial={false}
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
           className="relative z-20 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white md:text-5xl lg:text-6xl drop-shadow-sm"
           style={{ opacity: 1, visibility: 'visible' }}
         >
@@ -79,8 +90,9 @@ export function PageHeaderAnimated({
         {description ? (
           <motion.p
             variants={revealUp}
-            initial="initial"
-            animate="animate"
+            initial={false}
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.2 }}
             className="max-w-2xl text-base leading-relaxed text-slate-700 dark:text-slate-300 md:text-lg"
           >

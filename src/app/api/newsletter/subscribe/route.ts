@@ -1,13 +1,9 @@
-/**
- * Newsletter Subscribe Endpoint
- * Handles email subscriptions for the mailing list
- * GDPR and CAN-SPAM compliant
- */
-
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { z } from "zod";
-import { newsletterService, SubscriptionRecord } from "@/lib/newsletter";
+import { subscribe } from "@/lib/newsletter";
 
+// Remove edge runtime if using Node.js specific libs, or keep if compatible. 
+// Supabase JS is compatible.
 export const runtime = "edge";
 
 const SubscribeSchema = z.object({
@@ -16,15 +12,14 @@ const SubscribeSchema = z.object({
   source: z.string().optional().default("homepage"),
 });
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
     const body = await request.json();
     const validatedData = SubscribeSchema.parse(body);
 
-    // Check for duplicate subscription
-    const isSubscribed = await newsletterService.isSubscribed(validatedData.email);
-    
-    if (isSubscribed) {
+    const result = await subscribe(validatedData.email);
+
+    if (result.status === "already-subscribed") {
       return NextResponse.json(
         {
           success: true,
@@ -33,27 +28,6 @@ export async function POST(request: NextRequest) {
         { status: 200 }
       );
     }
-
-    const record: SubscriptionRecord = {
-      email: validatedData.email,
-      timestamp: new Date().toISOString(),
-      source: validatedData.source,
-      ipAddress:
-        request.headers.get("x-forwarded-for") ||
-        request.headers.get("x-real-ip") ||
-        "unknown",
-      userAgent: request.headers.get("user-agent") || "unknown",
-      consent: validatedData.consent,
-    };
-
-    // Store in database
-    await newsletterService.subscribe(record);
-
-    // Send welcome email and add to provider
-    await Promise.all([
-      newsletterService.sendWelcomeEmail(validatedData.email),
-      newsletterService.addToProvider(validatedData.email, validatedData.source)
-    ]);
 
     return NextResponse.json(
       {
@@ -84,7 +58,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Support OPTIONS for CORS preflight
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 200,
@@ -95,3 +68,4 @@ export async function OPTIONS() {
     },
   });
 }
+

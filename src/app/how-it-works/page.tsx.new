@@ -1,0 +1,83 @@
+"use client";
+
+import { Container } from "@hyper/ui";
+import { motion } from "framer-motion";
+import { PageHeaderAnimated } from "@/components/page-header-animated";
+import { SpotlightCard } from "@/components/reactbits/dynamic";
+import { ParallaxSection } from "@/components/motion/ParallaxSection";
+import { PremiumCard } from "@/components/cards/PremiumCard";
+import { ColorIcon } from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
+import { Zap, Activity, Shield } from "lucide-react";
+
+const pipeline = [
+  { title: "Data acquisition", details: ["Multi-venue market data normalised under 120 ms."], slo: "SLO: Fresh tick <= 150 ms", icon: Activity, gradient: "from-cyan-500 to-blue-500" },
+  { title: "Signal engine", details: ["Model ensembles with guard-railed feature store."], slo: "SLO: Signal latency <= 60 ms", icon: Zap, gradient: "from-purple-500 to-pink-500" },
+  { title: "Risk controller", details: ["Position sizing, leverage caps, correlation checks"], slo: "SLO: Decision log write < 15 ms", icon: Shield, gradient: "from-emerald-500 to-teal-500" },
+  { title: "Execution layer", details: ["Smart order routing with exchange health weighting."], slo: "SLO: Venue submit < 120 ms", icon: Activity, gradient: "from-orange-500 to-red-500" },
+];
+
+const safetyRails = [
+  "No custodial control: the system never takes possession of user funds.",
+  "No discretionary overrides: manual trades cannot bypass risk controller.",
+];
+
+export default function HowItWorksPage() {
+  return (
+    <div className="relative space-y-0">
+      <PageHeaderAnimated
+        eyebrow="System architecture"
+        title="Infrastructure-Based Deployment: 486 Models + 380 Strategies"
+        description="Our Model Factory and Strategy Expander automatically generate 866 configurations from 25+ architectures and 63 core templates."
+      />
+
+      <section className="relative isolate overflow-hidden py-20 md:py-28">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-4xl space-y-8 text-center">
+            <motion.p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+              Our Model Factory and Strategy Expander automatically generate configurations; continuous adaptation through performance-based selection.
+            </motion.p>
+
+            <ParallaxSection speed={0.2} className="relative">
+              <div className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4">
+                {pipeline.slice(0, 4).map((stage, index) => {
+                  const Icon = stage.icon;
+                  const gradientClass = stage.gradient;
+                  return (
+                    <div key={stage.title} className="group">
+                      <SpotlightCard className="card-spotlight relative h-full overflow-hidden rounded-2xl p-6">
+                        <div className="mb-6">
+                          <ColorIcon Icon={Icon} gradient={gradientClass} size="h-12 w-12" wrapperClass="" shadowColor={accentToShadowColor(gradientClass.includes('blue') ? 'cyan' : 'purple')} />
+                        </div>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400" aria-hidden>{stage.details[0]}</p>
+                      </SpotlightCard>
+                    </div>
+                  );
+                })}
+              </div>
+            </ParallaxSection>
+          </div>
+        </Container>
+      </section>
+
+      <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <Container className="relative z-10">
+          <div className="mx-auto max-w-7xl space-y-16">
+            <div className="grid gap-6 md:grid-cols-2">
+              {safetyRails.map((rail, index) => (
+                <motion.div key={rail}>
+                  <PremiumCard variant="glass-secondary" accent="emerald" hover={true} className="h-full p-8">
+                    <div className="text-sm">
+                      {rail}
+                    </div>
+                  </PremiumCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    </div>
+  );
+}

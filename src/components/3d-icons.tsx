@@ -105,6 +105,11 @@ export function Icon3D({
           scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
         }}
       >
+        {/* Light mode background for better contrast */}
+        <div 
+          className="absolute inset-0 rounded-xl bg-white/80 dark:bg-transparent backdrop-blur-sm"
+          style={{ width: size * 0.7, height: size * 0.7, left: '15%', top: '15%' }}
+        />
         <IconComponent
           className="relative z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
           style={{

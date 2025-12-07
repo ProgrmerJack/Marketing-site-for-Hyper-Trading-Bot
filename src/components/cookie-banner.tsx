@@ -65,7 +65,7 @@ export function CookieBanner() {
 
   return (
     // Raise z-index above cinematic overlays so banner receives clicks reliably
-    <div className="fixed inset-x-4 bottom-6 z-50 mx-auto max-w-3xl rounded-3xl border-2 border-orange-300/60 bg-white/95 p-6 shadow-2xl backdrop-blur-xl dark:border-orange-800/50 dark:bg-slate-900/95 pointer-events-auto">
+    <div className="fixed inset-x-4 bottom-6 z-[100] mx-auto max-w-3xl rounded-3xl border-2 border-orange-300/60 bg-white/95 p-6 shadow-2xl backdrop-blur-xl dark:border-orange-800/50 dark:bg-slate-900/95 pointer-events-auto">
       <div className="space-y-4 text-sm text-slate-800 dark:text-slate-200" data-testid="cookie-banner">
         <p className="font-bold text-lg text-slate-900 dark:text-white">
           🍪 Cookies & consent
@@ -86,7 +86,7 @@ export function CookieBanner() {
         <div className="flex flex-wrap gap-3">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:shadow-xl hover:from-orange-600 hover:to-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-3 text-sm font-semibold btn-gradient-text shadow-lg transition hover:shadow-xl hover:from-orange-600 hover:to-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
             onPointerDown={(e: React.PointerEvent<HTMLButtonElement>) => {
               if (!e.isPrimary) return;
               persist({
@@ -105,7 +105,7 @@ export function CookieBanner() {
             }}
             onClick={() => {
               if (typeof window !== 'undefined') console.debug('[CookieBanner] accept clicked');
-                if (typeof window !== 'undefined') console.log('[CookieBanner] accept clicked');
+              if (typeof window !== 'undefined') console.log('[CookieBanner] accept clicked');
               persist({
                 analytics: true,
                 timestamp: new Date().toISOString(),
@@ -138,7 +138,7 @@ export function CookieBanner() {
             }}
             onClick={() => {
               if (typeof window !== 'undefined') console.debug('[CookieBanner] decline clicked');
-                if (typeof window !== 'undefined') console.log('[CookieBanner] decline clicked');
+              if (typeof window !== 'undefined') console.log('[CookieBanner] decline clicked');
               persist({
                 analytics: false,
                 timestamp: new Date().toISOString(),

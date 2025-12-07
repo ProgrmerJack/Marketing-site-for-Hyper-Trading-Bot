@@ -7,8 +7,10 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
 
 import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
 import { Mail, Shield, FileCheck, CheckCircle2, HelpCircle } from "lucide-react";
-import { Icon3D } from "@/components/3d-icons/Icon3D";
 import { PremiumCard } from "@/components/cards/PremiumCard";
 import { R3FScene } from "@/components/3d/R3FScene";
 import { scenes } from "@/components/3d/sceneRegistry";
@@ -63,14 +65,21 @@ export default function ContactPage() {
     <div className="relative space-y-0">
       {/* Global Aurora Background */}
       <AuroraBackground variant="contact" intensity={0.5} />
+      {/* Page-specific 3D Background Animation */}
+      <Unified2DBackground
+        variant="contact"
+        intensity={0.6}
+        animationVariant="dither"
+        animationColors={["rgba(6,182,212,1)", "rgba(59,130,246,1)", "rgba(99,102,241,1)"]}
+      />
 
       <PageHeaderAnimated
         eyebrow="Contact"
         title="Tell us about your mandate -- no sales fluff, just validation"
         description="Complete the consent-aware form below. You&apos;ll receive a double opt-in email with our postal address and unsubscribe option per CAN-SPAM."
-        backgroundVariant="hyperspeed"
-        backgroundOpacity={0.9}
-        backgroundColors={["rgba(5,8,15,1)", "rgba(34,211,238,1)", "rgba(99,102,241,1)"]}
+        backgroundVariant="dither"
+        backgroundOpacity={0.8}
+        backgroundColors={["rgba(6,182,212,1)", "rgba(59,130,246,1)", "rgba(99,102,241,1)"]}
       >
         <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <PremiumCard variant="glass-primary" accent="blue" className="w-96 p-6">
@@ -101,8 +110,10 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
-                <Shield className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
+                  <Shield className="h-3 w-3 text-white" />
+                </div>
                 Why reach out
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -168,9 +179,7 @@ export default function ContactPage() {
                       className="h-full p-8"
                     >
                       <div className="relative space-y-4">
-                        <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                          <Icon className="h-7 w-7 text-white" />
-                        </div>
+                        <ColorIcon Icon={Icon} gradient={item.gradient} size="h-14 w-14" wrapperClass="" shadowColor={accentToShadowColor(item.accent as string)} />
 
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white drop-shadow-sm">
                           {item.title}
@@ -211,15 +220,17 @@ export default function ContactPage() {
         <Container className="relative z-10">
           <motion.div
             variants={staggerContainer}
-            initial="initial"
+            initial={false}
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             className="mx-auto max-w-7xl space-y-16"
           >
             {/* Section Header */}
             <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
-                <Mail className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
+                  <Mail className="h-3 w-3 text-white" />
+                </div>
                 Request gated demo access
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
@@ -294,9 +305,7 @@ export default function ContactPage() {
                   className="p-8 glow-multi"
                 >
                   <div className="mb-6 flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg">
-                      <HelpCircle className="h-6 w-6 text-white" />
-                    </div>
+                    <ColorIcon Icon={HelpCircle} gradient="from-emerald-500 to-teal-500" size="h-12 w-12" iconClass="h-6 w-6" shadowColor={accentToShadowColor('emerald')} />
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                       Frequently asked
                     </h3>
@@ -315,13 +324,15 @@ export default function ContactPage() {
                         >
                           <div className="flex items-start gap-3">
                             <div className="flex-none mt-1">
-                              <Icon3D icon={Icon} color="emerald" size={20} />
+                              <div className="flex h-5 w-5 items-center justify-center rounded-md bg-gradient-to-br from-emerald-500 to-teal-500 shadow-sm">
+                                <Icon className="h-3 w-3 text-white" />
+                              </div>
                             </div>
                             <p className="font-semibold text-slate-900 dark:text-white pt-1">
                               {faq.question}
                             </p>
                           </div>
-                          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 pl-14">
+                          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 pl-8">
                             {faq.answer}
                           </p>
                         </motion.li>
@@ -390,7 +401,7 @@ export default function ContactPage() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 dark:from-purple-500/10 dark:to-pink-500/10" />
 
               <div className="relative mb-8 flex items-center gap-4">
-                <Icon3D icon={Shield} color="purple" size={32} />
+                <ColorIcon Icon={Shield} gradient="from-purple-500 to-pink-500" size="h-10 w-10" iconClass="h-5 w-5" shadowColor={accentToShadowColor('purple')} />
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                   Privacy and transparency
                 </h3>

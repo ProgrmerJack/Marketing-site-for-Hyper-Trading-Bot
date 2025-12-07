@@ -34,6 +34,8 @@ interface PremiumCardProps {
     className?: string;
     hover?: boolean;
     animate?: boolean;
+    style?: React.CSSProperties;
+    shadowColor?: string;
 }
 
 export function PremiumCard({
@@ -43,6 +45,8 @@ export function PremiumCard({
     className = '',
     hover = true,
     animate = true,
+    style,
+    shadowColor,
 }: PremiumCardProps) {
     // Use CSS classes for variant styling (set via inline styles)
     const baseClasses = [
@@ -55,9 +59,11 @@ export function PremiumCard({
     const hoverAnimation = hover
         ? {
             y: -4,
-            boxShadow: variant.includes('glass')
-                ? '0 12px 48px 0 rgba(0, 0, 0, 0.15)'
-                : '0 8px 32px 0 rgba(0, 0, 0, 0.1)',
+            boxShadow: shadowColor
+                ? `0 18px 46px 0 ${shadowColor}`
+                : variant.includes('glass')
+                    ? '0 12px 48px 0 rgba(0, 0, 0, 0.15)'
+                    : '0 8px 32px 0 rgba(0, 0, 0, 0.1)',
         }
         : {};
 
@@ -72,6 +78,7 @@ export function PremiumCard({
                     duration: motionTokens.duration.medium / 1000,
                     ease: [0.2, 0.8, 0.2, 1],
                 }}
+                style={{ ...(style || {}), ...(shadowColor ? { boxShadow: `0 18px 40px ${shadowColor}` } : {}) }}
             >
                 {children}
             </motion.div>

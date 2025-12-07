@@ -134,11 +134,11 @@ export function ConsentManager() {
     <AnimatePresence>
       {showBanner && (
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ y: 0, opacity: 1 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0, transition: { duration: 0.15 } }}
           data-testid="cookie-banner"
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+          className="fixed bottom-4 left-0 right-0 z-[9999] p-4 md:p-6"
         >
           <div className="max-w-6xl mx-auto bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden">
             <div className="p-6">

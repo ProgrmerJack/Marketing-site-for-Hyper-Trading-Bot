@@ -7,8 +7,10 @@ import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
 import { FileText, Shield, CheckCircle2, Clock, ArrowRight, TrendingUp, Brain, Activity } from "lucide-react";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
 import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
-import { Icon3D } from "@/components/3d-icons/Icon3D";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
 import { DNAHelixHero } from "@/components/hero/DNAHelixHero";
 import { PremiumCard } from "@/components/cards/PremiumCard";
 
@@ -50,8 +52,8 @@ const researchPapers = [
     title: "Infrastructure-Based ML Deployment: The Model Factory Approach",
     description: "Automated generation of 486 model configurations from 25+ base architectures including LSTM, Transformers, TCN, and GRU. Performance-based selection eliminates manual variant coding and enables continuous adaptation.",
     date: "Nov 2024",
-    authors: "A. Ashuraliyev, Research Team",
-    link: "/blog/building-transparent-trading-systems-our-journey",
+    authors: "Research Team",
+    link: "/research/model-factory-approach",
     tags: ["ML Infrastructure", "Automation", "Deep Learning"],
     gradient: "from-blue-500 to-cyan-500"
   },
@@ -60,7 +62,7 @@ const researchPapers = [
     description: "Mathematical approach to position sizing using fractional Kelly (0.25-0.5) with volatility and confidence scaling. Demonstrates superior risk-adjusted returns compared to fixed position sizing in backtests.",
     date: "Nov 2024",
     authors: "A. Ashuraliyev",
-    link: "/blog/risk-first-approach-to-algorithmic-trading",
+    link: "/research/kelly-criterion-position-sizing",
     tags: ["Risk Management", "Kelly Criterion", "Position Sizing"],
     gradient: "from-purple-500 to-pink-500"
   },
@@ -68,37 +70,37 @@ const researchPapers = [
     title: "VPIN and Order Flow Imbalance Detection in Crypto Exchanges",
     description: "Volume-Synchronized Probability of Informed Trading (VPIN) for detecting toxic flow and whale activity. Includes microprice calculations and flash crash detection protocols with real-time implementation.",
     date: "Nov 2024",
-    authors: "A. Ashuraliyev, Research Team",
-    link: "/blog/understanding-market-microstructure-in-crypto",
-    tags: ["Microstructure", "VPIN", "Order Flow"],
+    authors: "Research Team",
+    link: "/research/vpin-order-flow-detection",
+    tags: ["Microstructure", "VPIN", "Order Flow", "HFT"],
     gradient: "from-amber-500 to-orange-500"
   },
   {
-    title: "Combining LSTM, Transformers, and TCN for Multi-Asset Price Prediction",
-    description: "Ensemble approach using attention mechanisms, recurrent networks, and causal convolutions. Achieves 55-62% win rates across cryptocurrency, equity, and options markets with proper transaction cost modeling.",
-    date: "Oct 2024",
+    title: "Strategy Expander: 380 Configurations from 63 Templates",
+    description: "How our Strategy Expander automatically generates and evaluates 380 trading strategy configurations from core strategy templates.",
+    date: "Nov 2024",
     authors: "Research Team",
-    link: "/blog/building-transparent-trading-systems-our-journey",
-    tags: ["Deep Learning", "Transformers", "Ensemble"],
-    gradient: "from-cyan-500 to-blue-500"
-  },
-  {
-    title: "Third-Party Audit Requirements for Algorithmic Trading Platforms",
-    description: "Framework for independent verification of trading system performance, methodology, and risk controls. Addresses selection bias, overfitting, look-ahead bias, and transaction cost fantasy in self-reported metrics.",
-    date: "Oct 2024",
-    authors: "A. Ashuraliyev",
-    link: "/blog/the-importance-of-independent-audits",
-    tags: ["Compliance", "Auditing", "Best Practices"],
+    link: "/research/strategy-expander-system",
+    tags: ["Strategy Development", "Automation", "Infrastructure"],
     gradient: "from-emerald-500 to-teal-500"
   },
   {
-    title: "Realistic Backtesting: Transaction Costs and Slippage Modeling",
-    description: "Comprehensive framework for realistic backtesting including 0.1-0.5% transaction costs, dynamic slippage, market impact modeling, and walk-forward optimization. Prevents overfitting and ensures live trading viability.",
-    date: "Sep 2024",
-    authors: "Research Team",
-    link: "/blog/risk-first-approach-to-algorithmic-trading",
-    tags: ["Backtesting", "Transaction Costs", "Methodology"],
+    title: "Third-Party Audit Framework for Algorithmic Trading Systems",
+    description: "Framework for independent verification of trading system performance, methodology, and risk controls. Addresses selection bias, overfitting, look-ahead bias, and transaction cost fantasy in self-reported metrics.",
+    date: "Oct 2024",
+    authors: "A. Ashuraliyev",
+    link: "/research/third-party-audit-framework",
+    tags: ["Compliance", "Auditing", "Best Practices", "Transparency"],
     gradient: "from-violet-500 to-purple-500"
+  },
+  {
+    title: "Realistic Backtesting: Transaction Costs, Slippage, and Walk-Forward Optimization",
+    description: "Comprehensive framework for realistic backtesting including 0.1-0.5% transaction costs, dynamic slippage, market impact modeling, and walk-forward optimization. Prevents overfitting and ensures live trading viability.",
+    date: "Oct 2024",
+    authors: "Research Team",
+    link: "/research/realistic-backtesting-methodology",
+    tags: ["Backtesting", "Transaction Costs", "Methodology", "Walk-Forward"],
+    gradient: "from-cyan-500 to-blue-500"
   }
 ];
 
@@ -107,16 +109,43 @@ export default function ResearchPage() {
     <div className="relative space-y-0">
       {/* Global Aurora Background */}
       <AuroraBackground variant="research" intensity={0.5} />
+      {/* Page-specific 3D Background Animation */}
+      <Unified2DBackground
+        variant="research"
+        intensity={0.6}
+        animationVariant="beams"
+        animationColors={["rgba(99,102,241,1)", "rgba(139,92,246,1)", "rgba(168,85,247,1)"]}
+      />
 
       <PageHeaderAnimated
         eyebrow="Research & methodology"
         title="486 ML models, 380 strategies, institutional-grade methodology"
         description="Infrastructure-based deployment with Model Factory and Strategy Expander. Win rates: 52-68%. Sharpe ratios: 1.2-2.8. All verified through comprehensive backtesting with realistic transaction costs."
-        backgroundVariant="hyperspeed"
-        backgroundOpacity={0.9}
-        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+        backgroundVariant="beams"
+        backgroundOpacity={0.8}
+        backgroundColors={["rgba(99,102,241,1)", "rgba(139,92,246,1)", "rgba(168,85,247,1)"]}
       >
-        <motion.div className="hidden lg:block relative z-10" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        {/* Key Stats integrated into header */}
+        <motion.div
+          className="hidden lg:flex gap-8 mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          {[
+            { value: "486", label: "ML Model Configs", sublabel: "25+ architectures" },
+            { value: "380", label: "Strategy Configs", sublabel: "63 templates" },
+            { value: "52-68%", label: "Win Rate", sublabel: "Top strategies" },
+            { value: "1.2-2.8", label: "Sharpe Ratio", sublabel: "Risk-adjusted" },
+          ].map((stat, i) => (
+            <div key={i} className="text-center">
+              <div className="text-3xl font-bold text-white">{stat.value}</div>
+              <div className="text-sm text-white/90 font-medium">{stat.label}</div>
+              <div className="text-xs text-white/60">{stat.sublabel}</div>
+            </div>
+          ))}
+        </motion.div>
+        <motion.div className="hidden lg:block relative z-10 mt-8" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <PremiumCard
             variant="glass-primary"
             accent="purple"
@@ -134,29 +163,20 @@ export default function ResearchPage() {
         </motion.div>
       </PageHeaderAnimated>
 
-      {/* Key Statistics Section - NEW */}
-      <section className="relative isolate overflow-hidden py-16 border-b border-purple-200/50 dark:border-purple-900/50">
+      {/* Mobile Stats - visible only on smaller screens */}
+      <section className="relative isolate overflow-hidden py-8 lg:hidden border-b border-purple-200/50 dark:border-purple-900/50">
         <Container>
-          <div className="grid gap-6 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4">
             {[
-              { value: "486", label: "ML Model Configs", sublabel: "From 25+ architectures" },
-              { value: "380", label: "Strategy Configs", sublabel: "From 63 core templates" },
-              { value: "52-68%", label: "Win Rate Range", sublabel: "Across top strategies" },
-              { value: "1.2-2.8", label: "Sharpe Ratio", sublabel: "Risk-adjusted returns" },
+              { value: "486", label: "ML Configs" },
+              { value: "380", label: "Strategies" },
+              { value: "52-68%", label: "Win Rate" },
+              { value: "1.2-2.8", label: "Sharpe" },
             ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <PremiumCard variant="glass-secondary" accent="purple" className="p-6 text-center">
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">{stat.value}</div>
-                  <div className="mt-2 text-sm font-semibold text-slate-900 dark:text-white">{stat.label}</div>
-                  <div className="text-xs text-slate-600 dark:text-slate-400">{stat.sublabel}</div>
-                </PremiumCard>
-              </motion.div>
+              <div key={i} className="rounded-xl border border-purple-200/50 bg-purple-50/50 p-4 text-center dark:border-purple-800/50 dark:bg-purple-950/30">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{stat.value}</div>
+                <div className="text-xs text-slate-600 dark:text-slate-400">{stat.label}</div>
+              </div>
             ))}
           </div>
         </Container>
@@ -177,8 +197,10 @@ export default function ResearchPage() {
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <span className="inline-flex items-center rounded-full bg-purple-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-purple-700 dark:bg-purple-950/50 dark:text-purple-400">
-                <FileText className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-purple-700 dark:bg-purple-950/50 dark:text-purple-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
+                  <FileText className="h-3 w-3 text-white" />
+                </div>
                 Research principles
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -245,9 +267,7 @@ export default function ResearchPage() {
                       className="h-full p-8 glow-multi"
                     >
                       <div className="relative space-y-4">
-                        <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                          <Icon className="h-7 w-7 text-white" />
-                        </div>
+                        <ColorIcon Icon={Icon} gradient={item.gradient} size="h-14 w-14" shadowColor={accentToShadowColor(item.gradient.includes("blue") ? "cyan" : item.gradient.includes("purple") ? "purple" : item.gradient.includes("emerald") ? "emerald" : "orange")} />
 
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white drop-shadow-sm">
                           {item.title}
@@ -286,15 +306,17 @@ export default function ResearchPage() {
         <Container className="relative z-10">
           <motion.div
             variants={staggerContainer}
-            initial="initial"
+            initial={false}
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             className="mx-auto max-w-7xl space-y-16"
           >
             {/* Section Header */}
-            <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">
+            <motion.div variants={revealUp} initial={false} whileInView="animate" viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-3xl space-y-6 text-center">
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
-                <FileText className="mr-2 h-4 w-4" />
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
+                  <FileText className="h-3 w-3 text-white" />
+                </div>
                 Our commitments
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -313,49 +335,51 @@ export default function ResearchPage() {
                 const iconColor = item.gradient.includes("blue") ? "cyan" : item.gradient.includes("purple") ? "purple" : "emerald";
 
                 return (
-                  <motion.article
-                    key={item.title}
-                    custom={index}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-                  >
-                    <PremiumCard
-                      variant="glass-secondary"
-                      accent={item.gradient.includes("blue") ? "cyan" : item.gradient.includes("purple") ? "purple" : "emerald"}
-                      className="flex h-full flex-col gap-6 p-8"
+                  <Link href={item.link as Route} key={item.title} className="block h-full">
+                    <motion.article
+                      custom={index}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+                      className="h-full"
                     >
-                      {/* Gradient overlay */}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
-
-                      {/* Icon with gradient */}
-                      <div className="relative flex justify-start">
-                        <Icon3D icon={Icon} color={iconColor} size={64} />
-                      </div>
-
-                      <header className="relative space-y-3">
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white drop-shadow-sm">
-                          {item.title}
-                        </h3>
-                        <span className={`inline-flex items-center rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-widest ${item.statusColor}`}>
-                          {item.status}
-                        </span>
-                      </header>
-
-                      <p className="relative flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                        {item.summary}
-                      </p>
-
-                      <Link
-                        href={item.link as Route}
-                        className="relative group/link inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                      <PremiumCard
+                        variant="glass-secondary"
+                        accent={item.gradient.includes("blue") ? "cyan" : item.gradient.includes("purple") ? "purple" : "emerald"}
+                        shadowColor={accentToShadowColor(item.gradient.includes("blue") ? "cyan" : item.gradient.includes("purple") ? "purple" : "emerald")}
+                        className="flex h-full flex-col gap-6 p-8 transition-transform hover:scale-[1.02]"
                       >
-                        Request access
-                        <ArrowRight className="h-4 w-4 text-blue-600 dark:text-blue-400 transition-transform group-hover/link:translate-x-1" />
-                      </Link>
-                    </PremiumCard>
-                  </motion.article>
+                        {/* Gradient overlay */}
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10" />
+
+                        {/* Icon with gradient background - 2D style */}
+                        <div className="relative flex justify-start">
+                          <ColorIcon Icon={Icon} gradient={item.gradient} size="h-16 w-16" shadowColor={accentToShadowColor(item.gradient.includes("blue") ? "cyan" : item.gradient.includes("purple") ? "purple" : "emerald")} />
+                        </div>
+
+                        <header className="relative space-y-3">
+                          <h3 className="text-xl font-bold text-slate-900 dark:text-white drop-shadow-sm">
+                            {item.title}
+                          </h3>
+                          <span className={`inline-flex items-center rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-widest ${item.statusColor}`}>
+                            {item.status}
+                          </span>
+                        </header>
+
+                        <p className="relative flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                          {item.summary}
+                        </p>
+
+                        <div
+                          className="relative group/link inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--color-surface-900)] dark:text-blue-400 transition-colors hover:text-blue-700 dark:hover:text-blue-300"
+                        >
+                          Request access
+                          <ArrowRight className="h-4 w-4 text-blue-600 dark:text-blue-400 transition-transform group-hover/link:translate-x-1" />
+                        </div>
+                      </PremiumCard>
+                    </motion.article>
+                  </Link>
                 );
               })}
             </div>
@@ -407,15 +431,17 @@ export default function ResearchPage() {
         <Container className="relative z-10">
           <motion.div
             variants={staggerContainer}
-            initial="initial"
+            initial={false}
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             className="mx-auto max-w-7xl space-y-16"
           >
             {/* Section Header */}
             <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">
-              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
-                <Shield className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500">
+                  <Shield className="h-3 w-3 text-white" />
+                </div>
                 Transparency principles
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -439,7 +465,7 @@ export default function ResearchPage() {
 
                 <div className="relative mb-8 flex items-center gap-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg">
-                    <Clock className="h-8 w-8 text-white" />
+                    <Clock className="h-8 w-8 text-white drop-shadow-lg" />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                     A note on transparency
@@ -481,47 +507,47 @@ export default function ResearchPage() {
 
           <div className="grid gap-6">
             {researchPapers.map((paper, index) => (
-              <motion.div
-                key={paper.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <PremiumCard
-                  variant="glass-secondary"
-                  accent="blue"
-                  className="p-8"
+              <Link href={paper.link as Route} key={paper.title} className="block group">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                    <div className="space-y-4">
-                      <div className="flex flex-wrap gap-2">
-                        {paper.tags.map((tag) => (
-                          <span key={tag} className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                            {tag}
-                          </span>
-                        ))}
+                  <PremiumCard
+                    variant="glass-secondary"
+                    accent="blue"
+                    className="p-8 transition-all hover:bg-blue-50/50 dark:hover:bg-blue-900/10"
+                  >
+                    <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                      <div className="space-y-4">
+                        <div className="flex flex-wrap gap-2">
+                          {paper.tags.map((tag) => (
+                            <span key={tag} className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <h3 className="text-xl font-bold text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{paper.title}</h3>
+                        <p className="max-w-2xl text-muted-foreground">{paper.description}</p>
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <span>{paper.authors}</span>
+                          <span>•</span>
+                          <span>{paper.date}</span>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold text-foreground">{paper.title}</h3>
-                      <p className="max-w-2xl text-muted-foreground">{paper.description}</p>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span>{paper.authors}</span>
-                        <span>•</span>
-                        <span>{paper.date}</span>
+                      <div className="flex-none">
+                        <div
+                          className={`group/btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${paper.gradient} px-6 py-3 text-sm font-semibold btn-gradient-text shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 dark:shadow-lg dark:shadow-blue-500/20`}
+                        >
+                          Read Paper
+                          <ArrowRight className="h-4 w-4 text-white transition-transform group-hover/btn:translate-x-1" />
+                        </div>
                       </div>
                     </div>
-                    <div className="flex-none">
-                      <Link
-                        href={paper.link as Route}
-                        className={`group/btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${paper.gradient} px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5 dark:shadow-lg dark:shadow-blue-500/20`}
-                      >
-                        Read Paper
-                        <ArrowRight className="h-4 w-4 text-white transition-transform group-hover/btn:translate-x-1" />
-                      </Link>
-                    </div>
-                  </div>
-                </PremiumCard>
-              </motion.div>
+                  </PremiumCard>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

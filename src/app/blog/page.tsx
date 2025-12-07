@@ -5,9 +5,8 @@ import type { Route } from "next";
 import { motion } from "framer-motion";
 import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
-import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
 import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
-import { Icon3D } from "@/components/3d-icons/Icon3D";
 import { PremiumCard } from "@/components/cards/PremiumCard";
 import { getAllBlogPosts, getFeaturedBlogPosts } from "@/data/blog-posts";
 import {
@@ -22,6 +21,8 @@ import {
   Scale,
   Bell,
 } from "lucide-react";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
 
 // Icon mapping for dynamic rendering
 const iconMap = {
@@ -87,7 +88,7 @@ export default function BlogPage() {
         backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
       >
         {/* Featured Articles Preview */}
-        <motion.div 
+        <motion.div
           className="hidden lg:block relative z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,7 +118,7 @@ export default function BlogPage() {
 
       {/* Categories Section */}
       <section id="newsletter" className="relative isolate overflow-hidden py-24 md:py-32 bg-gradient-to-br from-orange-50/50 via-amber-50/50 to-yellow-50/50 dark:from-orange-950/20 dark:via-amber-950/20 dark:to-yellow-950/20">
-        <Unified3DBackground variant="blog" intensity={0.35} />
+        <Unified2DBackground variant="blog" intensity={0.35} />
 
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--card))/0.6] via-transparent to-[rgb(var(--card))/0.6] dark:from-[rgb(5,8,15)]/65 dark:to-[rgb(5,8,15)]/65" />
@@ -131,8 +132,10 @@ export default function BlogPage() {
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <span className="inline-flex items-center rounded-full bg-cyan-100 border border-cyan-200 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300">
-                <BookOpen className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-cyan-100 border border-cyan-200 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:border-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500">
+                  <BookOpen className="h-3 w-3 text-white" />
+                </div>
                 Categories
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
@@ -168,7 +171,7 @@ export default function BlogPage() {
                     >
                       <div className="flex flex-col h-full justify-between gap-6">
                         <div className="flex justify-start">
-                          <Icon3D icon={Icon} color={iconColor} size={64} />
+                          <ColorIcon Icon={Icon} gradient={category.gradient} size="h-16 w-16" shadowColor={accentToShadowColor(iconColor)} />
                         </div>
 
                         <div>
@@ -238,18 +241,23 @@ export default function BlogPage() {
 
                         <div className="flex flex-wrap items-center gap-6 text-sm text-slate-600 dark:text-slate-400">
                           <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4" />
+                            <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 shadow-sm">
+                              <Calendar className="h-3.5 w-3.5 text-white" />
+                            </span>
                             <time dateTime={post.date}>{new Date(post.date).toLocaleDateString()}</time>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4" />
+                            <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 shadow-sm">
+                              <Clock className="h-3.5 w-3.5 text-white" />
+                            </span>
                             <span>{post.readTime}</span>
                           </div>
                         </div>
 
                         <Link
                           href={`/blog/${post.slug}` as Route}
-                          className="group/link inline-flex items-center gap-2 text-base font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                          className="group/link inline-flex items-center gap-2 text-base font-semibold text-[color:var(--color-surface-900)] dark:text-blue-400 transition-colors hover:text-blue-700 dark:hover:text-blue-300"
+                          aria-label={`Read full article: ${post.title}`}
                         >
                           Read full article
                           <ArrowRight className="h-5 w-5 text-blue-600 dark:text-blue-400 transition-transform group-hover/link:translate-x-1" />
@@ -257,7 +265,7 @@ export default function BlogPage() {
                       </div>
 
                       <div className="flex justify-center lg:justify-end">
-                        <Icon3D icon={Icon} color="cyan" size={120} />
+                        <ColorIcon Icon={Icon} gradient="from-cyan-500 to-blue-500" size="h-28 w-28" iconClass="h-14 w-14" shadowColor={accentToShadowColor('cyan')} />
                       </div>
                     </div>
                   </PremiumCard>
@@ -319,7 +327,7 @@ export default function BlogPage() {
                         className="flex h-full flex-col gap-6 p-8"
                       >
                         <div className="flex justify-start">
-                          <Icon3D icon={Icon} color={iconColor} size={64} />
+                          <ColorIcon Icon={Icon} gradient={post.gradient} size="h-16 w-16" shadowColor={accentToShadowColor(iconColor)} />
                         </div>
 
                         <div className="flex-1 space-y-4">
@@ -338,12 +346,16 @@ export default function BlogPage() {
                           </p>
 
                           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 dark:text-slate-400">
-                            <div className="flex items-center gap-1.5">
-                              <Calendar className="h-3.5 w-3.5" />
+                            <div className="flex items-center gap-2">
+                              <span className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 shadow-sm">
+                                <Calendar className="h-3 w-3 text-white" />
+                              </span>
                               <time dateTime={post.date}>{new Date(post.date).toLocaleDateString()}</time>
                             </div>
-                            <div className="flex items-center gap-1.5">
-                              <Clock className="h-3.5 w-3.5" />
+                            <div className="flex items-center gap-2">
+                              <span className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 shadow-sm">
+                                <Clock className="h-3 w-3 text-white" />
+                              </span>
                               <span>{post.readTime}</span>
                             </div>
                           </div>
@@ -388,8 +400,8 @@ export default function BlogPage() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10" />
 
               <div className="relative space-y-8 text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-2xl">
-                  <BookOpen className="h-10 w-10 text-white" />
+                <div className="mx-auto flex justify-center">
+                  <ColorIcon Icon={BookOpen} gradient="from-emerald-500 to-teal-500" size="h-20 w-20" iconClass="h-10 w-10" shadowColor={accentToShadowColor('emerald')} />
                 </div>
 
                 <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">

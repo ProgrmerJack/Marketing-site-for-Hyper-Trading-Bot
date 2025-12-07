@@ -1,58 +1,43 @@
 import { notFound } from "next/navigation";
-import { allResearchNotes } from "contentlayer/generated";
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/page-header";
-import { Section } from "@hyper/ui";
-import { Mdx } from "@/components/mdx";
+import { getResearchPaper, getAllResearchPapers } from "@/data/research-papers";
+import { ResearchPaperContent } from "./research-paper-content";
 
 type ResearchPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return allResearchNotes.map((note) => ({ slug: note.slug }));
+  const papers = getAllResearchPapers();
+  return papers.map((paper) => ({ slug: paper.slug }));
 }
 
 export async function generateMetadata({ params }: ResearchPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const note = allResearchNotes.find((entry) => entry.slug === slug);
-  if (!note) {
+  const paper = getResearchPaper(slug);
+  if (!paper) {
     return {};
   }
   return {
-    title: note.title,
-    description: note.description,
-    alternates: { canonical: `/research/${note.slug}` },
+    title: paper.title,
+    description: paper.description,
+    alternates: { canonical: `/research/${paper.slug}` },
     openGraph: {
-      title: note.title,
-      description: note.description,
+      title: paper.title,
+      description: paper.description,
       type: "article",
-      publishedTime: note.publishedAt,
-      authors: note.author ? [note.author] : undefined,
+      publishedTime: paper.publishedAt,
+      authors: paper.author ? [paper.author] : undefined,
     },
   };
 }
 
 export default async function ResearchNotePage({ params }: ResearchPageProps) {
   const { slug } = await params;
-  const note = allResearchNotes.find((entry) => entry.slug === slug);
-  if (!note) {
+  const paper = getResearchPaper(slug);
+  if (!paper) {
     notFound();
   }
 
-  return (
-    <div className="space-y-0">
-      <PageHeader
-        eyebrow="Research"
-        title={note.title}
-        description={note.description}
-        kicker={note.status?.toUpperCase()}
-      />
-      <Section id="content" padding="compact">
-        <article className="prose prose-slate max-w-3xl dark:prose-invert">
-          <Mdx code={note.body.code} />
-        </article>
-      </Section>
-    </div>
-  );
+  return <ResearchPaperContent paper={paper} />;
 }

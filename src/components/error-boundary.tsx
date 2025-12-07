@@ -79,9 +79,11 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       return (
         <div className="flex min-h-screen items-center justify-center bg-[color:var(--color-surface-50)] px-4">
           <div className="w-full max-w-md space-y-6 rounded-2xl border border-[color:var(--color-line-muted)] bg-[rgb(var(--card))] p-8 shadow-xl dark:border-[color:var(--color-line-muted)]">
-            <div className="flex items-center gap-3 text-red-600">
-              <AlertCircle className="h-8 w-8" aria-hidden="true" />
-              <h1 className="text-2xl font-bold">Something went wrong</h1>
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 shadow-lg shadow-red-500/25">
+                <AlertCircle className="h-6 w-6 text-white" aria-hidden="true" />
+              </div>
+              <h1 className="text-2xl font-bold text-red-600">Something went wrong</h1>
             </div>
 
             <div className="space-y-3">
@@ -187,7 +189,9 @@ export class AsyncErrorBoundary extends Component<
       return (
         <div className="flex min-h-[300px] items-center justify-center">
           <div className="space-y-4 text-center">
-            <AlertCircle className="mx-auto h-12 w-12 text-orange-600" aria-hidden="true" />
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 shadow-lg">
+              <AlertCircle className="h-7 w-7 text-white drop-shadow-md" aria-hidden="true" />
+            </div>
             <h2 className="text-xl font-semibold text-[color:var(--color-surface-900)]">
               Failed to load content
             </h2>
@@ -217,7 +221,9 @@ export function ChartErrorBoundary({ children }: { children: ReactNode }) {
       fallback={
         <div className="flex h-[400px] items-center justify-center rounded-xl border border-[color:var(--color-line-muted)] bg-[color:var(--color-surface-50)]">
           <div className="space-y-3 text-center px-4">
-            <AlertCircle className="mx-auto h-10 w-10 text-yellow-600" aria-hidden="true" />
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-500 to-amber-600 shadow-lg shadow-amber-500/25">
+              <AlertCircle className="h-7 w-7 text-white" aria-hidden="true" />
+            </div>
             <div>
               <h3 className="font-semibold text-[color:var(--color-surface-900)]">
                 Chart unavailable

@@ -1,0 +1,740 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '../styles/modern-cards.css';
+
+@layer base {
+  :root {
+    --motion-duration-scale: 1;
+
+    /* Light mode - Clean professional with vibrant accents */
+    --background: 255 255 255;
+    --foreground: 15 23 42;
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
+    --primary: 37 99 235;
+    --primary-foreground: 255 255 255;
+    --secondary: 241 245 249;
+    --secondary-foreground: 15 23 42;
+    --muted: 248 250 252;
+    --muted-foreground: 100 116 139;
+    --accent: 14 165 233;
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --success: 16 185 129;
+    --success-foreground: 255 255 255;
+    --warning: 245 158 11;
+    --warning-foreground: 255 255 255;
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 37 99 235;
+
+    /* Surface colors - Light mode (Slate scale) */
+    --color-surface-50: 248 250 252;
+    --color-surface-100: 241 245 249;
+    --color-surface-200: 226 232 240;
+    --color-surface-300: 203 213 225;
+    --color-surface-400: 148 163 184;
+    --color-surface-500: 100 116 139;
+    --color-surface-600: 71 85 105;
+    --color-surface-700: 51 65 85;
+    --color-surface-800: 30 41 59;
+    --color-surface-900: 15 23 42;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+    /* Radius */
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    /* Neon Luxury Palette */
+    --neon-cyan: 34 211 238;
+    --neon-blue: 99 102 241;
+    --neon-purple: 168 85 247;
+    --neon-pink: 236 72 153;
+    --neon-emerald: 16 185 129;
+    --neon-orange: 251 146 60;
+  }
+
+  html[data-motion="disabled"],
+  html[data-reduced-motion="true"] {
+    --motion-duration-scale: 0.01;
+  }
+
+  html[data-motion-intensity="low"] {
+    --motion-duration-scale: 0.7;
+  }
+
+  html[data-motion-intensity="high"] {
+    --motion-duration-scale: 1.25;
+  }
+
+  .dark {
+    --background: 5 8 15;
+    --foreground: 248 250 252;
+    --card: 12 17 29;
+    --card-foreground: 248 250 252;
+    --popover: 12 17 29;
+    --popover-foreground: 248 250 252;
+    --primary: 34 211 238;
+    --primary-foreground: 5 8 15;
+    --secondary: 20 27 45;
+    --secondary-foreground: 248 250 252;
+    --muted: 20 27 45;
+    --muted-foreground: 203 213 225;
+    --accent: 99 102 241;
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --success: 34 197 94;
+    --success-foreground: 5 8 15;
+    --warning: 251 146 60;
+    --warning-foreground: 5 8 15;
+    --border: 30 41 59;
+    --input: 30 41 59;
+    --ring: 34 211 238;
+
+    /* Surface colors - Dark mode */
+    --color-surface-50: 15 23 42;
+    --color-surface-100: 30 41 59;
+    --color-surface-200: 51 65 85;
+    --color-surface-300: 71 85 105;
+    --color-surface-400: 100 116 139;
+    --color-surface-500: 148 163 184;
+    --color-surface-600: 203 213 225;
+    --color-surface-700: 226 232 240;
+    --color-surface-800: 241 245 249;
+    --color-surface-900: 248 250 252;
+
+    /* Shadows - Dark */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Ensure consistent positioning for fixed backgrounds across browsers */
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Cross-browser animation and performance hints */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+
+  /* Enable smooth-scrolling for iOS and webkit browsers */
+  html,
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* High-motion zone utility - use for animated elements to hint GPU usage */
+  .motion-zone {
+    will-change: transform, opacity;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Cross-browser canvas consistency */
+  canvas {
+    /* Hardware acceleration for better performance */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Prevent canvas stretching/distortion */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    /* Ensure smooth rendering */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Backdrop-filter fallbacks for Safari / WebKit */
+  .backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+
+  .backdrop-blur {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  }
+
+  p {
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .motion-disabled * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Grid layout - minimal safe fix */
+  .grid>* {
+    min-width: 0;
+    min-height: 0;
+  }
+}
+
+/* Ensure all headers and titles are always visible */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header h1,
+header h2,
+header h3,
+[role="heading"],
+.heading-contrast {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Dark mode - essential text color fixes only */
+.dark .text-slate-600 {
+  color: rgb(203 213 225);
+}
+
+.dark .text-slate-700 {
+  color: rgb(226 232 240);
+}
+
+.dark .text-slate-800 {
+  color: rgb(241 245 249);
+}
+
+.dark .text-slate-900 {
+  color: rgb(248 250 252);
+}
+
+.dark .border-slate-200 {
+  border-color: rgb(51 65 85);
+}
+
+.dark .border-slate-300 {
+  border-color: rgb(71 85 105);
+}
+
+.dark .bg-slate-50 {
+  background-color: rgb(30 41 59);
+}
+
+.dark .bg-slate-100 {
+  background-color: rgb(51 65 85);
+}
+
+.dark .bg-slate-200 {
+  background-color: rgb(71 85 105);
+}
+
+/* Map Tailwind "bg-white" opacity tokens to dark-mode card color so white blocks don't show in dark themes */
+.dark .bg-white {
+  background-color: rgb(var(--card)) !important;
+}
+
+.dark .bg-white\/5 {
+  background-color: rgb(var(--card) / 0.05) !important;
+}
+
+.dark .bg-white\/10 {
+  background-color: rgb(var(--card) / 0.1) !important;
+}
+
+.dark .bg-white\/20 {
+  background-color: rgb(var(--card) / 0.2) !important;
+}
+
+.dark .bg-white\/30 {
+  background-color: rgb(var(--card) / 0.3) !important;
+}
+
+.dark .bg-white\/40 {
+  background-color: rgb(var(--card) / 0.4) !important;
+}
+
+.dark .bg-white\/50 {
+  background-color: rgb(var(--card) / 0.5) !important;
+}
+
+.dark .bg-white\/70 {
+  background-color: rgb(var(--card) / 0.7) !important;
+}
+
+.dark .bg-white\/80 {
+  background-color: rgb(var(--card) / 0.8) !important;
+}
+
+.dark .bg-white\/90 {
+  background-color: rgb(var(--card) / 0.9) !important;
+}
+
+/* Dark mode badge colors */
+.dark [class*="bg-blue-100"] {
+  background-color: rgb(30 58 138 / 0.5);
+}
+
+.dark [class*="bg-emerald-100"] {
+  background-color: rgb(6 78 59 / 0.5);
+}
+
+.dark [class*="bg-amber-100"] {
+  background-color: rgb(120 53 15 / 0.5);
+}
+
+.dark [class*="bg-purple-100"] {
+  background-color: rgb(88 28 135 / 0.5);
+}
+
+/* Form elements in dark mode */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: rgb(var(--input));
+  color: rgb(var(--foreground));
+  border-color: rgb(var(--border));
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: rgb(var(--muted-foreground));
+}
+
+/* Utility to force black text in dark mode for specific elements */
+.dark .force-dark-black {
+  color: rgb(15 23 42) !important;
+}
+
+/* Animation visibility - light mode */
+.pointer-events-none canvas,
+.pointer-events-none svg {
+  opacity: 0.6;
+}
+
+/* Animation visibility - dark mode */
+.dark .pointer-events-none canvas,
+.dark .pointer-events-none svg {
+  opacity: 0.5;
+}
+
+/* ReactBits component fixes - minimal, non-invasive */
+[class*="glare-hover"],
+[class*="star-border"],
+[class*="bounce-card"],
+.star-border-container {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.dark [class*="glare-hover"],
+.dark [class*="star-border"],
+.dark [class*="bounce-card"],
+.dark .star-border-container {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Spotlight cards: allow Tailwind gradients to shine through */
+/* Ensure reactbits wrappers don't break layouts */
+[class*="glare-hover"] {
+  display: flex;
+  flex-direction: column;
+}
+
+[class*="glare-hover"]>div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Star border container animation improvements */
+.star-border-container {
+  position: relative;
+  display: inline-block;
+}
+
+.star-border-container canvas {
+  opacity: 0.8 !important;
+  mix-blend-mode: screen;
+}
+
+.dark .star-border-container canvas {
+  opacity: 0.6 !important;
+}
+
+/* Hide dot-grid visual clutter */
+.dot-grid__wrap {
+  display: none !important;
+}
+
+/* Ensure Spotlight cards in reactbits are theme-aware and don't enforce dark backgrounds in light mode */
+.card-spotlight {
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(var(--accent), 0.08) 50%,
+      rgba(255, 255, 255, 0.75) 100%) !important;
+  border-color: rgba(var(--accent), 0.2) !important;
+}
+
+.dark .card-spotlight {
+  background: linear-gradient(135deg,
+      rgba(10, 12, 18, 0.85) 0%,
+      rgba(var(--accent), 0.08) 50%,
+      rgba(5, 8, 15, 0.75) 100%) !important;
+  border-color: rgba(var(--accent), 0.15) !important;
+}
+
+.card-spotlight::before {
+  background: transparent !important;
+}
+
+/* Make icons with `text-white` visible on white/near-white backgrounds in light mode, while still being white in dark mode */
+.bg-white .text-white,
+.bg-white\/5 .text-white,
+.bg-white\/10 .text-white,
+.bg-white\/20 .text-white,
+.bg-white\/30 .text-white,
+.bg-white\/40 .text-white,
+.bg-white\/50 .text-white,
+.bg-white\/70 .text-white,
+.bg-white\/80 .text-white,
+.bg-white\/90 .text-white {
+  color: rgb(var(--foreground)) !important;
+}
+
+.dark .bg-white .text-white,
+.dark .bg-white\/5 .text-white,
+.dark .bg-white\/10 .text-white,
+.dark .bg-white\/20 .text-white,
+.dark .bg-white\/30 .text-white,
+.dark .bg-white\/40 .text-white,
+.dark .bg-white\/50 .text-white,
+.dark .bg-white\/70 .text-white,
+.dark .bg-white\/80 .text-white,
+.dark .bg-white\/90 .text-white {
+  color: rgb(255 255 255) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-surface-100));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-surface-400));
+  border-radius: 10px;
+  border: 2px solid rgb(var(--color-surface-100));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-surface-500));
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgb(var(--color-surface-50));
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-surface-300));
+  border-color: rgb(var(--color-surface-50));
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-surface-400));
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(var(--primary), 0.25);
+  color: rgb(var(--foreground));
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid rgb(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Section surface styling - subtle backdrop layer */
+.section-surface {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(var(--color-surface-50), 0.12) 50%,
+      transparent 100%);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.dark .section-surface {
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(var(--color-surface-900), 0.08) 50%,
+      transparent 100%);
+  mix-blend-mode: darken;
+}
+
+/* Hyperspeed wrapper - brighter, screen blend for vibrancy */
+.hyperspeed-bg {
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  transition: opacity 0.5s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star-border-container {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  .dark [class*="glare-hover"],
+  .dark [class*="star-border"],
+  .dark [class*="bounce-card"],
+  .dark .star-border-container {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  /* Spotlight cards: allow Tailwind gradients to shine through */
+  /* Ensure reactbits wrappers don't break layouts */
+  [class*="glare-hover"] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  [class*="glare-hover"]>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Star border container animation improvements */
+  .star-border-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .star-border-container canvas {
+    opacity: 0.8 !important;
+    mix-blend-mode: screen;
+  }
+
+  .dark .star-border-container canvas {
+    opacity: 0.6 !important;
+  }
+
+  /* Hide dot-grid visual clutter */
+  .dot-grid__wrap {
+    display: none !important;
+  }
+  }
+
+  /* Ensure Spotlight cards in reactbits are theme-aware and don't enforce dark backgrounds in light mode */
+  .card-spotlight {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.85) 0%,
+        rgba(var(--accent), 0.08) 50%,
+        rgba(255, 255, 255, 0.75) 100%) !important;
+    border-color: rgba(var(--accent), 0.2) !important;
+  }
+
+  .dark .card-spotlight {
+    background: linear-gradient(135deg,
+        rgba(10, 12, 18, 0.85) 0%,
+        rgba(var(--accent), 0.08) 50%,
+        rgba(5, 8, 15, 0.75) 100%) !important;
+    border-color: rgba(var(--accent), 0.15) !important;
+  }
+
+  .card-spotlight::before {
+    background: transparent !important;
+  }
+
+  /* Make icons with `text-white` visible on white/near-white backgrounds in light mode, while still being white in dark mode */
+  .bg-white .text-white,
+  .bg-white\/5 .text-white,
+  .bg-white\/10 .text-white,
+  .bg-white\/20 .text-white,
+  .bg-white\/30 .text-white,
+  .bg-white\/40 .text-white,
+  .bg-white\/50 .text-white,
+  .bg-white\/70 .text-white,
+  .bg-white\/80 .text-white,
+  .bg-white\/90 .text-white {
+    color: rgb(var(--foreground)) !important;
+  }
+
+  .dark .bg-white .text-white,
+  .dark .bg-white\/5 .text-white,
+  .dark .bg-white\/10 .text-white,
+  .dark .bg-white\/20 .text-white,
+  .dark .bg-white\/30 .text-white,
+  .dark .bg-white\/40 .text-white,
+  .dark .bg-white\/50 .text-white,
+  .dark .bg-white\/70 .text-white,
+  .dark .bg-white\/80 .text-white,
+  .dark .bg-white\/90 .text-white {
+    color: rgb(255 255 255) !important;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--color-surface-100));
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-surface-400));
+    border-radius: 10px;
+    border: 2px solid rgb(var(--color-surface-100));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-surface-500));
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: rgb(var(--color-surface-50));
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-surface-300));
+    border-color: rgb(var(--color-surface-50));
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-surface-400));
+  }
+
+  /* Selection styling */
+  ::selection {
+    background-color: rgba(var(--primary), 0.25);
+    color: rgb(var(--foreground));
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    outline: 2px solid rgb(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Section surface styling - subtle backdrop layer */
+  .section-surface {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(var(--color-surface-50), 0.12) 50%,
+        transparent 100%);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  .dark .section-surface {
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(var(--color-surface-900), 0.08) 50%,
+        transparent 100%);
+    mix-blend-mode: darken;
+  }
+
+/* Force update */

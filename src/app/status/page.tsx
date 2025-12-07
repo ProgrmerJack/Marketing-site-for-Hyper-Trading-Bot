@@ -5,9 +5,11 @@ import { Container } from "@hyper/ui";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 
 import { CheckCircle2, AlertCircle, Activity, Zap, Shield } from "lucide-react";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
 import { revealUp, staggerContainer } from "@/lib/advanced-animations";
 import { NetworkNodeHero } from "@/components/hero/NetworkNodeHero";
-import { Unified3DBackground } from "@/components/backgrounds/Unified3DBackground";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
 import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
 import { PremiumCard } from "@/components/cards/PremiumCard";
 import { PageAccent } from "@/styles/design-tokens";
@@ -89,11 +91,11 @@ export default function StatusPage() {
         eyebrow="Status"
         title="Realtime transparency: uptime, latency, and incident history"
         description="If something degrades, we surface it here – not buried in release notes. Demo infrastructure and compliance services are monitored 24/7."
-        backgroundVariant="hyperspeed"
-        backgroundOpacity={0.9}
-        backgroundColors={["rgba(15,23,42,1)", "rgba(29,78,216,1)", "rgba(56,189,248,1)"]}
+        backgroundVariant="liquid"
+        backgroundOpacity={0.8}
+        backgroundColors={["rgba(16,185,129,1)", "rgba(34,197,94,1)", "rgba(6,182,212,1)"]}
       >
-        <motion.div className="hidden lg:block" initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <motion.div className="hidden lg:block" initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <PremiumCard variant="glass-primary" accent="blue" className="w-96 p-6">
             <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Service status</div>
             <div className="mb-3 text-lg font-bold text-slate-900 dark:text-white">API / SSE Stream Operational</div>
@@ -116,14 +118,16 @@ export default function StatusPage() {
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <span className="inline-flex items-center rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
-                <Activity className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500">
+                  <Activity className="h-3 w-3 text-white" />
+                </div>
                 Monitoring infrastructure
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -189,6 +193,8 @@ export default function StatusPage() {
                 // Map accent string to PageAccent type safely
                 const accentColor = (item.accent === "rose" ? "purple" : item.accent) as PageAccent;
 
+                const shadowFromAccent = (accent: string) => accentToShadowColor(accent);
+
                 return (
                   <motion.div
                     key={item.title}
@@ -201,13 +207,12 @@ export default function StatusPage() {
                     <PremiumCard
                       variant="glass-secondary"
                       accent={accentColor}
+                      shadowColor={shadowFromAccent(item.accent)}
                       hover={true}
                       className="h-full p-8"
                     >
                       <div className="relative space-y-4">
-                        <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                          <Icon className="h-7 w-7 text-white" />
-                        </div>
+                        <ColorIcon Icon={Icon} gradient={item.gradient} size="h-14 w-14" shadowColor={shadowFromAccent(item.accent)} />
 
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white drop-shadow-sm">
                           {item.title}
@@ -234,7 +239,7 @@ export default function StatusPage() {
 
       {/* Services Overview Section */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
-        <Unified3DBackground variant="default" intensity={0.5} />
+        <Unified2DBackground variant="status" intensity={0.5} />
 
         {/* NetworkNodeHero - 3D Network Visualization */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-20 dark:opacity-15 pointer-events-none hidden xl:block">
@@ -254,15 +259,17 @@ export default function StatusPage() {
         <Container className="relative z-10">
           <motion.div
             variants={staggerContainer}
-            initial="initial"
+            initial={false}
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             className="mx-auto max-w-7xl space-y-16"
           >
             {/* Section Header */}
-            <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
-                <CheckCircle2 className="mr-2 h-4 w-4" />
+            <motion.div variants={revealUp} initial={false} whileInView="animate" viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-3xl space-y-6 text-center">
+              <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500">
+                  <CheckCircle2 className="h-3 w-3 text-white" />
+                </div>
                 Services overview
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -297,9 +304,7 @@ export default function StatusPage() {
                       <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                         <div className="flex-1 space-y-4">
                           <div className="flex items-center gap-4">
-                            <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                              <Icon className="h-8 w-8 text-white" />
-                            </div>
+                            <ColorIcon Icon={Icon} gradient={item.gradient} size="h-16 w-16" shadowColor={accentToShadowColor(item.accent)} />
                             <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                               {item.service}
                             </h3>
@@ -369,15 +374,17 @@ export default function StatusPage() {
         <Container className="relative z-10">
           <motion.div
             variants={staggerContainer}
-            initial="initial"
+            initial={false}
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             className="mx-auto max-w-7xl space-y-16"
           >
             {/* Section Header */}
             <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">
-              <span className="inline-flex items-center rounded-full bg-amber-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-amber-700 dark:bg-amber-950/50 dark:text-amber-400">
-                <AlertCircle className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-amber-700 dark:bg-amber-950/50 dark:text-amber-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-500">
+                  <AlertCircle className="h-3 w-3 text-white" />
+                </div>
                 Incident history
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -408,9 +415,7 @@ export default function StatusPage() {
                     <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                       <div className="flex-1 space-y-5">
                         <div className="flex items-start gap-4">
-                          <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg">
-                            <AlertCircle className="h-7 w-7 text-white" />
-                          </div>
+                          <ColorIcon Icon={AlertCircle} gradient="from-amber-500 to-orange-500" size="h-14 w-14" shadowColor="rgba(251, 146, 60, 0.25)" />
                           <div className="flex-1 space-y-2">
                             <time className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
                               {incident.date}

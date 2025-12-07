@@ -11,8 +11,11 @@ import { AdvancedChartsDemo } from "@/components/charts/advanced-charts-demo";
 import { PageHeaderAnimated } from "@/components/page-header-animated";
 
 import { AuroraBackground } from "@/components/backgrounds/AuroraBackground";
+import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
 import { CheckCircle2, TrendingUp, Zap, BarChart3 } from "lucide-react";
 import { PremiumCard } from "@/components/cards/PremiumCard";
+import ColorIcon from "@/components/ui/ColorIcon";
+import { accentToShadowColor } from "@/lib/color-shadows";
 
 export default function LiveDemoPage() {
   // Live demo page uses global UnifiedBackground; motion hooks not required here
@@ -21,6 +24,8 @@ export default function LiveDemoPage() {
     <div className="relative space-y-0">
       {/* Global Aurora Background */}
       <AuroraBackground variant="trading" intensity={0.5} />
+      {/* Page-specific 2D Background Animation (replacing 3D) */}
+      <Unified2DBackground variant="live-demo" intensity={0.6} />
 
       {/* Hero Section */}
       <PageHeaderAnimated
@@ -32,13 +37,13 @@ export default function LiveDemoPage() {
         backgroundColors={["rgba(5,8,15,1)", "rgba(34,211,238,1)", "rgba(99,102,241,1)"]}
       >
         {/* Hero Card with Key Stats */}
-        <motion.div 
+        <motion.div
           className="hidden lg:block relative z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <PremiumCard variant="glass-primary" accent="cyan" className="w-[500px] p-8">
+          <PremiumCard variant="glass-primary" accent="cyan" className="w-full max-w-2xl p-8">
             <div className="grid grid-cols-3 gap-6">
               {[
                 { icon: TrendingUp, label: "486 ML Models", sublabel: "25+ architectures" },
@@ -46,9 +51,7 @@ export default function LiveDemoPage() {
                 { icon: BarChart3, label: "<120ms", sublabel: "Signal latency" },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500/20">
-                    <stat.icon className="h-5 w-5 text-cyan-400" />
-                  </div>
+                  <ColorIcon Icon={stat.icon} gradient="from-cyan-500 to-blue-500" size="h-10 w-10" wrapperClass="mx-auto mb-2" shadowColor={accentToShadowColor('cyan')} />
                   <div className="text-sm font-bold text-white">{stat.label}</div>
                   <div className="text-xs text-slate-400">{stat.sublabel}</div>
                 </div>
@@ -65,7 +68,9 @@ export default function LiveDemoPage() {
             "Full Depth Visibility"
           ].map((feature) => (
             <div key={feature} className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
-              <CheckCircle2 className="h-4 w-4 text-cyan-400" />
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 shadow-sm">
+                <CheckCircle2 className="h-3 w-3 text-white" />
+              </span>
               <span className="text-sm font-medium text-slate-200">{feature}</span>
             </div>
           ))}
@@ -87,8 +92,10 @@ export default function LiveDemoPage() {
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <span className="inline-flex items-center rounded-full bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:bg-cyan-950/50 dark:text-cyan-400">
-                <Activity className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:bg-cyan-950/50 dark:text-cyan-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500">
+                  <Activity className="h-3 w-3 text-white" />
+                </div>
                 Advanced Charts
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -145,8 +152,10 @@ export default function LiveDemoPage() {
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <span className="inline-flex items-center rounded-full bg-sky-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-sky-700 dark:bg-sky-950/50 dark:text-sky-400">
-                <Activity className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-sky-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-sky-700 dark:bg-sky-950/50 dark:text-sky-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500">
+                  <Activity className="h-3 w-3 text-white" />
+                </div>
                 Market Data
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -193,8 +202,10 @@ export default function LiveDemoPage() {
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
-                <Activity className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-700 dark:bg-blue-950/50 dark:text-blue-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500">
+                  <Activity className="h-3 w-3 text-white" />
+                </div>
                 Live Dashboard
               </span>
               <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl drop-shadow-sm">
@@ -265,8 +276,10 @@ export default function LiveDemoPage() {
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-3xl space-y-6 text-center"
             >
-              <span className="inline-flex items-center rounded-full bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:bg-cyan-950/50 dark:text-cyan-400">
-                <Activity className="mr-2 h-4 w-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cyan-700 dark:bg-cyan-950/50 dark:text-cyan-400">
+                <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500">
+                  <Activity className="h-3 w-3 text-white" />
+                </div>
                 Execution Feed
               </span>
               <h2 className="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl drop-shadow-sm">

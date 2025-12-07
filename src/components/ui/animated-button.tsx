@@ -24,7 +24,7 @@ export function AnimatedButton({
   const shouldReduce = useReducedMotion();
 
   const variants = {
-    primary: "bg-gradient-to-r from-blue-500 to-purple-600 text-white",
+    primary: "bg-gradient-to-r from-blue-500 to-purple-600 btn-gradient-text",
     secondary: "bg-card/10 border border-[color:var(--border)]/20 text-[color:var(--foreground)] dark:text-white",
     ghost: "text-[color:var(--foreground)] hover:bg-card/10 dark:text-white dark:hover:bg-[rgb(var(--card))/0.08]",
   };

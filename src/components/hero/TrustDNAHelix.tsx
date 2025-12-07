@@ -205,7 +205,9 @@ export function TrustDNAHelix() {
         <div className="relative w-64 h-64">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[rgb(79,244,207)] to-[rgb(0,179,255)] opacity-20 blur-3xl" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <Shield className="w-32 h-32 text-[rgb(79,244,207)]" />
+            <div className="flex h-40 w-40 items-center justify-center rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-2xl">
+              <Shield className="w-20 h-20 text-white" />
+            </div>
           </div>
         </div>
       </div>
