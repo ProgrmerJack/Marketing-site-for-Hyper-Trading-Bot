@@ -341,12 +341,6 @@ export default function SafetyPage() {
 
       {/* Compliance Controls */}
       <section className="relative isolate overflow-hidden py-24 md:py-32">
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-20 dark:opacity-15 pointer-events-none hidden xl:block">
-          <div className="w-[500px] h-[500px]">
-            <DefenseDome3D />
-          </div>
-        </div>
-
         <Container className="relative z-10">
           <motion.div variants={staggerContainer} initial={false} whileInView="animate" viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-7xl space-y-16">
             <motion.div variants={revealUp} className="mx-auto max-w-3xl space-y-6 text-center">

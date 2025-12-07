@@ -7914,3 +7914,15 @@ go: downloading golang.org/x/sys v0.30.0
 2025-12-07T21:33:58+05:00 [ERROR] (codacy-cli-v2/cli-v2.go:58) Configuration error error=yaml: line 6: could not find expected ':'
 2025-12-07T21:33:58+05:00 [ERROR] (codacy-cli-v2/cli-v2.go:58) Configuration error error=yaml: line 6: could not find expected ':'
 2025-12-07T21:33:58+05:00 [ERROR] (codacy-cli-v2/cli-v2.go:58) Configuration error error=yaml: line 6: could not find expected ':'
+2025-12-07T21:44:59+05:00 [INFO] (codacy-cli-v2/cli-v2.go:27) Starting Codacy CLI version=1.0.0-main.363.sha.f0a5bd7 (f0a5bd7) built at 2025-12-02T15:19:12Z
+2025-12-07T21:44:59+05:00 [ERROR] (codacy-cli-v2/cli-v2.go:58) Configuration error error=yaml: line 6: could not find expected ':'
+2025-12-07T21:45:01+05:00 [INFO] (codacy-cli-v2/cli-v2.go:27) Starting Codacy CLI version=1.0.0-main.363.sha.f0a5bd7 (f0a5bd7) built at 2025-12-02T15:19:12Z
+2025-12-07T21:45:01+05:00 [ERROR] (codacy-cli-v2/cli-v2.go:58) Configuration error error=yaml: line 6: could not find expected ':'
+2025-12-07T21:46:10+05:00 [INFO] (codacy-cli-v2/cli-v2.go:27) Starting Codacy CLI version=1.0.0-main.363.sha.f0a5bd7 (f0a5bd7) built at 2025-12-02T15:19:12Z
+2025-12-07T21:46:10+05:00 [ERROR] (codacy-cli-v2/cli-v2.go:58) Configuration error error=yaml: line 6: could not find expected ':'
+2025-12-07T21:46:11+05:00 [INFO] (codacy-cli-v2/cli-v2.go:27) Starting Codacy CLI version=1.0.0-main.363.sha.f0a5bd7 (f0a5bd7) built at 2025-12-02T15:19:12Z
+2025-12-07T21:46:11+05:00 [ERROR] (codacy-cli-v2/cli-v2.go:58) Configuration error error=yaml: line 6: could not find expected ':'
+2025-12-07T21:47:29+05:00 [INFO] (codacy-cli-v2/cli-v2.go:27) Starting Codacy CLI version=1.0.0-main.363.sha.f0a5bd7 (f0a5bd7) built at 2025-12-02T15:19:12Z
+2025-12-07T21:47:29+05:00 [ERROR] (codacy-cli-v2/cli-v2.go:58) Configuration error error=yaml: line 6: could not find expected ':'
+2025-12-07T21:50:17+05:00 [INFO] (codacy-cli-v2/cli-v2.go:27) Starting Codacy CLI version=1.0.0-main.363.sha.f0a5bd7 (f0a5bd7) built at 2025-12-02T15:19:12Z
+2025-12-07T21:50:17+05:00 [ERROR] (codacy-cli-v2/cli-v2.go:58) Configuration error error=yaml: line 6: could not find expected ':'

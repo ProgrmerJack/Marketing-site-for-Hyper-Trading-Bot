@@ -21,7 +21,6 @@ import { ParallaxSection } from "@/components/motion/ParallaxSection";
 import { AnimatedNumber } from "@/components/animated-number";
 import { InfoDisclosure } from "@/components/info-disclosure";
 import { FloatingBot3D } from "@/components/hero/FloatingBot3D";
-import { EmailCaptureSection } from "@/components/EmailCaptureSection";
 import { Unified2DBackground } from "@/components/backgrounds/Unified2DBackground";
 // Note: AnimatedBackground and AuroraBackground removed from page.tsx for performance
 // They were causing multiple overlapping canvas/motion animation loops
@@ -313,9 +312,6 @@ export default function Home() {
       </Suspense>
       <Suspense fallback={<SectionSkeleton />}>
         <TestimonialsSection />
-      </Suspense>
-      <Suspense fallback={<SectionSkeleton />}>
-        <EmailCaptureSection />
       </Suspense>
       <Suspense fallback={<SectionSkeleton />}>
         <DemoSection />
@@ -897,11 +893,6 @@ function ProcessSection() {
                     hover={true}
                     className="h-full p-6 relative z-10"
                   >
-                    {/* Step Number */}
-                    <div className="absolute -top-3 -left-3 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-slate-900 to-slate-700 text-sm font-bold text-white shadow-lg dark:from-slate-100 dark:to-slate-300 dark:text-slate-900">
-                      {item.step}
-                    </div>
-
                     {/* Icon */}
                     <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg`}>
                       <Icon className="h-6 w-6 text-white drop-shadow-md" />
