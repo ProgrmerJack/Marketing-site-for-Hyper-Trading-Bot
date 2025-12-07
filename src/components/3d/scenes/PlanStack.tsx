@@ -96,9 +96,9 @@ export default function PlanStack() {
                 fov={45}
             />
 
-            {/* Environment for PBR reflections */}
+            {/* Environment for PBR reflections - using preset instead of HDR file */}
             <Suspense fallback={null}>
-                <Environment files="/hdri/studio.hdr" />
+                <Environment preset="studio" />
             </Suspense>
 
             <ambientLight intensity={0.5} />

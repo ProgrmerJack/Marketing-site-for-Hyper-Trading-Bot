@@ -94,9 +94,9 @@ export default function TradingCockpit() {
                 fov={50}
             />
 
-            {/* Environment for PBR reflections */}
+            {/* Environment for PBR reflections - using preset instead of HDR file */}
             <Suspense fallback={null}>
-                <Environment files="/hdri/night.hdr" />
+                <Environment preset="night" />
             </Suspense>
 
             <ambientLight intensity={0.3} />

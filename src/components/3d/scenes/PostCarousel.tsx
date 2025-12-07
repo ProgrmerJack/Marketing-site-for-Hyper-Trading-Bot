@@ -114,9 +114,9 @@ export default function PostCarousel() {
                 fov={55}
             />
 
-            {/* Environment for PBR reflections */}
+            {/* Environment for PBR reflections - using preset instead of HDR file */}
             <Suspense fallback={null}>
-                <Environment files="/hdri/sunset.hdr" />
+                <Environment preset="sunset" />
             </Suspense>
 
             <ambientLight intensity={0.45} />

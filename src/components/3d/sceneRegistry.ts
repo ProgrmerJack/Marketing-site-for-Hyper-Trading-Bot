@@ -23,37 +23,37 @@ export interface SceneConfig {
 export const scenes: Record<SceneType, SceneConfig> = {
     home: {
         Component: dynamic(() => import("./scenes/TradingCore"), { ssr: false }),
-        fallback: "/3d/home-fallback.png",
+        fallback: "", // No static fallback - scene renders dynamically
         alt: "Autonomous Trading Core",
         scrollType: "none",
     },
     howItWorks: {
         Component: dynamic(() => import("./scenes/PipelineFlow"), { ssr: false }),
-        fallback: "/3d/pipeline-fallback.png",
+        fallback: "", // No static fallback - scene renders dynamically
         alt: "Data Pipeline Visualization",
         scrollType: "continuous",
     },
     pricing: {
         Component: dynamic(() => import("./scenes/PlanStack"), { ssr: false }),
-        fallback: "/3d/pricing-fallback.png",
+        fallback: "", // No static fallback - scene renders dynamically
         alt: "Pricing Tier Visualization",
         scrollType: "triggered",
     },
     liveDemo: {
         Component: dynamic(() => import("./scenes/TradingCockpit"), { ssr: false }),
-        fallback: "/3d/live-demo-fallback.png",
+        fallback: "", // No static fallback - scene renders dynamically
         alt: "Trading Cockpit Visualization",
         scrollType: "triggered",
     },
     blog: {
         Component: dynamic(() => import("./scenes/PostCarousel"), { ssr: false }),
-        fallback: "/3d/blog-fallback.png",
+        fallback: "", // No static fallback - scene renders dynamically
         alt: "Blog Post Carousel",
         scrollType: "none",
     },
     contact: {
         Component: dynamic(() => import("./scenes/SignalGlobe"), { ssr: false }),
-        fallback: "/3d/contact-fallback.png",
+        fallback: "", // No static fallback - scene renders dynamically
         alt: "Global Signal Network",
         scrollType: "none",
     },
