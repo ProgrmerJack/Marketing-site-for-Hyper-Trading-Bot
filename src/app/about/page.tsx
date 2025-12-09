@@ -124,17 +124,17 @@ export default function AboutPage() {
   return (
     <div className="relative">
       {/* Hero Section - Vibrant cyan/blue theme */}
-            {/* Hero Section - Vibrant emerald/teal theme */}
-      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-emerald-950/40 dark:to-teal-950/40 md:py-32">
-        <Unified2DBackground variant="about" intensity={0.6} />
-        
+      {/* Hero Section - Vibrant emerald/teal theme */}
+      <section className="relative isolate min-h-[90vh] overflow-hidden bg-transparent py-20 md:py-32">
+        {/* <Unified2DBackground variant="about" intensity={0.6} /> */}
+
         {/* DNAHelixHero - 3D DNA Helix Visualization */}
         <div className="absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none">
           <div className="w-full h-full flex items-center justify-center">
             <DNAHelixHero />
           </div>
         </div>
-        
+
         <div className="absolute -right-24 -bottom-12 opacity-80 dark:opacity-40 pointer-events-none">
           <MorphingShape size={300} className="motion-zone" color="rgb(16,185,129)" />
         </div>
@@ -143,22 +143,22 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.18),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.15),transparent_70%)]" />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(56,189,248,0.16),rgba(34,211,238,0.14),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(56,189,248,0.14),rgba(34,211,238,0.12),transparent_70%)]" />
-        
+
         {/* DNAHelixHero - DNA Helix Visualization */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-35 dark:opacity-20 pointer-events-none hidden lg:block">
           <div className="w-[450px] h-[450px]">
             <DNAHelixHero />
           </div>
         </div>
-        
+
         {/* Floating shield particles */}
         <FloatingParticles count={10} color="rgb(56,189,248)" />
-        
+
         {/* Rotating 3D ring decoration */}
         <div className="absolute right-1/4 top-1/4 hidden xl:block">
           <Rotating3DRing size={200} color="rgba(34,211,238,0.3)" thickness={2} duration={15} />
         </div>
-        
+
         <div className="absolute right-8 top-10 opacity-80 dark:opacity-40 pointer-events-none">
           <MorphingShape size={300} className="motion-zone" color="rgb(var(--accent))" />
         </div>
@@ -174,14 +174,14 @@ export default function AboutPage() {
               About
             </motion.span>
             <MouseFollower strength={0.7} className="motion-zone">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
-            >
-              Revolutionizing crypto trading through automation and intelligence
-            </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
+              >
+                Revolutionizing crypto trading through automation and intelligence
+              </motion.h1>
             </MouseFollower>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -194,36 +194,36 @@ export default function AboutPage() {
 
             {/* Principle Cards in Hero */}
             <ParallaxSection speed={0.2} className="relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4"
-            >
-              {founderStory.principles.map((principle, index) => {
-                const Icon = principle.icon;
-                return (
-                  <motion.div
-                    key={principle.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                    className="group"
-                  >
-                    <SpotlightCard
-                      className="relative h-full overflow-hidden rounded-2xl border-2 border-cyan-200/60 bg-[rgb(var(--card))/0.9] p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:neon-glow-cyan dark:border-cyan-500/40 dark:bg-slate-900/90 motion-zone"
-                      spotlightColor={"rgba(34, 211, 238, 0.2)" as `rgba(${number}, ${number}, ${number}, ${number})`}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="grid gap-4 pt-8 sm:grid-cols-2 lg:grid-cols-4"
+              >
+                {founderStory.principles.map((principle, index) => {
+                  const Icon = principle.icon;
+                  return (
+                    <motion.div
+                      key={principle.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                      className="group"
                     >
-                      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-500">
-                        <Icon className="h-7 w-7 text-white drop-shadow-md" />
-                      </div>
-                      <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{principle.title}</h3>
-                      <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">{principle.description}</p>
-                    </SpotlightCard>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                      <SpotlightCard
+                        className="relative h-full overflow-hidden rounded-2xl border-2 border-cyan-200/60 bg-[rgb(var(--card))/0.9] p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:neon-glow-cyan dark:border-cyan-500/40 dark:bg-slate-900/90 motion-zone"
+                        spotlightColor={"rgba(34, 211, 238, 0.2)" as `rgba(${number}, ${number}, ${number}, ${number})`}
+                      >
+                        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-500">
+                          <Icon className="h-7 w-7 text-white drop-shadow-md" />
+                        </div>
+                        <h3 className="mb-2 text-sm font-bold text-slate-900 dark:text-white">{principle.title}</h3>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">{principle.description}</p>
+                      </SpotlightCard>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
             </ParallaxSection>
 
             {/* CTA Buttons */}
@@ -263,11 +263,11 @@ export default function AboutPage() {
       {/* Founder Section */}
       <section className="relative isolate overflow-hidden bg-gradient-to-br from-[rgb(var(--card))/0.85] via-orange-50/30 to-blue-50/30 py-24 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
         {/* Background */}
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-35 dark:opacity-25">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.12),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.15),transparent_70%)]" />
-          </div>
-          {/* Radial color overlay similar to homepage hero */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(14,165,233,0.10),rgba(37,99,235,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.08),rgba(34,211,238,0.06),transparent_70%)]" />
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-35 dark:opacity-25">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.12),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.15),transparent_70%)]" />
+        </div>
+        {/* Radial color overlay similar to homepage hero */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(14,165,233,0.10),rgba(37,99,235,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.08),rgba(34,211,238,0.06),transparent_70%)]" />
 
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
@@ -299,14 +299,14 @@ export default function AboutPage() {
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ 
-                    duration: 0.6, 
+                  transition={{
+                    duration: 0.6,
                     delay: index * 0.15,
                     ease: [0.25, 0.1, 0.25, 1]
                   }}
-                  whileHover={{ 
-                    y: -8, 
-                    transition: { duration: 0.3 } 
+                  whileHover={{
+                    y: -8,
+                    transition: { duration: 0.3 }
                   }}
                 >
                   <SpotlightCard
@@ -328,9 +328,9 @@ export default function AboutPage() {
 
       {/* Core Principles Section */}
       <section className="relative isolate overflow-hidden bg-gradient-to-br from-[rgb(var(--card))/0.85] via-orange-50/30 to-blue-50/30 py-24 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
-          </div>
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
+        </div>
 
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
@@ -352,12 +352,12 @@ export default function AboutPage() {
                     initial={{ opacity: 0, scale: 0.9, y: 30 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={{ 
-                      duration: 0.5, 
+                    transition={{
+                      duration: 0.5,
                       delay: index * 0.1,
                       ease: [0.25, 0.1, 0.25, 1]
                     }}
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
                       y: -12,
                       transition: { duration: 0.3 }
@@ -368,9 +368,8 @@ export default function AboutPage() {
                       spotlightColor="rgba(59, 130, 246, 0.2)"
                     >
                       <div className="mb-6 flex h-16 w-16 items-center justify-center">
-                        <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${
-                          index % 2 === 0 ? 'from-blue-500 to-cyan-500' : 'from-emerald-500 to-teal-500'
-                        } shadow-lg`}>
+                        <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${index % 2 === 0 ? 'from-blue-500 to-cyan-500' : 'from-emerald-500 to-teal-500'
+                          } shadow-lg`}>
                           <Icon className="h-8 w-8 text-white drop-shadow-md" />
                         </div>
                       </div>
@@ -389,9 +388,9 @@ export default function AboutPage() {
 
       {/* Leadership Section */}
       <section className="relative isolate overflow-hidden bg-gradient-to-br from-[rgb(var(--card))/0.85] via-orange-50/30 to-blue-50/30 py-24 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.15),transparent_60%)]" />
-          </div>
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.15),transparent_60%)]" />
+        </div>
 
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">
@@ -445,9 +444,9 @@ export default function AboutPage() {
 
       {/* Roadmap Section */}
       <section className="relative isolate overflow-hidden bg-gradient-to-br from-[rgb(var(--card))/0.85] via-orange-50/30 to-blue-50/30 py-24 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 md:py-32">
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
-          </div>
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 dark:opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
+        </div>
 
         <Container className="relative z-10">
           <div className="mx-auto max-w-7xl space-y-16">

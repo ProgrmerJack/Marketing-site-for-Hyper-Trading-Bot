@@ -46,8 +46,8 @@ export default function PricingPage() {
   return (
     <div className="relative">
       {/* Hero Section - Vibrant emerald/cyan theme */}
-      <section className="relative isolate min-h-[90vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-cyan-50 to-teal-50 py-20 dark:bg-gradient-to-br dark:from-[rgb(5,8,15)] dark:via-emerald-950/40 dark:to-cyan-950/40 md:py-32">
-        <Unified2DBackground variant="pricing" intensity={0.55} />
+      <section className="relative isolate min-h-[90vh] overflow-hidden bg-transparent py-20 md:py-32">
+        {/* <Unified2DBackground variant="pricing" intensity={0.55} /> */}
 
         <div className="absolute left-[-6rem] -bottom-12 opacity-90 dark:opacity-60 pointer-events-none">
           <MorphingShape size={280} className="motion-zone" color="rgb(var(--primary))" />

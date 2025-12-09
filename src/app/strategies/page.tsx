@@ -8,6 +8,7 @@ import { Container } from "@hyper/ui";
 import { motion } from "framer-motion";
 import { PremiumCard } from "@/components/cards/PremiumCard";
 import { useState } from "react";
+import { PageHeaderAnimated } from "@/components/page-header-animated";
 
 export default function StrategiesPage() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -124,30 +125,19 @@ export default function StrategiesPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
+    <div className="relative">
+      <PageHeaderAnimated
+        eyebrow="380+ Automated Strategies"
+        title="Strategy Library"
+        description="Explore our comprehensive collection of ML-optimized trading strategies, each backtested across 9+ years of market data with verified performance metrics."
+      />
+
       <Container className="relative z-10 py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mx-auto max-w-6xl space-y-16"
         >
-          {/* Header */}
-          <div className="text-center space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 px-4 py-1.5 text-sm font-medium text-violet-700 dark:bg-violet-900/50 dark:text-violet-300">
-              <span className="flex h-5 w-5 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 shadow-sm">
-                <Library className="h-3 w-3 text-white" />
-              </span>
-              380+ Automated Strategies
-            </div>
-            <h1 className="font-display text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Strategy Library
-            </h1>
-            <p className="mx-auto max-w-2xl text-xl text-slate-700 dark:text-slate-300">
-              Explore our comprehensive collection of ML-optimized trading strategies,
-              each backtested across 9+ years of market data with verified performance metrics.
-            </p>
-          </div>
-
           {/* Performance Overview */}
           <div className="grid gap-6 md:grid-cols-4">
             {performanceMetrics.map((metric, index) => (
@@ -173,8 +163,8 @@ export default function StrategiesPage() {
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${activeCategory === category.id
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
-                    : "bg-white text-slate-700 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
+                  : "bg-white text-slate-700 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   }`}
               >
                 {category.label}
@@ -198,7 +188,7 @@ export default function StrategiesPage() {
                 >
                   <PremiumCard variant="glass-secondary" className="group h-full p-6 transition-all hover:shadow-xl">
                     <div className="flex items-start gap-4">
-                      <ColorIcon Icon={Icon} gradient={strategy.gradient} size="h-14 w-14" iconClass="h-7 w-7" shadowColor={accentToShadowColor(strategy.gradient.includes('blue') ? 'blue' : strategy.gradient.includes('emerald') ? 'emerald' : strategy.gradient.includes('violet') ? 'purple' : strategy.gradient.includes('orange') ? 'orange' : strategy.gradient.includes('rose') ? 'red' : strategy.gradient.includes('cyan') ? 'cyan' : strategy.gradient.includes('fuchsia') ? 'purple' : 'emerald')} />
+                      <ColorIcon Icon={Icon} gradient={strategy.gradient} size="h-14 w-14" iconClass="h-7 w-7" shadowColor={accentToShadowColor('blue')} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
                           <h3 className="font-bold text-lg text-slate-900 dark:text-white">
@@ -280,7 +270,7 @@ export default function StrategiesPage() {
                   >
                     <PremiumCard variant="glass-secondary" className="h-full p-6">
                       <div className="mb-4">
-                        <ColorIcon Icon={Icon} gradient={category.gradient} size="h-12 w-12" iconClass="h-6 w-6" shadowColor={accentToShadowColor(category.gradient.includes('blue') ? 'blue' : category.gradient.includes('violet') ? 'purple' : 'emerald')} />
+                        <ColorIcon Icon={Icon} gradient={category.gradient} size="h-12 w-12" iconClass="h-6 w-6" shadowColor={accentToShadowColor('blue')} />
                       </div>
                       <h3 className="font-bold text-lg text-slate-900 dark:text-white">{category.title}</h3>
                       <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">{category.count}</p>
